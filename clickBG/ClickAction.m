@@ -42,7 +42,7 @@
     if(myLabel!=nil)
         [myLabel release];
     if(myIcon!=nil){
-        if(DEBUG_LEVEL>0)NSLog(@"releasing icon: %@ retain: %d",myIcon,[myIcon retainCount]);
+        DEBUG(@"releasing icon: %@ retain: %d",myIcon,[myIcon retainCount]);
         [myIcon release];
     }
     if(trueLabel!=nil)
@@ -112,7 +112,7 @@
 
 - (NSString *) labelSetting
 {
-    return trueLabel;
+    return [[trueLabel copy] autorelease];
 }
 
 - (void) setLabelSetting: (NSString *) label
@@ -135,15 +135,15 @@
 }
 -(NSString *)string
 {
-    return myString;
+    return [[myString copy] autorelease];
 }
 -(NSString *)label
 {
-    return myLabel;
+    return [[myLabel copy] autorelease];
 }
 -(NSImage *)icon
 {
-    return myIcon;
+    return [[myIcon copy] autorelease];
 }
 -(int) trigger
 {

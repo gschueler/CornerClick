@@ -42,6 +42,7 @@
 -(void) setType: (int) type;
 -(void) setModifiers: (int) modifiers;
 -(void) setTrigger: (int) trigger;
+- (NSComparisonResult)triggerCompare:(ClickAction *)anAction;
 
 
 -(void)setIconAndLabelUserProvided: (NSString *) label;

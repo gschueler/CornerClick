@@ -55,7 +55,10 @@
     switch(theType){
         case ACT_FILE:
             if(myString!=nil){
-                if([[myString lastPathComponent] hasSuffix:@".app"]){
+                if(label != nil){
+                    myLabel = [label copy];
+                }
+                else if([[myString lastPathComponent] hasSuffix:@".app"]){
                     myLabel = [[[myString lastPathComponent] stringByDeletingPathExtension] retain];
                 }else{
                     myLabel =[[myString lastPathComponent] retain];
@@ -304,8 +307,8 @@
     OSErr err;
 	//NSLog(@"myClicker class: %@",[myClicker class]);
 	//psn = [myClicker lastActivePSN];
-	psn.highLongOfPSN==0;
-	psn.lowLongOfPSN== 0;
+	psn.highLongOfPSN = 0;
+	psn.lowLongOfPSN = 0;
 	err = GetFrontProcess(&psn);
     if(err==0){
 	}else{
@@ -348,6 +351,14 @@
 }
 
 
+- (NSComparisonResult)triggerCompare:(ClickAction *)anAction
+{
+    int t = [anAction trigger];
+    return (t == [self trigger] ? NSOrderedSame :
+            ( t > [self trigger] ? NSOrderedAscending :
+              NSOrderedDescending ));
+}
+
 + (NSString *) stringNameForActionType: (int) type
 {
     switch(type){
@@ -362,6 +373,7 @@
 + (NSString *) labelNameForActionType: (int) type
 {
     switch(type){
+        case ACT_FILE: return @"fileLabel";
         case 3: return @"urlDesc";
         case 4: return @"scriptDesc";
         default: return nil;

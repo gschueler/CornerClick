@@ -6,7 +6,7 @@
 #define EMAIL_URL @"mailto:greg-cornerclick@vario.us"
 
 
-#define MARKETING_VERSION_STRING @"0.5"
+#define MARKETING_VERSION_STRING @"0.6"
 
 #define SHIFT_MASK (1<<0)
 #define OPTION_MASK (1<<1)
@@ -15,6 +15,10 @@
 #define FN_MASK (1<<4)
 
 #define MAX_CORNERS 4
+
+#define TRIGGER_CLICK 0
+#define TRIGGER_RCLCK 1
+#define TRIGGER_HOVER 2
 
 #define TL_CORNER 0
 #define TR_CORNER 1
@@ -41,10 +45,10 @@
     #define WRITE_BUBBLES
 #endif
 
-#define CC_APP_VERSION 0005
+#define CC_APP_VERSION 0006
 #define CC_PATCH_VERSION 0
 
 #define CC_MIN_VERSION 0002
-#define CC_MAX_VERSION 0005
+#define CC_MAX_VERSION 0006
 
 #define LOCALIZE(x,y)	[x localizedStringForKey:y value:nil table:nil]

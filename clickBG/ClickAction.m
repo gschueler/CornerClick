@@ -44,12 +44,17 @@
         trueLabel = [label copy];
     switch(theType){
         case ACT_FILE:
-            if([[myString lastPathComponent] hasSuffix:@".app"]){
-                myLabel = [[[myString lastPathComponent] stringByDeletingPathExtension] retain];
+            if(myString!=nil){
+                if([[myString lastPathComponent] hasSuffix:@".app"]){
+                    myLabel = [[[myString lastPathComponent] stringByDeletingPathExtension] retain];
+                }else{
+                    myLabel =[[myString lastPathComponent] retain];
+                }
+                myIcon = [[[NSWorkspace sharedWorkspace] iconForFile: myString] retain];
             }else{
-                myLabel =[[myString lastPathComponent] retain];
+                myLabel=nil;
+                myIcon=nil;
             }
-            myIcon = [[[NSWorkspace sharedWorkspace] iconForFile: myString] retain];
             break;
         case ACT_HIDE:
             myLabel=[[NSString stringWithString:@"Hide Current Application"] retain];
@@ -74,10 +79,14 @@
             if(label !=nil){
                 myLabel = [label copy];
             }
-            else {
+            else if(myString==nil){
+                myLabel=nil;
+                myIcon=nil;
+            }else {
                 myLabel = [[[myString lastPathComponent] stringByDeletingPathExtension] retain];
+                myIcon = [[[NSWorkspace sharedWorkspace] iconForFile: myString] retain];
             }
-            myIcon = [[[NSWorkspace sharedWorkspace] iconForFile: myString] retain];
+            
             break;
         default:
             myLabel=[[NSString stringWithString:@"?!@#"] retain];

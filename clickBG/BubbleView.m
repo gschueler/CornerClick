@@ -179,9 +179,13 @@ static NSDictionary *normalTextAttrs;
     NSShadow *textShad = [[[NSShadow alloc] init] autorelease];
     [textShad setShadowOffset:NSMakeSize(3,-3)];
     [textShad setShadowBlurRadius:1];
+    float tsize = [[CornerClickSettings sharedSettings] textSize];
+    float mesize;
+    if(tsize < 12) tsize=mesize;
+    else mesize = tsize - 4;
 	return [NSDictionary dictionaryWithObjects:
 		[NSArray arrayWithObjects: 
-			[NSFont systemFontOfSize: 12.0],
+			[NSFont systemFontOfSize: mesize],
 			[NSColor whiteColor],textShad ,nil]
 									   forKeys:
 		[NSArray arrayWithObjects: NSFontAttributeName,
@@ -952,8 +956,7 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
     
     if([drawingObject selectedItem] >=0 && NSIntersectsRect(therect,[self modifiersRect])){
             
-        NSString *label = [CornerClickSupport labelForModifiers:[drawingObject selectedModifiers]
-                                                     andTrigger:[drawingObject selectedTrigger]
+        NSString *label = [CornerClickSupport labelForClickAction:[drawingObject selectedClickAction]                                                      
                                                     localBundle:[NSBundle bundleForClass:[self class]]];
         
         NSSize tSize = [label sizeWithAttributes:[BubbleView smallTextAttrs]];

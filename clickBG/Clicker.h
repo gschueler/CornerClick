@@ -44,5 +44,6 @@
 - (void)recalcAndShowHoverWindow: (int) corner onScreen:(NSNumber *)screenNum modifiers: (unsigned int) modifiers
                          doDelay: (BOOL) delay;
 - (void) mouseExited: (NSEvent *) theEvent;
+- (void) mouseDownTrigger: (NSEvent *) theEvent;
 
 @end

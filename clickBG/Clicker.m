@@ -249,7 +249,8 @@
 
         ClickView *tlView = [[[ClickView alloc]initWithFrame:[window frame]
                                                       actions:actions
-                                                      corner:corner] autorelease];
+                                                      corner:corner
+                                                     clicker:self] autorelease];
         [window setContentView: tlView];
         [window setInitialFirstResponder:tlView];
         
@@ -524,6 +525,10 @@ postNotificationName: @"CornerClickPingBackNotification"
 - (void) mouseDown:(NSEvent *)theEvent
 {
     DEBUG(@"mouseDown in clicker.m");
+}
+- (void) mouseDownTrigger: (NSEvent *) theEvent
+{
+    [hoverWin setAlphaValue: 0];
 }
 
 - (void)mouseExited:(NSEvent *)theEvent

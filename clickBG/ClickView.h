@@ -5,6 +5,7 @@
 
 @interface ClickView : NSView
 {
+    Clicker *myClicker;
     NSArray *myActions;
     NSImage *drawed;
     NSTrackingRectTag trackTag;
@@ -12,9 +13,8 @@
     int corner;
 }
 
-- (id)initWithFrame:(NSRect)frameRect action:(ClickAction *)anAction corner:(int)theCorner;
 
-- (id)initWithFrame:(NSRect)frameRect actions:(NSArray *)actions corner:(int) theCorner;
+- (id)initWithFrame:(NSRect)frameRect actions:(NSArray *)actions corner:(int) theCorner clicker:(Clicker *)clicker;
 
 - (void) drawBuf: (NSRect) rect;
 - (void) setSelected: (BOOL) selected;

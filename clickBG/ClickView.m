@@ -3,17 +3,13 @@
 
 @implementation ClickView
 
-- (id)initWithFrame:(NSRect)frameRect action:(ClickAction *)anAction corner:(int) theCorner;
-{
-    self = [self initWithFrame:frameRect actions: [NSArray arrayWithObject: anAction] corner:theCorner];
-    return self;
-}
 
-- (id)initWithFrame:(NSRect)frameRect actions:(NSArray *)actions corner:(int) theCorner;
+- (id)initWithFrame:(NSRect)frameRect actions:(NSArray *)actions corner:(int) theCorner clicker:(Clicker *)clicker;
 {
     int c;
     NSMutableArray *ma;
     if(self = [super initWithFrame:frameRect]){
+        myClicker=clicker;
         ma = [[NSMutableArray arrayWithCapacity:[actions count]] retain];
         for(c=0;c<[actions count];c++){
             [ma addObject:[[[actions objectAtIndex:c] copy] autorelease]];
@@ -282,6 +278,7 @@
         flags|=COMMAND_MASK;
     if(evtFlags & NSControlKeyMask)
         flags|=CONTROL_MASK;
+    [myClicker mouseDownTrigger:theEvent];
     for(i=0;i<[myActions count]; i++){
         theAction = (ClickAction *)[myActions objectAtIndex:i];
         if([theAction modifiers]==flags){

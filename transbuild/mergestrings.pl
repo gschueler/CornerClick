@@ -1,4 +1,12 @@
 #!/usr/bin/perl
+
+#
+# usage: mergestrings.pl a.strings b.strings out.strings
+# takes the origin strings list of a and creates out using the any translated versions found in b, and 
+# including any untranslated strings from a.
+#
+
+
 use Encode qw(encode decode);
 my ($enca, $encb, $encc) = qw(UTF-16 UTF-16 UTF-16);
 my ($filea, $fileb, $filec)=@ARGV;

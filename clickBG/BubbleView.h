@@ -50,8 +50,7 @@
 - (void) setDrawingObject: (BubbleActionsList *) obj;
 - (BubbleActionsList *) drawingObject;
 - (void) drawFadeFrame: (NSRect)rect;
-- (void) drawGradient: (NSRect) therect fromColor:(NSColor *) from toColor:(NSColor *) to
-            direction: (int) dir;
+
 - (void) setDrawFont:(NSFont *) font color:(NSColor *) color;
 - (void) setDrawHilite:(BOOL)draw;
 - (BOOL) drawHilite;
@@ -61,12 +60,26 @@
 - (void) recalcSize;
 - (NSRect) preferredFrame;
 - (void) calcPreferredFrame;
+- (void) calcPreferredFrame:(BOOL) recalc;
 - (BubbleActionsList *) bubbleActionsList: (NSArray *)actions 
                                 forCorner: (int) corn
                                  selected: (int) sel
 						andHighlightColor: (NSColor *) theColor;
 - (BubbleAction *) bubbleAction: (NSArray *)actions;
 - (void) newSelectedMod: (int) ndx;
+
++ (void) addGlass:(NSRect) therect;
++ (void) addGlass:(NSRect) therect withColor: (NSColor *)thecolor withRounding: (float) rounding;
++ (void) addGlassBG:(NSRect) therect withColor: (NSColor *)thecolor withRounding: (float) rounding;
++ (void) addGlassFG:(NSRect) therect withColor: (NSColor *)thecolor withRounding: (float) rounding;
++ (void) drawGradient: (NSRect) therect fromColor:(NSColor *) from toColor:(NSColor *) tocol
+            direction: (int) dir;
+
++ (void) drawGradient: (NSRect) therect fromColor:(NSColor *) fromCol toColor:(NSColor *) tocol  fromPoint: (NSPoint) sPoint toPoint: (NSPoint) ePoint;
+
++ (void) drawGradient:(NSRect) therect fromColor: (NSColor *) fromCol toColor:(NSColor *) tocol
+            fromPoint:(NSPoint) sPoint toPoint: (NSPoint) ePoint extendBefore:(BOOL)ebefore extendAfter:(BOOL)eafter;
+
 + (NSBezierPath *) roundedRect: (NSRect)rect rounding: (float) theRounding;
 + (NSBezierPath *) roundedRect: (NSRect)rect roundingTopLeft: (float) roundTL roundingTopRight: (float) roundTR
            roundingBottomLeft: (float)roundBL roundingBottomRight: (float) roundBR;

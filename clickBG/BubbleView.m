@@ -8,9 +8,21 @@
 
 #import "BubbleView.h"
 
+void CCShadeInterpolate( void *info, float const *inData, float *outData ) {
+	float *colors = (float *)info;
+	register float a = inData[0], a_coeff = 1.0f - a;
+	register int i = 0;
+    
+	for( i = 0; i < 4; i++ )
+		outData[i] = a_coeff * colors[i] + a * colors[i + 4];
+}
+
 @interface BubbleView (InternalMethods)
 - (void) clearBG;
++ (void) resetNormalTextAttrs;
 @end
+
+static NSDictionary *normalTextAttrs;
 
 @implementation BubbleView 
 
@@ -42,9 +54,6 @@
 	
     if(self = [super initWithFrame: frame]){
         drawingObject = [obj retain];
-        stringAttrs = [[BubbleView normalTextAttrs] retain];
-			
-        smallTextAttributes = [[BubbleView smallTextAttrs] retain];
         fadedFrame=nil;
         if(fromCol!=nil){
             fadeFromColor = [fromCol retain];
@@ -134,30 +143,35 @@
 - (void) setDrawFont:(NSFont *) font color:(NSColor *) color
 {
 	
-    NSDictionary *dict = [[NSDictionary dictionaryWithObjects:
-        [NSArray arrayWithObjects: font,color,nil]
-													  forKeys:
-        [NSArray arrayWithObjects: NSFontAttributeName,
-            NSForegroundColorAttributeName, nil]
-        ] retain];
-    [stringAttrs release];
-    stringAttrs=dict;
+    
 }
 
 + (NSDictionary *) normalTextAttrs
 {
-    NSShadow *textShad = [[[NSShadow alloc] init] autorelease];
-    [textShad setShadowOffset:NSMakeSize(3,-3)];
-    [textShad setShadowBlurRadius:1.5];
+    @synchronized(self){
     
-	return [NSDictionary dictionaryWithObjects:
-		[NSArray arrayWithObjects: 
-			[NSFont boldSystemFontOfSize: 32.0],
-			[NSColor whiteColor],textShad , nil]
-								 forKeys:
-		[NSArray arrayWithObjects: NSFontAttributeName,
-			NSForegroundColorAttributeName, NSShadowAttributeName, nil]
-		];
+        if(normalTextAttrs==nil){
+            
+            NSShadow *textShad = [[[NSShadow alloc] init] autorelease];
+            [textShad setShadowOffset:NSMakeSize(3,-3)];
+            [textShad setShadowBlurRadius:1.5];
+            
+            normalTextAttrs= [[NSDictionary dictionaryWithObjects:
+                [NSArray arrayWithObjects: 
+                    [NSFont boldSystemFontOfSize: [[CornerClickSettings sharedSettings] textSize]],
+                    [NSColor whiteColor],
+                    textShad ,
+                    nil]
+                                         forKeys:
+                [NSArray arrayWithObjects:
+                    NSFontAttributeName,
+                    NSForegroundColorAttributeName, 
+                    NSShadowAttributeName, 
+                    nil]
+                ] retain];
+        }
+    }
+    return [[normalTextAttrs retain] autorelease];
 }
 
 + (NSDictionary *) smallTextAttrs
@@ -273,6 +287,206 @@
     [tempImg unlockFocus];
     [tempImg compositeToPoint:rect.origin operation:NSCompositeSourceOver];
     
+}
++ (void) addGlassBG:(NSRect) therect withColor: (NSColor *)thecolor withRounding: (float) rounding
+{
+    
+    NSBezierPath *path = [NSBezierPath bezierPath];
+    thecolor = [thecolor colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+    float inset = 0;
+    rounding = rounding - inset;
+    NSRect inRect = NSInsetRect(therect,inset,inset);
+    float width = therect.size.width - 2. * inset;
+    float height = therect.size.height - 2. * inset;
+    float ox = inset;
+    float oy = inset;
+    
+    float midx = width/2. + therect.origin.x + ox;
+    float upy = height/2. + therect.origin.y + oy;
+    float dy = MIN(20.,height/6.);
+    float t1 = atan2(width/2.,dy); // angle for one part of isoceles triangle.
+    float h1 = sqrt( dy*dy + (width * width / 4.)); //base of isoceles
+    float rad = (1./cos( t1))  * (h1/2.); //radius of arc
+    
+    [path moveToPoint:NSMakePoint(NSMaxX(inRect),upy)];
+    
+    float angrad = pi - 2. * t1;
+    float angdeg = 360. * (angrad / (2.*pi));
+    //NSLog(@"angle is: %f",angdeg);
+    [path appendBezierPathWithArcWithCenter:NSMakePoint(midx, upy  + dy - rad )
+                                     radius:rad
+                                 startAngle:(90.0 - angdeg)
+                                   endAngle:(90.0 + angdeg)];
+    
+    [path lineToPoint:NSMakePoint(NSMinX(inRect),NSMaxY(inRect))];
+    [path lineToPoint:NSMakePoint(NSMaxX(inRect),NSMaxY(inRect))];
+    [path closePath];
+    
+    // light gleam upwards from curve across center
+    [[NSGraphicsContext currentContext] saveGraphicsState];
+    [path addClip];
+    [BubbleView drawGradient:NSMakeRect(inRect.origin.x, upy, width,  upy-inRect.origin.y)
+                   fromColor:[thecolor colorWithAlphaComponent:0.05]
+                     toColor:[thecolor colorWithAlphaComponent:0.0]
+                   fromPoint:NSMakePoint(inRect.origin.x,upy)
+                     toPoint:NSMakePoint(inRect.origin.x,upy + MIN(NSMaxY(inRect)-upy,40.))
+                extendBefore:NO
+                 extendAfter:YES
+        
+        ];
+    [[NSGraphicsContext currentContext] restoreGraphicsState];
+    // */
+        
+        // dark gleam downwards from curve across center
+        
+        path =    [NSBezierPath bezierPath];
+        [path appendBezierPathWithArcWithCenter:NSMakePoint(midx, upy  + dy - rad )
+                                         radius:rad
+                                     startAngle:(90.0 - angdeg)
+                                       endAngle:(90.0 + angdeg)];
+        [path lineToPoint:inRect.origin];
+        [path lineToPoint:NSMakePoint(NSMaxX(inRect),NSMinY(inRect))];
+        [path closePath];
+        
+        [[NSGraphicsContext currentContext] saveGraphicsState];
+        [path addClip];
+        [BubbleView drawGradient:NSMakeRect(inRect.origin.x, upy, width,  upy-inRect.origin.y)
+                       fromColor:[NSColor colorWithCalibratedRed:0. green:0 blue: 0 alpha:0.05]
+                         toColor:[NSColor colorWithCalibratedRed:0. green:0 blue: 0 alpha:0.0]
+                       fromPoint:NSMakePoint(inRect.origin.x,upy + dy)
+                         toPoint:inRect.origin
+                    extendBefore:NO
+                     extendAfter:YES
+            
+            ];
+        [[NSGraphicsContext currentContext] restoreGraphicsState];
+        // */
+            
+            
+            if(rounding > 0. ){
+                float minset=0;
+                float tilt= (2*rounding) * (2 * rounding) / (inRect.size.width - 2* minset); 
+                tilt = tilt / 3.;
+                
+                NSRect ar = NSMakeRect(inRect.origin.x+minset, NSMinY(inRect) , inRect.size.width-2*minset, 2 * rounding);
+                path = [BubbleView roundedRect:ar rounding:rounding - minset];
+                
+                //add bottom under-shadow
+                [[NSGraphicsContext currentContext] saveGraphicsState];
+                [path addClip];
+                [BubbleView drawGradient:inRect
+                               fromColor:[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha:0.1]
+                                 toColor:[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha:0.0]
+                               fromPoint:NSMakePoint(inRect.origin.x + inRect.size.width,NSMinY(inRect))
+                                 toPoint:NSMakePoint(inRect.origin.x + inRect.size.width - tilt, NSMinY(inRect) - 5 + 2 * rounding )
+                            extendBefore:NO
+                             extendAfter:YES
+                    
+                    ];
+                [[NSGraphicsContext currentContext] restoreGraphicsState];
+            }
+}
++ (void) addGlassFG:(NSRect) therect withColor: (NSColor *)thecolor withRounding: (float) rounding
+{
+    
+    NSBezierPath *path = [NSBezierPath bezierPath];
+    thecolor = [thecolor colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+    float inset = 0;
+    rounding = rounding - inset;
+    NSRect inRect = NSInsetRect(therect,inset,inset);
+    if(rounding > 0.){
+        float minset=0;
+        float tilt= (2*rounding) * (2 * rounding) / (inRect.size.width - 2* minset); 
+        tilt = tilt / 3.;
+        
+        NSRect ar = NSMakeRect(inRect.origin.x+minset, NSMaxY(inRect) - 2 * rounding - minset, inRect.size.width-2*minset, 2 * rounding);
+        path = [BubbleView roundedRect:ar rounding:rounding - minset];
+        
+        //add top over-gleam
+        [[NSGraphicsContext currentContext] saveGraphicsState];
+        [path addClip];
+        [BubbleView drawGradient:inRect
+                       fromColor:[thecolor colorWithAlphaComponent:0.4]
+                         toColor:[thecolor colorWithAlphaComponent:0.0]
+                       fromPoint:NSMakePoint(inRect.origin.x,NSMaxY(inRect) - minset)
+                         toPoint:NSMakePoint(inRect.origin.x + tilt ,NSMaxY(inRect) - 2 * rounding + 5 -minset)
+                    extendBefore:NO
+                     extendAfter:YES
+            
+            ];
+        [[NSGraphicsContext currentContext] restoreGraphicsState];
+    }
+}
++ (void) addGlass:(NSRect) therect{
+    [BubbleView addGlass: therect withColor: [NSColor colorWithCalibratedRed:1. green:1. blue:1. alpha:0.2]
+            withRounding:0];
+}
++ (void) addGlass:(NSRect) therect withColor: (NSColor *)thecolor withRounding: (float) rounding
+{
+    [BubbleView addGlassBG: therect withColor: thecolor withRounding: rounding];
+    [BubbleView addGlassFG: therect withColor: thecolor withRounding: rounding];
+}
++ (void) drawGradient:(NSRect) therect fromColor:(NSColor *) fromCol toColor:(NSColor *) tocol
+            direction: (int) dir
+{
+    BOOL up = (dir > 0 ? YES : NO );
+    [BubbleView drawGradient: therect fromColor: fromCol toColor: tocol
+             fromPoint: NSMakePoint(NSMinX(therect), up ? NSMinY(therect) : NSMaxY(therect))
+               toPoint: NSMakePoint(NSMinX(therect), up ? NSMaxY(therect) : NSMinY(therect))];
+}
+
++ (void) drawGradient:(NSRect) therect fromColor: (NSColor *) fromCol toColor:(NSColor *) tocol
+            fromPoint:(NSPoint) sPoint toPoint: (NSPoint) ePoint
+{
+    [BubbleView drawGradient:therect
+                   fromColor:fromCol
+                     toColor:tocol
+                   fromPoint:sPoint
+                     toPoint:ePoint
+                extendBefore:NO
+                 extendAfter:NO];
+}
+
++ (void) drawGradient:(NSRect) therect fromColor: (NSColor *) fromCol toColor:(NSColor *) tocol
+            fromPoint:(NSPoint) sPoint toPoint: (NSPoint) ePoint extendBefore:(BOOL)ebefore extendAfter:(BOOL)eafter
+{
+    float colarr[8];
+    
+    
+    [[NSGraphicsContext currentContext] saveGraphicsState];
+    
+	//[path setClip];
+    
+    colarr[0] = [fromCol redComponent];
+    colarr[1] = [fromCol greenComponent];
+    colarr[2] = [fromCol blueComponent];
+    colarr[3] = [fromCol alphaComponent];
+    colarr[4] = [tocol redComponent];
+    colarr[5] = [tocol greenComponent];
+    colarr[6] = [tocol blueComponent];
+    colarr[7] = [tocol alphaComponent];
+    
+	struct CGFunctionCallbacks callbacks = { 0, CCShadeInterpolate, NULL };
+    
+	CGFunctionRef function = CGFunctionCreate( &colarr, 1, NULL, 4, NULL, &callbacks );
+	CGColorSpaceRef cspace = CGColorSpaceCreateDeviceRGB();
+    
+	float srcX = sPoint.x, srcY = sPoint.y;
+	float dstX = ePoint.x, dstY = ePoint.y;
+	CGShadingRef shading = CGShadingCreateAxial( cspace, 
+												 CGPointMake( srcX, srcY ), 
+												 CGPointMake( dstX, dstY ), 
+												 function, 
+                                                 ebefore ? true : false, 
+                                                 eafter? true : false );	
+    
+	CGContextDrawShading( [[NSGraphicsContext currentContext] graphicsPort], shading );
+    
+	CGShadingRelease( shading );
+	CGColorSpaceRelease( cspace );
+	CGFunctionRelease( function );
+    
+	[[NSGraphicsContext currentContext] restoreGraphicsState];
 }
 
 + (void) addShadow: (NSBezierPath *)path 
@@ -475,7 +689,7 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundTR,high-roundTR)
     [fadePath release];
     tempImg = [[NSImage alloc] initWithSize:rect.size];
     [tempImg lockFocus];
-    [self drawGradient: NSMakeRect(0,0,rect.size.width,roundingSize+2)
+    [BubbleView drawGradient: NSMakeRect(0,0,rect.size.width,roundingSize+2)
              fromColor: [[NSColor whiteColor] colorWithAlphaComponent: 0.2]
                toColor: [[NSColor whiteColor] colorWithAlphaComponent: 0.0]
              direction: -1
@@ -494,7 +708,6 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundTR,high-roundTR)
 - (void)drawFadeFrame: (NSRect)rect
 {
     NSBezierPath *fadePath;
-    NSImage *tempImg;
     float ox=rect.origin.x;
     float oy=rect.origin.y;
     float taily=oy;
@@ -580,16 +793,28 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
     
 	
     [[NSColor blackColor] set];
-    [fadePath fill];    tempImg = [[NSImage alloc] initWithSize:NSMakeSize(rect.size.width,rect.size.height)];
-    [tempImg lockFocus];
-    [self drawGradient: NSMakeRect(0,0,rect.size.width,rect.size.height)
-             fromColor: fadeFromColor
-               toColor: fadeToColor
-             direction: (pointCorner==2||pointCorner==3 ? -1 : 1)
+	//[fadePath fill];   
+    //tempImg = [[NSImage alloc] initWithSize:NSMakeSize(rect.size.width,rect.size.height)];
+    //[tempImg lockFocus];
+    [[NSGraphicsContext currentContext] saveGraphicsState];
+    [fadePath setClip];
+    [BubbleView drawGradient: rect
+             fromColor: [CornerClickSettings defaultBubbleColorA] //fadeFromColor
+               toColor: [CornerClickSettings defaultBubbleColorB]
+             fromPoint: rect.origin
+               toPoint: NSMakePoint(NSMinX(rect),NSMaxY(rect))
+
         ];
-    [tempImg unlockFocus];
-    [tempImg compositeToPoint: NSZeroPoint operation:NSCompositeSourceIn];
-    [tempImg release];
+    [BubbleView addGlass:NSMakeRect(ox,oy,wide-ox,high-oy)
+               withColor:[NSColor colorWithCalibratedRed:1.
+                                                   green:1.
+                                                    blue:1.
+                                                   alpha:0.2]
+            withRounding:roundingSize];
+    [[NSGraphicsContext currentContext] restoreGraphicsState];
+    //[tempImg unlockFocus];
+    //[tempImg compositeToPoint: NSZeroPoint operation:NSCompositeSourceIn];
+    //[tempImg release];
     
     /*[BubbleView addShadow:fadePath
                     depth:-1.5
@@ -617,13 +842,25 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 - (void) recalcSize
 {
     NSRect oldPref=prefFrame;
-    [self calcPreferredFrame];
+    [self calcPreferredFrame:YES];
     if(!NSEqualRects(oldPref,prefFrame)){
         [self clearBG];
+    }
+    [BubbleView resetNormalTextAttrs];
+}
++ (void) resetNormalTextAttrs
+{
+    @synchronized(self){
+        [normalTextAttrs release];
+        normalTextAttrs=nil;
     }
 }
 
 - (void) calcPreferredFrame
+{
+    [self calcPreferredFrame:NO];
+}
+- (void) calcPreferredFrame:(BOOL) recalc
 {
     NSSize textSize;
 	float mwidth,mheight;
@@ -632,6 +869,8 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 	mheight=0;
 	textSize = NSMakeSize(0,0);
 	if(drawingObject!=nil){
+        if(recalc)
+            [drawingObject calcPreferredSize:recalc];
 		textSize = [drawingObject preferredSize];
 		if([drawingObject selectedItem] >=0){
 			int mods = [drawingObject selectedModifiers];
@@ -656,7 +895,7 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 	
 }
 
-- (void) drawGradient: (NSRect) therect fromColor:(NSColor *) fromCol toColor:(NSColor *) toCol
+- (void) drawGradientX: (NSRect) therect fromColor:(NSColor *) fromCol toColor:(NSColor *) toCol
             direction: (int) dir
 {
     int i=0;
@@ -676,6 +915,7 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
         NSRectFill(NSMakeRect(0,i,therect.size.width,1));
     }
 }
+
 
 - (void) clearBG
 {
@@ -824,9 +1064,7 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
     [fadeFromColor release];
     [fadeToColor release];
     [fadedFrame release];
-    [stringAttrs release];
     [shadowAttrs release];
-    [smallTextAttributes release];
 }
 
 
@@ -836,9 +1074,7 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
                                  selected:(int) sel
 						andHighlightColor:(NSColor *) theColor
 {
-	return [[[BubbleActionsList alloc] initWithAttributes: stringAttrs
-                                      smallTextAttributes: smallTextAttributes
-											   andSpacing: (roundingSize-insetSize)
+	return [[[BubbleActionsList alloc] initWithSpacing: (roundingSize-insetSize)
 											   andActions: actions
 											 itemSelected: sel
 										andHighlightColor: theColor 
@@ -846,9 +1082,7 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 }
 - (BubbleAction *) bubbleAction: (NSArray *)actions
 {
-	return [[[BubbleAction alloc] initWithStringAttributes: stringAttrs
-                                       smallTextAttributes: smallTextAttributes
-												andSpacing:(roundingSize-insetSize) 
+	return [[[BubbleAction alloc] initWithSpacing:(roundingSize-insetSize) 
 												andActions:actions] autorelease];
 }
 

@@ -215,18 +215,28 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
     [fadePath closePath];
     [fadePath setLineWidth: 0.5];
 
+    /*
+    [[NSColor clearColor] set];
+    NSRectFill(NSMakeRect(ox,oy,rect.size.width, rect.size.height));
+    [[NSGraphicsContext currentContext] saveGraphicsState];
+    [fadePath setClip];
+    tempImg = [[NSImage alloc] initWithSize:NSMakeSize(rect.size.width,rect.size.height)];
+    [tempImg lockFocus];
+    [self drawGradient: NSMakeRect(0,0,rect.size.width,rect.size.height)
+             fromColor: fadeFromColor
+               toColor: fadeToColor
+             direction: (pointCorner==2||pointCorner==3 ? -1 : 1)
+        ];
+    [tempImg unlockFocus];
+    [tempImg compositeToPoint: NSZeroPoint operation:NSCompositeSourceIn];
+    [tempImg release];
+    [[NSGraphicsContext currentContext] restoreGraphicsState];
+    [fadePath release];
+     */
+    
 
-   // [[NSColor clearColor] set];
-   // NSRectFill(NSMakeRect(ox,oy,rect.size.width, rect.size.height));
-    //[[NSGraphicsContext currentContext] saveGraphicsState];
-    //[fadePath setClip];
-    //[[fadeColor colorWithAlphaComponent: fadeAlpha] set];
     [[NSColor blackColor] set];
-    //NSRectFill(rect);
-    //[[NSGraphicsContext currentContext] restoreGraphicsState];
     [fadePath fill];
-    //[[NSColor blackColor] set];
-    //[fadePath stroke];
     [fadePath release];
     tempImg = [[NSImage alloc] initWithSize:NSMakeSize(rect.size.width,rect.size.height)];
     [tempImg lockFocus];

@@ -1,0 +1,2 @@
+#!/bin/sh
+echo hdiutil convert -format UDZO "\"$1\"" -o "\"$2\"" -imagekey zlib-level=9 | sh

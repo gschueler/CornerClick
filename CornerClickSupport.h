@@ -23,6 +23,7 @@
 + (CornerClickSettings *) settingsFromUserPreferencesWithClicker: (Clicker *) clicker;
 + (NSDictionary *) loadOldVersionPreferences;
 + (NSString *) labelForModifiers:(int)mods andTrigger: (int) trigger;
++ (NSNumber *) numberForScreen:(NSScreen *)screen;
 @end
 
 @interface CornerClickSettings : NSObject {
@@ -30,6 +31,7 @@
     BOOL appEnabled;
     BOOL toolTipEnabled;
     BOOL toolTipDelayed;
+	int colorOption;
 	Clicker *myClicker;
 	NSColor *highlightColor;
 	NSColor *bubbleColorA;
@@ -65,6 +67,8 @@
 - (void) setToolTipDelayed: (BOOL) delayed;
 - (void) blahArray:(NSArray *)a level:(int) level;
 - (void) blahDict:(NSDictionary *)a level:(int) level;
+- (int) colorOption;
+- (void) setColorOption: (int) option;
 
 - (NSMutableArray *) screenArray:(NSNumber *)screenNum;
 

@@ -70,11 +70,18 @@
     [delayTooltipCheckBox setState:[appSettings toolTipDelayed]?1:0];
     [delayTooltipCheckBox setEnabled: [appSettings toolTipEnabled]];
     [appEnabledCheckBox setState: [appSettings appEnabled]];
-	[highlightColorWell setColor:[appSettings highlightColor]];
-	[bubbleColorWellA setColor:[appSettings bubbleColorA]];
-    [bubbleColorWellA setEnabled: [appSettings toolTipEnabled]];
-	[bubbleColorWellB setColor:[appSettings bubbleColorB]];
-    [bubbleColorWellB setEnabled: [appSettings toolTipEnabled]];
+	if([appSettings highlightColor]!=nil){
+		[highlightColorWell setColor:[appSettings highlightColor]];
+	}else{
+		
+		[highlightColorWell setColor:[NSColor blackColor]];
+	}
+	[highlightPopup selectItemAtIndex:[appSettings colorOption]];
+	[highlightColorWell setHidden:[appSettings colorOption]!=2];
+	//[bubbleColorWellA setColor:[appSettings bubbleColorA]];
+    //[bubbleColorWellA setEnabled: [appSettings toolTipEnabled]];
+	//[bubbleColorWellB setColor:[appSettings bubbleColorB]];
+    //[bubbleColorWellB setEnabled: [appSettings toolTipEnabled]];
 
 	//[[NSColorPanel sharedColorPanel] setShowsAlpha:YES];
 	
@@ -441,7 +448,7 @@
         [actionChoicePopupButton setEnabled:YES];
         [triggerChoicePopupButton setEnabled:YES];
         [actionChoicePopupButton selectItemAtIndex: [theAction type]];
-        [triggerChoicePopupButton selectItemAtIndex: 0]; //TODO handle other types of triggers
+        [triggerChoicePopupButton selectItemAtIndex: [theAction trigger]]; //TODO handle other types of triggers
 
 
         
@@ -945,9 +952,8 @@
     //nothing to do yet
     //[self notifyAppOfPreferences: [appSettings asDictionary]];
     //[actionTable reloadData];
-	[currentAction setTrigger:[sender indexOfSelectedItem]];
-
-	[self syncCurrentAction];
+	NSLog(@"settings trigger for item to %d ",[triggerChoicePopupButton indexOfSelectedItem]);
+	[currentAction setTrigger:[triggerChoicePopupButton indexOfSelectedItem]];
 	
     [self saveChanges];
     [actionTable reloadData];
@@ -988,9 +994,9 @@
                 break;
             case ACT_URL: return [[[NSImage alloc] initWithContentsOfFile: [[self bundle] pathForResource:@"BookmarkPreferences" ofType:@"tiff"]] autorelease];
 			case ACT_HIDE:
-				return [[[NSImage alloc] initWithContentsOfFile: [[self bundle] pathForImageResource:@"HideAppIcon" ]] autorelease];
+//				return [[[NSImage alloc] initWithContentsOfFile: [[self bundle] pathForImageResource:@"HideAppIcon" ]] autorelease];
 			case ACT_HIDO:
-				return [[[NSImage alloc] initWithContentsOfFile: [[self bundle] pathForImageResource:@"HideOthersIcon" ]] autorelease];
+//				return [[[NSImage alloc] initWithContentsOfFile: [[self bundle] pathForImageResource:@"HideOthersIcon" ]] autorelease];
 			default: return nil;
         }
     }
@@ -1062,20 +1068,20 @@
 - (IBAction)bubbleColorWellAChosen:(id)sender
 {
 	
-	NSLog(@"bubble color: %@",[bubbleColorWellA color]);
-	[appSettings setBubbleColorA:[[bubbleColorWellA color] colorWithAlphaComponent:0.8]];
-	[appSettings setBubbleColorB:[[bubbleColorWellA color] colorWithAlphaComponent:0.4]];
+	//NSLog(@"bubble color: %@",[bubbleColorWellA color]);
+	//[appSettings setBubbleColorA:[[bubbleColorWellA color] colorWithAlphaComponent:0.8]];
+	//[appSettings setBubbleColorB:[[bubbleColorWellA color] colorWithAlphaComponent:0.4]];
 	
     //[self notifyAppOfPreferences: [appSettings asDictionary]];
 	
-    [self saveChanges];
-	[self displayColorExample];
+    //[self saveChanges];
+	//[self displayColorExample];
 	
 }
 - (IBAction)bubbleColorWellBChosen:(id)sender
 {
 	
-	NSLog(@"bubble color: %@",[bubbleColorWellB color]);
+	//NSLog(@"bubble color: %@",[bubbleColorWellB color]);
 	//[appSettings setBubbleColorB:[bubbleColorWellB color]];
 	
     //[self notifyAppOfPreferences: [appSettings asDictionary]];
@@ -1083,6 +1089,26 @@
     //[self saveChanges];
 	//[self displayColorExample];
 	
+}
+- (IBAction)highlightOptionChosen:(id)sender
+{
+	
+	int colorOption = [sender indexOfSelectedItem];
+	if(colorOption == 2){		
+		[highlightColorWell setHidden:NO];
+		if([appSettings highlightColor] != nil)
+			[highlightColorWell setColor: [appSettings highlightColor]];
+		else
+			[highlightColorWell setColor: [NSColor blackColor]];
+	}else{
+		[highlightColorWell setHidden:YES];
+	}
+    //[self doChooseScreen:[sender indexOfSelectedItem] withPopupWindow:YES];
+	
+    [appSettings setColorOption:colorOption];
+	
+    //[self notifyAppOfPreferences: [appSettings asDictionary]];
+    [self saveChanges];
 }
 
 
@@ -1132,7 +1158,13 @@
 {
     //NSLog(@"selection changed to: %d",[actionTable selectedRow]);
 
-    ClickAction *newAct = [[[ClickAction alloc] initWithType: 0 andModifiers: 0 andString: nil forCorner: chosenCorner withLabel:nil andClicker:nil] autorelease];
+    ClickAction *newAct = [[[ClickAction alloc] initWithType: 0 
+												andModifiers: 0 
+												  andTrigger: 0
+												   andString: nil
+												   forCorner: chosenCorner
+												   withLabel:nil
+												  andClicker:nil] autorelease];
 
     [appSettings addAction: newAct forScreen:[allScreens objectAtIndex:chosenScreen] andCorner:chosenCorner];
     [actionTable reloadData];

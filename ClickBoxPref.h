@@ -49,6 +49,7 @@
     IBOutlet NSColorWell *highlightColorWell;
     IBOutlet NSColorWell *bubbleColorWellA;
     IBOutlet NSColorWell *bubbleColorWellB;
+    IBOutlet NSPopUpButton *highlightPopup;
     //NSMutableDictionary *tl;
     //NSMutableDictionary *tr;
     //NSMutableDictionary *bl;
@@ -104,6 +105,7 @@
 - (IBAction)bubbleColorWellBChosen:(id)sender;
 - (IBAction)gotoWebURL:(id)sender;
 - (IBAction)gotoEmailURL:(id)sender;
+- (IBAction)highlightOptionChosen:(id)sender;
 
 - (void) deactivateHelper;
 - (void) activateHelper;

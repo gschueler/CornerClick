@@ -14,6 +14,7 @@
     NSString *trueLabel;
     Clicker *myClicker;
     NSAppleScript *myScript;
+    NSDate *scriptLastModified;
 }
 
 - (void)doAction:(NSEvent*)theEvent;

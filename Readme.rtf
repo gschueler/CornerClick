@@ -1,12 +1,12 @@
 {\rtf1\mac\ansicpg10000\cocoartf102
 {\fonttbl\f0\fnil\fcharset77 Verdana;\f1\fswiss\fcharset77 Helvetica-Bold;\f2\fswiss\fcharset77 Helvetica;
-\f3\fnil\fcharset77 LucidaGrande;\f4\fswiss\fcharset77 Helvetica-Oblique;}
+\f3\fswiss\fcharset77 Helvetica-Oblique;\f4\fnil\fcharset77 LucidaGrande;}
 {\colortbl;\red255\green255\blue255;\red50\green62\blue255;\red127\green127\blue127;\red0\green0\blue255;
-\red255\green0\blue6;}
-\vieww12260\viewh13540\viewkind0
+\red255\green0\blue0;\red0\green0\blue0;\red255\green0\blue6;}
+\vieww11020\viewh14680\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
 
-\f0\fs48 \cf2 CornerClick 0.1
+\f0\fs48 \cf2 CornerClick 0.2
 \f1\b \cf0 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
 
@@ -16,7 +16,57 @@
 \cf0 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
 
-\f1\b \cf0 What is it?
+\f1\b \cf0 What's new?\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f2\b0 \cf0 Several new features have been added, and other slight improvements have been made.
+\f1\b \
+\
+	1. Multiple Monitor Support\
+
+\f2\b0 \
+Any attached screen can now have clickable corners.  Depending on your screen arrangement, some corners will probably not be useful with CornerClick, so you may just want to disable them.\
+\
+Also, CornerClick now acts correctly if the screen resolution changes.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f1\b \cf0 	2. Run AppleScript Action\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f2\b0 \cf0 Another action has been added, called 
+\f1\b Run AppleScript...
+\f2\b0 , which allows you to run an AppleScript when a corner is clicked.  The script file is loaded and compiled by CornerClick, so the script can be run numerous times very quickly (as opposed to saving the script as a compiled application and having that load and run each time you click). CornerClick reloads and recompiles the script if it has been modified.\
+\
+I've included a couple scripts to get you going, including "Next Track in iTunes", "iTunes Play Pause". These scripts should be copied to your hard drive and then selected as a script to be run in the CornerClick PreferencePane. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f3\i \cf0 (Note:\cf5  \cf6 Please don't ask me for help with AppleScript problems that aren't related to CornerClick.)
+\f2\i0 \cf0 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f1\b \cf0 	3. Other stuff\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f2\b0 \cf0 The PreferencePane has been revamped.\
+\
+CornerClick has a new icon.  Thanks to those who submitted icons to me :)
+\f1\b \
+\
+How do I upgrade from version 0.1?\
+\
+
+\f2\b0 Please read the file 
+\f1\b Upgrading.rtf
+\f2\b0  included on the disk image.
+\f1\b \
+\
+What is it?
 \f2\b0 \
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
 \cf0 \
@@ -43,22 +93,22 @@ If you like, a popup window will display what action is going to be performed wh
 \f2\b0 \
 \
 
-\f1\b CornerClick 0.1
+\f1\b CornerClick 0.2
 \f2\b0  is a Preference Pane.  In the preference pane you can define multiple actions for each corner of the screen.  Each action has a set of modifiers (shift 
-\f3 \U8679 \uc0 \u8679 
+\f4 \U8679 \uc0 \u8679 
 \f2 , command 
-\f3 \U8984 \uc0 \u8984 
+\f4 \U8984 \uc0 \u8984 
 \f2 , option 
-\f3 \U8997 \uc0 \u8997 
+\f4 \U8997 \uc0 \u8997 
 \f2 , or control 
-\f3 \U8963 \uc0 \u8963 
+\f4 \U8963 \uc0 \u8963 
 \f2 ) which you can specify for the action.  All of the modifiers you add to an action have to be held down when you click the corner for the action to be invoked.\
 \
 
 \f1\b What actions can be performed?
 \f2\b0 \
 \
-There are four types of actions at the moment:\
+There are five types of actions:\
 \
 
 \f1\b 1. Open File...\
@@ -85,10 +135,32 @@ There are four types of actions at the moment:\
 	\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
 
-\f2\b0 \cf0 	This opens a URL of your choice.  You can also pick a display label for the URL, so that it looks better in the popup window.
-\f1\b \
+\f2\b0 \cf0 	This opens a URL of your choice.  You can also pick a display label for the URL, so that it looks better in the popup window.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
 
+\f1\b \cf0 5. Run AppleScript...\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f2\b0 \cf0 	This runs an AppleScript (in any format) when you click the corner.  The AppleScript is loaded and compiled by CornerClick so that it can be run quickly when the corner is clicked.\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f1\b \cf0 Help! My AppleScript Action isn't working!
 \f2\b0 \
+\
+If there is an error during loading, compiling, or running of  selected AppleScript, CornerClick will print out a message on the Console describing the error. (Open 
+\f1\b /Applications/Utilities/Console.app
+\f2\b0 )\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf5 Please don't ask me for help with AppleScript problems that aren't related to CornerClick. \cf0  \
+\
+My response to your email will be: "Unsubscribe".  \
+\
+There are many resources available on the internet.  Good luck.\
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
 
@@ -128,14 +200,15 @@ For example, add an
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
 
-\f2\b0 \cf5 $80. \
+\f2\b0 \cf7 $80. \
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
 \cf0 Just kidding! It's free.\
 \
-But if you yourself make software for sale and you like 
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf4 But if you make software for sale and you like 
 \f1\b CornerClick
-\f2\b0 , I would love to receive a free license for your software (just email me).\
+\f2\b0 , I would love to receive a free license for your software (just email me).\cf0 \
 \
 I will probably release the source as well, since I'm a fan of open source.\
 \
@@ -148,19 +221,14 @@ I will probably release the source as well, since I'm a fan of open source.\
 \
 Planned features:\
 \
-\'a5\'ca
-\f1\b Deal with multiple monitors
-\f2\b0 \
 \'a5 Make screen edges hot as well\
 \'a5 List all actions that will be performed (combos) in the popup\
-\'a5 Change the popup dynamically if the modifiers change while the cursor is hovering over the corner\
-\'a5\'caBe able to execute AppleScripts without having to save them as applications (just load and run them...I think it should be easy to do.)\
 \
 These are all possible future features, though they aren't guaranteed to be added: \
 \
 \'a5\'caMake per-application configurations (this would be useful if actions could be any menu command from the application, for example.  Don't know how to do that with Cocoa yet, though.)\
 \'a5 Execute shell commands without opening terminal (i.e. in the background)\
-\'a5 Make it modular so that people can define custom actions...?  Perhaps AppleScript support would be good enough...\
+\'a5 Change the popup dynamically if the modifiers change while the cursor is hovering over the corner (probably not going to happen, since it appears harder than I thought)\
 \
 
 \f1\b Does this software have a warranty?\
@@ -194,7 +262,7 @@ I kept getting more annoyed with the Dock and wondering why nobody had made anyt
 Understand the memory management stuff.  Coming from Java this takes some getting used to.\
 \
 Read the documentation carefully for the classes you're using.  (E.G. NSWindow's -close method also 
-\f4\i releases
+\f3\i releases
 \f2\i0  the instance.)\
 \
 Don't rely on Apple's documentation to tell you how to do things.  Check out http://cocoa.mamasam.com for mailing-list archives, and http://www.cocoadevcentral.com for helpful tutorials.\
@@ -203,4 +271,25 @@ Perl has nice built in language support for the most useful data structures; com
 \
 Is this a bug?: NSFileWrapper crashes your app if you call [[NSFileWrapper alloc] initWithPath:path] where "path" is the path to a mounted DVD disk.\
 \
-Programming is fun! (Sometimes you forget this when you work for somebody else.)}
+Programming is fun! (Sometimes you forget this when you work for somebody else.)\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f1\b \cf0 Version History\
+\
+\'a5 0.2 - 
+\f2\b0 released 8/18/03
+\f1\b \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f2\b0 \cf0 	Multiple Monitor Support added\
+	"Run AppleScript..." Action type added\
+	PreferencePane UI revamped
+\f1\b \
+\
+\'a5 0.1 - 
+\f2\b0 released 7/28/03
+\f1\b \
+
+\f2\b0 	initial release}

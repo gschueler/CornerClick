@@ -25,6 +25,8 @@
 - (void) setClickActions: (NSArray *) actions;
 - (ClickAction *) clickActionForModifierFlags: (unsigned int)modifiers;
 - (NSArray *) clickActionsForModifierFlags:(unsigned int) modifiers;
+- (NSArray *) clickActionsForModifierFlags:(unsigned int) modifiers
+								andTrigger:(int) trigger;
 - (void) setTrackingRectTag:(NSTrackingRectTag) tag;
 - (NSTrackingRectTag) trackingRectTag;
 - (NSArray *) actionsGroups;

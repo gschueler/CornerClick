@@ -83,7 +83,7 @@
 
 - (BOOL)performDragOperation:(id <NSDraggingInfo>)sender
 {
-    ClickAction *temp;
+    //ClickAction *temp;
     NSURL *url;
     NSPasteboard *paste = [sender draggingPasteboard];
     //gets the dragging-specific pasteboard from the sender
@@ -170,6 +170,7 @@
     //    [self drawBuf:rect];
     //}
 	//NSLog(@"drawing clickview rect");
+//    [[NSColor clearColor] set];
     [[NSColor clearColor] set];
     NSRectFill(rect);
 	[self drawBuf:rect];

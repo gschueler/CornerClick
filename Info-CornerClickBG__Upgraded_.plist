@@ -24,11 +24,11 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>0.2</string>
-	<key>NSUIElement</key>
-	<string>1</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
+	<string>ClickApp</string>
+	<key>NSUIElement</key>
+	<string>1</string>
 </dict>
 </plist>

@@ -284,6 +284,10 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
 {
     if(object==[self appSettings] && context == UI_VIEW_CHANGE_CTX){
             [self saveChanges];            
+    }else if(object==currentAction){
+        
+        [self saveChanges];
+        [actionTable reloadData];
     }
 }
 - (void) didSelect
@@ -714,7 +718,9 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
         [triggerChoicePopupButton setEnabled:YES];
         [actionChoicePopupButton selectItemAtIndex: [theAction type]];
         [triggerChoicePopupButton selectItemAtIndex: [theAction trigger]]; //TODO handle other types of triggers
-
+        [hoverTriggerDelayedCheckbox setEnabled:[theAction trigger]==TRIGGER_HOVER];
+        [hoverTriggerDelayedCheckbox setHidden:[theAction trigger]!=TRIGGER_HOVER];
+        [hoverTriggerDelayedCheckbox setState: ([theAction trigger]==TRIGGER_HOVER && [theAction hoverTriggerDelayed]) ? NSOnState:NSOffState];
 
         
         NSString *str = [theAction string];
@@ -807,6 +813,10 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
         [functionKeyCheckBox setState:NSOffState];
         [actionChoicePopupButton setEnabled:NO];
         [triggerChoicePopupButton setEnabled:NO];
+        [hoverTriggerDelayedCheckbox setEnabled:NO];
+        [hoverTriggerDelayedCheckbox setHidden:YES];
+        [hoverTriggerDelayedCheckbox setState:NSOffState];
+        
         [self setSubFrameForActionType: -1];
         [chosenFileLabel setStringValue:@""];
         [chosenFileTitle setStringValue:@""];
@@ -1066,6 +1076,12 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
     [self doChooseCorner:[sender indexOfSelectedItem]];
 }
 
+
+- (ClickAction *) currentAction
+{
+    return currentAction;
+}
+
 - (IBAction)enableChosen:(id)sender
 {
     [appSettings setCorner:chosenCorner
@@ -1277,6 +1293,7 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
 	NSLog(@"settings trigger for item to %d ",[triggerChoicePopupButton indexOfSelectedItem]);
 	[currentAction setTrigger:[triggerChoicePopupButton indexOfSelectedItem]];
 	
+    [self refreshWithSettings:currentAction];
     [self saveChanges];
     [actionTable reloadData];
 }
@@ -1366,7 +1383,7 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
             default: return @"???";
         }
     }else if([[aTableColumn identifier] isEqualToString: @"modifiers"]){
-        theFile = [CornerClickSupport labelForModifiers:modifiers andTrigger:trigger localBundle:[self bundle]];
+        theFile = [CornerClickSupport labelForClickAction:theAction localBundle:[self bundle]];
         return theFile;
         
     }
@@ -1379,11 +1396,27 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
     if([notice object]==actionTable){
         chosenAction = [actionTable selectedRow];
         if([actionTable selectedRow]>=0){
-            currentAction=[appSettings actionAtIndex: chosenAction
+            ClickAction *newAction=[appSettings actionAtIndex: chosenAction
                                            forScreen:[allScreens objectAtIndex:chosenScreen]
                                            andCorner:chosenCorner];
-            [self refreshWithSettings:currentAction];
+            if(newAction!=currentAction){
+                
+                if(nil!=currentAction){
+                    [currentAction removeObserver:self
+                                       forKeyPath:@"hoverTriggerDelayed"];
+                }
+                [newAction addObserver:self
+                            forKeyPath:@"hoverTriggerDelayed"
+                               options:NSKeyValueObservingOptionNew
+                               context:nil];
+                currentAction=newAction;
+                [self refreshWithSettings:currentAction];                
+            }
         }else{
+            if(nil!=currentAction){
+                [currentAction removeObserver:self
+                                   forKeyPath:@"hoverTriggerDelayed"];
+            }
             currentAction=nil;
             [self refreshWithSettings:nil];
         }
@@ -1508,6 +1541,7 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
     ClickAction *newAct = [[[ClickAction alloc] initWithType: 0 
 												andModifiers: 0 
 												  andTrigger: 0
+                                                   isDelayed: NO
 												   andString: nil
 												   forCorner: chosenCorner
 												   withLabel:nil

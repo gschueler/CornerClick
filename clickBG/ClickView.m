@@ -260,7 +260,7 @@
 	flags = [Clicker modsForEventFlags:evtFlags];
     for(i=0;i<[myActions count]; i++){
         theAction = (ClickAction *)[myActions objectAtIndex:i];
-        if([theAction modifiers]==flags){
+        if([theAction modifiers]==flags && [theAction trigger]!=TRIGGER_HOVER){
             return theAction;
             //return;
         }
@@ -272,6 +272,25 @@
 	return [self clickActionsForModifierFlags:modifiers andTrigger:-1];
 }
 
+- (NSArray *) hoverActionsForModifierFlags:(unsigned int) modifiers
+{
+    int i;
+    ClickAction *theAction;
+	NSMutableArray *thearr = [[NSMutableArray alloc] init];
+    int flags=0;
+    unsigned int evtFlags = modifiers;
+	flags = [Clicker modsForEventFlags:evtFlags];
+    for(i=0;i<[myActions count]; i++){
+        theAction = (ClickAction *)[myActions objectAtIndex:i];
+        if([theAction modifiers]==flags && [theAction trigger]==TRIGGER_HOVER){
+            
+			[thearr addObject: theAction];
+            //return theAction;
+            //return;
+        }
+    }
+    return [thearr autorelease];
+}
 - (NSArray *) clickActionsForModifierFlags:(unsigned int) modifiers
 								andTrigger:(int) trigger
 {
@@ -283,7 +302,7 @@
 	flags = [Clicker modsForEventFlags:evtFlags];
     for(i=0;i<[myActions count]; i++){
         theAction = (ClickAction *)[myActions objectAtIndex:i];
-        if([theAction modifiers]==flags && (trigger<0 || [theAction trigger]==trigger)){
+        if([theAction modifiers]==flags && (trigger<0 || [theAction trigger]==trigger) && [theAction trigger]!=TRIGGER_HOVER){
 						   
 			[thearr addObject: theAction];
             //return theAction;

@@ -20,6 +20,7 @@
 
     NSTimer *delayTimer;
     NSTimer *fadeTimer;
+    NSTimer *hoverTriggerTimer;
     NSNumber *lastScreen;
     NSPanel *hoverWin;
     BubbleView *hoverView;
@@ -56,6 +57,12 @@
 		andTitle: (BOOL)showTitle
  withActionsList:  (BubbleActionsList *) actionsList;
 
+
+- (void) doDelayedMouseHoverAtCorner:(int) corn onScreen: (NSNumber *) screenNum modifiers:(unsigned int) modifiers
+                      delayWasForced:(BOOL) forced;
+
+- (BOOL) startMouseHoverAtCorner:(int) corn onScreen: (NSNumber *) screenNum modifiers:(unsigned int) modifiers
+                      forceDelay:(BOOL)forceDelay;
 - (void) mouseExited: (NSEvent *) theEvent;
 - (void) mouseDownTrigger: (NSEvent *) theEvent
 				   onView: (ClickView *)view

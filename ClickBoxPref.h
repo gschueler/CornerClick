@@ -54,6 +54,7 @@
     IBOutlet NSPopUpButton *highlightPopup;
     IBOutlet NSPopUpButton *quickFilePopup;
     IBOutlet NSPopUpButton *quickScriptPopup;
+    IBOutlet NSButton *hoverTriggerDelayedCheckbox;
     
     IBOutlet NSView *exposeNoteView;
         
@@ -121,6 +122,7 @@
 
 - (CornerClickSettings *) appSettings;
 - (void)setAppSettings: (CornerClickSettings *) settings;
+- (ClickAction *) currentAction;
 
 - (void) deactivateHelper;
 - (void) activateHelper;

@@ -756,6 +756,61 @@ postNotificationName: @"CornerClickPingBackNotification"
         }
     }
 }
+- (void) doDelayedMouseHoverAtCorner:(int) corn onScreen: (NSNumber *) screenNum modifiers:(unsigned int) modifiers
+                      delayWasForced:(BOOL) forced
+{
+    if(hoverTriggerTimer!=nil){
+        [hoverTriggerTimer invalidate];
+        [hoverTriggerTimer release];
+        hoverTriggerTimer=nil;
+    }
+    int i;
+    ClickWindow *window =   [self windowForScreen:screenNum atCorner:corn];
+    NSArray * actions = [[window contentView]   hoverActionsForModifierFlags: modifiers];
+    BOOL triggered=NO;
+    for(i=0;i<[actions count];i++){
+        ClickAction *act = (ClickAction *) [actions objectAtIndex:i];
+        if((![act hoverTriggerDelayed] && forced) || [act hoverTriggerDelayed]){
+            triggered=YES;
+            [act doAction:nil];
+        }
+    }
+    if(triggered){
+        [self fadeOutCorner:corn onScreen:screenNum];
+    }
+}
+
+- (BOOL) startMouseHoverAtCorner:(int) corn onScreen: (NSNumber *) screenNum modifiers:(unsigned int) modifiers
+                      forceDelay:(BOOL)forceDelay
+{
+    int i;
+    ClickWindow *window =   [self windowForScreen:screenNum atCorner:corn];
+    NSArray * actions = [[window contentView]   hoverActionsForModifierFlags: modifiers];
+    BOOL triggered=NO;
+    if(!forceDelay){
+        for(i=0;i<[actions count];i++){
+            ClickAction *act = (ClickAction *) [actions objectAtIndex:i];
+            if(![act hoverTriggerDelayed]){
+                triggered=YES;
+                [act doAction:nil];
+            }
+        }
+    }
+    if(!triggered){
+        //start delay timer for hovering
+        
+        NSInvocation *nsinv = [NSInvocation invocationWithMethodSignature: [self methodSignatureForSelector:@selector(doDelayedMouseHoverAtCorner:onScreen:modifiers:delayWasForced:)]];
+        [nsinv setSelector:@selector(doDelayedMouseHoverAtCorner:onScreen:modifiers:delayWasForced:)];
+        [nsinv setTarget:self];
+        [nsinv setArgument: &corn atIndex:2];
+        [nsinv setArgument: &screenNum atIndex:3];
+        [nsinv setArgument: &modifiers atIndex:4];
+        [nsinv setArgument: &forceDelay atIndex:5];
+        hoverTriggerTimer = [[NSTimer scheduledTimerWithTimeInterval:2 invocation:nsinv repeats:NO] retain];
+    }
+    
+    return triggered;
+}
 
 - (void)mouseEntered:(NSEvent *)theEvent
 {
@@ -772,7 +827,9 @@ postNotificationName: @"CornerClickPingBackNotification"
     [hoverView setDrawingObject:nil];
     DEBUG(@"MOUSE ENTER");
     [self closeOtherWindows: corn onScreen:screenNum];
-    [self recalcAndShowHoverWindow: corn onScreen:screenNum modifiers: modifiers];
+    if(![self startMouseHoverAtCorner: corn onScreen: screenNum modifiers: modifiers forceDelay:NO]){
+        [self recalcAndShowHoverWindow: corn onScreen:screenNum modifiers: modifiers];
+    }
 }
 
 - (ProcessSerialNumber) lastActivePSN
@@ -842,6 +899,16 @@ postNotificationName: @"CornerClickPingBackNotification"
 	
 	if(selectedMod<0){
 		if(lastCornerEntered!=-1 && nil != lastScreen)        
+            
+            if(hoverTriggerTimer!=nil){
+                [hoverTriggerTimer invalidate];
+                [hoverTriggerTimer release];
+                hoverTriggerTimer=nil;
+            }
+            [self startMouseHoverAtCorner:lastCornerEntered
+                                         onScreen:lastScreen
+                                        modifiers:[theEvent modifierFlags]
+                                       forceDelay:YES];
 			[self recalcAndShowHoverWindow: lastCornerEntered
 								  onScreen: lastScreen
 								 modifiers: [theEvent modifierFlags]
@@ -904,6 +971,11 @@ postNotificationName: @"CornerClickPingBackNotification"
         [delayTimer invalidate];
         [delayTimer release];
         delayTimer=nil;
+    }
+    if(hoverTriggerTimer!=nil){
+        [hoverTriggerTimer invalidate];
+        [hoverTriggerTimer release];
+        hoverTriggerTimer=nil;
     }
 	if(lastCornerEntered==-1 || nil == lastScreen)        
 		return;
@@ -995,6 +1067,11 @@ postNotificationName: @"CornerClickPingBackNotification"
 {
 	
 	int sel = selectedMod;
+    if(nil!=hoverTriggerTimer){
+        [hoverTriggerTimer invalidate];
+        [hoverTriggerTimer release];
+        hoverTriggerTimer=nil;
+    }
 	if(sel <0){
 		[self doAction:corner onScreen:[CornerClickSupport numberForScreen:[[view window] screen]]
 			 withFlags:(flags < 0 ? [Clicker modsForEventFlags:[theEvent modifierFlags]] : flags)
@@ -1062,6 +1139,12 @@ postNotificationName: @"CornerClickPingBackNotification"
     
     DEBUG(@"MAKE KEY AND ORDER FRONT.  IS KEY: %@, ACTIVE: %@",[NSApp keyWindow]==window ? @"YES":@"NO",
           [NSApp isActive]?@"YES":@"NO");
+    
+    if(hoverTriggerTimer!=nil){
+        [hoverTriggerTimer invalidate];
+        [hoverTriggerTimer release];
+        hoverTriggerTimer=nil;
+    }
     if([appSettings toolTipEnabled]){
         [self hideHoverFadeOut];
     }

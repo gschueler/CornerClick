@@ -16,7 +16,8 @@
 				   andClicker:clicker];
 }*/
 
--(id)initWithType: (int) type andModifiers: (int) modifiers andTrigger: (int) trigger andString: (NSString *)theString
+-(id)initWithType: (int) type andModifiers: (int) modifiers andTrigger: (int) trigger isDelayed: (BOOL) hoverTriggerDelayed 
+        andString: (NSString *)theString
 		forCorner: (int)corner withLabel: (NSString *)label andClicker:(Clicker *) clicker
 {
     if(self=[super init]){
@@ -28,6 +29,7 @@
         theModifiers=modifiers;
         myClicker=clicker;
 		theTrigger=trigger;
+        self->hoverTriggerDelayed=hoverTriggerDelayed;
         if(theString != nil){
             //myString = [[NSString stringWithString:theString] retain];
             myString = [theString copy];
@@ -217,6 +219,8 @@
     [myIcon release];
     [trueLabel release];
     [myScript release];
+    [scriptLastModified release];
+    
 }
 - (void)doAction:(NSEvent*)theEvent
 {
@@ -436,6 +440,18 @@
     return [ClickAction validActionType: theType andString:myString];
 }
 
+//=========================================================== 
+//  hoverTriggerDelayed 
+//=========================================================== 
+- (BOOL)hoverTriggerDelayed
+{
+    return hoverTriggerDelayed;
+}
+- (void)setHoverTriggerDelayed:(BOOL)flag
+{
+    hoverTriggerDelayed = flag;
+}
+
 
 - (NSComparisonResult)triggerCompare:(ClickAction *)anAction
 {
@@ -497,6 +513,7 @@
     ClickAction *a = [[ClickAction allocWithZone:zone] initWithType: theType 
 													   andModifiers:  theModifiers
 														 andTrigger: theTrigger
+                                                          isDelayed: hoverTriggerDelayed
 														  andString:[myString copy] 
 														  forCorner: theCorner
 														  withLabel: [trueLabel copy]

@@ -10,6 +10,7 @@
     int theCorner;
     int theModifiers;
 	int theTrigger;
+    BOOL hoverTriggerDelayed;
     NSImage *myIcon;
     NSString *myLabel;
     NSString *trueLabel;
@@ -22,7 +23,7 @@
 /*-(id)initWithType: (int) type andModifiers: (int) modifiers andString: (NSString *)theString forCorner: (int) corner andClicker:(Clicker *) clicker;
 -(id)initWithType: (int) type andModifiers: (int) modifiers andString: (NSString *)theString forCorner: (int) corner withLabel:(NSString *) label andClicker:(Clicker *) clicker;
 */
--(id)initWithType: (int) type andModifiers: (int) modifiers andTrigger: (int) trigger andString: (NSString *)theString
+-(id)initWithType: (int) type andModifiers: (int) modifiers andTrigger: (int) trigger  isDelayed: (BOOL) hoverTriggerDelayed  andString: (NSString *)theString
 		forCorner: (int)corner withLabel: (NSString *)label andClicker:(Clicker *) clicker;
 -(void)hideCurrentAction;
 -(void)hideOthersAction;
@@ -42,6 +43,8 @@
 -(void) setType: (int) type;
 -(void) setModifiers: (int) modifiers;
 -(void) setTrigger: (int) trigger;
+-(void) setHoverTriggerDelayed: (BOOL) delayed;
+-(BOOL) hoverTriggerDelayed;
 - (NSComparisonResult)triggerCompare:(ClickAction *)anAction;
 
 

@@ -61,77 +61,11 @@
                                                           object: nil
                                               suspensionBehavior:NSNotificationSuspensionBehaviorCoalesce];
     
-        chosenCorner=0;
-        chosenScreen=0;
-        active=NO;
-        [appLaunchIndicator setStyle: NSProgressIndicatorSpinningStyle];
-        /*
-    if(prefs) {
-        tl = [[prefs objectForKey:@"tl"] mutableCopy];
-        tr = [[prefs objectForKey:@"tr"] mutableCopy];
-        bl = [[prefs objectForKey:@"bl"] mutableCopy];
-        br = [[prefs objectForKey:@"br"] mutableCopy];
-        appPrefs = [prefs mutableCopy];
-
-
-        tempArray = [[tl objectForKey:@"actionList"] mutableCopy];
-        for(i=0;i<[tempArray count];i++){
-            tempDict = [[tempArray objectAtIndex:i] mutableCopy];
-            [tempArray replaceObjectAtIndex:i withObject:tempDict];
-        }
-        [tl setObject:tempArray forKey:@"actionList"];
+    chosenCorner=0;
+    chosenScreen=0;
+    active=NO;
+    [appLaunchIndicator setStyle: NSProgressIndicatorSpinningStyle];
     
-
-        tempArray = [[tr objectForKey:@"actionList"] mutableCopy];
-        for(i=0;i<[tempArray count];i++){
-            tempDict = [[tempArray objectAtIndex:i] mutableCopy];
-            [tempArray replaceObjectAtIndex:i withObject:tempDict];
-        }
-        [tr setObject:tempArray forKey:@"actionList"];
-    
-
-        tempArray = [[bl objectForKey:@"actionList"] mutableCopy];
-        for(i=0;i<[tempArray count];i++){
-            tempDict = [[tempArray objectAtIndex:i] mutableCopy];
-            [tempArray replaceObjectAtIndex:i withObject:tempDict];
-        }
-
-        [bl setObject:tempArray forKey:@"actionList"];
-    
-
-        tempArray = [[br objectForKey:@"actionList"] mutableCopy];
-        for(i=0;i<[tempArray count];i++){
-            tempDict = [[tempArray objectAtIndex:i] mutableCopy];
-            [tempArray replaceObjectAtIndex:i withObject:tempDict];
-        }
-
-        [br setObject:tempArray forKey:@"actionList"];
-        
-
-    }else{
-        tempArray = [NSMutableArray arrayWithCapacity:4];
-        tl = [[NSMutableDictionary dictionaryWithCapacity:4] retain];
-        [tl setObject: [NSNumber numberWithInt:1] forKey:@"enabled"];
-
-        [tl setObject:  tempArray forKey:@"actionList"];
-        tr = [[NSMutableDictionary alloc] initWithDictionary: tl copyItems:YES];
-        [tr setObject:  [tempArray mutableCopy] forKey:@"actionList"];
-        bl = [[NSMutableDictionary alloc] initWithDictionary: tl copyItems:YES];
-        [bl setObject:  [tempArray mutableCopy] forKey:@"actionList"];
-        br = [[NSMutableDictionary alloc] initWithDictionary: tl copyItems:YES];
-        [br setObject:  [tempArray mutableCopy] forKey:@"actionList"];
-        
-        appPrefs = [[NSMutableDictionary dictionaryWithCapacity:3] retain];
-        [appPrefs setObject: [NSNumber numberWithInt:1] forKey:@"tooltip"];
-        [appPrefs setObject: [NSNumber numberWithInt:1] forKey:@"tooltipDelayed"];
-        [appPrefs setObject:[NSNumber numberWithInt: 0] forKey:@"appEnabled"];
-
-
-        
-    }
-         currentDict = tl;
-         currentActions = [tl objectForKey:@"actionList"];
-         */
     [showTooltipCheckBox setState:[appSettings toolTipEnabled]?1:0];
     [delayTooltipCheckBox setState:[appSettings toolTipDelayed]?1:0];
     [delayTooltipCheckBox setEnabled: [appSettings toolTipEnabled]];
@@ -159,12 +93,6 @@
     reloadHelperOnHelperDeactivation=NO;
     [self checkIfHelperAppRunning];
 }
-
-/*- (void) didSelect
-{
-    [self checkScreens];
-    [self checkIfHelperAppRunning];
-}*/
 
 - (void) didUnselect
 {
@@ -202,13 +130,13 @@
         [allScreens addObject:[[[s objectAtIndex:i] deviceDescription] objectForKey:@"NSScreenNumber"]];
     }
     [screenIDButton removeAllItems];
-    [screenIDButton addItemWithTitle:@"Main Screen"];
+    [screenIDButton addItemWithTitle:LOCALIZE([self bundle],@"Main Screen")];
     if([allScreens count]>1){
         [screenIDButton setEnabled:YES];
         [cycleScreensButton setEnabled:YES];
         for(i=1;i<[allScreens count]; i++){
             //NSLog(@"add title for screen %d",(i+1));
-            [screenIDButton addItemWithTitle:[NSString stringWithFormat:@"Screen #%d",(i+1)]];
+            [screenIDButton addItemWithTitle:[NSString stringWithFormat:LOCALIZE([self bundle],@"Screen #%d"),(i+1)]];
         }
         if(chosenScreen >= [allScreens count] || chosenScreen < 0){
             chosenScreen=0;
@@ -303,15 +231,12 @@
     int cpatch= CC_PATCH_VERSION;
     active=YES;
     if(vers != CC_APP_VERSION || (vers==CC_APP_VERSION && patch!=cpatch)){
-        //[appLaunchErrorLabel setStringValue: [NSString stringWithFormat: @"Old version %d.%d is active. Disable and re-enable CornerClick to activate this version.", maj,min]];
         reloadHelperOnHelperDeactivation=YES;
         [self deactivateHelper];
-        NSBeginAlertSheet(@"New CornerClick Version", @"OK", nil,nil, [NSApp mainWindow], self, NULL, NULL, NULL, @"An old version of CornerClick was active (version %d.%d.%d). It will be deactivated and version %d.%d.%d will be activated.",maj,min,patch,cmaj,cmin,cpatch);
-//        NSBeginAlertSheet([NSString stringWithFormat:@"Old Version Active: %d.%d",maj,min], @"Yes", @"No",nil, [NSApp mainWindow], self, @selector(alertSheetDidEnd:returnCode:contextInfo:), NULL, NULL, @"The old version that is running may not work correctly with new features.  Do you want to deactivate the old version and activate the newer version %d.%d?",cmaj,cmin);
-        
-        //TODO automaticcally enable the new version?
-    }else{
-        //[appLaunchErrorLabel setStringValue: @""];
+        NSBeginAlertSheet(LOCALIZE([self bundle],@"New CornerClick Version"),
+                          LOCALIZE([self bundle],@"OK"),
+                          nil,nil, [NSApp mainWindow], self, NULL, NULL, NULL,
+                          LOCALIZE([self bundle],@"An old version of CornerClick was active (version %d.%d.%d). It will be deactivated and version %d.%d.%d will be activated."),maj,min,patch,cmaj,cmin,cpatch);
 
     }
     [appLaunchIndicator stopAnimation:self];
@@ -357,8 +282,11 @@
     //NSLog(@"Failed to quit bg app");
     [appLaunchIndicator stopAnimation:self];
     [appLaunchErrorLabel setStringValue: @""];
-    
-    NSBeginAlertSheet(@"Deactivate Failed", @"OK",nil,nil, [NSApp mainWindow], self, NULL, NULL, NULL, @"The CornerClick helper application could not be deactivated.");
+
+    NSBeginAlertSheet(LOCALIZE([self bundle],@"Deactivate Failed"),
+                      LOCALIZE([self bundle],@"OK"),
+                      nil,nil, [NSApp mainWindow], self, NULL, NULL, NULL,
+                      LOCALIZE([self bundle],@"The CornerClick helper application could not be deactivated."));
     //[appLaunchErrorLabel setStringValue: @"Couldn't quit helper application"];
     [appEnabledCheckBox setState:1];
     [appEnabledCheckBox setNeedsDisplay: YES];
@@ -397,7 +325,7 @@
                                                                  userInfo:nil
                                                        deliverImmediately:YES];
 
-    [appLaunchErrorLabel setStringValue: @"Trying to deactivate"];
+    [appLaunchErrorLabel setStringValue: LOCALIZE([self bundle],@"Trying to deactivate")];
     awaitingDisabledHelperNotification=YES;
     [appEnabledCheckBox setState:0];
     [appEnabledCheckBox setEnabled:NO];
@@ -411,7 +339,7 @@
     apppath = [[self bundle] pathForResource:@"CornerClickBG" ofType:@"app"];
     //[appLaunchErrorLabel setStringValue: @""];
     [appLaunchIndicator startAnimation:self];
-    [appLaunchErrorLabel setStringValue: @"Trying to activate"];
+    [appLaunchErrorLabel setStringValue: LOCALIZE([self bundle],@"Trying to activate")];
     [appEnabledCheckBox setEnabled:NO];
     [self saveChanges];
     if(apppath ==nil)
@@ -422,7 +350,10 @@
         [appLaunchIndicator stopAnimation:self];
         [appEnabledCheckBox setState:0];
         [appLaunchErrorLabel setStringValue: @""];
-        NSBeginAlertSheet(@"Activate Failed", @"OK",nil,nil, [NSApp mainWindow], self, NULL, NULL, NULL, @"The CornerClick helper application could not be launched.");
+        NSBeginAlertSheet(LOCALIZE([self bundle],@"Activate Failed"),
+                          LOCALIZE([self bundle],@"OK"),
+                          nil,nil, [NSApp mainWindow], self, NULL, NULL, NULL,
+                          LOCALIZE([self bundle],@"The CornerClick helper application could not be launched."));
         active=NO;
     }else{
         [self setAutoLaunch:YES forApp:apppath];
@@ -515,7 +446,7 @@
                     }
                     [fileIconImageView setImage: [[NSWorkspace sharedWorkspace] iconForFile: str]];
                 }else{
-                    [chosenFileLabel setStringValue: @"no file chosen"];
+                    [chosenFileLabel setStringValue: LOCALIZE([self bundle],@"no file chosen")];
                     [fileIconImageView setImage: nil];
                 }
                 if(!chooseButtonIsVisible){
@@ -546,7 +477,7 @@
                     [chosenScriptLabel setStringValue: str];
                     [scriptIconImageView setImage: [[NSWorkspace sharedWorkspace] iconForFile: str]];
                 }else{
-                    [chosenScriptLabel setStringValue: @"no script chosen"];
+                    [chosenScriptLabel setStringValue: LOCALIZE([self bundle],@"no script chosen")];
                     [scriptIconImageView setImage: nil];
                 }
                 if(label!=nil){
@@ -897,8 +828,8 @@
     if(screenIdWindow==nil){
         screenIdView = [[GrayView alloc] initWithFrame: NSMakeRect(0,0,10,10)
                                              andString:
-            chosenScreen==0?(eerepeated>4 ?@"Main Screen Turn On!": @"Main Screen")
-                           : [NSString stringWithFormat:@"Screen #%d",chosenScreen+1]
+            chosenScreen==0?(eerepeated>4 ?@"Main Screen Turn On!": LOCALIZE([self bundle],@"Main Screen"))
+                           : [NSString stringWithFormat:LOCALIZE([self bundle],@"Screen #%d"),chosenScreen+1]
                                               andImage: nil
                                               fadeFrom: [NSColor colorWithCalibratedRed:0 green:0 blue:1 alpha:0.25]
                                                 fadeTo: [NSColor colorWithCalibratedRed:0 green:0 blue:0.5 alpha:1]
@@ -922,8 +853,8 @@
         [screenIdWindow setAlphaValue:0];
         [screenIdWindow orderBack:self];
         [screenIdView setDrawString:
-            chosenScreen==0?(eerepeated>4 ?@"Main Screen Turn On!": @"Main Screen")
-                           : [NSString stringWithFormat:@"Screen #%d",chosenScreen+1]
+            chosenScreen==0?(eerepeated>4 ?@"Main Screen Turn On!": LOCALIZE([self bundle],@"Main Screen"))
+                           : [NSString stringWithFormat:LOCALIZE([self bundle],@"Screen #%d"),chosenScreen+1]
 
             ];
     }
@@ -1031,8 +962,8 @@
             case ACT_SCPT:
             case ACT_FILE:
                 return [theAction label];
-            case ACT_HIDE: return @"Hide Current Application";
-            case ACT_HIDO: return @"Hide Other Applications";
+            case ACT_HIDE: return LOCALIZE([self bundle],@"Hide Current Application");
+            case ACT_HIDO: return LOCALIZE([self bundle],@"Hide Other Applications");
             case ACT_URL:
                 if([theAction labelSetting] !=nil){
                     theFile= [theAction labelSetting];
@@ -1041,7 +972,7 @@
                 }else{
                     theFile=@"";
                 }
-                return [NSString stringWithFormat:@"Open URL %@",theFile];
+                return [NSString stringWithFormat:LOCALIZE([self bundle],@"Open URL %@"),theFile];
             default: return @"???";
         }
     }else if([[aTableColumn identifier] isEqualToString: @"modifiers"]){
@@ -1074,9 +1005,9 @@
         }
 
         if([theFile length]){
-            theFile = [NSString stringWithFormat:@"%@ Click",theFile];
+            theFile = [NSString stringWithFormat:@"%@ %@",theFile,LOCALIZE([self bundle],@"Click")];
         }else{
-            theFile = @"Click";
+            theFile = LOCALIZE([self bundle],@"Click");
         }
         return theFile;
         

@@ -26,3 +26,5 @@
 
 #define CC_APP_VERSION 2
 #define CC_PATCH_VERSION 1
+
+#define LOCALIZE(x,y)	[x localizedStringForKey:y value:nil table:nil]

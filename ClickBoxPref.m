@@ -19,6 +19,7 @@ extern double CornerClickVersionNumber;
 
 - (void) mainViewDidLoad
 {    
+    appSettings = [self appSettings];
     [readmeTextView readRTFDFromFile:[[self bundle] pathForResource:@"Information" ofType:@"rtf"]];
     [readmeTextView setContinuousSpellCheckingEnabled: NO];
     [versionStringField setStringValue: MARKETING_VERSION_STRING ];
@@ -238,13 +239,73 @@ extern double CornerClickVersionNumber;
     
     [[NSWorkspace sharedWorkspace] openFile:[[self bundle] pathForResource:@"Readme" ofType:@"rtf"]];
 }
+
+
+- (IBAction)openExposePrefPane: (id) sender
+{
+    [[NSWorkspace sharedWorkspace] openFile:@"/System/Library/PreferencePanes/Expose.prefPane"];
+}
+- (IBAction)checkVersionUpdate: (id) sender
+{
+    
+}
+- (CornerClickSettings *) appSettings
+{
+    return [CornerClickSettings sharedSettings];
+}
++ (void) initialize
+{
+    [CornerClickSettings sharedSettingsFromUserPreferences];
+    NSLog(@"initialized ClickBoxPref");
+}
+
+- (void)setAppSettings: (CornerClickSettings *) settings
+{
+    [settings retain];
+    [appSettings release];
+    appSettings=settings;
+}
+
+- (NSMutableDictionary *) mySettings
+{
+    return mySettings;
+}
+
+- (void)setMySettings: (NSMutableDictionary *) settings
+{
+    [settings retain];
+    [mySettings release];
+    mySettings=settings;
+}
+
+static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
+
+- (void) observeValueForKeyPath: (NSString *)path ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if(object==[self appSettings] && context == UI_VIEW_CHANGE_CTX){
+            [self saveChanges];            
+    }
+}
 - (void) didSelect
 {
     
-    appSettings = [[CornerClickSupport settingsFromUserPreferences] retain];
-    //NSDictionary *prefs=[[NSUserDefaults standardUserDefaults]
-      //persistentDomainForName:@"CornerClickPref"];
-    //NSLog(@"Identifier is %@",[[NSBundle bundleForClass:[self class]] bundleIdentifier]);
+    [[self appSettings] addObserver:self 
+                         forKeyPath:@"toolTipEnabled"
+                            options:NSKeyValueObservingOptionNew
+                            context:UI_VIEW_CHANGE_CTX];
+    [[self appSettings] addObserver:self 
+                         forKeyPath:@"toolTipDelayed"
+                            options:NSKeyValueObservingOptionNew
+                            context:UI_VIEW_CHANGE_CTX];
+    [[self appSettings] addObserver:self 
+                  forKeyPath:@"textSize"
+                     options:NSKeyValueObservingOptionNew
+                     context:UI_VIEW_CHANGE_CTX];
+    [[self appSettings] addObserver:self 
+                         forKeyPath:@"iconSize"
+                            options:NSKeyValueObservingOptionNew
+                            context:UI_VIEW_CHANGE_CTX];
+    
 
     [[NSNotificationCenter defaultCenter]
    addObserver:self
@@ -277,9 +338,9 @@ extern double CornerClickVersionNumber;
     active=NO;
     [appLaunchIndicator setStyle: NSProgressIndicatorSpinningStyle];
     
-    [showTooltipCheckBox setState:[appSettings toolTipEnabled]?1:0];
-    [delayTooltipCheckBox setState:[appSettings toolTipDelayed]?1:0];
-    [delayTooltipCheckBox setEnabled: [appSettings toolTipEnabled]];
+//    [showTooltipCheckBox setState:[appSettings toolTipEnabled]?1:0];
+ //   [delayTooltipCheckBox setState:[appSettings toolTipDelayed]?1:0];
+ //   [delayTooltipCheckBox setEnabled: [appSettings toolTipEnabled]];
     [appEnabledCheckBox setState: [appSettings appEnabled]];
     [highlightColorWell setEnabled:YES];
 	if([appSettings highlightColor]!=nil){
@@ -323,9 +384,10 @@ extern double CornerClickVersionNumber;
 
 - (void) didUnselect
 {
-    //[self saveChanges];
+    
     [highlightColorWell setEnabled:NO];
     [[NSColorPanel sharedColorPanel] setTarget:nil];
+    [self saveChanges];
 }
 
 - (NSAttributedString *)makeAttributedLink:(NSString *) link forString:(NSString *) string
@@ -620,25 +682,6 @@ extern double CornerClickVersionNumber;
     }
     //[appPrefs setObject:[NSNumber numberWithInt: active?1:0] forKey:@"appEnabled"];
 }
-- (IBAction)tooltipEnable:(id)sender
-{
-    [appSettings setToolTipEnabled:[sender state]==NSOnState];
-	
-    [delayTooltipCheckBox setEnabled: ([sender state]==NSOnState)];
-    [bubbleColorWellA setEnabled: ([sender state]==NSOnState)];
-    [bubbleColorWellB setEnabled: ([sender state]==NSOnState)];
-    //[self notifyAppOfPreferences: [appSettings asDictionary]];
-    [self saveChanges];
-    
-}
-- (IBAction)tooltipDelay:(id)sender
-{
-    
-    [appSettings setToolTipDelayed:[sender state]==NSOnState];
-    //[self notifyAppOfPreferences: [appSettings asDictionary]];
-    [self saveChanges];
-    
-}
 
 - (void) refreshWithCornerSettings
 {
@@ -870,7 +913,7 @@ extern double CornerClickVersionNumber;
 - (void) saveChanges
 {
 
-    [CornerClickSupport savePreferences:appSettings];
+    [CornerClickSupport savePreferences:[CornerClickSettings sharedSettings]];
     [self notifyAppOfPreferences: [appSettings asDictionary]];
 }
 
@@ -967,6 +1010,11 @@ extern double CornerClickVersionNumber;
             //[actionView setFrameSize: [chooseURLView frame].size];
             [chooseURLView setFrameSize:[actionView frame].size];
             //[actionView setFrameOrigin: NSMakePoint([actionView frame].origin.x,[actionView frame].origin.y+diffy)];
+            break;
+        case ACT_EALL:
+        case ACT_EAPP:
+        case ACT_EDES:
+            [actionView addSubview: exposeNoteView];
             break;
         default:
             //[actionView setFrameSize: NSMakeSize([actionView frame].size.width,0)];
@@ -1277,10 +1325,11 @@ extern double CornerClickVersionNumber;
                 [tblIcon setScalesWhenResized:YES];
                 [tblIcon setSize:NSMakeSize(16,16)];
                 return tblIcon;
-			case ACT_HIDE:
-//				return [[[NSImage alloc] initWithContentsOfFile: [[self bundle] pathForImageResource:@"HideAppIcon" ]] autorelease];
-			case ACT_HIDO:
-//				return [[[NSImage alloc] initWithContentsOfFile: [[self bundle] pathForImageResource:@"HideOthersIcon" ]] autorelease];
+            case ACT_EALL:
+            case ACT_EAPP:
+            case ACT_EDES:
+                return [NSImage imageNamed:@"WindowVous" ];
+
 			default: return nil;
         }
     }
@@ -1302,6 +1351,18 @@ extern double CornerClickVersionNumber;
                     theFile=@"";
                 }
                 return [NSString stringWithFormat:LOCALIZE([self bundle],@"Open URL %@"),theFile];
+            case ACT_EALL: return [NSString stringWithFormat:@"%@ - %@",
+                LOCALIZE([self bundle],@"Expose"),
+                LOCALIZE([self bundle],@"All Windows")]
+                ;
+            case ACT_EAPP: return [NSString stringWithFormat:@"%@ - %@",
+                LOCALIZE([self bundle],@"Expose"),
+                LOCALIZE([self bundle],@"Application Windows")]
+                ;
+            case ACT_EDES: return [NSString stringWithFormat:@"%@ - %@",
+                LOCALIZE([self bundle],@"Expose"),
+                LOCALIZE([self bundle],@"Desktop")]
+                ;
             default: return @"???";
         }
     }else if([[aTableColumn identifier] isEqualToString: @"modifiers"]){

@@ -55,7 +55,10 @@
     IBOutlet NSPopUpButton *quickFilePopup;
     IBOutlet NSPopUpButton *quickScriptPopup;
     
+    IBOutlet NSView *exposeNoteView;
+        
     IBOutlet NSTextField *versionStringField;
+    IBOutlet NSObjectController *myObjectController;
     
     
     int chosenCorner;
@@ -76,6 +79,7 @@
     NSTimer *delayTimer;
     NSArray *ordinalNames;
     CornerClickSettings *appSettings;
+    NSMutableDictionary *mySettings;
     BOOL chooseButtonIsVisible;
 }
 - (void) showQuickScriptsPopup;
@@ -93,8 +97,6 @@
 - (IBAction)fileChooseClicked:(id)sender;
 - (IBAction)triggerChosen:(id)sender;
 - (IBAction)appEnable:(id)sender;
-- (IBAction)tooltipEnable:(id)sender;
-- (IBAction)tooltipDelay:(id)sender;
 - (IBAction)urlEntered:(id)sender;
 - (IBAction)removeActionButtonClicked:(id)sender;
 - (IBAction)addActionButtonClicked:(id)sender;
@@ -111,6 +113,14 @@
 - (IBAction)highlightOptionChosen:(id)sender;
 //- (IBAction)loadInformationRTF:(id)sender;
 - (IBAction)loadReadmeRTF:(id)sender;
+- (IBAction)openExposePrefPane: (id) sender;
+- (IBAction)checkVersionUpdate: (id) sender;
+
+- (NSMutableDictionary *) mySettings;
+- (void) setMySettings: (NSMutableDictionary *) settings;
+
+- (CornerClickSettings *) appSettings;
+- (void)setAppSettings: (CornerClickSettings *) settings;
 
 - (void) deactivateHelper;
 - (void) activateHelper;

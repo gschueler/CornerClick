@@ -398,6 +398,18 @@
 			settings = {
 			};
 		};
+		37940A4304D75513000001CF = {
+			fileRef = 089C167FFE841241C02AAC07;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37940A4904D75528000001CF = {
+			fileRef = 089C1672FE841209C02AAC07;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		37C3CB2804CDABD2000001CF = {
 			buildActionMask = 2147483647;
 			files = (
@@ -438,6 +450,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				37C3CB5704CDADB5000001CF,
+				37940A4304D75513000001CF,
+				37940A4904D75528000001CF,
 			);
 			isa = PBXFrameworksBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;

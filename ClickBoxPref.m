@@ -369,7 +369,7 @@
         [shiftKeyCheckBox setEnabled:YES];
         [controlKeyCheckBox setEnabled:YES];
         [commandKeyCheckBox setEnabled:YES];
-        NSLog(@"flags (%d) & OPTION_MASK (%d) : %d",flags,OPTION_MASK,(flags & OPTION_MASK));
+        //NSLog(@"flags (%d) & OPTION_MASK (%d) : %d",flags,OPTION_MASK,(flags & OPTION_MASK));
         [optionKeyCheckBox setState: ((flags & OPTION_MASK) > 0 ? NSOnState: NSOffState)];
         [shiftKeyCheckBox setState: ((flags & SHIFT_MASK) > 0 ? NSOnState: NSOffState)];
         [controlKeyCheckBox setState: ((flags & CONTROL_MASK) > 0 ? NSOnState: NSOffState)];
@@ -385,12 +385,16 @@
         NSString *label = [settings objectForKey:@"chosenFilePath"];
         if(label){
             theString=[settings objectForKey:@"chosenFilePath"];
-            if([theString hasSuffix:@".app"]){
-                [chosenFileLabel setStringValue: [[theString lastPathComponent] stringByDeletingPathExtension]];
+            if(theString!=nil){
+                if([theString hasSuffix:@".app"]){
+                    [chosenFileLabel setStringValue: [[theString lastPathComponent] stringByDeletingPathExtension]];
+                }else{
+                    [chosenFileLabel setStringValue: [theString lastPathComponent]];
+                }
+                [fileIconImageView setImage: [[NSWorkspace sharedWorkspace] iconForFile: theString]];
             }else{
-                [chosenFileLabel setStringValue: [theString lastPathComponent]];
+                [fileIconImageView setImage: nil];
             }
-            [fileIconImageView setImage: [[NSWorkspace sharedWorkspace] iconForFile: theString]];
         }else{
             [chosenFileLabel setStringValue: @"no file chosen"];
             [fileIconImageView setImage: nil];
@@ -640,7 +644,12 @@
     //NSLog(@"objectValueForTableColumn called: currentAcctions : %@",currentActions);
     if([[aTableColumn identifier] isEqualToString: @"icon"]){
         switch(type){
-            case 0: return [[NSWorkspace sharedWorkspace] iconForFile:[obj objectForKey:@"chosenFilePath"]];
+            case 0:
+                if([obj objectForKey:@"chosenFilePath"]!=nil)
+                    return [[NSWorkspace sharedWorkspace] iconForFile:[obj objectForKey:@"chosenFilePath"]];
+                else
+                    return nil;
+                break;
             case 3: return [[[NSImage alloc] initWithContentsOfFile: [[NSBundle bundleForClass:[ClickBoxPref class]] pathForResource:@"BookmarkPreferences" ofType:@"tiff"]] autorelease];
             default: return nil;
         }
@@ -740,14 +749,21 @@
 
 - (IBAction)removeActionButtonClicked:(id)sender
 {
+    int sel=[actionTable selectedRow];
     //NSLog(@"selection changed to: %d",[actionTable selectedRow]);
-    if([actionTable selectedRow]>=0){
+    if(sel>=0){
 
         currentActionDict=nil;
-        [currentActions removeObjectAtIndex:[actionTable selectedRow]];
-        [self refreshWithSettings:nil];
-        [actionTable reloadData];
+        [currentActions removeObjectAtIndex:sel];
         [self notifyAppOfPreferences:[self makePrefs]];
+        if(sel>0 && sel < [currentActions count] && [currentActions objectAtIndex:sel]!=nil){
+            currentActionDict=[currentActions objectAtIndex:sel];
+            [self refreshWithSettings:currentActionDict];
+        }else{
+            [actionTable deselectAll:self];
+            [self refreshWithSettings:nil];
+        }
+        [actionTable reloadData];
     }else{
         [self refreshWithSettings:nil];
     }    
@@ -761,6 +777,7 @@
     [newAct setObject: [NSNumber numberWithInt:0] forKey:@"action"];
     [newAct setObject: [NSNumber numberWithInt:0] forKey:@"trigger"];
     currentActionDict=newAct;
+    [actionTable reloadData];
 
     [actionTable selectRow:[currentActions count]-1 byExtendingSelection:NO];
         
@@ -771,22 +788,26 @@
 {
     [self toggleModifier: OPTION_MASK toState: [sender state]==0?NO:YES];
     [self notifyAppOfPreferences:[self makePrefs]];
+    [actionTable reloadData];
 }
 - (IBAction)shiftKeyCheckBoxClicked:(id)sender
 {
     [self toggleModifier: SHIFT_MASK toState: [sender state]==0?NO:YES];
     [self notifyAppOfPreferences:[self makePrefs]];
+    [actionTable reloadData];
 }
 - (IBAction)commandKeyCheckBoxClicked:(id)sender
 {
     [self toggleModifier: COMMAND_MASK toState: [sender state]==0?NO:YES];
     [self notifyAppOfPreferences:[self makePrefs]];
+    [actionTable reloadData];
 }
 - (IBAction)controlKeyCheckBoxClicked:(id)sender
 {
 
     [self toggleModifier: CONTROL_MASK toState: [sender state]==0?NO:YES];
     [self notifyAppOfPreferences:[self makePrefs]];
+    [actionTable reloadData];
 }
 
 

@@ -3,18 +3,19 @@
 
 @implementation ClickAction
 
--(id)initWithType: (int) type andModifiers: (int) modifiers andString: (NSString *)theString forCorner: (int)corner
+-(id)initWithType: (int) type andModifiers: (int) modifiers andString: (NSString *)theString forCorner: (int)corner andClicker:(Clicker *) clicker
 {
-    return [self initWithType:type andModifiers:  modifiers andString:theString  forCorner: corner withLabel:nil];
+    return [self initWithType:type andModifiers:  modifiers andString:theString  forCorner: corner withLabel:nil andClicker:clicker];
     
 }
--(id)initWithType: (int) type andModifiers: (int) modifiers andString: (NSString *)theString forCorner: (int)corner withLabel: (NSString *)label 
+-(id)initWithType: (int) type andModifiers: (int) modifiers andString: (NSString *)theString forCorner: (int)corner withLabel: (NSString *)label andClicker:(Clicker *) clicker
 {
     if(self=[super init]){
         myIcon=nil;
         theCorner=corner;
         theType=type;
         theModifiers=modifiers;
+        myClicker=clicker;
         if(theString != nil){
             myString = [[NSString stringWithString:theString] retain];
         }
@@ -130,7 +131,7 @@
     //NSLog(@"Do Action: %d %s",theType,[myString UTF8String]);
     switch(theType){
         case 0:
-    [[NSWorkspace sharedWorkspace] openFile:myString];
+            [[NSWorkspace sharedWorkspace] openFile:myString];
             break;
         case 1:
             [self hideCurrentAction];
@@ -148,12 +149,11 @@
 
 - (void) hideCurrentAction
 {
-    OSErr err;
     ProcessSerialNumber psn;
-    err =GetFrontProcess(&psn);
-
-    ShowHideProcess(&psn,(Boolean)NO);
-    //[[NSWorkspace sharedWorkspace] hideOtherApplications];
+    OSErr err;
+    err=GetFrontProcess(&psn);
+    if(err==0)
+        ShowHideProcess(&psn,(Boolean)NO);
 }
 
 - (void) hideOthersAction
@@ -170,14 +170,12 @@
     while(err==0 ){
         SameProcess(&paramPsn,&psn,(Boolean *)&sameanswer);
         if(sameanswer){
-            //break;
+            
         }else{
             ShowHideProcess(&paramPsn,(Boolean)NO);
         }
         err = GetNextProcess(&paramPsn);
     }
-
-    //[[NSWorkspace sharedWorkspace] hideOtherApplications];
 }
 
 

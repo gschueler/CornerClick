@@ -76,10 +76,6 @@
     return NO;
 }
 
-- (ClickWindow **) windowForCorner: (int) corner
-{
-    return windows[corner];
-}
 - (NSRect) rectForCorner: (int) corner
 {
     NSRect myRect;
@@ -103,6 +99,7 @@
     }
     return myRect;
 }
+
 - (NSPoint) pointForCorner: (int) corner
 {
     
@@ -125,6 +122,7 @@
             return;
     }
 }
+
 - (BOOL) createClickWindowAtCorner: (int) corner withActionList: (NSArray *) actions
 {
     int a,actionType,modifiers;
@@ -149,7 +147,8 @@
                                       andModifiers:modifiers
                                           andString:action
                                           forCorner: corner
-                                          withLabel:label]
+                                          withLabel:label
+                                         andClicker:self]
                     autorelease]];    
         }
     }
@@ -157,10 +156,6 @@
         return NO;
     }
     if(*theWindow !=nil){
-        //NSLog(@"closing corner %d",corner);
-        //[[*theWindow contentView] removeTrackingRect: track[corner]];
-        //[*theWindow close];
-        //*theWindow=nil;
         [[*theWindow contentView] setClickActions: clickActions];
     }else{
         *theWindow = [[ClickWindow alloc] initWithContentRect: myRect
@@ -170,7 +165,7 @@
                                                        corner: corner];
         [*theWindow setOpaque:NO];
         [*theWindow setHasShadow:NO];
-        [*theWindow setLevel: NSStatusWindowLevel];
+        [*theWindow setLevel: NSScreenSaverWindowLevel];//NSStatusWindowLevel];
         [*theWindow setAlphaValue: 0.1];
 
 
@@ -227,7 +222,7 @@
              object: nil
  suspensionBehavior:NSNotificationSuspensionBehaviorCoalesce];
     
-    [self oneTimeMakeWindow];
+    [self makeHoverWindow];
 }
 
 - (void) pingAppNotification: (NSNotification *) notice
@@ -252,7 +247,7 @@ postNotificationName: @"CornerClickPingBackNotification"
     [NSApp terminate:nil];
 }
 
-- (void)oneTimeMakeWindow
+- (void)makeHoverWindow
 {
     NSRect sr = [[NSScreen mainScreen] frame];
     NSRect myr = NSMakeRect(sr.origin.x+(sr.size.width/2)-80,sr.origin.y+(sr.size.height/2)-40,
@@ -356,7 +351,7 @@ postNotificationName: @"CornerClickPingBackNotification"
 
 - (void) keyDown: (NSEvent *)theEvent
 {
-    if([theEvent type]==NSFlagsChanged){
+    if([theEvent type]&NSFlagsChanged){
         NSLog(@"modifiers changed to: shift %d, ctrl %d, option %d, command %d",[theEvent modifierFlags]&NSShiftKeyMask,
               [theEvent modifierFlags]&NSControlKeyMask,
               [theEvent modifierFlags]&NSAlternateKeyMask,
@@ -364,8 +359,12 @@ postNotificationName: @"CornerClickPingBackNotification"
 
     }
 }
-
 - (void)recalcAndShowHoverWindow: (int) corner modifiers: (unsigned int) modifiers
+{
+    [self recalcAndShowHoverWindow:corner modifiers:modifiers doDelay:YES];
+}
+- (void)recalcAndShowHoverWindow: (int) corner modifiers: (unsigned int) modifiers
+                         doDelay: (BOOL) delay
 {
     int corn=corner;
     ClickWindow *window;
@@ -375,107 +374,87 @@ postNotificationName: @"CornerClickPingBackNotification"
         delayTimer=nil;
         [hoverWin setAlphaValue:0.0];
     }
+    if([hoverWin alphaValue] > 0.0){
+        //[hoverWin setAlphaValue:0.0];
+    }
     window =  *windows[corner];
     //NSLog(@"retaincount for window: %d",[window retainCount]);
     if(window !=nil ){
-        if([[preferences objectForKey:@"tooltip"] intValue]){
-            if([[preferences objectForKey:@"tooltipDelayed"] intValue]){
-                NSInvocation *nsinv = [NSInvocation invocationWithMethodSignature: [self methodSignatureForSelector:@selector(showHover:withModifiers:)]];
-                [nsinv setSelector:@selector(showHover:withModifiers:)];
-                [nsinv setTarget:self];
-                [nsinv setArgument: &corn atIndex:2];
-                [nsinv setArgument: &modifiers atIndex:3];
-                delayTimer = [[NSTimer scheduledTimerWithTimeInterval:1 invocation:nsinv repeats:NO] retain];
-            }else{
-                [self showHover:corn withModifiers:modifiers];
-            }
-        }
         if([[window contentView] clickActionForModifierFlags: modifiers]!=nil){
             [window setAlphaValue: 1.0];
             [window orderFront:self];
             //[window makeMainWindow];
+            
+            if([[preferences objectForKey:@"tooltip"] intValue]){
+                if([[preferences objectForKey:@"tooltipDelayed"] intValue] && delay){
+                    NSInvocation *nsinv = [NSInvocation invocationWithMethodSignature: [self methodSignatureForSelector:@selector(showHover:withModifiers:)]];
+                    [nsinv setSelector:@selector(showHover:withModifiers:)];
+                    [nsinv setTarget:self];
+                    [nsinv setArgument: &corn atIndex:2];
+                    [nsinv setArgument: &modifiers atIndex:3];
+                    delayTimer = [[NSTimer scheduledTimerWithTimeInterval:1 invocation:nsinv repeats:NO] retain];
+                }else{
+                    [self showHover:corn withModifiers:modifiers];
+                }
+            }
+        }else{
+            [window setAlphaValue: 0.1];
+            [hoverWin setAlphaValue: 0.0];
         }
-    } 
+    }
 }
 
 - (void)mouseEntered:(NSEvent *)theEvent
 {
-    NSEvent *newEvent;
     int corn;
     unsigned int modifiers=[theEvent modifierFlags];
     NSNumber *num = (NSNumber *)[theEvent userData];
     corn=[num intValue];
+    lastCornerEntered=corn;
     [self recalcAndShowHoverWindow: corn modifiers: modifiers];
-   // NSLog(@" can become main: %d",[*windows[corn] canBecomeKeyWindow]);
-    //[*windows[corn] makeKeyAndOrderFront:nil];
-    //NSLog(@" key window is %@",[[NSApp keyWindow] description]);
-    //NSLog(@" key window is %@",[[NSApp mainWindow] description]);
-    return;
-    
-    while(1){
-        newEvent = [NSApp nextEventMatchingMask:
-            NSAnyEventMask
-            //NSFlagsChangedMask | NSMouseEnteredMask | NSMouseExitedMask | NSLeftMouseDownMask | NSKeyDownMask
-                                        untilDate: nil
-                                            inMode: NSEventTrackingRunLoopMode //NSDefaultRunLoopMode
-                                        dequeue: NO];
-        NSLog(@"got event type: %@",[newEvent description]);
-        if([newEvent type]&NSFlagsChangedMask || [newEvent type] &NSKeyDownMask){
-            [self recalcAndShowHoverWindow: corn modifiers: [newEvent modifierFlags]];
-        }else{
-            return;
-        }
-        
-    }
-
-    
 }
 
+- (void) flagsChanged:(NSEvent *)theEvent
+{
+    NSLog(@"Clicker: flagsChanged");
+    if(lastCornerEntered!=-1)
+        [self recalcAndShowHoverWindow: lastCornerEntered modifiers: [theEvent modifierFlags] doDelay:NO];
+}
+- (void)applicationDidHide:(NSNotification *)aNotification
+{
+    [[aNotification object] unhideWithoutActivation];
+}
+- (void) mouseDown:(NSEvent *)theEvent
+{
+    NSLog(@"mouseDown in clicker.m");
+}
 
 - (void)mouseExited:(NSEvent *)theEvent
 {
     ClickWindow *window;
-    if([theEvent modifierFlags] & NSControlKeyMask){
-        //NSLog(@"With Control Key");
-    }
     NSNumber *num = (NSNumber *)[theEvent userData];
     window =  *windows[[num intValue]];
-    if(window !=nil){
-        [window setAlphaValue: 0.1];
-    }else{
-        //NSLog(@"no window");
-    }
+    [window setAlphaValue: 0.1];
     if([[preferences objectForKey:@"tooltip"] intValue]){
         [self hideHoverFadeOut];
     }
-    
+    lastCornerEntered=-1;
 }
-
-/*
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
-    NSLog(@"Finished Launching");
-    //[[aNotification object] hide: self];
-}
-- (void)applicationDidBecomeActive:(NSNotification *)aNotification
-{
-    NSLog(@"Became Active");
-    //[[aNotification object] hide: self];
-}
-
-- (void)applicationDidHide:(NSNotification *)aNotification
-{
-    NSLog(@"Became Hidden");
-    //[[aNotification object] unhideWithoutActivation];
-}
-*/
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
     [[NSDistributedNotificationCenter defaultCenter]
     removeObserver: self
                name: @"CornerClickLoadPrefsNotification"
-             object: nil];
+            object: nil];
+    [[NSDistributedNotificationCenter defaultCenter]
+        removeObserver: self
+                  name: @"CornerClickDisableAppNotification"
+                object: nil];
+    [[NSDistributedNotificationCenter defaultCenter]
+        removeObserver: self
+                  name: @"CornerClickPingAppNotification"
+                object: nil];
 }
 
 @end

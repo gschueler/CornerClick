@@ -13,6 +13,21 @@
     return win;
 }
 
+-( BOOL) canBecomeKeyWindow
+{
+    return NO;
+}
+-( BOOL) canBecomeMainWindow
+{
+    return NO;
+}
+
+
+- (void) flagsChanged:(NSEvent *)theEvent
+{
+    NSLog(@"flagsChanged in ClickWindow.m");
+    [[NSApp delegate] flagsChanged:theEvent];
+}
 
 - (int) corner
 {

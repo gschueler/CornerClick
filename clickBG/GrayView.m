@@ -347,7 +347,6 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 
 
     NSPoint inside=NSMakePoint((roundingSize - insetSize),(roundingSize - insetSize) + (pointCorner==2||pointCorner==3 ? tailLen: 0));
-    NSPoint interior=NSMakePoint(4,4 + (pointCorner==2||pointCorner==3 ? tailLen: 0));
 
     if(dirty){
         [textArea setSize: NSMakeSize(rect.size.width,rect.size.height)];
@@ -360,7 +359,6 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 
         float xoff=0;
         float yoff=0;
-        float extra=0;
         
         tSize=[myString sizeWithAttributes: stringAttrs];
 

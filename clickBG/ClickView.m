@@ -100,7 +100,7 @@
 //            id test = [paste propertyListForType:@"NSURLPboardType"];
             url = [NSURL URLFromPasteboard:paste];
             if(url!=nil){
-                temp = [[ClickAction alloc] initWithType:3 andModifiers: 0 andString:[url absoluteString] forCorner:[myAction corner]];
+                temp = [[ClickAction alloc] initWithType:3 andModifiers: 0 andString:[url absoluteString] forCorner:[myAction corner] andClicker:[NSApp delegate]];
                 [myAction release];
                 myAction=temp;
             }
@@ -115,7 +115,7 @@
             NSString *path = [fileArray objectAtIndex:0];
             //assume that we can ignore all but the first path in the list
             NSLog(@"got new path: %@",path);
-            temp = [[ClickAction alloc] initWithType:0 andModifiers: 0 andString:path forCorner:[myAction corner]];
+            temp = [[ClickAction alloc] initWithType:0 andModifiers: 0 andString:path forCorner:[myAction corner] andClicker:[NSApp delegate]];
                 //-(id)initWithType: (int) type andString: (NSString *)theString forCorner: (int) corner withLabel:(NSString *) label;
             [myAction release];
             myAction = temp;

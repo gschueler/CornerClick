@@ -72,7 +72,7 @@
                     NSForegroundColorAttributeName, nil]
                 ] retain];
         }else{
-            msg=nil;
+            myString=nil;
         }
         textArea = [[NSImage alloc] initWithSize: frame.size];
         if(fromCol!=nil){
@@ -337,7 +337,10 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
     [myString release];
     if(newString != myString)
         dirty=YES;
-    myString=newString;
+    if([newString isEqualToString:@" "])
+        myString=nil;
+    else
+        myString=newString;
     if(dirty){
         //NSLog(@"set draw string: now dirty");
         [self recalcSize];
@@ -358,9 +361,14 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 
 - (NSRect) preferredFrame
 {
-    NSSize textSize = [myString sizeWithAttributes: stringAttrs];
-    textSize.width/=2;
-    textSize.height/=2;
+    NSSize textSize;
+    if(myString == nil){
+        textSize=NSMakeSize(0,0);
+    }else{
+        textSize = [myString sizeWithAttributes: stringAttrs];
+        textSize.width/=2;
+        textSize.height/=2;
+    }
     if(iconImage!=nil){
         textSize.width+=36;
         if(textSize.height<32)
@@ -435,8 +443,11 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
         float xoff=0;
         float yoff=0;
         
-        tSize=[myString sizeWithAttributes: stringAttrs];
-
+        if(myString == nil){
+            tSize=NSMakeSize(0,0);
+        }else{
+            tSize=[myString sizeWithAttributes: stringAttrs];
+        }
         //draw an icon if it's set
         if(iconImage!=nil){
             xoff+=36;
@@ -444,29 +455,33 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 
             [iconImage compositeToPoint: inside operation:NSCompositeSourceOver];
         }
-
-        //create a new image, draw double size text, composite at half size on top of bubble
-        tempImg = [[NSImage alloc] initWithSize:tSize];
-        [tempImg lockFocus];
         
-        [[NSColor clearColor] set];
-        NSRectFill(NSMakeRect(0,0,tSize.width,tSize.height));
-        aa = [[NSGraphicsContext currentContext] shouldAntialias];
-        [[NSGraphicsContext currentContext] setShouldAntialias: YES];
-        
-        [myString drawAtPoint:NSZeroPoint withAttributes: stringAttrs ];
-        
-        [tempImg unlockFocus];
-
-        [[NSGraphicsContext currentContext] setShouldAntialias: aa];
-        
-        //NSImageRep *brep = [tempImg bestRepresentationForDevice:nil];
-        
-        [tempImg  drawInRect:NSMakeRect(inside.x+xoff, inside.y+yoff, tSize.width/2,tSize.height/2)
-                             fromRect:NSMakeRect(0, 0, tSize.width, tSize.height)
-                            operation:NSCompositeSourceOver
-                             fraction:1.0];
-        [tempImg release];
+        if(myString!=nil){
+            //create a new image, draw double size text, composite at half size on top of bubble
+            
+            tempImg = [[NSImage alloc] initWithSize:tSize];
+            [tempImg lockFocus];
+            
+            [[NSColor clearColor] set];
+            NSRectFill(NSMakeRect(0,0,tSize.width,tSize.height));
+            aa = [[NSGraphicsContext currentContext] shouldAntialias];
+            [[NSGraphicsContext currentContext] setShouldAntialias: YES];
+    
+            
+                [myString drawAtPoint:NSZeroPoint withAttributes: stringAttrs ];
+            
+            [tempImg unlockFocus];
+    
+            [[NSGraphicsContext currentContext] setShouldAntialias: aa];
+            
+            //NSImageRep *brep = [tempImg bestRepresentationForDevice:nil];
+            
+            [tempImg  drawInRect:NSMakeRect(inside.x+xoff, inside.y+yoff, tSize.width/2,tSize.height/2)
+                                fromRect:NSMakeRect(0, 0, tSize.width, tSize.height)
+                                operation:NSCompositeSourceOver
+                                fraction:1.0];
+            [tempImg release];
+        }
 
         if(drawHilite){
             [self doDrawHilite:NSMakeRect(rect.origin.x,rect.origin.y+(pointCorner==2||pointCorner==3 ? tailLen : 0),
@@ -481,8 +496,10 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
     [[NSGraphicsContext currentContext] setShouldAntialias: NO];
     [textArea compositeToPoint:NSMakePoint(rect.origin.x,rect.origin.y) operation:NSCompositeSourceOver];
 
-    if(pointCorner==1){
-        //[[textArea TIFFRepresentation] writeToFile: [@"~/Desktop/test.tiff" stringByExpandingTildeInPath] atomically:YES];
+    if(DEBUG_ON){
+        if(pointCorner==1){
+            [[textArea TIFFRepresentation] writeToFile: [@"~/Desktop/test.tiff" stringByExpandingTildeInPath] atomically:YES];
+        }
     }
 
 }

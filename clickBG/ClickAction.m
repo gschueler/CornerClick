@@ -79,11 +79,15 @@
             if(label !=nil){
                 myLabel = [label copy];
             }
-            else if(myString==nil){
+            else if( myString !=nil){
+                myLabel = [[[myString lastPathComponent] stringByDeletingPathExtension] retain];
+            }
+            else {
                 myLabel=nil;
                 myIcon=nil;
-            }else {
-                myLabel = [[[myString lastPathComponent] stringByDeletingPathExtension] retain];
+            }
+            
+            if( myString !=nil){
                 myIcon = [[[NSWorkspace sharedWorkspace] iconForFile: myString] retain];
             }
             

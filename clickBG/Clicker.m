@@ -114,43 +114,7 @@
         [obj release];
     }
 }
-- (void) loadFromPreferences: (NSDictionary *) sourcePreferences
-{
-    NSArray *subPref;
-    NSDictionary *usePreferences;
-    if(sourcePreferences==nil){
-        usePreferences = [self loadOldVersionPreferences];
-    }else{
-        usePreferences=sourcePreferences;
-    }
-    if(preferences!=nil){
-        //NSLog(@"preferences retainCount before release: %d",[preferences retainCount]);
-        [preferences release];
-    }
-    preferences = [[NSMutableDictionary alloc] initWithDictionary: usePreferences copyItems:YES];
-    // NSLog(@"Loading Preferences: %@",preferences);
-    if(preferences){
-        int i;
-        lastHoverCorner=-1;
-        for(i=0;i<MAX_CORNERS;i++){
-            NSString *corn = cornerNames[i];
-            subPref = [[preferences objectForKey: corn] objectForKey:@"actionList"];
-            if([[[preferences objectForKey:corn] objectForKey:@"enabled"] intValue] == 1
-               && subPref!=nil &&
-               [self createClickWindowAtCorner: i withActionList: subPref]){
-                
-            }else if(*windows[i]!=nil){
-                //NSLog(@"closing corner %@: ",corn);
-                [[*windows[i] contentView] removeTrackingRect: track[i]];
-                [*windows[i] close];
-                //NSLog(@"*windows[%d] retainCount before release: %d",i,[*windows[i] retainCount]);
-                *windows[i]=nil;        
-            }
-        }
-    }else{
-        NSLog(@"Unable to copy preferences");
-    }
-}
+
 
 - (NSDictionary *) loadOldVersionPreferences
 {
@@ -309,18 +273,6 @@
 {
     screenWindows = [[NSMutableDictionary dictionaryWithCapacity:2] retain];
     trackCache = [[NSMutableDictionary dictionaryWithCapacity:MAX_CORNERS*[[NSScreen screens] count]] retain];
-    tlWin=nil;
-    trWin=nil;
-    blWin=nil;
-    brWin=nil;
-    windows[0]=&tlWin;
-    windows[1]=&trWin;
-    windows[2]=&blWin;
-    windows[3]=&brWin;
-    cornerNames[0]=@"tl";
-    cornerNames[1]=@"tr";
-    cornerNames[2]=@"bl";
-    cornerNames[3]=@"br";
     lastHoverCorner=-1;
 /*    [self loadFromPreferences:
         [[NSUserDefaults standardUserDefaults]

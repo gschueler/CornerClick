@@ -15,19 +15,19 @@
 			371AAD8704DC3CBA000001CF,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 82508843;
+			PBXPerProjectTemplateStateSaveDate = 82617632;
 			"PBXTemplateGeometry-F5314676015831810DCA290F" = {
-				ContentSize = "{722, 381}";
+				ContentSize = "{1027, 514}";
 				LeftSlideOut = {
 					Collapsed = NO;
-					Frame = "{{0, 23}, {722, 358}}";
+					Frame = "{{0, 23}, {1027, 491}}";
 					Split0 = {
 						ActiveTab = 2;
 						ActiveTabName = PBXBuildResultsModule;
 						Collapsed = NO;
-						Frame = "{{0, 0}, {722, 358}}";
+						Frame = "{{0, 0}, {1027, 491}}";
 						Split0 = {
-							Frame = "{{0, 301}, {722, 57}}";
+							Frame = "{{0, 301}, {1027, 190}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
@@ -76,10 +76,10 @@
 							};
 						};
 						Tab3 = {
-							BuildMessageFrame = "{{0, 0}, {724, 262}}";
-							BuildTranscriptFrame = "{{0, 271}, {724, 2}}";
+							BuildMessageFrame = "{{0, 0}, {1029, 262}}";
+							BuildTranscriptFrame = "{{0, 271}, {1029, 2}}";
 							BuildTranscriptFrameExpanded = YES;
-							Frame = "{{0, 0}, {722, 295}}";
+							Frame = "{{0, 0}, {1027, 295}}";
 						};
 						Tab4 = {
 							Frame = "{{0, 0}, {612, 295}}";
@@ -142,7 +142,7 @@
 				StatusViewVisible = YES;
 				Template = F5314676015831810DCA290F;
 				ToolbarVisible = YES;
-				WindowLocation = "{234, 387}";
+				WindowLocation = "{234, 254}";
 			};
 			"PBXTemplateGeometry-F5534CB2020F3F8A0DCA290F" = {
 				ContentSize = "{883, 605}";
@@ -278,7 +278,7 @@
 						Split0 = {
 							Split0 = {
 								NavContent0 = {
-									bookmark = 3702769B04EAFC21000001CF;
+									bookmark = 37A2648104ECA370000001CF;
 									history = (
 										3761B3BB04C8F07B000001CF,
 										3761B3BC04C8F07B000001CF,
@@ -310,7 +310,6 @@
 										37940AB804DAF122000001CF,
 										37940ABA04DAF122000001CF,
 										37940AC104DAF122000001CF,
-										37940C7104DB4E90000001CF,
 										371AADA704DC5ED7000001CF,
 										371AADA804DC5ED7000001CF,
 										371AADAA04DC5ED7000001CF,
@@ -321,36 +320,42 @@
 										371AADB404DC5ED7000001CF,
 										371AADB504DC5ED7000001CF,
 										371AADB604DC5ED7000001CF,
-										371AADBA04DC5ED7000001CF,
 										3750253204DCCAF9000001CF,
 										371E965604E2AEE5000001CF,
 										371E965704E2AEE5000001CF,
-										371E965804E2AEE5000001CF,
 										371E965904E2AEE5000001CF,
-										37A9F80D04E4BFCC000001CF,
 										37A9F80E04E4BFCC000001CF,
-										37A9F80F04E4BFCC000001CF,
 										37A9F81004E4BFCC000001CF,
-										37A9F81104E4BFCC000001CF,
 										37A9F81204E4BFCC000001CF,
 										37A9F81304E4BFCC000001CF,
-										37A9F81404E4BFCC000001CF,
-										37A9F81504E4BFCC000001CF,
 										37A9F81604E4BFCC000001CF,
 										37A9F81704E4BFCC000001CF,
 										37A9F81804E4BFCC000001CF,
-										37A9F81904E4BFCC000001CF,
 										37A9F81A04E4BFCC000001CF,
 										37A9F81B04E4BFCC000001CF,
 										37A9F81C04E4BFCC000001CF,
-										37A9F81D04E4BFCC000001CF,
-										37A9F81E04E4BFCC000001CF,
 										37A9F82204E4BFCC000001CF,
-										3702768F04EAFC21000001CF,
-										3702769004EAFC21000001CF,
-										3702769104EAFC21000001CF,
-										3702769204EAFC21000001CF,
-										3702769304EAFC21000001CF,
+										37A2640604ECA370000001CF,
+										37A2640704ECA370000001CF,
+										37A2640804ECA370000001CF,
+										37A2640904ECA370000001CF,
+										37A2640A04ECA370000001CF,
+										37A2640B04ECA370000001CF,
+										37A2640C04ECA370000001CF,
+										37A2640D04ECA370000001CF,
+										37A2640E04ECA370000001CF,
+										37A2640F04ECA370000001CF,
+										37A2641004ECA370000001CF,
+										37A2641104ECA370000001CF,
+										37A2641204ECA370000001CF,
+										37A2641304ECA370000001CF,
+										37A2641404ECA370000001CF,
+										37A2641504ECA370000001CF,
+										37A2641604ECA370000001CF,
+										37A2641704ECA370000001CF,
+									);
+									nextStack = (
+										37A2648004ECA370000001CF,
 									);
 									prevStack = (
 										376312B404C7C49B000001CF,
@@ -1339,11 +1344,115 @@
 										3702769804EAFC21000001CF,
 										3702769904EAFC21000001CF,
 										3702769A04EAFC21000001CF,
+										37A2641804ECA370000001CF,
+										37A2641904ECA370000001CF,
+										37A2641A04ECA370000001CF,
+										37A2641B04ECA370000001CF,
+										37A2641C04ECA370000001CF,
+										37A2641D04ECA370000001CF,
+										37A2641E04ECA370000001CF,
+										37A2641F04ECA370000001CF,
+										37A2642004ECA370000001CF,
+										37A2642104ECA370000001CF,
+										37A2642204ECA370000001CF,
+										37A2642304ECA370000001CF,
+										37A2642404ECA370000001CF,
+										37A2642504ECA370000001CF,
+										37A2642604ECA370000001CF,
+										37A2642704ECA370000001CF,
+										37A2642804ECA370000001CF,
+										37A2642904ECA370000001CF,
+										37A2642A04ECA370000001CF,
+										37A2642B04ECA370000001CF,
+										37A2642C04ECA370000001CF,
+										37A2642D04ECA370000001CF,
+										37A2642E04ECA370000001CF,
+										37A2642F04ECA370000001CF,
+										37A2643004ECA370000001CF,
+										37A2643104ECA370000001CF,
+										37A2643204ECA370000001CF,
+										37A2643304ECA370000001CF,
+										37A2643404ECA370000001CF,
+										37A2643504ECA370000001CF,
+										37A2643604ECA370000001CF,
+										37A2643704ECA370000001CF,
+										37A2643804ECA370000001CF,
+										37A2643904ECA370000001CF,
+										37A2643A04ECA370000001CF,
+										37A2643B04ECA370000001CF,
+										37A2643C04ECA370000001CF,
+										37A2643D04ECA370000001CF,
+										37A2643E04ECA370000001CF,
+										37A2643F04ECA370000001CF,
+										37A2644004ECA370000001CF,
+										37A2644104ECA370000001CF,
+										37A2644204ECA370000001CF,
+										37A2644304ECA370000001CF,
+										37A2644404ECA370000001CF,
+										37A2644504ECA370000001CF,
+										37A2644604ECA370000001CF,
+										37A2644704ECA370000001CF,
+										37A2644804ECA370000001CF,
+										37A2644904ECA370000001CF,
+										37A2644A04ECA370000001CF,
+										37A2644B04ECA370000001CF,
+										37A2644C04ECA370000001CF,
+										37A2644D04ECA370000001CF,
+										37A2644E04ECA370000001CF,
+										37A2644F04ECA370000001CF,
+										37A2645004ECA370000001CF,
+										37A2645104ECA370000001CF,
+										37A2645204ECA370000001CF,
+										37A2645304ECA370000001CF,
+										37A2645404ECA370000001CF,
+										37A2645504ECA370000001CF,
+										37A2645604ECA370000001CF,
+										37A2645704ECA370000001CF,
+										37A2645804ECA370000001CF,
+										37A2645904ECA370000001CF,
+										37A2645A04ECA370000001CF,
+										37A2645B04ECA370000001CF,
+										37A2645C04ECA370000001CF,
+										37A2645D04ECA370000001CF,
+										37A2645E04ECA370000001CF,
+										37A2645F04ECA370000001CF,
+										37A2646004ECA370000001CF,
+										37A2646104ECA370000001CF,
+										37A2646204ECA370000001CF,
+										37A2646304ECA370000001CF,
+										37A2646404ECA370000001CF,
+										37A2646504ECA370000001CF,
+										37A2646604ECA370000001CF,
+										37A2646704ECA370000001CF,
+										37A2646804ECA370000001CF,
+										37A2646904ECA370000001CF,
+										37A2646A04ECA370000001CF,
+										37A2646B04ECA370000001CF,
+										37A2646C04ECA370000001CF,
+										37A2646D04ECA370000001CF,
+										37A2646E04ECA370000001CF,
+										37A2646F04ECA370000001CF,
+										37A2647004ECA370000001CF,
+										37A2647104ECA370000001CF,
+										37A2647204ECA370000001CF,
+										37A2647304ECA370000001CF,
+										37A2647404ECA370000001CF,
+										37A2647504ECA370000001CF,
+										37A2647604ECA370000001CF,
+										37A2647704ECA370000001CF,
+										37A2647804ECA370000001CF,
+										37A2647904ECA370000001CF,
+										37A2647A04ECA370000001CF,
+										37A2647B04ECA370000001CF,
+										37A2647C04ECA370000001CF,
+										37A2647D04ECA370000001CF,
+										37A2647E04ECA370000001CF,
+										37A2647F04ECA370000001CF,
 									);
 								};
 								NavCount = 1;
 								NavGeometry0 = {
-									Frame = "{{0, 0}, {939, 743}}";
+									Frame = "{{0, 0}, {939, 709}}";
 									NavBarVisible = YES;
 								};
 								NavSplitVertical = NO;
@@ -1379,7 +1488,7 @@
 							Split0 = {
 								NavCount = 1;
 								NavGeometry0 = {
-									Frame = "{{0, 0}, {722, 150}}";
+									Frame = "{{0, 0}, {1027, 190}}";
 									NavBarVisible = YES;
 								};
 								NavSplitVertical = NO;
@@ -1448,17 +1557,17 @@
 			);
 			PBXWorkspaceGeometries = (
 				{
-					ContentSize = "{1280, 766}";
+					ContentSize = "{1280, 732}";
 					LeftSlideOut = {
 						ActiveTab = 0;
 						ActiveTabName = PBXGroupTreeModule;
 						Collapsed = NO;
-						Frame = "{{0, 23}, {1280, 743}}";
+						Frame = "{{0, 23}, {1280, 709}}";
 						Split0 = {
 							Collapsed = NO;
-							Frame = "{{341, 0}, {939, 743}}";
+							Frame = "{{341, 0}, {939, 709}}";
 							Split0 = {
-								Frame = "{{0, 0}, {939, 743}}";
+								Frame = "{{0, 0}, {939, 709}}";
 							};
 							SplitCount = 1;
 							Tab0 = {
@@ -1520,7 +1629,7 @@
 						};
 						SplitCount = 1;
 						Tab0 = {
-							Frame = "{{0, 0}, {317, 743}}";
+							Frame = "{{0, 0}, {317, 709}}";
 							GroupTreeTableConfiguration = (
 								SCMStatusColumn,
 								22,
@@ -1575,20 +1684,20 @@
 					StatusViewVisible = YES;
 					Template = 64ABBB4501FA494900185B06;
 					ToolbarVisible = YES;
-					WindowLocation = "{1, 4}";
+					WindowLocation = "{1, 38}";
 				},
 				{
-					ContentSize = "{722, 381}";
+					ContentSize = "{1027, 514}";
 					LeftSlideOut = {
 						Collapsed = NO;
-						Frame = "{{0, 23}, {722, 358}}";
+						Frame = "{{0, 23}, {1027, 491}}";
 						Split0 = {
 							ActiveTab = 2;
 							ActiveTabName = PBXBuildResultsModule;
 							Collapsed = NO;
-							Frame = "{{0, 0}, {722, 358}}";
+							Frame = "{{0, 0}, {1027, 491}}";
 							Split0 = {
-								Frame = "{{0, 301}, {722, 57}}";
+								Frame = "{{0, 301}, {1027, 190}}";
 							};
 							SplitCount = 1;
 							Tab0 = {
@@ -1637,10 +1746,10 @@
 								};
 							};
 							Tab3 = {
-								BuildMessageFrame = "{{0, 0}, {724, 262}}";
-								BuildTranscriptFrame = "{{0, 271}, {724, 2}}";
+								BuildMessageFrame = "{{0, 0}, {1029, 262}}";
+								BuildTranscriptFrame = "{{0, 271}, {1029, 2}}";
 								BuildTranscriptFrameExpanded = YES;
-								Frame = "{{0, 0}, {722, 295}}";
+								Frame = "{{0, 0}, {1027, 295}}";
 							};
 							Tab4 = {
 								Frame = "{{0, 0}, {612, 295}}";
@@ -1703,7 +1812,7 @@
 					StatusViewVisible = YES;
 					Template = F5314676015831810DCA290F;
 					ToolbarVisible = YES;
-					WindowLocation = "{234, 387}";
+					WindowLocation = "{234, 254}";
 				},
 				{
 					ContentSize = "{883, 605}";
@@ -1834,14 +1943,9 @@
 					WindowLocation = "{-7, 39}";
 				},
 			);
-			PBXWorkspaceStateSaveDate = 82508843;
+			PBXWorkspaceStateSaveDate = 82617632;
 		};
 		perUserProjectItems = {
-			3702768F04EAFC21000001CF = 3702768F04EAFC21000001CF;
-			3702769004EAFC21000001CF = 3702769004EAFC21000001CF;
-			3702769104EAFC21000001CF = 3702769104EAFC21000001CF;
-			3702769204EAFC21000001CF = 3702769204EAFC21000001CF;
-			3702769304EAFC21000001CF = 3702769304EAFC21000001CF;
 			3702769404EAFC21000001CF = 3702769404EAFC21000001CF;
 			3702769504EAFC21000001CF = 3702769504EAFC21000001CF;
 			3702769604EAFC21000001CF = 3702769604EAFC21000001CF;
@@ -1849,7 +1953,6 @@
 			3702769804EAFC21000001CF = 3702769804EAFC21000001CF;
 			3702769904EAFC21000001CF = 3702769904EAFC21000001CF;
 			3702769A04EAFC21000001CF = 3702769A04EAFC21000001CF;
-			3702769B04EAFC21000001CF = 3702769B04EAFC21000001CF;
 			371AADA704DC5ED7000001CF = 371AADA704DC5ED7000001CF;
 			371AADA804DC5ED7000001CF = 371AADA804DC5ED7000001CF;
 			371AADAA04DC5ED7000001CF = 371AADAA04DC5ED7000001CF;
@@ -1860,7 +1963,6 @@
 			371AADB404DC5ED7000001CF = 371AADB404DC5ED7000001CF;
 			371AADB504DC5ED7000001CF = 371AADB504DC5ED7000001CF;
 			371AADB604DC5ED7000001CF = 371AADB604DC5ED7000001CF;
-			371AADBA04DC5ED7000001CF = 371AADBA04DC5ED7000001CF;
 			371AADBC04DC5ED7000001CF = 371AADBC04DC5ED7000001CF;
 			371AADBD04DC5ED7000001CF = 371AADBD04DC5ED7000001CF;
 			371AADBE04DC5ED7000001CF = 371AADBE04DC5ED7000001CF;
@@ -1967,7 +2069,6 @@
 			371AAE2304DC5ED7000001CF = 371AAE2304DC5ED7000001CF;
 			371E965604E2AEE5000001CF = 371E965604E2AEE5000001CF;
 			371E965704E2AEE5000001CF = 371E965704E2AEE5000001CF;
-			371E965804E2AEE5000001CF = 371E965804E2AEE5000001CF;
 			371E965904E2AEE5000001CF = 371E965904E2AEE5000001CF;
 			371E966604E2AEE5000001CF = 371E966604E2AEE5000001CF;
 			371E966704E2AEE5000001CF = 371E966704E2AEE5000001CF;
@@ -2475,7 +2576,6 @@
 			37940B5504DAF122000001CF = 37940B5504DAF122000001CF;
 			37940B5604DAF122000001CF = 37940B5604DAF122000001CF;
 			37940B5704DAF122000001CF = 37940B5704DAF122000001CF;
-			37940C7104DB4E90000001CF = 37940C7104DB4E90000001CF;
 			37940C7904DB4E90000001CF = 37940C7904DB4E90000001CF;
 			37940C7A04DB4E90000001CF = 37940C7A04DB4E90000001CF;
 			37940C7B04DB4E90000001CF = 37940C7B04DB4E90000001CF;
@@ -2491,24 +2591,140 @@
 			37940C8504DB4E90000001CF = 37940C8504DB4E90000001CF;
 			37940C8604DB4E90000001CF = 37940C8604DB4E90000001CF;
 			37940C8704DB4E90000001CF = 37940C8704DB4E90000001CF;
-			37A9F80D04E4BFCC000001CF = 37A9F80D04E4BFCC000001CF;
+			37A2640604ECA370000001CF = 37A2640604ECA370000001CF;
+			37A2640704ECA370000001CF = 37A2640704ECA370000001CF;
+			37A2640804ECA370000001CF = 37A2640804ECA370000001CF;
+			37A2640904ECA370000001CF = 37A2640904ECA370000001CF;
+			37A2640A04ECA370000001CF = 37A2640A04ECA370000001CF;
+			37A2640B04ECA370000001CF = 37A2640B04ECA370000001CF;
+			37A2640C04ECA370000001CF = 37A2640C04ECA370000001CF;
+			37A2640D04ECA370000001CF = 37A2640D04ECA370000001CF;
+			37A2640E04ECA370000001CF = 37A2640E04ECA370000001CF;
+			37A2640F04ECA370000001CF = 37A2640F04ECA370000001CF;
+			37A2641004ECA370000001CF = 37A2641004ECA370000001CF;
+			37A2641104ECA370000001CF = 37A2641104ECA370000001CF;
+			37A2641204ECA370000001CF = 37A2641204ECA370000001CF;
+			37A2641304ECA370000001CF = 37A2641304ECA370000001CF;
+			37A2641404ECA370000001CF = 37A2641404ECA370000001CF;
+			37A2641504ECA370000001CF = 37A2641504ECA370000001CF;
+			37A2641604ECA370000001CF = 37A2641604ECA370000001CF;
+			37A2641704ECA370000001CF = 37A2641704ECA370000001CF;
+			37A2641804ECA370000001CF = 37A2641804ECA370000001CF;
+			37A2641904ECA370000001CF = 37A2641904ECA370000001CF;
+			37A2641A04ECA370000001CF = 37A2641A04ECA370000001CF;
+			37A2641B04ECA370000001CF = 37A2641B04ECA370000001CF;
+			37A2641C04ECA370000001CF = 37A2641C04ECA370000001CF;
+			37A2641D04ECA370000001CF = 37A2641D04ECA370000001CF;
+			37A2641E04ECA370000001CF = 37A2641E04ECA370000001CF;
+			37A2641F04ECA370000001CF = 37A2641F04ECA370000001CF;
+			37A2642004ECA370000001CF = 37A2642004ECA370000001CF;
+			37A2642104ECA370000001CF = 37A2642104ECA370000001CF;
+			37A2642204ECA370000001CF = 37A2642204ECA370000001CF;
+			37A2642304ECA370000001CF = 37A2642304ECA370000001CF;
+			37A2642404ECA370000001CF = 37A2642404ECA370000001CF;
+			37A2642504ECA370000001CF = 37A2642504ECA370000001CF;
+			37A2642604ECA370000001CF = 37A2642604ECA370000001CF;
+			37A2642704ECA370000001CF = 37A2642704ECA370000001CF;
+			37A2642804ECA370000001CF = 37A2642804ECA370000001CF;
+			37A2642904ECA370000001CF = 37A2642904ECA370000001CF;
+			37A2642A04ECA370000001CF = 37A2642A04ECA370000001CF;
+			37A2642B04ECA370000001CF = 37A2642B04ECA370000001CF;
+			37A2642C04ECA370000001CF = 37A2642C04ECA370000001CF;
+			37A2642D04ECA370000001CF = 37A2642D04ECA370000001CF;
+			37A2642E04ECA370000001CF = 37A2642E04ECA370000001CF;
+			37A2642F04ECA370000001CF = 37A2642F04ECA370000001CF;
+			37A2643004ECA370000001CF = 37A2643004ECA370000001CF;
+			37A2643104ECA370000001CF = 37A2643104ECA370000001CF;
+			37A2643204ECA370000001CF = 37A2643204ECA370000001CF;
+			37A2643304ECA370000001CF = 37A2643304ECA370000001CF;
+			37A2643404ECA370000001CF = 37A2643404ECA370000001CF;
+			37A2643504ECA370000001CF = 37A2643504ECA370000001CF;
+			37A2643604ECA370000001CF = 37A2643604ECA370000001CF;
+			37A2643704ECA370000001CF = 37A2643704ECA370000001CF;
+			37A2643804ECA370000001CF = 37A2643804ECA370000001CF;
+			37A2643904ECA370000001CF = 37A2643904ECA370000001CF;
+			37A2643A04ECA370000001CF = 37A2643A04ECA370000001CF;
+			37A2643B04ECA370000001CF = 37A2643B04ECA370000001CF;
+			37A2643C04ECA370000001CF = 37A2643C04ECA370000001CF;
+			37A2643D04ECA370000001CF = 37A2643D04ECA370000001CF;
+			37A2643E04ECA370000001CF = 37A2643E04ECA370000001CF;
+			37A2643F04ECA370000001CF = 37A2643F04ECA370000001CF;
+			37A2644004ECA370000001CF = 37A2644004ECA370000001CF;
+			37A2644104ECA370000001CF = 37A2644104ECA370000001CF;
+			37A2644204ECA370000001CF = 37A2644204ECA370000001CF;
+			37A2644304ECA370000001CF = 37A2644304ECA370000001CF;
+			37A2644404ECA370000001CF = 37A2644404ECA370000001CF;
+			37A2644504ECA370000001CF = 37A2644504ECA370000001CF;
+			37A2644604ECA370000001CF = 37A2644604ECA370000001CF;
+			37A2644704ECA370000001CF = 37A2644704ECA370000001CF;
+			37A2644804ECA370000001CF = 37A2644804ECA370000001CF;
+			37A2644904ECA370000001CF = 37A2644904ECA370000001CF;
+			37A2644A04ECA370000001CF = 37A2644A04ECA370000001CF;
+			37A2644B04ECA370000001CF = 37A2644B04ECA370000001CF;
+			37A2644C04ECA370000001CF = 37A2644C04ECA370000001CF;
+			37A2644D04ECA370000001CF = 37A2644D04ECA370000001CF;
+			37A2644E04ECA370000001CF = 37A2644E04ECA370000001CF;
+			37A2644F04ECA370000001CF = 37A2644F04ECA370000001CF;
+			37A2645004ECA370000001CF = 37A2645004ECA370000001CF;
+			37A2645104ECA370000001CF = 37A2645104ECA370000001CF;
+			37A2645204ECA370000001CF = 37A2645204ECA370000001CF;
+			37A2645304ECA370000001CF = 37A2645304ECA370000001CF;
+			37A2645404ECA370000001CF = 37A2645404ECA370000001CF;
+			37A2645504ECA370000001CF = 37A2645504ECA370000001CF;
+			37A2645604ECA370000001CF = 37A2645604ECA370000001CF;
+			37A2645704ECA370000001CF = 37A2645704ECA370000001CF;
+			37A2645804ECA370000001CF = 37A2645804ECA370000001CF;
+			37A2645904ECA370000001CF = 37A2645904ECA370000001CF;
+			37A2645A04ECA370000001CF = 37A2645A04ECA370000001CF;
+			37A2645B04ECA370000001CF = 37A2645B04ECA370000001CF;
+			37A2645C04ECA370000001CF = 37A2645C04ECA370000001CF;
+			37A2645D04ECA370000001CF = 37A2645D04ECA370000001CF;
+			37A2645E04ECA370000001CF = 37A2645E04ECA370000001CF;
+			37A2645F04ECA370000001CF = 37A2645F04ECA370000001CF;
+			37A2646004ECA370000001CF = 37A2646004ECA370000001CF;
+			37A2646104ECA370000001CF = 37A2646104ECA370000001CF;
+			37A2646204ECA370000001CF = 37A2646204ECA370000001CF;
+			37A2646304ECA370000001CF = 37A2646304ECA370000001CF;
+			37A2646404ECA370000001CF = 37A2646404ECA370000001CF;
+			37A2646504ECA370000001CF = 37A2646504ECA370000001CF;
+			37A2646604ECA370000001CF = 37A2646604ECA370000001CF;
+			37A2646704ECA370000001CF = 37A2646704ECA370000001CF;
+			37A2646804ECA370000001CF = 37A2646804ECA370000001CF;
+			37A2646904ECA370000001CF = 37A2646904ECA370000001CF;
+			37A2646A04ECA370000001CF = 37A2646A04ECA370000001CF;
+			37A2646B04ECA370000001CF = 37A2646B04ECA370000001CF;
+			37A2646C04ECA370000001CF = 37A2646C04ECA370000001CF;
+			37A2646D04ECA370000001CF = 37A2646D04ECA370000001CF;
+			37A2646E04ECA370000001CF = 37A2646E04ECA370000001CF;
+			37A2646F04ECA370000001CF = 37A2646F04ECA370000001CF;
+			37A2647004ECA370000001CF = 37A2647004ECA370000001CF;
+			37A2647104ECA370000001CF = 37A2647104ECA370000001CF;
+			37A2647204ECA370000001CF = 37A2647204ECA370000001CF;
+			37A2647304ECA370000001CF = 37A2647304ECA370000001CF;
+			37A2647404ECA370000001CF = 37A2647404ECA370000001CF;
+			37A2647504ECA370000001CF = 37A2647504ECA370000001CF;
+			37A2647604ECA370000001CF = 37A2647604ECA370000001CF;
+			37A2647704ECA370000001CF = 37A2647704ECA370000001CF;
+			37A2647804ECA370000001CF = 37A2647804ECA370000001CF;
+			37A2647904ECA370000001CF = 37A2647904ECA370000001CF;
+			37A2647A04ECA370000001CF = 37A2647A04ECA370000001CF;
+			37A2647B04ECA370000001CF = 37A2647B04ECA370000001CF;
+			37A2647C04ECA370000001CF = 37A2647C04ECA370000001CF;
+			37A2647D04ECA370000001CF = 37A2647D04ECA370000001CF;
+			37A2647E04ECA370000001CF = 37A2647E04ECA370000001CF;
+			37A2647F04ECA370000001CF = 37A2647F04ECA370000001CF;
+			37A2648004ECA370000001CF = 37A2648004ECA370000001CF;
+			37A2648104ECA370000001CF = 37A2648104ECA370000001CF;
 			37A9F80E04E4BFCC000001CF = 37A9F80E04E4BFCC000001CF;
-			37A9F80F04E4BFCC000001CF = 37A9F80F04E4BFCC000001CF;
 			37A9F81004E4BFCC000001CF = 37A9F81004E4BFCC000001CF;
-			37A9F81104E4BFCC000001CF = 37A9F81104E4BFCC000001CF;
 			37A9F81204E4BFCC000001CF = 37A9F81204E4BFCC000001CF;
 			37A9F81304E4BFCC000001CF = 37A9F81304E4BFCC000001CF;
-			37A9F81404E4BFCC000001CF = 37A9F81404E4BFCC000001CF;
-			37A9F81504E4BFCC000001CF = 37A9F81504E4BFCC000001CF;
 			37A9F81604E4BFCC000001CF = 37A9F81604E4BFCC000001CF;
 			37A9F81704E4BFCC000001CF = 37A9F81704E4BFCC000001CF;
 			37A9F81804E4BFCC000001CF = 37A9F81804E4BFCC000001CF;
-			37A9F81904E4BFCC000001CF = 37A9F81904E4BFCC000001CF;
 			37A9F81A04E4BFCC000001CF = 37A9F81A04E4BFCC000001CF;
 			37A9F81B04E4BFCC000001CF = 37A9F81B04E4BFCC000001CF;
 			37A9F81C04E4BFCC000001CF = 37A9F81C04E4BFCC000001CF;
-			37A9F81D04E4BFCC000001CF = 37A9F81D04E4BFCC000001CF;
-			37A9F81E04E4BFCC000001CF = 37A9F81E04E4BFCC000001CF;
 			37A9F82204E4BFCC000001CF = 37A9F82204E4BFCC000001CF;
 			37A9F82404E4BFCC000001CF = 37A9F82404E4BFCC000001CF;
 			37A9F82504E4BFCC000001CF = 37A9F82504E4BFCC000001CF;
@@ -2904,59 +3120,12 @@
 	089C1673FE841209C02AAC07 = {
 		activeExec = 0;
 	};
-	3702768F04EAFC21000001CF = {
-		fRef = 37C3CB3504CDAD30000001CF;
-		isa = PBXTextBookmark;
-		name = "Clicker.m: 26";
-		rLen = 0;
-		rLoc = 669;
-		rType = 0;
-		vrLen = 1737;
-		vrLoc = 0;
-	};
-	3702769004EAFC21000001CF = {
-		fRef = 3702769C04EAFC21000001CF;
-		glyphRangeLength = 1459;
-		glyphRangeLocation = 19596;
-		isa = PBXDocBookmark;
-		name = "NSArray.html: objectAtInde...";
-	};
-	3702769104EAFC21000001CF = {
-		fRef = 371E965104E1CAA9000001CF;
-		isa = PBXTextBookmark;
-		name = "CornerClickSupport.m: dictionaryFromAction:";
-		rLen = 2;
-		rLoc = 10865;
-		rType = 0;
-		vrLen = 2443;
-		vrLoc = 9833;
-	};
-	3702769204EAFC21000001CF = {
-		fRef = 37C3CB3304CDAD30000001CF;
-		isa = PBXTextBookmark;
-		name = "ClickAction.m: ";
-		rLen = 0;
-		rLoc = 2551;
-		rType = 0;
-		vrLen = 1630;
-		vrLoc = 973;
-	};
-	3702769304EAFC21000001CF = {
-		fRef = F506C03D013D9D7901CA16C8;
-		isa = PBXTextBookmark;
-		name = "ClickBoxPref.m: 543";
-		rLen = 0;
-		rLoc = 21680;
-		rType = 0;
-		vrLen = 1997;
-		vrLoc = 20550;
-	};
 	3702769404EAFC21000001CF = {
 		fRef = 37C3CB3504CDAD30000001CF;
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 26";
 		rLen = 0;
-		rLoc = 669;
+		rLoc = 636;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 0;
@@ -2966,7 +3135,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 553";
 		rLen = 0;
-		rLoc = 22269;
+		rLoc = 23802;
 		rType = 0;
 		vrLen = 1903;
 		vrLoc = 20561;
@@ -2976,7 +3145,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 125";
 		rLen = 0;
-		rLoc = 3191;
+		rLoc = 3560;
 		rType = 0;
 		vrLen = 1148;
 		vrLoc = 3805;
@@ -2986,7 +3155,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 543";
 		rLen = 0;
-		rLoc = 21680;
+		rLoc = 22637;
 		rType = 0;
 		vrLen = 2013;
 		vrLoc = 20265;
@@ -2996,7 +3165,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 125";
 		rLen = 0;
-		rLoc = 3191;
+		rLoc = 3560;
 		rType = 0;
 		vrLen = 901;
 		vrLoc = 2110;
@@ -3006,7 +3175,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 543";
 		rLen = 0;
-		rLoc = 21680;
+		rLoc = 22637;
 		rType = 0;
 		vrLen = 1997;
 		vrLoc = 20550;
@@ -3016,26 +3185,10 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: ";
 		rLen = 0;
-		rLoc = 2551;
+		rLoc = 2920;
 		rType = 0;
 		vrLen = 1630;
 		vrLoc = 973;
-	};
-	3702769B04EAFC21000001CF = {
-		fRef = F506C03D013D9D7901CA16C8;
-		isa = PBXTextBookmark;
-		name = "ClickBoxPref.m: 543";
-		rLen = 0;
-		rLoc = 21680;
-		rType = 0;
-		vrLen = 1997;
-		vrLoc = 20550;
-	};
-	3702769C04EAFC21000001CF = {
-		isa = PBXFileReference;
-		name = NSArray.html;
-		path = /System/Library/Frameworks/Foundation.framework/Versions/C/Resources/English.lproj/Documentation/Reference/ObjC_classic/Classes/NSArray.html;
-		refType = 0;
 	};
 	371AAD8504DC3CBA000001CF = {
 		activeExec = 0;
@@ -3133,13 +3286,6 @@
 		vrLen = 222;
 		vrLoc = 0;
 	};
-	371AADBA04DC5ED7000001CF = {
-		fRef = 371AAE2604DC5ED7000001CF;
-		glyphRangeLength = 1400;
-		glyphRangeLocation = 67574;
-		isa = PBXDocBookmark;
-		name = "FoundationFunctions.html: NSInsetRect ...";
-	};
 	371AADBC04DC5ED7000001CF = {
 		fRef = 37940C6904DB0A4E000001CF;
 		isa = PBXBookmark;
@@ -3149,7 +3295,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: i";
 		rLen = 0;
-		rLoc = 11545;
+		rLoc = 9828;
 		rType = 0;
 		vrLen = 1479;
 		vrLoc = 8088;
@@ -3169,7 +3315,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 257";
 		rLen = 0;
-		rLoc = 11545;
+		rLoc = 9828;
 		rType = 0;
 		vrLen = 1631;
 		vrLoc = 8142;
@@ -3193,7 +3339,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: 16";
 		rLen = 9;
-		rLoc = 350;
+		rLoc = 366;
 		rType = 0;
 		vrLen = 1252;
 		vrLoc = 0;
@@ -3203,7 +3349,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 232";
 		rLen = 0;
-		rLoc = 10318;
+		rLoc = 8603;
 		rType = 0;
 		vrLen = 1744;
 		vrLoc = 6847;
@@ -3213,7 +3359,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: 16";
 		rLen = 0;
-		rLoc = 360;
+		rLoc = 376;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 0;
@@ -3223,7 +3369,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 215";
 		rLen = 0;
-		rLoc = 9360;
+		rLoc = 7727;
 		rType = 0;
 		vrLen = 1699;
 		vrLoc = 6584;
@@ -3233,7 +3379,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: 16";
 		rLen = 0;
-		rLoc = 360;
+		rLoc = 376;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 0;
@@ -3243,7 +3389,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: tlCornerClick:";
 		rLen = 39;
-		rLoc = 2260;
+		rLoc = 2458;
 		rType = 0;
 		vrLen = 1704;
 		vrLoc = 1009;
@@ -3253,7 +3399,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 655";
 		rLen = 0;
-		rLoc = 27627;
+		rLoc = 31019;
 		rType = 0;
 		vrLen = 1636;
 		vrLoc = 23784;
@@ -3263,7 +3409,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: tlCornerClick:";
 		rLen = 0;
-		rLoc = 2220;
+		rLoc = 2377;
 		rType = 0;
 		vrLen = 1614;
 		vrLoc = 1009;
@@ -3283,7 +3429,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: ";
 		rLen = 0;
-		rLoc = 27627;
+		rLoc = 31019;
 		rType = 0;
 		vrLen = 1630;
 		vrLoc = 23784;
@@ -3313,7 +3459,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 664";
 		rLen = 0;
-		rLoc = 27627;
+		rLoc = 31019;
 		rType = 0;
 		vrLen = 1583;
 		vrLoc = 24795;
@@ -3333,7 +3479,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: obj";
 		rLen = 0;
-		rLoc = 27627;
+		rLoc = 31019;
 		rType = 0;
 		vrLen = 1640;
 		vrLoc = 24795;
@@ -3343,7 +3489,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 283";
 		rLen = 447;
-		rLoc = 11656;
+		rLoc = 9939;
 		rType = 0;
 		vrLen = 1358;
 		vrLoc = 9407;
@@ -3353,7 +3499,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 890";
 		rLen = 0;
-		rLoc = 38697;
+		rLoc = 42653;
 		rType = 0;
 		vrLen = 1253;
 		vrLoc = 32464;
@@ -3363,7 +3509,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: tlCornerClick:";
 		rLen = 0;
-		rLoc = 2220;
+		rLoc = 2377;
 		rType = 0;
 		vrLen = 1721;
 		vrLoc = 307;
@@ -3373,7 +3519,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 890";
 		rLen = 0;
-		rLoc = 38697;
+		rLoc = 42653;
 		rType = 0;
 		vrLen = 1258;
 		vrLoc = 32459;
@@ -3383,7 +3529,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 234";
 		rLen = 0;
-		rLoc = 10384;
+		rLoc = 8667;
 		rType = 0;
 		vrLen = 1790;
 		vrLoc = 7127;
@@ -3393,7 +3539,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 56";
 		rLen = 187;
-		rLoc = 2034;
+		rLoc = 2191;
 		rType = 0;
 		vrLen = 1632;
 		vrLoc = 1139;
@@ -3413,7 +3559,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 679";
 		rLen = 0;
-		rLoc = 27627;
+		rLoc = 31019;
 		rType = 0;
 		vrLen = 2099;
 		vrLoc = 25028;
@@ -3433,7 +3579,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 679";
 		rLen = 0;
-		rLoc = 27627;
+		rLoc = 31019;
 		rType = 0;
 		vrLen = 2103;
 		vrLoc = 25028;
@@ -3443,7 +3589,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 304";
 		rLen = 71;
-		rLoc = 12328;
+		rLoc = 10611;
 		rType = 0;
 		vrLen = 1552;
 		vrLoc = 10764;
@@ -3453,7 +3599,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 674";
 		rLen = 0;
-		rLoc = 27627;
+		rLoc = 31019;
 		rType = 0;
 		vrLen = 2146;
 		vrLoc = 24915;
@@ -3473,7 +3619,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 668";
 		rLen = 0;
-		rLoc = 27627;
+		rLoc = 31019;
 		rType = 0;
 		vrLen = 2143;
 		vrLoc = 24915;
@@ -3483,7 +3629,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 342";
 		rLen = 116;
-		rLoc = 13713;
+		rLoc = 12053;
 		rType = 0;
 		vrLen = 1559;
 		vrLoc = 10662;
@@ -3493,7 +3639,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 668";
 		rLen = 0;
-		rLoc = 27627;
+		rLoc = 31019;
 		rType = 0;
 		vrLen = 2027;
 		vrLoc = 25116;
@@ -3523,7 +3669,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 679";
 		rLen = 0;
-		rLoc = 27627;
+		rLoc = 31019;
 		rType = 0;
 		vrLen = 2206;
 		vrLoc = 24913;
@@ -3543,7 +3689,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 693";
 		rLen = 0;
-		rLoc = 27627;
+		rLoc = 31019;
 		rType = 0;
 		vrLen = 2474;
 		vrLoc = 25465;
@@ -3619,7 +3765,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.h: 10";
 		rLen = 0;
-		rLoc = 169;
+		rLoc = 142;
 		rType = 0;
 		vrLen = 699;
 		vrLoc = 0;
@@ -3629,7 +3775,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 342";
 		rLen = 116;
-		rLoc = 13713;
+		rLoc = 12053;
 		rType = 0;
 		vrLen = 1532;
 		vrLoc = 10662;
@@ -3649,7 +3795,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 693";
 		rLen = 0;
-		rLoc = 27627;
+		rLoc = 31019;
 		rType = 0;
 		vrLen = 2474;
 		vrLoc = 25465;
@@ -3659,7 +3805,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 187";
 		rLen = 22;
-		rLoc = 8538;
+		rLoc = 6905;
 		rType = 0;
 		vrLen = 1439;
 		vrLoc = 5688;
@@ -3678,8 +3824,8 @@
 		fRef = F506C03D013D9D7901CA16C8;
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: theScreen";
-		rLen = 573;
-		rLoc = 27054;
+		rLen = 1;
+		rLoc = 31018;
 		rType = 0;
 		vrLen = 1846;
 		vrLoc = 26938;
@@ -3891,7 +4037,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 56";
 		rLen = 187;
-		rLoc = 2034;
+		rLoc = 2191;
 		rType = 0;
 		vrLen = 1580;
 		vrLoc = 0;
@@ -3901,7 +4047,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 187";
 		rLen = 22;
-		rLoc = 8538;
+		rLoc = 6905;
 		rType = 0;
 		vrLen = 1439;
 		vrLoc = 5688;
@@ -3911,7 +4057,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: 16";
 		rLen = 0;
-		rLoc = 360;
+		rLoc = 376;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 0;
@@ -4051,7 +4197,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 674";
 		rLen = 0;
-		rLoc = 27627;
+		rLoc = 31019;
 		rType = 0;
 		vrLen = 2081;
 		vrLoc = 24631;
@@ -4096,12 +4242,6 @@
 		vrLen = 1474;
 		vrLoc = 0;
 	};
-	371AAE2604DC5ED7000001CF = {
-		isa = PBXFileReference;
-		name = FoundationFunctions.html;
-		path = /System/Library/Frameworks/Foundation.framework/Versions/C/Resources/English.lproj/Documentation/Reference/ObjC_classic/Functions/FoundationFunctions.html;
-		refType = 0;
-	};
 	371AAE2704DC5ED7000001CF = {
 		isa = PBXFileReference;
 		name = NSRunLoop.html;
@@ -4131,13 +4271,6 @@
 		isa = PBXDocBookmark;
 		name = "NSColor.html: disabledCont...";
 	};
-	371E965804E2AEE5000001CF = {
-		fRef = 371E96D604E2AEE5000001CF;
-		glyphRangeLength = 1885;
-		glyphRangeLocation = 24666;
-		isa = PBXDocBookmark;
-		name = "NSWindow.html: display  - (...";
-	};
 	371E965904E2AEE5000001CF = {
 		fRef = 371E96D704E2AEE5000001CF;
 		glyphRangeLength = 1064;
@@ -4150,7 +4283,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 709";
 		rLen = 0;
-		rLoc = 27627;
+		rLoc = 31019;
 		rType = 0;
 		vrLen = 2141;
 		vrLoc = 26455;
@@ -4170,7 +4303,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 41";
 		rLen = 0;
-		rLoc = 1445;
+		rLoc = 1567;
 		rType = 0;
 		vrLen = 1760;
 		vrLoc = 0;
@@ -4180,7 +4313,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: pref";
 		rLen = 0;
-		rLoc = 27137;
+		rLoc = 31018;
 		rType = 0;
 		vrLen = 2193;
 		vrLoc = 24244;
@@ -4190,7 +4323,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 57";
 		rLen = 0;
-		rLoc = 2220;
+		rLoc = 2377;
 		rType = 0;
 		vrLen = 1889;
 		vrLoc = 360;
@@ -4200,7 +4333,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: pref";
 		rLen = 0;
-		rLoc = 27137;
+		rLoc = 31018;
 		rType = 0;
 		vrLen = 2138;
 		vrLoc = 24244;
@@ -4210,7 +4343,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 56";
 		rLen = 0;
-		rLoc = 2220;
+		rLoc = 2377;
 		rType = 0;
 		vrLen = 1861;
 		vrLoc = 360;
@@ -4220,7 +4353,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 178";
 		rLen = 0;
-		rLoc = 7803;
+		rLoc = 7580;
 		rType = 0;
 		vrLen = 1953;
 		vrLoc = 5814;
@@ -4230,7 +4363,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 57";
 		rLen = 0;
-		rLoc = 2220;
+		rLoc = 2377;
 		rType = 0;
 		vrLen = 1846;
 		vrLoc = 360;
@@ -4240,7 +4373,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 178";
 		rLen = 0;
-		rLoc = 7803;
+		rLoc = 7580;
 		rType = 0;
 		vrLen = 1953;
 		vrLoc = 5814;
@@ -4250,7 +4383,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 57";
 		rLen = 0;
-		rLoc = 2129;
+		rLoc = 2286;
 		rType = 0;
 		vrLen = 1849;
 		vrLoc = 360;
@@ -4260,7 +4393,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: setAutoLaunch:forApp:";
 		rLen = 0;
-		rLoc = 7990;
+		rLoc = 7767;
 		rType = 0;
 		vrLen = 1893;
 		vrLoc = 5814;
@@ -4270,7 +4403,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 52";
 		rLen = 0;
-		rLoc = 1839;
+		rLoc = 1996;
 		rType = 0;
 		vrLen = 1834;
 		vrLoc = 360;
@@ -4280,7 +4413,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 172";
 		rLen = 22;
-		rLoc = 7018;
+		rLoc = 6795;
 		rType = 0;
 		vrLen = 1886;
 		vrLoc = 5587;
@@ -4290,7 +4423,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: checkIfHelperAppRunning";
 		rLen = 0;
-		rLoc = 3397;
+		rLoc = 3595;
 		rType = 0;
 		vrLen = 1843;
 		vrLoc = 1585;
@@ -4300,7 +4433,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 686";
 		rLen = 0;
-		rLoc = 27362;
+		rLoc = 31018;
 		rType = 0;
 		vrLen = 2127;
 		vrLoc = 25305;
@@ -4310,7 +4443,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: checkIfHelperAppRunning";
 		rLen = 0;
-		rLoc = 3397;
+		rLoc = 3595;
 		rType = 0;
 		vrLen = 1838;
 		vrLoc = 1585;
@@ -4320,7 +4453,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 738";
 		rLen = 0;
-		rLoc = 30205;
+		rLoc = 33930;
 		rType = 0;
 		vrLen = 1555;
 		vrLoc = 27681;
@@ -4330,7 +4463,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 362";
 		rLen = 437;
-		rLoc = 14184;
+		rLoc = 12524;
 		rType = 0;
 		vrLen = 1372;
 		vrLoc = 11928;
@@ -4340,7 +4473,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: numberOfRowsInTableView:";
 		rLen = 0;
-		rLoc = 30655;
+		rLoc = 34380;
 		rType = 0;
 		vrLen = 2192;
 		vrLoc = 27311;
@@ -4350,7 +4483,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: screenIDClicked:";
 		rLen = 0;
-		rLoc = 2220;
+		rLoc = 2377;
 		rType = 0;
 		vrLen = 1853;
 		vrLoc = 403;
@@ -4360,7 +4493,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 689";
 		rLen = 0;
-		rLoc = 27626;
+		rLoc = 31018;
 		rType = 0;
 		vrLen = 2155;
 		vrLoc = 25393;
@@ -4370,7 +4503,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: makePrefs";
 		rLen = 0;
-		rLoc = 3347;
+		rLoc = 3545;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 1527;
@@ -4390,7 +4523,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 179";
 		rLen = 14;
-		rLoc = 7642;
+		rLoc = 7419;
 		rType = 0;
 		vrLen = 1871;
 		vrLoc = 6360;
@@ -4400,7 +4533,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: displayScreenIdentification";
 		rLen = 0;
-		rLoc = 3347;
+		rLoc = 3545;
 		rType = 0;
 		vrLen = 1839;
 		vrLoc = 1009;
@@ -4409,8 +4542,8 @@
 		fRef = F506C03D013D9D7901CA16C8;
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 678";
-		rLen = 40;
-		rLoc = 27295;
+		rLen = 0;
+		rLoc = 31018;
 		rType = 0;
 		vrLen = 1747;
 		vrLoc = 24619;
@@ -4480,7 +4613,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 719";
 		rLen = 0;
-		rLoc = 29259;
+		rLoc = 32984;
 		rType = 0;
 		vrLen = 2229;
 		vrLoc = 26706;
@@ -4490,7 +4623,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: displayScreenIdentification";
 		rLen = 0;
-		rLoc = 3347;
+		rLoc = 3545;
 		rType = 0;
 		vrLen = 1789;
 		vrLoc = 1009;
@@ -4499,8 +4632,8 @@
 		fRef = 37C3CB3504CDAD30000001CF;
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 226";
-		rLen = 224;
-		rLoc = 9994;
+		rLen = 180;
+		rLoc = 8422;
 		rType = 0;
 		vrLen = 2057;
 		vrLoc = 6795;
@@ -4510,7 +4643,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 734";
 		rLen = 0;
-		rLoc = 29549;
+		rLoc = 33274;
 		rType = 0;
 		vrLen = 2112;
 		vrLoc = 25907;
@@ -4520,7 +4653,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 60";
 		rLen = 0;
-		rLoc = 2220;
+		rLoc = 2377;
 		rType = 0;
 		vrLen = 1766;
 		vrLoc = 1009;
@@ -4530,7 +4663,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 555";
 		rLen = 43;
-		rLoc = 23303;
+		rLoc = 25235;
 		rType = 0;
 		vrLen = 1533;
 		vrLoc = 21183;
@@ -4540,7 +4673,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 100";
 		rLen = 0;
-		rLoc = 3822;
+		rLoc = 4088;
 		rType = 0;
 		vrLen = 1813;
 		vrLoc = 1782;
@@ -4550,7 +4683,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: pref";
 		rLen = 0;
-		rLoc = 27805;
+		rLoc = 31530;
 		rType = 0;
 		vrLen = 1673;
 		vrLoc = 25234;
@@ -4560,7 +4693,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 53";
 		rLen = 0;
-		rLoc = 1839;
+		rLoc = 1996;
 		rType = 0;
 		vrLen = 1788;
 		vrLoc = 910;
@@ -4570,7 +4703,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 754";
 		rLen = 0;
-		rLoc = 29533;
+		rLoc = 33258;
 		rType = 0;
 		vrLen = 2415;
 		vrLoc = 27000;
@@ -4590,7 +4723,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 519";
 		rLen = 0;
-		rLoc = 22868;
+		rLoc = 24800;
 		rType = 0;
 		vrLen = 1411;
 		vrLoc = 20011;
@@ -4610,7 +4743,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 255";
 		rLen = 0;
-		rLoc = 12394;
+		rLoc = 12169;
 		rType = 0;
 		vrLen = 1794;
 		vrLoc = 9760;
@@ -4620,7 +4753,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 187";
 		rLen = 22;
-		rLoc = 8538;
+		rLoc = 6905;
 		rType = 0;
 		vrLen = 2189;
 		vrLoc = 7153;
@@ -4630,7 +4763,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 301";
 		rLen = 0;
-		rLoc = 12974;
+		rLoc = 12749;
 		rType = 0;
 		vrLen = 2437;
 		vrLoc = 13007;
@@ -4640,7 +4773,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 54";
 		rLen = 45;
-		rLoc = 1856;
+		rLoc = 2013;
 		rType = 0;
 		vrLen = 1736;
 		vrLoc = 910;
@@ -4650,7 +4783,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 301";
 		rLen = 0;
-		rLoc = 12974;
+		rLoc = 12749;
 		rType = 0;
 		vrLen = 2384;
 		vrLoc = 13007;
@@ -4660,7 +4793,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 55";
 		rLen = 34;
-		rLoc = 1866;
+		rLoc = 2023;
 		rType = 0;
 		vrLen = 1736;
 		vrLoc = 910;
@@ -4670,7 +4803,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 307";
 		rLen = 0;
-		rLoc = 13447;
+		rLoc = 13222;
 		rType = 0;
 		vrLen = 2441;
 		vrLoc = 14204;
@@ -4690,7 +4823,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 307";
 		rLen = 0;
-		rLoc = 13251;
+		rLoc = 13026;
 		rType = 0;
 		vrLen = 1863;
 		vrLoc = 11808;
@@ -4700,7 +4833,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: screenIDClicked:";
 		rLen = 0;
-		rLoc = 2260;
+		rLoc = 2458;
 		rType = 0;
 		vrLen = 1762;
 		vrLoc = 1178;
@@ -4710,7 +4843,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 251";
 		rLen = 0;
-		rLoc = 10827;
+		rLoc = 10602;
 		rType = 0;
 		vrLen = 1861;
 		vrLoc = 9991;
@@ -4720,7 +4853,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 56";
 		rLen = 32;
-		rLoc = 1911;
+		rLoc = 2068;
 		rType = 0;
 		vrLen = 1755;
 		vrLoc = 1178;
@@ -4730,7 +4863,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 391";
 		rLen = 0;
-		rLoc = 16744;
+		rLoc = 16519;
 		rType = 0;
 		vrLen = 2095;
 		vrLoc = 14468;
@@ -4740,7 +4873,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 56";
 		rLen = 32;
-		rLoc = 1911;
+		rLoc = 2068;
 		rType = 0;
 		vrLen = 1755;
 		vrLoc = 1178;
@@ -4750,7 +4883,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 330";
 		rLen = 25;
-		rLoc = 14543;
+		rLoc = 14318;
 		rType = 0;
 		vrLen = 1826;
 		vrLoc = 11799;
@@ -4760,7 +4893,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: activateHelper";
 		rLen = 0;
-		rLoc = 3118;
+		rLoc = 3316;
 		rType = 0;
 		vrLen = 1705;
 		vrLoc = 1623;
@@ -4770,7 +4903,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: ";
 		rLen = 0;
-		rLoc = 11089;
+		rLoc = 10864;
 		rType = 0;
 		vrLen = 1775;
 		vrLoc = 9959;
@@ -4780,7 +4913,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: activateHelper";
 		rLen = 0;
-		rLoc = 3118;
+		rLoc = 3316;
 		rType = 0;
 		vrLen = 1801;
 		vrLoc = 3;
@@ -4790,7 +4923,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 1064";
 		rLen = 0;
-		rLoc = 38697;
+		rLoc = 42653;
 		rType = 0;
 		vrLen = 852;
 		vrLoc = 37628;
@@ -4800,7 +4933,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: activateHelper";
 		rLen = 0;
-		rLoc = 3118;
+		rLoc = 3316;
 		rType = 0;
 		vrLen = 1805;
 		vrLoc = 1178;
@@ -4810,7 +4943,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 283";
 		rLen = 0;
-		rLoc = 11935;
+		rLoc = 11710;
 		rType = 0;
 		vrLen = 2142;
 		vrLoc = 9568;
@@ -4820,7 +4953,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 187";
 		rLen = 22;
-		rLoc = 8538;
+		rLoc = 6905;
 		rType = 0;
 		vrLen = 1982;
 		vrLoc = 6700;
@@ -4830,7 +4963,7 @@
 		isa = PBXTextBookmark;
 		name = "common_prefix.h: 1";
 		rLen = 0;
-		rLoc = 329;
+		rLoc = 424;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;
@@ -4879,7 +5012,7 @@
 		fRef = 371E964D04E1C4C1000001CF;
 		isa = PBXTextBookmark;
 		name = "common_prefix.h: 11";
-		rLen = 51;
+		rLen = 146;
 		rLoc = 278;
 		rType = 0;
 		vrLen = 211;
@@ -4970,7 +5103,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 51";
 		rLen = 0;
-		rLoc = 3383;
+		rLoc = 3265;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 933;
@@ -4990,7 +5123,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 51";
 		rLen = 0;
-		rLoc = 3383;
+		rLoc = 3265;
 		rType = 0;
 		vrLen = 1212;
 		vrLoc = 1545;
@@ -5010,7 +5143,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 13";
 		rLen = 0;
-		rLoc = 5161;
+		rLoc = 5167;
 		rType = 0;
 		vrLen = 237;
 		vrLoc = 0;
@@ -5030,7 +5163,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 20";
 		rLen = 0;
-		rLoc = 8187;
+		rLoc = 9352;
 		rType = 0;
 		vrLen = 395;
 		vrLoc = 0;
@@ -5050,7 +5183,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 17";
 		rLen = 0;
-		rLoc = 888;
+		rLoc = 892;
 		rType = 0;
 		vrLen = 922;
 		vrLoc = 0;
@@ -5070,7 +5203,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 38";
 		rLen = 0;
-		rLoc = 8187;
+		rLoc = 9352;
 		rType = 0;
 		vrLen = 1108;
 		vrLoc = 0;
@@ -5090,7 +5223,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 51";
 		rLen = 0;
-		rLoc = 3383;
+		rLoc = 3265;
 		rType = 0;
 		vrLen = 1195;
 		vrLoc = 1545;
@@ -5130,7 +5263,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 31";
 		rLen = 0;
-		rLoc = 6223;
+		rLoc = 6349;
 		rType = 0;
 		vrLen = 1650;
 		vrLoc = 0;
@@ -5140,7 +5273,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 60";
 		rLen = 2697;
-		rLoc = 1913;
+		rLoc = 2304;
 		rType = 0;
 		vrLen = 2164;
 		vrLoc = 4218;
@@ -5150,7 +5283,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 42";
 		rLen = 0;
-		rLoc = 5916;
+		rLoc = 6042;
 		rType = 0;
 		vrLen = 1915;
 		vrLoc = 362;
@@ -5170,7 +5303,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 46";
 		rLen = 0;
-		rLoc = 6029;
+		rLoc = 6155;
 		rType = 0;
 		vrLen = 1948;
 		vrLoc = 362;
@@ -5190,7 +5323,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 51";
 		rLen = 0;
-		rLoc = 6029;
+		rLoc = 6155;
 		rType = 0;
 		vrLen = 1984;
 		vrLoc = 362;
@@ -5210,7 +5343,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 21";
 		rLen = 40;
-		rLoc = 3170;
+		rLoc = 3174;
 		rType = 0;
 		vrLen = 1222;
 		vrLoc = 0;
@@ -5230,7 +5363,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 82";
 		rLen = 0;
-		rLoc = 5916;
+		rLoc = 6042;
 		rType = 0;
 		vrLen = 1906;
 		vrLoc = 1580;
@@ -5249,12 +5382,6 @@
 		isa = PBXFileReference;
 		name = NSColor.html;
 		path = /System/Library/Frameworks/AppKit.framework/Versions/C/Resources/English.lproj/Documentation/Reference/ObjC_classic/Classes/NSColor.html;
-		refType = 0;
-	};
-	371E96D604E2AEE5000001CF = {
-		isa = PBXFileReference;
-		name = NSWindow.html;
-		path = /System/Library/Frameworks/AppKit.framework/Versions/C/Resources/English.lproj/Documentation/Reference/ObjC_classic/Classes/NSWindow.html;
 		refType = 0;
 	};
 	371E96D704E2AEE5000001CF = {
@@ -5332,7 +5459,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 301";
 		rLen = 0;
-		rLoc = 22102;
+		rLoc = 23719;
 		rType = 0;
 		vrLen = 1593;
 		vrLoc = 11387;
@@ -5342,7 +5469,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 16";
 		rLen = 0;
-		rLoc = 410;
+		rLoc = 402;
 		rType = 0;
 		vrLen = 1684;
 		vrLoc = 243;
@@ -5352,7 +5479,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 301";
 		rLen = 0;
-		rLoc = 22102;
+		rLoc = 23719;
 		rType = 0;
 		vrLen = 2637;
 		vrLoc = 181;
@@ -5362,7 +5489,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: initWithType:andString:forCorner:withLabel:";
 		rLen = 177;
-		rLoc = 460;
+		rLoc = 501;
 		rType = 0;
 		vrLen = 570;
 		vrLoc = 0;
@@ -5390,7 +5517,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 301";
 		rLen = 0;
-		rLoc = 22102;
+		rLoc = 23719;
 		rType = 0;
 		vrLen = 2637;
 		vrLoc = 181;
@@ -5410,7 +5537,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: doAction:";
 		rLen = 0;
-		rLoc = 310;
+		rLoc = 351;
 		rType = 0;
 		vrLen = 618;
 		vrLoc = 0;
@@ -5470,7 +5597,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: doAction:";
 		rLen = 0;
-		rLoc = 310;
+		rLoc = 351;
 		rType = 0;
 		vrLen = 570;
 		vrLoc = 0;
@@ -5480,7 +5607,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 301";
 		rLen = 0;
-		rLoc = 22102;
+		rLoc = 23719;
 		rType = 0;
 		vrLen = 2637;
 		vrLoc = 181;
@@ -5490,7 +5617,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: appEnable:";
 		rLen = 0;
-		rLoc = 1976;
+		rLoc = 2133;
 		rType = 0;
 		vrLen = 1949;
 		vrLoc = 154;
@@ -5500,7 +5627,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: icon";
 		rLen = 175;
-		rLoc = 864;
+		rLoc = 905;
 		rType = 0;
 		vrLen = 745;
 		vrLoc = 0;
@@ -5520,7 +5647,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 61";
 		rLen = 0;
-		rLoc = 4209;
+		rLoc = 4600;
 		rType = 0;
 		vrLen = 2755;
 		vrLoc = 638;
@@ -5534,7 +5661,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 61";
 		rLen = 0;
-		rLoc = 4209;
+		rLoc = 4600;
 		rType = 0;
 		vrLen = 2755;
 		vrLoc = 638;
@@ -5544,7 +5671,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: appEnable:";
 		rLen = 0;
-		rLoc = 1976;
+		rLoc = 2133;
 		rType = 0;
 		vrLen = 1901;
 		vrLoc = 154;
@@ -5564,7 +5691,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 477";
 		rLen = 0;
-		rLoc = 32180;
+		rLoc = 35905;
 		rType = 0;
 		vrLen = 1576;
 		vrLoc = 16755;
@@ -5574,7 +5701,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: fileChooseClicked:";
 		rLen = 0;
-		rLoc = 1753;
+		rLoc = 1910;
 		rType = 0;
 		vrLen = 1989;
 		vrLoc = 318;
@@ -5584,7 +5711,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 80";
 		rLen = 0;
-		rLoc = 6238;
+		rLoc = 6015;
 		rType = 0;
 		vrLen = 2636;
 		vrLoc = 1262;
@@ -5594,7 +5721,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: fileChooseClicked:";
 		rLen = 0;
-		rLoc = 1753;
+		rLoc = 1910;
 		rType = 0;
 		vrLen = 1989;
 		vrLoc = 318;
@@ -5604,7 +5731,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 31";
 		rLen = 0;
-		rLoc = 1010;
+		rLoc = 1457;
 		rType = 0;
 		vrLen = 1880;
 		vrLoc = 0;
@@ -5614,7 +5741,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: fileChooseClicked:";
 		rLen = 0;
-		rLoc = 1753;
+		rLoc = 1910;
 		rType = 0;
 		vrLen = 1989;
 		vrLoc = 318;
@@ -5624,7 +5751,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 543";
 		rLen = 0;
-		rLoc = 35784;
+		rLoc = 39603;
 		rType = 0;
 		vrLen = 1611;
 		vrLoc = 19372;
@@ -5634,7 +5761,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: fileChooseClicked:";
 		rLen = 0;
-		rLoc = 1753;
+		rLoc = 1910;
 		rType = 0;
 		vrLen = 1989;
 		vrLoc = 318;
@@ -5644,7 +5771,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 529";
 		rLen = 0;
-		rLoc = 32182;
+		rLoc = 35907;
 		rType = 0;
 		vrLen = 1684;
 		vrLoc = 19407;
@@ -5664,7 +5791,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 533";
 		rLen = 0;
-		rLoc = 35182;
+		rLoc = 39001;
 		rType = 0;
 		vrLen = 1836;
 		vrLoc = 19372;
@@ -5674,7 +5801,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 20";
 		rLen = 0;
-		rLoc = 2317;
+		rLoc = 2188;
 		rType = 0;
 		vrLen = 2207;
 		vrLoc = 0;
@@ -5684,7 +5811,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: 14";
 		rLen = 0;
-		rLoc = 229;
+		rLoc = 239;
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 0;
@@ -5704,7 +5831,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 543";
 		rLen = 0;
-		rLoc = 33125;
+		rLoc = 36890;
 		rType = 0;
 		vrLen = 1923;
 		vrLoc = 20411;
@@ -5724,7 +5851,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 54";
 		rLen = 52;
-		rLoc = 2379;
+		rLoc = 2406;
 		rType = 0;
 		vrLen = 1406;
 		vrLoc = 767;
@@ -5734,7 +5861,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 568";
 		rLen = 0;
-		rLoc = 35204;
+		rLoc = 39023;
 		rType = 0;
 		vrLen = 1780;
 		vrLoc = 20777;
@@ -5744,7 +5871,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: urlEntered:";
 		rLen = 294;
-		rLoc = 2786;
+		rLoc = 2984;
 		rType = 0;
 		vrLen = 1847;
 		vrLoc = 823;
@@ -5754,7 +5881,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 487";
 		rLen = 0;
-		rLoc = 25942;
+		rLoc = 29333;
 		rType = 0;
 		vrLen = 1495;
 		vrLoc = 18362;
@@ -5764,7 +5891,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: urlEntered:";
 		rLen = 294;
-		rLoc = 2786;
+		rLoc = 2984;
 		rType = 0;
 		vrLen = 1888;
 		vrLoc = 782;
@@ -5774,7 +5901,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 316";
 		rLen = 0;
-		rLoc = 18317;
+		rLoc = 18153;
 		rType = 0;
 		vrLen = 1919;
 		vrLoc = 13220;
@@ -5784,7 +5911,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 47";
 		rLen = 0;
-		rLoc = 1839;
+		rLoc = 1996;
 		rType = 0;
 		vrLen = 1905;
 		vrLoc = 782;
@@ -5794,7 +5921,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 120";
 		rLen = 25;
-		rLoc = 4921;
+		rLoc = 5312;
 		rType = 0;
 		vrLen = 2481;
 		vrLoc = 4105;
@@ -5804,7 +5931,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: refreshWithSettings:";
 		rLen = 52;
-		rLoc = 3398;
+		rLoc = 3596;
 		rType = 0;
 		vrLen = 1845;
 		vrLoc = 910;
@@ -5814,7 +5941,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 455";
 		rLen = 0;
-		rLoc = 23805;
+		rLoc = 25737;
 		rType = 0;
 		vrLen = 1671;
 		vrLoc = 17379;
@@ -5824,7 +5951,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: refreshWithSettings:";
 		rLen = 52;
-		rLoc = 3398;
+		rLoc = 3596;
 		rType = 0;
 		vrLen = 1889;
 		vrLoc = 866;
@@ -5834,7 +5961,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 455";
 		rLen = 0;
-		rLoc = 23805;
+		rLoc = 25737;
 		rType = 0;
 		vrLen = 1652;
 		vrLoc = 17379;
@@ -5844,7 +5971,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 44";
 		rLen = 0;
-		rLoc = 1677;
+		rLoc = 1834;
 		rType = 0;
 		vrLen = 1928;
 		vrLoc = 866;
@@ -5854,7 +5981,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 512";
 		rLen = 0;
-		rLoc = 25942;
+		rLoc = 29333;
 		rType = 0;
 		vrLen = 1481;
 		vrLoc = 18783;
@@ -5864,7 +5991,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 44";
 		rLen = 0;
-		rLoc = 1677;
+		rLoc = 1834;
 		rType = 0;
 		vrLen = 1971;
 		vrLoc = 823;
@@ -5874,7 +6001,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: refreshWithSettings:";
 		rLen = 2;
-		rLoc = 18464;
+		rLoc = 18300;
 		rType = 0;
 		vrLen = 2131;
 		vrLoc = 13207;
@@ -5884,7 +6011,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 35";
 		rLen = 17;
-		rLoc = 1201;
+		rLoc = 1323;
 		rType = 0;
 		vrLen = 1991;
 		vrLoc = 669;
@@ -5894,7 +6021,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 341";
 		rLen = 0;
-		rLoc = 20073;
+		rLoc = 21292;
 		rType = 0;
 		vrLen = 2123;
 		vrLoc = 13514;
@@ -5904,7 +6031,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 33";
 		rLen = 18;
-		rLoc = 1119;
+		rLoc = 1241;
 		rType = 0;
 		vrLen = 1957;
 		vrLoc = 669;
@@ -5914,7 +6041,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 326";
 		rLen = 0;
-		rLoc = 18665;
+		rLoc = 18501;
 		rType = 0;
 		vrLen = 2115;
 		vrLoc = 13665;
@@ -5924,7 +6051,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 21";
 		rLen = 0;
-		rLoc = 2375;
+		rLoc = 2246;
 		rType = 0;
 		vrLen = 2255;
 		vrLoc = 0;
@@ -5934,7 +6061,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: optionKeyCheckBoxClicked:";
 		rLen = 57;
-		rLoc = 35788;
+		rLoc = 39607;
 		rType = 0;
 		vrLen = 1300;
 		vrLoc = 23975;
@@ -5944,7 +6071,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: 14";
 		rLen = 0;
-		rLoc = 229;
+		rLoc = 239;
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 0;
@@ -5954,7 +6081,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.h: clickAction";
 		rLen = 0;
-		rLoc = 494;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 434;
 		vrLoc = 0;
@@ -5964,7 +6091,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 79";
 		rLen = 0;
-		rLoc = 3776;
+		rLoc = 4042;
 		rType = 0;
 		vrLen = 1912;
 		vrLoc = 955;
@@ -5974,7 +6101,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 338";
 		rLen = 0;
-		rLoc = 19263;
+		rLoc = 19099;
 		rType = 0;
 		vrLen = 2354;
 		vrLoc = 13778;
@@ -6024,7 +6151,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: flags";
 		rLen = 0;
-		rLoc = 18481;
+		rLoc = 18317;
 		rType = 0;
 		vrLen = 2321;
 		vrLoc = 13167;
@@ -6034,7 +6161,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: toggleModifier:toState:";
 		rLen = 0;
-		rLoc = 3651;
+		rLoc = 3917;
 		rType = 0;
 		vrLen = 1849;
 		vrLoc = 1009;
@@ -6044,7 +6171,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 334";
 		rLen = 0;
-		rLoc = 18917;
+		rLoc = 18753;
 		rType = 0;
 		vrLen = 2444;
 		vrLoc = 13307;
@@ -6064,7 +6191,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.h: 9";
 		rLen = 0;
-		rLoc = 148;
+		rLoc = 121;
 		rType = 0;
 		vrLen = 458;
 		vrLoc = 0;
@@ -6084,7 +6211,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.h: clickAction";
 		rLen = 0;
-		rLoc = 390;
+		rLoc = 363;
 		rType = 0;
 		vrLen = 548;
 		vrLoc = 0;
@@ -6104,7 +6231,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.h: 24";
 		rLen = 0;
-		rLoc = 620;
+		rLoc = 593;
 		rType = 0;
 		vrLen = 627;
 		vrLoc = 0;
@@ -6114,7 +6241,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 241";
 		rLen = 0;
-		rLoc = 8455;
+		rLoc = 8882;
 		rType = 0;
 		vrLen = 1006;
 		vrLoc = 6187;
@@ -6124,7 +6251,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 54";
 		rLen = 52;
-		rLoc = 2379;
+		rLoc = 2406;
 		rType = 0;
 		vrLen = 1745;
 		vrLoc = 0;
@@ -6134,7 +6261,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: 10";
 		rLen = 0;
-		rLoc = 176;
+		rLoc = 188;
 		rType = 0;
 		vrLen = 823;
 		vrLoc = 0;
@@ -6144,7 +6271,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 54";
 		rLen = 52;
-		rLoc = 2379;
+		rLoc = 2406;
 		rType = 0;
 		vrLen = 1745;
 		vrLoc = 0;
@@ -6154,7 +6281,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: hideCurrentAction";
 		rLen = 0;
-		rLoc = 520;
+		rLoc = 561;
 		rType = 0;
 		vrLen = 883;
 		vrLoc = 0;
@@ -6174,7 +6301,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: 33";
 		rLen = 0;
-		rLoc = 1135;
+		rLoc = 1207;
 		rType = 0;
 		vrLen = 940;
 		vrLoc = 0;
@@ -6184,7 +6311,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 126";
 		rLen = 0;
-		rLoc = 3630;
+		rLoc = 4023;
 		rType = 0;
 		vrLen = 879;
 		vrLoc = 2273;
@@ -6194,7 +6321,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: 33";
 		rLen = 0;
-		rLoc = 1135;
+		rLoc = 1207;
 		rType = 0;
 		vrLen = 940;
 		vrLoc = 0;
@@ -6204,7 +6331,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 126";
 		rLen = 0;
-		rLoc = 3630;
+		rLoc = 4023;
 		rType = 0;
 		vrLen = 1070;
 		vrLoc = 2747;
@@ -6214,7 +6341,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 251";
 		rLen = 0;
-		rLoc = 8432;
+		rLoc = 8859;
 		rType = 0;
 		vrLen = 1201;
 		vrLoc = 6421;
@@ -6224,7 +6351,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 129";
 		rLen = 84;
-		rLoc = 5937;
+		rLoc = 4359;
 		rType = 0;
 		vrLen = 2376;
 		vrLoc = 3532;
@@ -6234,7 +6361,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: createClickWindowAtCorner:withActionType:andString:withLabel:";
 		rLen = 0;
-		rLoc = 636;
+		rLoc = 657;
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 0;
@@ -6244,7 +6371,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 287";
 		rLen = 0;
-		rLoc = 12450;
+		rLoc = 10733;
 		rType = 0;
 		vrLen = 1597;
 		vrLoc = 9649;
@@ -6254,7 +6381,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 251";
 		rLen = 0;
-		rLoc = 8432;
+		rLoc = 8859;
 		rType = 0;
 		vrLen = 1201;
 		vrLoc = 6421;
@@ -6264,7 +6391,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.h: 25";
 		rLen = 0;
-		rLoc = 679;
+		rLoc = 652;
 		rType = 0;
 		vrLen = 695;
 		vrLoc = 0;
@@ -6274,7 +6401,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: rightMouseDown:";
 		rLen = 0;
-		rLoc = 7155;
+		rLoc = 7582;
 		rType = 0;
 		vrLen = 1203;
 		vrLoc = 6421;
@@ -6284,7 +6411,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.h: 25";
 		rLen = 0;
-		rLoc = 667;
+		rLoc = 640;
 		rType = 0;
 		vrLen = 699;
 		vrLoc = 0;
@@ -6294,7 +6421,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 295";
 		rLen = 0;
-		rLoc = 12636;
+		rLoc = 10919;
 		rType = 0;
 		vrLen = 1748;
 		vrLoc = 9711;
@@ -6304,7 +6431,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 126";
 		rLen = 0;
-		rLoc = 3630;
+		rLoc = 4023;
 		rType = 0;
 		vrLen = 1089;
 		vrLoc = 2795;
@@ -6314,7 +6441,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: rightMouseDown:";
 		rLen = 27;
-		rLoc = 7128;
+		rLoc = 7555;
 		rType = 0;
 		vrLen = 1203;
 		vrLoc = 6421;
@@ -6324,7 +6451,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 23";
 		rLen = 77;
-		rLoc = 2440;
+		rLoc = 2311;
 		rType = 0;
 		vrLen = 1439;
 		vrLoc = 493;
@@ -6334,7 +6461,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: createClickWindowAtCorner:withActionList:";
 		rLen = 0;
-		rLoc = 636;
+		rLoc = 657;
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 0;
@@ -6354,7 +6481,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 268";
 		rLen = 0;
-		rLoc = 8143;
+		rLoc = 8570;
 		rType = 0;
 		vrLen = 1275;
 		vrLoc = 7015;
@@ -6364,7 +6491,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 308";
 		rLen = 0;
-		rLoc = 13252;
+		rLoc = 11535;
 		rType = 0;
 		vrLen = 1661;
 		vrLoc = 9746;
@@ -6374,7 +6501,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 657";
 		rLen = 0;
-		rLoc = 36413;
+		rLoc = 40234;
 		rType = 0;
 		vrLen = 1593;
 		vrLoc = 24617;
@@ -6384,7 +6511,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: toggleModifier:toState:";
 		rLen = 0;
-		rLoc = 3651;
+		rLoc = 3917;
 		rType = 0;
 		vrLen = 1903;
 		vrLoc = 955;
@@ -6394,7 +6521,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 390";
 		rLen = 0;
-		rLoc = 21890;
+		rLoc = 22637;
 		rType = 0;
 		vrLen = 2009;
 		vrLoc = 15672;
@@ -6404,7 +6531,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 33";
 		rLen = 29;
-		rLoc = 1528;
+		rLoc = 1535;
 		rType = 0;
 		vrLen = 1443;
 		vrLoc = 706;
@@ -6414,7 +6541,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: setIconAndLabelUserProvided:";
 		rLen = 0;
-		rLoc = 1135;
+		rLoc = 1207;
 		rType = 0;
 		vrLen = 940;
 		vrLoc = 0;
@@ -6424,7 +6551,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 391";
 		rLen = 0;
-		rLoc = 21890;
+		rLoc = 22637;
 		rType = 0;
 		vrLen = 2027;
 		vrLoc = 15672;
@@ -6434,7 +6561,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 33";
 		rLen = 29;
-		rLoc = 1528;
+		rLoc = 1535;
 		rType = 0;
 		vrLen = 1453;
 		vrLoc = 696;
@@ -6444,7 +6571,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 672";
 		rLen = 0;
-		rLoc = 37071;
+		rLoc = 40921;
 		rType = 0;
 		vrLen = 1710;
 		vrLoc = 25569;
@@ -6454,7 +6581,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 273";
 		rLen = 0;
-		rLoc = 8374;
+		rLoc = 8801;
 		rType = 0;
 		vrLen = 1457;
 		vrLoc = 6830;
@@ -6464,7 +6591,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 33";
 		rLen = 29;
-		rLoc = 1528;
+		rLoc = 1535;
 		rType = 0;
 		vrLen = 1452;
 		vrLoc = 696;
@@ -6474,7 +6601,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: setIconAndLabelUserProvided:";
 		rLen = 0;
-		rLoc = 1135;
+		rLoc = 1207;
 		rType = 0;
 		vrLen = 940;
 		vrLoc = 0;
@@ -6484,7 +6611,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 251";
 		rLen = 0;
-		rLoc = 7741;
+		rLoc = 8168;
 		rType = 0;
 		vrLen = 1387;
 		vrLoc = 6903;
@@ -6494,7 +6621,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 614";
 		rLen = 0;
-		rLoc = 35182;
+		rLoc = 39001;
 		rType = 0;
 		vrLen = 1733;
 		vrLoc = 24114;
@@ -6504,7 +6631,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 308";
 		rLen = 0;
-		rLoc = 13252;
+		rLoc = 11535;
 		rType = 0;
 		vrLen = 2007;
 		vrLoc = 10438;
@@ -6536,7 +6663,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 614";
 		rLen = 0;
-		rLoc = 35182;
+		rLoc = 39001;
 		rType = 0;
 		vrLen = 1733;
 		vrLoc = 24114;
@@ -6546,7 +6673,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 39";
 		rLen = 0;
-		rLoc = 1382;
+		rLoc = 1504;
 		rType = 0;
 		vrLen = 1939;
 		vrLoc = 955;
@@ -6566,7 +6693,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 614";
 		rLen = 0;
-		rLoc = 35182;
+		rLoc = 39001;
 		rType = 0;
 		vrLen = 2055;
 		vrLoc = 153;
@@ -6576,7 +6703,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 39";
 		rLen = 0;
-		rLoc = 1382;
+		rLoc = 1504;
 		rType = 0;
 		vrLen = 1984;
 		vrLoc = 910;
@@ -6586,7 +6713,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 66";
 		rLen = 0;
-		rLoc = 2195;
+		rLoc = 2586;
 		rType = 0;
 		vrLen = 2652;
 		vrLoc = 854;
@@ -6596,7 +6723,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 39";
 		rLen = 0;
-		rLoc = 1382;
+		rLoc = 1504;
 		rType = 0;
 		vrLen = 1983;
 		vrLoc = 910;
@@ -6606,7 +6733,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 56";
 		rLen = 0;
-		rLoc = 2186;
+		rLoc = 2577;
 		rType = 0;
 		vrLen = 2104;
 		vrLoc = 1256;
@@ -6616,7 +6743,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 308";
 		rLen = 0;
-		rLoc = 13252;
+		rLoc = 11535;
 		rType = 0;
 		vrLen = 2007;
 		vrLoc = 10438;
@@ -6636,7 +6763,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 153";
 		rLen = 90;
-		rLoc = 6419;
+		rLoc = 6196;
 		rType = 0;
 		vrLen = 2401;
 		vrLoc = 5465;
@@ -6646,7 +6773,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: makeAttributedLink:forString:";
 		rLen = 0;
-		rLoc = 3776;
+		rLoc = 4042;
 		rType = 0;
 		vrLen = 1935;
 		vrLoc = 1056;
@@ -6798,7 +6925,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: actionChosen:";
 		rLen = 0;
-		rLoc = 21180;
+		rLoc = 22330;
 		rType = 0;
 		vrLen = 1295;
 		vrLoc = 5289;
@@ -6812,7 +6939,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 151";
 		rLen = 32;
-		rLoc = 21148;
+		rLoc = 22298;
 		rType = 0;
 		vrLen = 1557;
 		vrLoc = 4738;
@@ -6870,7 +6997,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 116";
 		rLen = 0;
-		rLoc = 19422;
+		rLoc = 19258;
 		rType = 0;
 		vrLen = 1247;
 		vrLoc = 4631;
@@ -6880,7 +7007,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: saveChanges:";
 		rLen = 0;
-		rLoc = 2511;
+		rLoc = 2709;
 		rType = 0;
 		vrLen = 1145;
 		vrLoc = 0;
@@ -6890,7 +7017,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 114";
 		rLen = 0;
-		rLoc = 19422;
+		rLoc = 19258;
 		rType = 0;
 		vrLen = 1368;
 		vrLoc = 4116;
@@ -6900,7 +7027,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: saveChanges:";
 		rLen = 0;
-		rLoc = 2511;
+		rLoc = 2709;
 		rType = 0;
 		vrLen = 1145;
 		vrLoc = 0;
@@ -6910,7 +7037,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 163";
 		rLen = 0;
-		rLoc = 21225;
+		rLoc = 22375;
 		rType = 0;
 		vrLen = 1416;
 		vrLoc = 4796;
@@ -6920,7 +7047,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 22";
 		rLen = 0;
-		rLoc = 822;
+		rLoc = 944;
 		rType = 0;
 		vrLen = 1215;
 		vrLoc = 0;
@@ -6930,7 +7057,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 174";
 		rLen = 0;
-		rLoc = 22946;
+		rLoc = 24878;
 		rType = 0;
 		vrLen = 1302;
 		vrLoc = 5406;
@@ -6940,7 +7067,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 22";
 		rLen = 0;
-		rLoc = 822;
+		rLoc = 944;
 		rType = 0;
 		vrLen = 1215;
 		vrLoc = 0;
@@ -6950,7 +7077,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 179";
 		rLen = 0;
-		rLoc = 22946;
+		rLoc = 24878;
 		rType = 0;
 		vrLen = 1343;
 		vrLoc = 5406;
@@ -6960,7 +7087,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 22";
 		rLen = 0;
-		rLoc = 822;
+		rLoc = 944;
 		rType = 0;
 		vrLen = 1215;
 		vrLoc = 0;
@@ -6970,7 +7097,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 22";
 		rLen = 27;
-		rLoc = 687;
+		rLoc = 1134;
 		rType = 0;
 		vrLen = 1876;
 		vrLoc = 0;
@@ -6980,7 +7107,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 22";
 		rLen = 0;
-		rLoc = 822;
+		rLoc = 944;
 		rType = 0;
 		vrLen = 1215;
 		vrLoc = 0;
@@ -7008,7 +7135,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 128";
 		rLen = 0;
-		rLoc = 5207;
+		rLoc = 5378;
 		rType = 0;
 		vrLen = 2356;
 		vrLoc = 4214;
@@ -7058,7 +7185,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 25";
 		rLen = 0;
-		rLoc = 1709;
+		rLoc = 1866;
 		rType = 0;
 		vrLen = 754;
 		vrLoc = 0;
@@ -7068,7 +7195,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 58";
 		rLen = 0;
-		rLoc = 21282;
+		rLoc = 22432;
 		rType = 0;
 		vrLen = 1396;
 		vrLoc = 0;
@@ -7078,7 +7205,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 25";
 		rLen = 0;
-		rLoc = 1709;
+		rLoc = 1866;
 		rType = 0;
 		vrLen = 754;
 		vrLoc = 0;
@@ -7088,7 +7215,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 58";
 		rLen = 0;
-		rLoc = 21282;
+		rLoc = 22432;
 		rType = 0;
 		vrLen = 1396;
 		vrLoc = 0;
@@ -7098,7 +7225,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 25";
 		rLen = 0;
-		rLoc = 1709;
+		rLoc = 1866;
 		rType = 0;
 		vrLen = 754;
 		vrLoc = 0;
@@ -7108,7 +7235,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 58";
 		rLen = 0;
-		rLoc = 21282;
+		rLoc = 22432;
 		rType = 0;
 		vrLen = 1396;
 		vrLoc = 0;
@@ -7118,7 +7245,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 25";
 		rLen = 0;
-		rLoc = 1709;
+		rLoc = 1866;
 		rType = 0;
 		vrLen = 754;
 		vrLoc = 0;
@@ -7128,7 +7255,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 46";
 		rLen = 0;
-		rLoc = 19422;
+		rLoc = 19258;
 		rType = 0;
 		vrLen = 1622;
 		vrLoc = 401;
@@ -7138,7 +7265,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 23";
 		rLen = 0;
-		rLoc = 998;
+		rLoc = 1120;
 		rType = 0;
 		vrLen = 842;
 		vrLoc = 0;
@@ -7148,7 +7275,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 27";
 		rLen = 0;
-		rLoc = 1815;
+		rLoc = 2206;
 		rType = 0;
 		vrLen = 1432;
 		vrLoc = 210;
@@ -7158,7 +7285,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 24";
 		rLen = 0;
-		rLoc = 998;
+		rLoc = 1120;
 		rType = 0;
 		vrLen = 869;
 		vrLoc = 0;
@@ -7168,7 +7295,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 34";
 		rLen = 0;
-		rLoc = 2062;
+		rLoc = 2453;
 		rType = 0;
 		vrLen = 1400;
 		vrLoc = 210;
@@ -7178,7 +7305,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 24";
 		rLen = 0;
-		rLoc = 998;
+		rLoc = 1120;
 		rType = 0;
 		vrLen = 869;
 		vrLoc = 0;
@@ -7188,7 +7315,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 34";
 		rLen = 0;
-		rLoc = 2062;
+		rLoc = 2453;
 		rType = 0;
 		vrLen = 1418;
 		vrLoc = 210;
@@ -7198,7 +7325,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 24";
 		rLen = 0;
-		rLoc = 998;
+		rLoc = 1120;
 		rType = 0;
 		vrLen = 869;
 		vrLoc = 0;
@@ -7208,7 +7335,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 41";
 		rLen = 0;
-		rLoc = 3448;
+		rLoc = 3839;
 		rType = 0;
 		vrLen = 1478;
 		vrLoc = 179;
@@ -7218,7 +7345,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 24";
 		rLen = 0;
-		rLoc = 998;
+		rLoc = 1120;
 		rType = 0;
 		vrLen = 869;
 		vrLoc = 0;
@@ -7228,7 +7355,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 26";
 		rLen = 0;
-		rLoc = 1805;
+		rLoc = 2196;
 		rType = 0;
 		vrLen = 1508;
 		vrLoc = 179;
@@ -7238,7 +7365,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 24";
 		rLen = 0;
-		rLoc = 998;
+		rLoc = 1120;
 		rType = 0;
 		vrLen = 869;
 		vrLoc = 0;
@@ -7248,7 +7375,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 52";
 		rLen = 0;
-		rLoc = 19422;
+		rLoc = 19258;
 		rType = 0;
 		vrLen = 1544;
 		vrLoc = 401;
@@ -7258,7 +7385,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 32";
 		rLen = 55;
-		rLoc = 2545;
+		rLoc = 2743;
 		rType = 0;
 		vrLen = 952;
 		vrLoc = 0;
@@ -7268,7 +7395,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 55";
 		rLen = 0;
-		rLoc = 4494;
+		rLoc = 4885;
 		rType = 0;
 		vrLen = 1795;
 		vrLoc = 401;
@@ -7278,7 +7405,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 33";
 		rLen = 0;
-		rLoc = 2562;
+		rLoc = 2760;
 		rType = 0;
 		vrLen = 954;
 		vrLoc = 0;
@@ -7288,7 +7415,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 55";
 		rLen = 0;
-		rLoc = 4494;
+		rLoc = 4885;
 		rType = 0;
 		vrLen = 1259;
 		vrLoc = 1686;
@@ -7298,7 +7425,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 33";
 		rLen = 0;
-		rLoc = 2562;
+		rLoc = 2760;
 		rType = 0;
 		vrLen = 925;
 		vrLoc = 0;
@@ -7308,7 +7435,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 122";
 		rLen = 0;
-		rLoc = 22951;
+		rLoc = 24883;
 		rType = 0;
 		vrLen = 1653;
 		vrLoc = 0;
@@ -7318,7 +7445,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 24";
 		rLen = 0;
-		rLoc = 952;
+		rLoc = 1074;
 		rType = 0;
 		vrLen = 960;
 		vrLoc = 0;
@@ -7328,7 +7455,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 36";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2444;
 		rType = 0;
 		vrLen = 1727;
 		vrLoc = 154;
@@ -7338,7 +7465,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 24";
 		rLen = 0;
-		rLoc = 952;
+		rLoc = 1074;
 		rType = 0;
 		vrLen = 960;
 		vrLoc = 0;
@@ -7348,7 +7475,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 83";
 		rLen = 0;
-		rLoc = 20549;
+		rLoc = 21301;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 1882;
@@ -7358,7 +7485,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 24";
 		rLen = 0;
-		rLoc = 952;
+		rLoc = 1074;
 		rType = 0;
 		vrLen = 960;
 		vrLoc = 0;
@@ -7368,7 +7495,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 83";
 		rLen = 0;
-		rLoc = 20549;
+		rLoc = 21301;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 1882;
@@ -7378,7 +7505,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 24";
 		rLen = 0;
-		rLoc = 952;
+		rLoc = 1074;
 		rType = 0;
 		vrLen = 960;
 		vrLoc = 0;
@@ -7388,7 +7515,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 36";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2444;
 		rType = 0;
 		vrLen = 1734;
 		vrLoc = 0;
@@ -7398,7 +7525,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 20";
 		rLen = 0;
-		rLoc = 634;
+		rLoc = 581;
 		rType = 0;
 		vrLen = 1005;
 		vrLoc = 0;
@@ -7408,7 +7535,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 58";
 		rLen = 0;
-		rLoc = 4494;
+		rLoc = 4885;
 		rType = 0;
 		vrLen = 1258;
 		vrLoc = 1818;
@@ -7418,7 +7545,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: refreshwithSettings:";
 		rLen = 0;
-		rLoc = 2563;
+		rLoc = 2761;
 		rType = 0;
 		vrLen = 1005;
 		vrLoc = 0;
@@ -7428,7 +7555,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 58";
 		rLen = 0;
-		rLoc = 4494;
+		rLoc = 4885;
 		rType = 0;
 		vrLen = 1258;
 		vrLoc = 1818;
@@ -7446,7 +7573,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 49";
 		rLen = 0;
-		rLoc = 3448;
+		rLoc = 3839;
 		rType = 0;
 		vrLen = 1130;
 		vrLoc = 3056;
@@ -7456,7 +7583,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: refreshWithSettings:";
 		rLen = 0;
-		rLoc = 2563;
+		rLoc = 2761;
 		rType = 0;
 		vrLen = 1005;
 		vrLoc = 0;
@@ -7466,7 +7593,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 64";
 		rLen = 0;
-		rLoc = 4494;
+		rLoc = 4885;
 		rType = 0;
 		vrLen = 1129;
 		vrLoc = 3956;
@@ -7476,7 +7603,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 26";
 		rLen = 0;
-		rLoc = 998;
+		rLoc = 1120;
 		rType = 0;
 		vrLen = 1029;
 		vrLoc = 0;
@@ -7486,7 +7613,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 128";
 		rLen = 0;
-		rLoc = 22946;
+		rLoc = 24878;
 		rType = 0;
 		vrLen = 1171;
 		vrLoc = 3956;
@@ -7496,7 +7623,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 25";
 		rLen = 11;
-		rLoc = 964;
+		rLoc = 1086;
 		rType = 0;
 		vrLen = 1031;
 		vrLoc = 0;
@@ -7506,7 +7633,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 123";
 		rLen = 0;
-		rLoc = 21280;
+		rLoc = 22430;
 		rType = 0;
 		vrLen = 1309;
 		vrLoc = 3260;
@@ -7516,7 +7643,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 26";
 		rLen = 0;
-		rLoc = 997;
+		rLoc = 1119;
 		rType = 0;
 		vrLen = 1031;
 		vrLoc = 0;
@@ -7526,7 +7653,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 28";
 		rLen = 0;
-		rLoc = 1805;
+		rLoc = 2196;
 		rType = 0;
 		vrLen = 2324;
 		vrLoc = 210;
@@ -7536,7 +7663,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 26";
 		rLen = 0;
-		rLoc = 997;
+		rLoc = 1119;
 		rType = 0;
 		vrLen = 1031;
 		vrLoc = 0;
@@ -7545,8 +7672,8 @@
 		fRef = F506C03D013D9D7901CA16C8;
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 28";
-		rLen = 48;
-		rLoc = 1758;
+		rLen = 40;
+		rLoc = 2157;
 		rType = 0;
 		vrLen = 2338;
 		vrLoc = 210;
@@ -7556,7 +7683,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 26";
 		rLen = 0;
-		rLoc = 997;
+		rLoc = 1119;
 		rType = 0;
 		vrLen = 1031;
 		vrLoc = 0;
@@ -7566,7 +7693,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 186";
 		rLen = 0;
-		rLoc = 23207;
+		rLoc = 25139;
 		rType = 0;
 		vrLen = 1419;
 		vrLoc = 5452;
@@ -7576,7 +7703,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 26";
 		rLen = 0;
-		rLoc = 997;
+		rLoc = 1119;
 		rType = 0;
 		vrLen = 1031;
 		vrLoc = 0;
@@ -7586,7 +7713,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 101";
 		rLen = 0;
-		rLoc = 19421;
+		rLoc = 19257;
 		rType = 0;
 		vrLen = 1723;
 		vrLoc = 3180;
@@ -7596,7 +7723,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 26";
 		rLen = 0;
-		rLoc = 997;
+		rLoc = 1119;
 		rType = 0;
 		vrLen = 1031;
 		vrLoc = 0;
@@ -7694,7 +7821,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 793";
 		rLen = 0;
-		rLoc = 38695;
+		rLoc = 42651;
 		rType = 0;
 		vrLen = 1781;
 		vrLoc = 28709;
@@ -7718,7 +7845,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 438";
 		rLen = 39;
-		rLoc = 17598;
+		rLoc = 15938;
 		rType = 0;
 		vrLen = 1747;
 		vrLoc = 13833;
@@ -7728,7 +7855,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: mouseExited:";
 		rLen = 0;
-		rLoc = 1322;
+		rLoc = 1277;
 		rType = 0;
 		vrLen = 1073;
 		vrLoc = 0;
@@ -7738,7 +7865,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 417";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1815;
 		vrLoc = 13920;
@@ -7768,7 +7895,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 428";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1875;
 		vrLoc = 13930;
@@ -7818,7 +7945,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 413";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1850;
 		vrLoc = 13910;
@@ -7838,7 +7965,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 430";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1822;
 		vrLoc = 13910;
@@ -7858,7 +7985,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 250";
 		rLen = 0;
-		rLoc = 7741;
+		rLoc = 8168;
 		rType = 0;
 		vrLen = 1357;
 		vrLoc = 6933;
@@ -7868,7 +7995,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 430";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1822;
 		vrLoc = 13910;
@@ -7892,7 +8019,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 432";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1886;
 		vrLoc = 13910;
@@ -7902,7 +8029,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 250";
 		rLen = 0;
-		rLoc = 7741;
+		rLoc = 8168;
 		rType = 0;
 		vrLen = 1382;
 		vrLoc = 6908;
@@ -7912,7 +8039,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 421";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 2047;
 		vrLoc = 13712;
@@ -7922,7 +8049,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 155";
 		rLen = 0;
-		rLoc = 4325;
+		rLoc = 6543;
 		rType = 0;
 		vrLen = 1162;
 		vrLoc = 3225;
@@ -7932,7 +8059,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 447";
 		rLen = 64;
-		rLoc = 17533;
+		rLoc = 15873;
 		rType = 0;
 		vrLen = 1497;
 		vrLoc = 14320;
@@ -7942,7 +8069,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: mouseExited:";
 		rLen = 0;
-		rLoc = 1322;
+		rLoc = 1277;
 		rType = 0;
 		vrLen = 1073;
 		vrLoc = 0;
@@ -7962,7 +8089,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 283";
 		rLen = 0;
-		rLoc = 8490;
+		rLoc = 8917;
 		rType = 0;
 		vrLen = 1080;
 		vrLoc = 7266;
@@ -7972,7 +8099,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 448";
 		rLen = 0;
-		rLoc = 17534;
+		rLoc = 15874;
 		rType = 0;
 		vrLen = 1119;
 		vrLoc = 14698;
@@ -7992,7 +8119,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 469";
 		rLen = 0;
-		rLoc = 17994;
+		rLoc = 16334;
 		rType = 0;
 		vrLen = 1867;
 		vrLoc = 13929;
@@ -8002,7 +8129,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 174";
 		rLen = 0;
-		rLoc = 4325;
+		rLoc = 6543;
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 3478;
@@ -8012,7 +8139,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 409";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1869;
 		vrLoc = 13929;
@@ -8022,7 +8149,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: mouseExited:";
 		rLen = 0;
-		rLoc = 1322;
+		rLoc = 1277;
 		rType = 0;
 		vrLen = 1073;
 		vrLoc = 0;
@@ -8032,7 +8159,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: psn";
 		rLen = 0;
-		rLoc = 4325;
+		rLoc = 6543;
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 3478;
@@ -8042,7 +8169,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: 16";
 		rLen = 0;
-		rLoc = 294;
+		rLoc = 308;
 		rType = 0;
 		vrLen = 1105;
 		vrLoc = 0;
@@ -8052,7 +8179,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 409";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1869;
 		vrLoc = 13929;
@@ -8062,7 +8189,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: psn";
 		rLen = 0;
-		rLoc = 4325;
+		rLoc = 6543;
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 3478;
@@ -8072,7 +8199,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: setIconAndLabelUserProvided:";
 		rLen = 0;
-		rLoc = 1135;
+		rLoc = 1207;
 		rType = 0;
 		vrLen = 940;
 		vrLoc = 0;
@@ -8082,7 +8209,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 412";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1888;
 		vrLoc = 13929;
@@ -8092,7 +8219,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 157";
 		rLen = 0;
-		rLoc = 4325;
+		rLoc = 6543;
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 3478;
@@ -8102,7 +8229,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 411";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1888;
 		vrLoc = 13929;
@@ -8112,7 +8239,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 283";
 		rLen = 0;
-		rLoc = 8490;
+		rLoc = 8917;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 7230;
@@ -8122,7 +8249,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 157";
 		rLen = 0;
-		rLoc = 4325;
+		rLoc = 6543;
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 3478;
@@ -8132,7 +8259,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: setIconAndLabelUserProvided:";
 		rLen = 0;
-		rLoc = 1135;
+		rLoc = 1207;
 		rType = 0;
 		vrLen = 940;
 		vrLoc = 0;
@@ -8142,7 +8269,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 157";
 		rLen = 0;
-		rLoc = 4325;
+		rLoc = 6543;
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 3478;
@@ -8152,7 +8279,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 283";
 		rLen = 0;
-		rLoc = 8490;
+		rLoc = 8917;
 		rType = 0;
 		vrLen = 1080;
 		vrLoc = 7266;
@@ -8162,7 +8289,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 179";
 		rLen = 0;
-		rLoc = 4354;
+		rLoc = 6572;
 		rType = 0;
 		vrLen = 1180;
 		vrLoc = 2835;
@@ -8172,7 +8299,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: doAction:";
 		rLen = 0;
-		rLoc = 309;
+		rLoc = 350;
 		rType = 0;
 		vrLen = 1031;
 		vrLoc = 0;
@@ -8182,7 +8309,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 133";
 		rLen = 0;
-		rLoc = 3784;
+		rLoc = 4177;
 		rType = 0;
 		vrLen = 1196;
 		vrLoc = 2835;
@@ -8192,7 +8319,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 283";
 		rLen = 0;
-		rLoc = 8490;
+		rLoc = 8917;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 7230;
@@ -8202,7 +8329,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.h: 27";
 		rLen = 0;
-		rLoc = 694;
+		rLoc = 667;
 		rType = 0;
 		vrLen = 699;
 		vrLoc = 0;
@@ -8212,7 +8339,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 275";
 		rLen = 0;
-		rLoc = 8447;
+		rLoc = 8874;
 		rType = 0;
 		vrLen = 1015;
 		vrLoc = 7331;
@@ -8222,7 +8349,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.h: 27";
 		rLen = 0;
-		rLoc = 694;
+		rLoc = 667;
 		rType = 0;
 		vrLen = 699;
 		vrLoc = 0;
@@ -8232,7 +8359,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 275";
 		rLen = 0;
-		rLoc = 8447;
+		rLoc = 8874;
 		rType = 0;
 		vrLen = 1015;
 		vrLoc = 7331;
@@ -8242,7 +8369,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 414";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1888;
 		vrLoc = 13929;
@@ -8252,7 +8379,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 175";
 		rLen = 0;
-		rLoc = 4771;
+		rLoc = 6989;
 		rType = 0;
 		vrLen = 1071;
 		vrLoc = 3305;
@@ -8262,7 +8389,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 414";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1888;
 		vrLoc = 13929;
@@ -8272,7 +8399,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 175";
 		rLen = 0;
-		rLoc = 4771;
+		rLoc = 6989;
 		rType = 0;
 		vrLen = 1087;
 		vrLoc = 3289;
@@ -8282,7 +8409,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: hideCurrentAction:";
 		rLen = 0;
-		rLoc = 636;
+		rLoc = 677;
 		rType = 0;
 		vrLen = 1086;
 		vrLoc = 0;
@@ -8302,7 +8429,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: initWithType:andModifiers:andString:forCorner:withLabel:";
 		rLen = 0;
-		rLoc = 458;
+		rLoc = 499;
 		rType = 0;
 		vrLen = 1117;
 		vrLoc = 0;
@@ -8312,7 +8439,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 153";
 		rLen = 0;
-		rLoc = 7260;
+		rLoc = 5503;
 		rType = 0;
 		vrLen = 2197;
 		vrLoc = 3992;
@@ -8322,7 +8449,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: 37";
 		rLen = 0;
-		rLoc = 1321;
+		rLoc = 1276;
 		rType = 0;
 		vrLen = 1183;
 		vrLoc = 0;
@@ -8332,7 +8459,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 423";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1667;
 		vrLoc = 13848;
@@ -8342,7 +8469,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: ";
 		rLen = 0;
-		rLoc = 8490;
+		rLoc = 8917;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 7230;
@@ -8352,7 +8479,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.h: setLastPSN:";
 		rLen = 0;
-		rLoc = 694;
+		rLoc = 667;
 		rType = 0;
 		vrLen = 699;
 		vrLoc = 0;
@@ -8362,7 +8489,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: ";
 		rLen = 0;
-		rLoc = 8490;
+		rLoc = 8917;
 		rType = 0;
 		vrLen = 1144;
 		vrLoc = 7202;
@@ -8372,7 +8499,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 423";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1780;
 		vrLoc = 14037;
@@ -8392,7 +8519,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 275";
 		rLen = 0;
-		rLoc = 8447;
+		rLoc = 8874;
 		rType = 0;
 		vrLen = 1040;
 		vrLoc = 6648;
@@ -8402,7 +8529,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.h: 10";
 		rLen = 0;
-		rLoc = 169;
+		rLoc = 142;
 		rType = 0;
 		vrLen = 699;
 		vrLoc = 0;
@@ -8412,7 +8539,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 275";
 		rLen = 0;
-		rLoc = 8447;
+		rLoc = 8874;
 		rType = 0;
 		vrLen = 1040;
 		vrLoc = 6648;
@@ -8432,7 +8559,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: initWithType:andModifiers:andString:forCorner:";
 		rLen = 0;
-		rLoc = 309;
+		rLoc = 350;
 		rType = 0;
 		vrLen = 1084;
 		vrLoc = 0;
@@ -8442,7 +8569,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: err";
 		rLen = 0;
-		rLoc = 4325;
+		rLoc = 6543;
 		rType = 0;
 		vrLen = 1079;
 		vrLoc = 3532;
@@ -8462,7 +8589,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 423";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1464;
 		vrLoc = 0;
@@ -8472,7 +8599,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: lastPSN";
 		rLen = 0;
-		rLoc = 1321;
+		rLoc = 1276;
 		rType = 0;
 		vrLen = 1183;
 		vrLoc = 0;
@@ -8492,7 +8619,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 137";
 		rLen = 38;
-		rLoc = 3870;
+		rLoc = 4263;
 		rType = 0;
 		vrLen = 1100;
 		vrLoc = 3041;
@@ -8502,7 +8629,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: hideOthersAction";
 		rLen = 0;
-		rLoc = 687;
+		rLoc = 728;
 		rType = 0;
 		vrLen = 1042;
 		vrLoc = 0;
@@ -8512,7 +8639,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 192";
 		rLen = 0;
-		rLoc = 4325;
+		rLoc = 6543;
 		rType = 0;
 		vrLen = 1321;
 		vrLoc = 3375;
@@ -8522,7 +8649,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 420";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1632;
 		vrLoc = 13927;
@@ -8532,7 +8659,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 195";
 		rLen = 0;
-		rLoc = 4325;
+		rLoc = 6543;
 		rType = 0;
 		vrLen = 1202;
 		vrLoc = 3813;
@@ -8542,7 +8669,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 422";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1734;
 		vrLoc = 14083;
@@ -8562,7 +8689,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 441";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1802;
 		vrLoc = 14015;
@@ -8572,7 +8699,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: 24";
 		rLen = 0;
-		rLoc = 525;
+		rLoc = 546;
 		rType = 0;
 		vrLen = 1210;
 		vrLoc = 0;
@@ -8582,7 +8709,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 373";
 		rLen = 129;
-		rLoc = 15174;
+		rLoc = 13514;
 		rType = 0;
 		vrLen = 1743;
 		vrLoc = 12618;
@@ -8592,7 +8719,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: setLastPSN:";
 		rLen = 0;
-		rLoc = 1277;
+		rLoc = 1232;
 		rType = 0;
 		vrLen = 1218;
 		vrLoc = 0;
@@ -8602,7 +8729,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 368";
 		rLen = 0;
-		rLoc = 15093;
+		rLoc = 13433;
 		rType = 0;
 		vrLen = 1825;
 		vrLoc = 12136;
@@ -8612,7 +8739,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 103";
 		rLen = 0;
-		rLoc = 3232;
+		rLoc = 3661;
 		rType = 0;
 		vrLen = 1795;
 		vrLoc = 2790;
@@ -8622,7 +8749,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 195";
 		rLen = 0;
-		rLoc = 4325;
+		rLoc = 6543;
 		rType = 0;
 		vrLen = 1202;
 		vrLoc = 3813;
@@ -8632,7 +8759,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: hideOthersAction";
 		rLen = 0;
-		rLoc = 687;
+		rLoc = 728;
 		rType = 0;
 		vrLen = 1042;
 		vrLoc = 0;
@@ -8642,7 +8769,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 195";
 		rLen = 0;
-		rLoc = 4325;
+		rLoc = 6543;
 		rType = 0;
 		vrLen = 1202;
 		vrLoc = 3813;
@@ -8652,7 +8779,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 368";
 		rLen = 0;
-		rLoc = 15093;
+		rLoc = 13433;
 		rType = 0;
 		vrLen = 1825;
 		vrLoc = 12136;
@@ -8662,7 +8789,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 118";
 		rLen = 0;
-		rLoc = 3987;
+		rLoc = 4434;
 		rType = 0;
 		vrLen = 1838;
 		vrLoc = 2493;
@@ -8682,7 +8809,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 408";
 		rLen = 0;
-		rLoc = 16891;
+		rLoc = 15231;
 		rType = 0;
 		vrLen = 1766;
 		vrLoc = 12710;
@@ -8692,7 +8819,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 150";
 		rLen = 0;
-		rLoc = 4162;
+		rLoc = 5635;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 3593;
@@ -8702,7 +8829,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: hideOthersAction";
 		rLen = 0;
-		rLoc = 687;
+		rLoc = 728;
 		rType = 0;
 		vrLen = 1042;
 		vrLoc = 0;
@@ -8712,7 +8839,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 204";
 		rLen = 0;
-		rLoc = 4325;
+		rLoc = 6543;
 		rType = 0;
 		vrLen = 886;
 		vrLoc = 4129;
@@ -8722,7 +8849,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: 44";
 		rLen = 0;
-		rLoc = 1321;
+		rLoc = 1276;
 		rType = 0;
 		vrLen = 1218;
 		vrLoc = 0;
@@ -8732,7 +8859,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 418";
 		rLen = 0;
-		rLoc = 16910;
+		rLoc = 15250;
 		rType = 0;
 		vrLen = 1413;
 		vrLoc = 13539;
@@ -8742,7 +8869,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: 44";
 		rLen = 0;
-		rLoc = 1321;
+		rLoc = 1276;
 		rType = 0;
 		vrLen = 1218;
 		vrLoc = 0;
@@ -8752,7 +8879,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 418";
 		rLen = 0;
-		rLoc = 16910;
+		rLoc = 15250;
 		rType = 0;
 		vrLen = 1413;
 		vrLoc = 13539;
@@ -8762,7 +8889,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 204";
 		rLen = 0;
-		rLoc = 4325;
+		rLoc = 6543;
 		rType = 0;
 		vrLen = 886;
 		vrLoc = 4129;
@@ -8772,7 +8899,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 441";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1277;
 		vrLoc = 14443;
@@ -8782,7 +8909,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 236";
 		rLen = 0;
-		rLoc = 4325;
+		rLoc = 6543;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 5015;
@@ -8792,7 +8919,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: hideOthersAction";
 		rLen = 0;
-		rLoc = 687;
+		rLoc = 728;
 		rType = 0;
 		vrLen = 1042;
 		vrLoc = 0;
@@ -8802,7 +8929,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 247";
 		rLen = 0;
-		rLoc = 4325;
+		rLoc = 6543;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 5015;
@@ -8812,7 +8939,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 443";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1127;
 		vrLoc = 14690;
@@ -8832,7 +8959,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 514";
 		rLen = 0;
-		rLoc = 17996;
+		rLoc = 16336;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 15817;
@@ -8852,7 +8979,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 515";
 		rLen = 0;
-		rLoc = 17996;
+		rLoc = 16336;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 15817;
@@ -8872,7 +8999,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 235";
 		rLen = 0;
-		rLoc = 4253;
+		rLoc = 6471;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 5015;
@@ -8882,7 +9009,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 515";
 		rLen = 0;
-		rLoc = 17996;
+		rLoc = 16336;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 15817;
@@ -8892,7 +9019,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 257";
 		rLen = 38;
-		rLoc = 7799;
+		rLoc = 8226;
 		rType = 0;
 		vrLen = 1250;
 		vrLoc = 7096;
@@ -8912,7 +9039,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: keyDown:";
 		rLen = 0;
-		rLoc = 8490;
+		rLoc = 8917;
 		rType = 0;
 		vrLen = 1084;
 		vrLoc = 7262;
@@ -8946,7 +9073,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 280";
 		rLen = 0;
-		rLoc = 8490;
+		rLoc = 8917;
 		rType = 0;
 		vrLen = 1136;
 		vrLoc = 6765;
@@ -8956,7 +9083,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 441";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1119;
 		vrLoc = 14698;
@@ -8966,7 +9093,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 268";
 		rLen = 0;
-		rLoc = 4466;
+		rLoc = 6684;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 5015;
@@ -8986,7 +9113,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: hideCurrentAction";
 		rLen = 0;
-		rLoc = 4192;
+		rLoc = 6410;
 		rType = 0;
 		vrLen = 924;
 		vrLoc = 4091;
@@ -8996,7 +9123,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: hideOthersAction";
 		rLen = 0;
-		rLoc = 687;
+		rLoc = 728;
 		rType = 0;
 		vrLen = 1042;
 		vrLoc = 0;
@@ -9006,7 +9133,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: hideCurrentAction";
 		rLen = 0;
-		rLoc = 4192;
+		rLoc = 6410;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 5015;
@@ -9026,7 +9153,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 118";
 		rLen = 0;
-		rLoc = 4004;
+		rLoc = 4451;
 		rType = 0;
 		vrLen = 1720;
 		vrLoc = 2775;
@@ -9036,7 +9163,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 179";
 		rLen = 0;
-		rLoc = 4828;
+		rLoc = 7046;
 		rType = 0;
 		vrLen = 913;
 		vrLoc = 3375;
@@ -9046,7 +9173,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: setCurrentPSN:";
 		rLen = 0;
-		rLoc = 1321;
+		rLoc = 1276;
 		rType = 0;
 		vrLen = 1218;
 		vrLoc = 0;
@@ -9056,7 +9183,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 441";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1119;
 		vrLoc = 14698;
@@ -9066,7 +9193,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: 38";
 		rLen = 0;
-		rLoc = 1321;
+		rLoc = 1276;
 		rType = 0;
 		vrLen = 1218;
 		vrLoc = 0;
@@ -9076,7 +9203,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 225";
 		rLen = 0;
-		rLoc = 10537;
+		rLoc = 8820;
 		rType = 0;
 		vrLen = 1657;
 		vrLoc = 7405;
@@ -9086,7 +9213,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: 12";
 		rLen = 0;
-		rLoc = 229;
+		rLoc = 239;
 		rType = 0;
 		vrLen = 1218;
 		vrLoc = 0;
@@ -9096,7 +9223,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 225";
 		rLen = 0;
-		rLoc = 10537;
+		rLoc = 8820;
 		rType = 0;
 		vrLen = 1296;
 		vrLoc = 14460;
@@ -9106,7 +9233,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 179";
 		rLen = 0;
-		rLoc = 4828;
+		rLoc = 7046;
 		rType = 0;
 		vrLen = 929;
 		vrLoc = 3359;
@@ -9116,7 +9243,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: mouseEntered:";
 		rLen = 0;
-		rLoc = 16953;
+		rLoc = 15293;
 		rType = 0;
 		vrLen = 1621;
 		vrLoc = 13297;
@@ -9136,7 +9263,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 22";
 		rLen = 25;
-		rLoc = 2461;
+		rLoc = 2332;
 		rType = 0;
 		vrLen = 1464;
 		vrLoc = 0;
@@ -9146,7 +9273,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: paramPsn";
 		rLen = 0;
-		rLoc = 4434;
+		rLoc = 6652;
 		rType = 0;
 		vrLen = 911;
 		vrLoc = 3359;
@@ -9187,19 +9314,12 @@
 		path = /System/Library/Frameworks/Cocoa.framework/Versions/A/Headers/Cocoa.h;
 		refType = 0;
 	};
-	37940C7104DB4E90000001CF = {
-		fRef = 37940C8904DB4E90000001CF;
-		glyphRangeLength = 1165;
-		glyphRangeLocation = 9571;
-		isa = PBXDocBookmark;
-		name = "NSPopUpButton.html: selectItemAt...";
-	};
 	37940C7904DB4E90000001CF = {
 		fRef = F506C03D013D9D7901CA16C8;
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 174";
 		rLen = 5;
-		rLoc = 8428;
+		rLoc = 8203;
 		rType = 0;
 		vrLen = 2051;
 		vrLoc = 5859;
@@ -9209,7 +9329,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: cornerChosen:";
 		rLen = 151;
-		rLoc = 2300;
+		rLoc = 2498;
 		rType = 0;
 		vrLen = 1707;
 		vrLoc = 742;
@@ -9219,7 +9339,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 585";
 		rLen = 0;
-		rLoc = 25326;
+		rLoc = 28747;
 		rType = 0;
 		vrLen = 1152;
 		vrLoc = 22493;
@@ -9228,8 +9348,8 @@
 		fRef = F506C03C013D9D7901CA16C8;
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 17";
-		rLen = 23;
-		rLoc = 431;
+		rLen = 0;
+		rLoc = 402;
 		rType = 0;
 		vrLen = 1669;
 		vrLoc = 261;
@@ -9239,7 +9359,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 565";
 		rLen = 35;
-		rLoc = 25094;
+		rLoc = 28571;
 		rType = 0;
 		vrLen = 1322;
 		vrLoc = 21896;
@@ -9249,7 +9369,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: doChooseCorner:";
 		rLen = 0;
-		rLoc = 2233;
+		rLoc = 2390;
 		rType = 0;
 		vrLen = 1634;
 		vrLoc = 706;
@@ -9258,8 +9378,8 @@
 		fRef = F506C03D013D9D7901CA16C8;
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 585";
-		rLen = 23;
-		rLoc = 25226;
+		rLen = 0;
+		rLoc = 28698;
 		rType = 0;
 		vrLen = 1048;
 		vrLoc = 22351;
@@ -9268,8 +9388,8 @@
 		fRef = F506C03C013D9D7901CA16C8;
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 17";
-		rLen = 13;
-		rLoc = 416;
+		rLen = 0;
+		rLoc = 402;
 		rType = 0;
 		vrLen = 1579;
 		vrLoc = 0;
@@ -9279,7 +9399,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 577";
 		rLen = 0;
-		rLoc = 25220;
+		rLoc = 28697;
 		rType = 0;
 		vrLen = 1055;
 		vrLoc = 22345;
@@ -9289,7 +9409,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: ";
 		rLen = 0;
-		rLoc = 5353;
+		rLoc = 5804;
 		rType = 0;
 		vrLen = 1308;
 		vrLoc = 4442;
@@ -9319,7 +9439,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: ";
 		rLen = 0;
-		rLoc = 5296;
+		rLoc = 5747;
 		rType = 0;
 		vrLen = 1398;
 		vrLoc = 4442;
@@ -9329,7 +9449,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.h: 10";
 		rLen = 0;
-		rLoc = 169;
+		rLoc = 142;
 		rType = 0;
 		vrLen = 699;
 		vrLoc = 0;
@@ -9339,26 +9459,1277 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 163";
 		rLen = 0;
-		rLoc = 5207;
+		rLoc = 5658;
 		rType = 0;
 		vrLen = 1409;
 		vrLoc = 4442;
 	};
-	37940C8904DB4E90000001CF = {
+	37A2640604ECA370000001CF = {
+		fRef = 37A2648304ECA370000001CF;
+		glyphRangeLength = 1445;
+		glyphRangeLocation = 6244;
+		isa = PBXDocBookmark;
+		name = "NSArray.html: arrayWithArr...";
+	};
+	37A2640704ECA370000001CF = {
+		fRef = 37A2648404ECA370000001CF;
+		glyphRangeLength = 2226;
+		glyphRangeLocation = 7144;
+		isa = PBXDocBookmark;
+		name = "NSObject.html: allocWithZon...";
+	};
+	37A2640804ECA370000001CF = {
+		fRef = 37A2648504ECA370000001CF;
+		glyphRangeLength = 1029;
+		glyphRangeLocation = 1645;
+		isa = PBXDocBookmark;
+		name = "NSScreen.html: screens   (N...";
+	};
+	37A2640904ECA370000001CF = {
+		fRef = 37C3CB3604CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickView.h: 8";
+		rLen = 0;
+		rLoc = 102;
+		rType = 0;
+		vrLen = 796;
+		vrLoc = 0;
+	};
+	37A2640A04ECA370000001CF = {
+		fRef = 37C3CB3704CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickView.m: 135";
+		rLen = 0;
+		rLoc = 4637;
+		rType = 0;
+		vrLen = 2038;
+		vrLoc = 2906;
+	};
+	37A2640B04ECA370000001CF = {
+		fRef = 37A2648604ECA370000001CF;
+		glyphRangeLength = 1710;
+		glyphRangeLocation = 16306;
+		isa = PBXDocBookmark;
+		name = "NSUserDefaults.html: synchronize ...";
+	};
+	37A2640C04ECA370000001CF = {
+		fRef = 37A2648704ECA370000001CF;
+		glyphRangeLength = 1660;
+		glyphRangeLocation = 64662;
+		isa = PBXDocBookmark;
+		name = "NSWindow.html: setFrameOrig...";
+	};
+	37A2640D04ECA370000001CF = {
+		fRef = 37A2648804ECA370000001CF;
+		glyphRangeLength = 2123;
+		glyphRangeLocation = 57067;
+		isa = PBXDocBookmark;
+		name = "FoundationFunctions.html: NSLogv  Logs...";
+	};
+	37A2640E04ECA370000001CF = {
+		fRef = 37A2648904ECA370000001CF;
+		glyphRangeLength = 1263;
+		glyphRangeLocation = 9571;
+		isa = PBXDocBookmark;
+		name = "NSPopUpButton.html: selectItemAt...";
+	};
+	37A2640F04ECA370000001CF = {
+		fRef = 371E965104E1CAA9000001CF;
+		isa = PBXTextBookmark;
+		name = "CornerClickSupport.m: 178";
+		rLen = 0;
+		rLoc = 6141;
+		rType = 0;
+		vrLen = 1805;
+		vrLoc = 5574;
+	};
+	37A2641004ECA370000001CF = {
+		fRef = 37C3CB3404CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.h: loadFromPreferences:";
+		rLen = 0;
+		rLoc = 1137;
+		rType = 0;
+		vrLen = 1718;
+		vrLoc = 0;
+	};
+	37A2641104ECA370000001CF = {
+		fRef = 371E964D04E1C4C1000001CF;
+		isa = PBXTextBookmark;
+		name = "common_prefix.h: DEBUG_LEVEL";
+		rLen = 0;
+		rLoc = 408;
+		rType = 0;
+		vrLen = 528;
+		vrLoc = 0;
+	};
+	37A2641204ECA370000001CF = {
+		fRef = 37C3CB3204CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.h: runAppleScriptAction";
+		rLen = 0;
+		rLoc = 1207;
+		rType = 0;
+		vrLen = 1473;
+		vrLoc = 0;
+	};
+	37A2641304ECA370000001CF = {
+		fRef = 37C3CB3504CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.m: 557";
+		rLen = 5;
+		rLoc = 18558;
+		rType = 0;
+		vrLen = 1673;
+		vrLoc = 16890;
+	};
+	37A2641404ECA370000001CF = {
+		fRef = 37C3CB3304CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.m: 57";
+		rLen = 0;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1785;
+		vrLoc = 746;
+	};
+	37A2641504ECA370000001CF = {
+		fRef = F506C03C013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.h: 45";
+		rLen = 0;
+		rLoc = 1624;
+		rType = 0;
+		vrLen = 1906;
+		vrLoc = 153;
+	};
+	37A2641604ECA370000001CF = {
+		fRef = 37A2648A04ECA370000001CF;
+		glyphRangeLength = 1861;
+		glyphRangeLocation = 63349;
+		isa = PBXDocBookmark;
+		name = "NSView.html: setFrame  - ...";
+	};
+	37A2641704ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 724";
+		rLen = 0;
+		rLoc = 27733;
+		rType = 0;
+		vrLen = 2082;
+		vrLoc = 26191;
+	};
+	37A2641804ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 1005";
+		rLen = 0;
+		rLoc = 41072;
+		rType = 0;
+		vrLen = 2195;
+		vrLoc = 36242;
+	};
+	37A2641904ECA370000001CF = {
+		fRef = 37C3CB3304CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.m: 33";
+		rLen = 0;
+		rLoc = 1076;
+		rType = 0;
+		vrLen = 1682;
+		vrLoc = 890;
+	};
+	37A2641A04ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 865";
+		rLen = 116;
+		rLoc = 35909;
+		rType = 0;
+		vrLen = 2075;
+		vrLoc = 31854;
+	};
+	37A2641B04ECA370000001CF = {
+		fRef = 371E965104E1CAA9000001CF;
+		isa = PBXTextBookmark;
+		name = "CornerClickSupport.m: 245";
+		rLen = 13;
+		rLoc = 8690;
+		rType = 0;
+		vrLen = 2595;
+		vrLoc = 8257;
+	};
+	37A2641C04ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 870";
+		rLen = 13;
+		rLoc = 36131;
+		rType = 0;
+		vrLen = 1895;
+		vrLoc = 31631;
+	};
+	37A2641D04ECA370000001CF = {
+		fRef = 371E965104E1CAA9000001CF;
+		isa = PBXTextBookmark;
+		name = "CornerClickSupport.m: 235";
+		rLen = 12;
+		rLoc = 8450;
+		rType = 0;
+		vrLen = 1857;
+		vrLoc = 7185;
+	};
+	37A2641E04ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 124";
+		rLen = 12;
+		rLoc = 4960;
+		rType = 0;
+		vrLen = 2263;
+		vrLoc = 3383;
+	};
+	37A2641F04ECA370000001CF = {
+		fRef = 371E965104E1CAA9000001CF;
+		isa = PBXTextBookmark;
+		name = "CornerClickSupport.m: 174";
+		rLen = 12;
+		rLoc = 5952;
+		rType = 0;
+		vrLen = 1760;
+		vrLoc = 5560;
+	};
+	37A2642004ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 865";
+		rLen = 116;
+		rLoc = 35909;
+		rType = 0;
+		vrLen = 1811;
+		vrLoc = 31522;
+	};
+	37A2642104ECA370000001CF = {
+		fRef = 371E965104E1CAA9000001CF;
+		isa = PBXTextBookmark;
+		name = "CornerClickSupport.m: 196";
+		rLen = 0;
+		rLoc = 7089;
+		rType = 0;
+		vrLen = 1883;
+		vrLoc = 5670;
+	};
+	37A2642204ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 23";
+		rLen = 27;
+		rLoc = 801;
+		rType = 0;
+		vrLen = 1748;
+		vrLoc = 150;
+	};
+	37A2642304ECA370000001CF = {
+		fRef = 371E965104E1CAA9000001CF;
+		isa = PBXTextBookmark;
+		name = "CornerClickSupport.m: 192";
+		rLen = 0;
+		rLoc = 7003;
+		rType = 0;
+		vrLen = 1884;
+		vrLoc = 5671;
+	};
+	37A2642404ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 642";
+		rLen = 0;
+		rLoc = 26652;
+		rType = 0;
+		vrLen = 1547;
+		vrLoc = 23397;
+	};
+	37A2642504ECA370000001CF = {
+		fRef = 371E965104E1CAA9000001CF;
+		isa = PBXTextBookmark;
+		name = "CornerClickSupport.m: 230";
+		rLen = 0;
+		rLoc = 8108;
+		rType = 0;
+		vrLen = 1755;
+		vrLoc = 7320;
+	};
+	37A2642604ECA370000001CF = {
+		fRef = 37C3CB3304CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.m: 156";
+		rLen = 0;
+		rLoc = 4061;
+		rType = 0;
+		vrLen = 1030;
+		vrLoc = 3192;
+	};
+	37A2642704ECA370000001CF = {
+		fRef = 371E965104E1CAA9000001CF;
+		isa = PBXTextBookmark;
+		name = "CornerClickSupport.m: 182";
+		rLen = 0;
+		rLoc = 6378;
+		rType = 0;
+		vrLen = 1938;
+		vrLoc = 5730;
+	};
+	37A2642804ECA370000001CF = {
+		fRef = 37C3CB3304CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.m: 153";
+		rLen = 0;
+		rLoc = 3974;
+		rType = 0;
+		vrLen = 1001;
+		vrLoc = 3192;
+	};
+	37A2642904ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 600";
+		rLen = 0;
+		rLoc = 25234;
+		rType = 0;
+		vrLen = 1314;
+		vrLoc = 22279;
+	};
+	37A2642A04ECA370000001CF = {
+		fRef = 371E965104E1CAA9000001CF;
+		isa = PBXTextBookmark;
+		name = "CornerClickSupport.m: 433";
+		rLen = 0;
+		rLoc = 16874;
+		rType = 0;
+		vrLen = 2334;
+		vrLoc = 14976;
+	};
+	37A2642B04ECA370000001CF = {
+		fRef = 37C3CB3504CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.m: tlView";
+		rLen = 13;
+		rLoc = 7386;
+		rType = 0;
+		vrLen = 2159;
+		vrLoc = 7947;
+	};
+	37A2642C04ECA370000001CF = {
+		fRef = 37C3CB3704CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickView.m: 21";
+		rLen = 0;
+		rLoc = 687;
+		rType = 0;
+		vrLen = 1419;
+		vrLoc = 0;
+	};
+	37A2642D04ECA370000001CF = {
+		fRef = 37C3CB3204CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.h: 6";
+		rLen = 0;
+		rLoc = 105;
+		rType = 0;
+		vrLen = 1338;
+		vrLoc = 0;
+	};
+	37A2642E04ECA370000001CF = {
+		fRef = 37C3CB3304CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.m: 247";
+		rLen = 0;
+		rLoc = 7961;
+		rType = 0;
+		vrLen = 1115;
+		vrLoc = 4692;
+	};
+	37A2642F04ECA370000001CF = {
+		fRef = 37C3CB3204CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.h: 6";
+		rLen = 0;
+		rLoc = 105;
+		rType = 0;
+		vrLen = 1338;
+		vrLoc = 0;
+	};
+	37A2643004ECA370000001CF = {
+		fRef = 37C3CB3304CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.m: 247";
+		rLen = 0;
+		rLoc = 7961;
+		rType = 0;
+		vrLen = 1124;
+		vrLoc = 4692;
+	};
+	37A2643104ECA370000001CF = {
+		fRef = 37C3CB3204CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.h: 6";
+		rLen = 0;
+		rLoc = 105;
+		rType = 0;
+		vrLen = 1338;
+		vrLoc = 0;
+	};
+	37A2643204ECA370000001CF = {
+		fRef = 37C3CB3304CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.m: 247";
+		rLen = 0;
+		rLoc = 8162;
+		rType = 0;
+		vrLen = 1132;
+		vrLoc = 4668;
+	};
+	37A2643304ECA370000001CF = {
+		fRef = 37C3CB3204CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.h: 6";
+		rLen = 0;
+		rLoc = 105;
+		rType = 0;
+		vrLen = 1338;
+		vrLoc = 0;
+	};
+	37A2643404ECA370000001CF = {
+		fRef = 37C3CB3304CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.m: 248";
+		rLen = 0;
+		rLoc = 8178;
+		rType = 0;
+		vrLen = 1121;
+		vrLoc = 4720;
+	};
+	37A2643504ECA370000001CF = {
+		fRef = 371E965104E1CAA9000001CF;
+		isa = PBXTextBookmark;
+		name = "CornerClickSupport.m: key";
+		rLen = 0;
+		rLoc = 5868;
+		rType = 0;
+		vrLen = 1799;
+		vrLoc = 5574;
+	};
+	37A2643604ECA370000001CF = {
+		fRef = 37C3CB3304CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.m: 76";
+		rLen = 0;
+		rLoc = 2915;
+		rType = 0;
+		vrLen = 1474;
+		vrLoc = 1334;
+	};
+	37A2643704ECA370000001CF = {
+		fRef = 37C3CB3504CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.m: tlView";
+		rLen = 13;
+		rLoc = 7386;
+		rType = 0;
+		vrLen = 2123;
+		vrLoc = 7938;
+	};
+	37A2643804ECA370000001CF = {
+		fRef = 37C3CB3704CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickView.m: initWithFrame:actions:corner:";
+		rLen = 89;
+		rLoc = 294;
+		rType = 0;
+		vrLen = 1544;
+		vrLoc = 167;
+	};
+	37A2643904ECA370000001CF = {
+		fRef = 37C3CB3604CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickView.h: 10";
+		rLen = 0;
+		rLoc = 142;
+		rType = 0;
+		vrLen = 823;
+		vrLoc = 0;
+	};
+	37A2643A04ECA370000001CF = {
+		fRef = 37C3CB3704CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickView.m: 21";
+		rLen = 0;
+		rLoc = 684;
+		rType = 0;
+		vrLen = 1420;
+		vrLoc = 0;
+	};
+	37A2643B04ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 702";
+		rLen = 36;
+		rLoc = 29336;
+		rType = 0;
+		vrLen = 1509;
+		vrLoc = 25505;
+	};
+	37A2643C04ECA370000001CF = {
+		fRef = 37C3CB3504CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.m: loadFromSettings";
+		rLen = 2;
+		rLoc = 72;
+		rType = 0;
+		vrLen = 1737;
+		vrLoc = 0;
+	};
+	37A2643D04ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 712";
+		rLen = 0;
+		rLoc = 29734;
+		rType = 0;
+		vrLen = 1534;
+		vrLoc = 25505;
+	};
+	37A2643E04ECA370000001CF = {
+		fRef = 37C3CB3504CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.m: loadFromSettings";
+		rLen = 2;
+		rLoc = 72;
+		rType = 0;
+		vrLen = 1737;
+		vrLoc = 0;
+	};
+	37A2643F04ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 1027";
+		rLen = 22;
+		rLoc = 41798;
+		rType = 0;
+		vrLen = 1863;
+		vrLoc = 37106;
+	};
+	37A2644004ECA370000001CF = {
+		fRef = 37C3CB3504CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.m: 24";
+		rLen = 0;
+		rLoc = 636;
+		rType = 0;
+		vrLen = 1655;
+		vrLoc = 596;
+	};
+	37A2644104ECA370000001CF = {
+		fRef = 37C3CB3404CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.h: 18";
+		rLen = 0;
+		rLoc = 441;
+		rType = 0;
+		vrLen = 1763;
+		vrLoc = 0;
+	};
+	37A2644204ECA370000001CF = {
+		fRef = 37C3CB3504CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.m: 292";
+		rLen = 10;
+		rLoc = 7846;
+		rType = 0;
+		vrLen = 2127;
+		vrLoc = 7663;
+	};
+	37A2644304ECA370000001CF = {
+		fRef = 37C3CB3404CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.h: 18";
+		rLen = 0;
+		rLoc = 441;
+		rType = 0;
+		vrLen = 1768;
+		vrLoc = 0;
+	};
+	37A2644404ECA370000001CF = {
+		fRef = 37C3CB3504CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.m: 521";
+		rLen = 27;
+		rLoc = 15602;
+		rType = 0;
+		vrLen = 2038;
+		vrLoc = 16419;
+	};
+	37A2644504ECA370000001CF = {
+		fRef = 37C3CB3704CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickView.m: 260";
+		rLen = 39;
+		rLoc = 7994;
+		rType = 0;
+		vrLen = 1210;
+		vrLoc = 7081;
+	};
+	37A2644604ECA370000001CF = {
+		fRef = 37C3CB3504CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.m: 271";
+		rLen = 15;
+		rLoc = 6697;
+		rType = 0;
+		vrLen = 2272;
+		vrLoc = 7586;
+	};
+	37A2644704ECA370000001CF = {
+		fRef = 37C3CB3704CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickView.m: 46";
+		rLen = 0;
+		rLoc = 1283;
+		rType = 0;
+		vrLen = 1587;
+		vrLoc = 420;
+	};
+	37A2644804ECA370000001CF = {
+		fRef = 37C3CB3604CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickView.h: 8";
+		rLen = 0;
+		rLoc = 102;
+		rType = 0;
+		vrLen = 796;
+		vrLoc = 0;
+	};
+	37A2644904ECA370000001CF = {
+		fRef = 37C3CB3704CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickView.m: 135";
+		rLen = 0;
+		rLoc = 4637;
+		rType = 0;
+		vrLen = 2038;
+		vrLoc = 2906;
+	};
+	37A2644A04ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 592";
+		rLen = 15;
+		rLoc = 24849;
+		rType = 0;
+		vrLen = 1304;
+		vrLoc = 22370;
+	};
+	37A2644B04ECA370000001CF = {
+		fRef = 37C3CB3504CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.m: 5";
+		rLen = 26;
+		rLoc = 46;
+		rType = 0;
+		vrLen = 1699;
+		vrLoc = 0;
+	};
+	37A2644C04ECA370000001CF = {
+		fRef = 371E965104E1CAA9000001CF;
+		isa = PBXTextBookmark;
+		name = "CornerClickSupport.m: asDictionary";
+		rLen = 0;
+		rLoc = 15465;
+		rType = 0;
+		vrLen = 1943;
+		vrLoc = 13966;
+	};
+	37A2644D04ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 592";
+		rLen = 15;
+		rLoc = 24849;
+		rType = 0;
+		vrLen = 1304;
+		vrLoc = 22370;
+	};
+	37A2644E04ECA370000001CF = {
+		fRef = 37C3CB3504CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.m: 22";
+		rLen = 27;
+		rLoc = 497;
+		rType = 0;
+		vrLen = 1738;
+		vrLoc = 0;
+	};
+	37A2644F04ECA370000001CF = {
+		fRef = 371E965104E1CAA9000001CF;
+		isa = PBXTextBookmark;
+		name = "CornerClickSupport.m: __GNUC__";
+		rLen = 0;
+		rLoc = 2;
+		rType = 0;
+		vrLen = 1435;
+		vrLoc = 0;
+	};
+	37A2645004ECA370000001CF = {
+		fRef = 37C3CB3504CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.m: 13";
+		rLen = 0;
+		rLoc = 221;
+		rType = 0;
+		vrLen = 1738;
+		vrLoc = 0;
+	};
+	37A2645104ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 805";
+		rLen = 0;
+		rLoc = 33653;
+		rType = 0;
+		vrLen = 2464;
+		vrLoc = 28639;
+	};
+	37A2645204ECA370000001CF = {
+		fRef = 37C3CB3504CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.m: 39";
+		rLen = 0;
+		rLoc = 1262;
+		rType = 0;
+		vrLen = 1759;
+		vrLoc = 203;
+	};
+	37A2645304ECA370000001CF = {
+		fRef = F506C03C013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.h: screenIDClicked:";
+		rLen = 0;
+		rLoc = 2445;
+		rType = 0;
+		vrLen = 1836;
+		vrLoc = 2034;
+	};
+	37A2645404ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: nextEvt";
+		rLen = 0;
+		rLoc = 31351;
+		rType = 0;
+		vrLen = 1852;
+		vrLoc = 27220;
+	};
+	37A2645504ECA370000001CF = {
+		fRef = F506C03C013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.h: screenIDClicked:";
+		rLen = 0;
+		rLoc = 2445;
+		rType = 0;
+		vrLen = 1959;
+		vrLoc = 262;
+	};
+	37A2645604ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: nextEvt";
+		rLen = 0;
+		rLoc = 31108;
+		rType = 0;
+		vrLen = 1734;
+		vrLoc = 27220;
+	};
+	37A2645704ECA370000001CF = {
+		fRef = F506C03C013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.h: 17";
+		rLen = 0;
+		rLoc = 402;
+		rType = 0;
+		vrLen = 1923;
+		vrLoc = 262;
+	};
+	37A2645804ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 732";
+		rLen = 66;
+		rLoc = 30426;
+		rType = 0;
+		vrLen = 1607;
+		vrLoc = 25997;
+	};
+	37A2645904ECA370000001CF = {
+		fRef = F506C03C013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.h: doChooseScreen:withPopupWindow:";
+		rLen = 0;
+		rLoc = 3843;
+		rType = 0;
+		vrLen = 1876;
+		vrLoc = 2064;
+	};
+	37A2645A04ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 765";
+		rLen = 0;
+		rLoc = 31156;
+		rType = 0;
+		vrLen = 1713;
+		vrLoc = 27108;
+	};
+	37A2645B04ECA370000001CF = {
+		fRef = F506C03C013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.h: 41";
+		rLen = 14;
+		rLoc = 1575;
+		rType = 0;
+		vrLen = 1918;
+		vrLoc = 307;
+	};
+	37A2645C04ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 1032";
+		rLen = 0;
+		rLoc = 41606;
+		rType = 0;
+		vrLen = 2169;
+		vrLoc = 36466;
+	};
+	37A2645D04ECA370000001CF = {
+		fRef = 37C3CB3504CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.m: 308";
+		rLen = 22;
+		rLoc = 8388;
+		rType = 0;
+		vrLen = 1691;
+		vrLoc = 9751;
+	};
+	37A2645E04ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: imgcell";
+		rLen = 0;
+		rLoc = 285;
+		rType = 0;
+		vrLen = 1660;
+		vrLoc = 35;
+	};
+	37A2645F04ECA370000001CF = {
+		fRef = 37C3CB3304CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.m: sameanswer";
+		rLen = 0;
+		rLoc = 6379;
+		rType = 0;
+		vrLen = 1067;
+		vrLoc = 3812;
+	};
+	37A2646004ECA370000001CF = {
+		fRef = 37C3CB3204CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.h: 16";
+		rLen = 0;
+		rLoc = 311;
+		rType = 0;
+		vrLen = 1367;
+		vrLoc = 0;
+	};
+	37A2646104ECA370000001CF = {
+		fRef = 37C3CB3304CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.m: 313";
+		rLen = 0;
+		rLoc = 7829;
+		rType = 0;
+		vrLen = 1137;
+		vrLoc = 6985;
+	};
+	37A2646204ECA370000001CF = {
+		fRef = 37C3CB3504CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.m: 312";
+		rLen = 2;
+		rLoc = 8600;
+		rType = 0;
+		vrLen = 1691;
+		vrLoc = 9751;
+	};
+	37A2646304ECA370000001CF = {
+		fRef = 37C3CB3404CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.h: 13";
+		rLen = 0;
+		rLoc = 245;
+		rType = 0;
+		vrLen = 1780;
+		vrLoc = 0;
+	};
+	37A2646404ECA370000001CF = {
+		fRef = 37C3CB3304CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.m: 190";
+		rLen = 73;
+		rLoc = 4633;
+		rType = 0;
+		vrLen = 1575;
+		vrLoc = 4018;
+	};
+	37A2646504ECA370000001CF = {
+		fRef = 37C3CB3204CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.h: stringNameForActionType:";
+		rLen = 0;
+		rLoc = 1219;
+		rType = 0;
+		vrLen = 1442;
+		vrLoc = 0;
+	};
+	37A2646604ECA370000001CF = {
+		fRef = 37C3CB3304CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.m: 219";
+		rLen = 29;
+		rLoc = 5637;
+		rType = 0;
+		vrLen = 1604;
+		vrLoc = 4468;
+	};
+	37A2646704ECA370000001CF = {
+		fRef = 37C3CB3204CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.h: 40";
+		rLen = 0;
+		rLoc = 1207;
+		rType = 0;
+		vrLen = 1473;
+		vrLoc = 0;
+	};
+	37A2646804ECA370000001CF = {
+		fRef = 37C3CB3504CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.m: 276";
+		rLen = 0;
+		rLoc = 8604;
+		rType = 0;
+		vrLen = 2302;
+		vrLoc = 7339;
+	};
+	37A2646904ECA370000001CF = {
+		fRef = 37C3CB3404CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.h: 14";
+		rLen = 0;
+		rLoc = 275;
+		rType = 0;
+		vrLen = 1784;
+		vrLoc = 0;
+	};
+	37A2646A04ECA370000001CF = {
+		fRef = 37C3CB3304CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.m: 239";
+		rLen = 0;
+		rLoc = 6253;
+		rType = 0;
+		vrLen = 1414;
+		vrLoc = 4953;
+	};
+	37A2646B04ECA370000001CF = {
+		fRef = 37C3CB3504CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.m: 276";
+		rLen = 0;
+		rLoc = 8604;
+		rType = 0;
+		vrLen = 1624;
+		vrLoc = 16939;
+	};
+	37A2646C04ECA370000001CF = {
+		fRef = 371E965104E1CAA9000001CF;
+		isa = PBXTextBookmark;
+		name = "CornerClickSupport.m: 178";
+		rLen = 0;
+		rLoc = 6141;
+		rType = 0;
+		vrLen = 1805;
+		vrLoc = 5574;
+	};
+	37A2646D04ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 894";
+		rLen = 0;
+		rLoc = 36561;
+		rType = 0;
+		vrLen = 2139;
+		vrLoc = 32142;
+	};
+	37A2646E04ECA370000001CF = {
+		fRef = 371E964D04E1C4C1000001CF;
+		isa = PBXTextBookmark;
+		name = "common_prefix.h: ACT_FILE";
+		rLen = 0;
+		rLoc = 405;
+		rType = 0;
+		vrLen = 504;
+		vrLoc = 0;
+	};
+	37A2646F04ECA370000001CF = {
+		fRef = 37C3CB3504CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.m: 557";
+		rLen = 5;
+		rLoc = 18558;
+		rType = 0;
+		vrLen = 1624;
+		vrLoc = 16939;
+	};
+	37A2647004ECA370000001CF = {
+		fRef = 37C3CB3304CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.m: 239";
+		rLen = 0;
+		rLoc = 6253;
+		rType = 0;
+		vrLen = 1412;
+		vrLoc = 4953;
+	};
+	37A2647104ECA370000001CF = {
+		fRef = 37C3CB3404CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.h: loadFromPreferences:";
+		rLen = 0;
+		rLoc = 1137;
+		rType = 0;
+		vrLen = 1718;
+		vrLoc = 0;
+	};
+	37A2647204ECA370000001CF = {
+		fRef = 371E964D04E1C4C1000001CF;
+		isa = PBXTextBookmark;
+		name = "common_prefix.h: DEBUG_LEVEL";
+		rLen = 0;
+		rLoc = 408;
+		rType = 0;
+		vrLen = 528;
+		vrLoc = 0;
+	};
+	37A2647304ECA370000001CF = {
+		fRef = 37C3CB3504CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.m: 557";
+		rLen = 5;
+		rLoc = 18558;
+		rType = 0;
+		vrLen = 1673;
+		vrLoc = 16890;
+	};
+	37A2647404ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 652";
+		rLen = 0;
+		rLoc = 27680;
+		rType = 0;
+		vrLen = 1645;
+		vrLoc = 23497;
+	};
+	37A2647504ECA370000001CF = {
+		fRef = F506C03C013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.h: 22";
+		rLen = 0;
+		rLoc = 668;
+		rType = 0;
+		vrLen = 1914;
+		vrLoc = 153;
+	};
+	37A2647604ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 554";
+		rLen = 0;
+		rLoc = 23323;
+		rType = 0;
+		vrLen = 1963;
+		vrLoc = 20386;
+	};
+	37A2647704ECA370000001CF = {
+		fRef = 37C3CB3204CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.h: runAppleScriptAction";
+		rLen = 0;
+		rLoc = 1207;
+		rType = 0;
+		vrLen = 1473;
+		vrLoc = 0;
+	};
+	37A2647804ECA370000001CF = {
+		fRef = 37C3CB3304CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.m: 79";
+		rLen = 0;
+		rLoc = 2799;
+		rType = 0;
+		vrLen = 1767;
+		vrLoc = 1205;
+	};
+	37A2647904ECA370000001CF = {
+		fRef = 37C3CB3504CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "Clicker.m: 557";
+		rLen = 5;
+		rLoc = 18558;
+		rType = 0;
+		vrLen = 1673;
+		vrLoc = 16890;
+	};
+	37A2647A04ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 532";
+		rLen = 0;
+		rLoc = 21181;
+		rType = 0;
+		vrLen = 2170;
+		vrLoc = 19144;
+	};
+	37A2647B04ECA370000001CF = {
+		fRef = 37C3CB3304CDAD30000001CF;
+		isa = PBXTextBookmark;
+		name = "ClickAction.m: 57";
+		rLen = 0;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1785;
+		vrLoc = 746;
+	};
+	37A2647C04ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 586";
+		rLen = 0;
+		rLoc = 23322;
+		rType = 0;
+		vrLen = 1957;
+		vrLoc = 22199;
+	};
+	37A2647D04ECA370000001CF = {
+		fRef = F506C03C013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.h: 31";
+		rLen = 0;
+		rLoc = 1031;
+		rType = 0;
+		vrLen = 1914;
+		vrLoc = 153;
+	};
+	37A2647E04ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 708";
+		rLen = 0;
+		rLoc = 26920;
+		rType = 0;
+		vrLen = 1880;
+		vrLoc = 25919;
+	};
+	37A2647F04ECA370000001CF = {
+		fRef = F506C03C013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.h: 45";
+		rLen = 0;
+		rLoc = 1624;
+		rType = 0;
+		vrLen = 1906;
+		vrLoc = 153;
+	};
+	37A2648004ECA370000001CF = {
+		fRef = 37A2648204ECA370000001CF;
+		glyphRangeLength = 1861;
+		glyphRangeLocation = 63349;
+		isa = PBXDocBookmark;
+		name = "NSView.html: setFrame  - ...";
+	};
+	37A2648104ECA370000001CF = {
+		fRef = F506C03D013D9D7901CA16C8;
+		isa = PBXTextBookmark;
+		name = "ClickBoxPref.m: 733";
+		rLen = 0;
+		rLoc = 28068;
+		rType = 0;
+		vrLen = 2157;
+		vrLoc = 26725;
+	};
+	37A2648204ECA370000001CF = {
+		isa = PBXFileReference;
+		name = NSView.html;
+		path = /System/Library/Frameworks/AppKit.framework/Versions/C/Resources/English.lproj/Documentation/Reference/ObjC_classic/Classes/NSView.html;
+		refType = 0;
+	};
+	37A2648304ECA370000001CF = {
+		isa = PBXFileReference;
+		name = NSArray.html;
+		path = /System/Library/Frameworks/Foundation.framework/Versions/C/Resources/English.lproj/Documentation/Reference/ObjC_classic/Classes/NSArray.html;
+		refType = 0;
+	};
+	37A2648404ECA370000001CF = {
+		isa = PBXFileReference;
+		name = NSObject.html;
+		path = /System/Library/Frameworks/Foundation.framework/Versions/C/Resources/English.lproj/Documentation/Reference/ObjC_classic/Classes/NSObject.html;
+		refType = 0;
+	};
+	37A2648504ECA370000001CF = {
+		isa = PBXFileReference;
+		name = NSScreen.html;
+		path = /System/Library/Frameworks/AppKit.framework/Versions/C/Resources/English.lproj/Documentation/Reference/ObjC_classic/Classes/NSScreen.html;
+		refType = 0;
+	};
+	37A2648604ECA370000001CF = {
+		isa = PBXFileReference;
+		name = NSUserDefaults.html;
+		path = /System/Library/Frameworks/Foundation.framework/Versions/C/Resources/English.lproj/Documentation/Reference/ObjC_classic/Classes/NSUserDefaults.html;
+		refType = 0;
+	};
+	37A2648704ECA370000001CF = {
+		isa = PBXFileReference;
+		name = NSWindow.html;
+		path = /System/Library/Frameworks/AppKit.framework/Versions/C/Resources/English.lproj/Documentation/Reference/ObjC_classic/Classes/NSWindow.html;
+		refType = 0;
+	};
+	37A2648804ECA370000001CF = {
+		isa = PBXFileReference;
+		name = FoundationFunctions.html;
+		path = /System/Library/Frameworks/Foundation.framework/Versions/C/Resources/English.lproj/Documentation/Reference/ObjC_classic/Functions/FoundationFunctions.html;
+		refType = 0;
+	};
+	37A2648904ECA370000001CF = {
 		isa = PBXFileReference;
 		name = NSPopUpButton.html;
 		path = /System/Library/Frameworks/AppKit.framework/Versions/C/Resources/English.lproj/Documentation/Reference/ObjC_classic/Classes/NSPopUpButton.html;
 		refType = 0;
 	};
-	37A9F80D04E4BFCC000001CF = {
-		fRef = 37C3CB3604CDAD30000001CF;
-		isa = PBXTextBookmark;
-		name = "ClickView.h: 10";
-		rLen = 0;
-		rLoc = 169;
-		rType = 0;
-		vrLen = 823;
-		vrLoc = 0;
+	37A2648A04ECA370000001CF = {
+		isa = PBXFileReference;
+		name = NSView.html;
+		path = /System/Library/Frameworks/AppKit.framework/Versions/C/Resources/English.lproj/Documentation/Reference/ObjC_classic/Classes/NSView.html;
+		refType = 0;
 	};
 	37A9F80E04E4BFCC000001CF = {
 		fRef = 37C3CB3A04CDAD30000001CF;
@@ -9370,29 +10741,12 @@
 		vrLen = 1533;
 		vrLoc = 0;
 	};
-	37A9F80F04E4BFCC000001CF = {
-		fRef = 37A9F8D004E4BFCC000001CF;
-		glyphRangeLength = 3538;
-		glyphRangeLocation = 10619;
-		isa = PBXDocBookmark;
-		name = "NSView.html: addTrackingR...";
-	};
 	37A9F81004E4BFCC000001CF = {
 		fRef = 37A9F8D104E4BFCC000001CF;
 		glyphRangeLength = 1150;
 		glyphRangeLocation = 17749;
 		isa = PBXDocBookmark;
 		name = "NSEvent.html: NSFlagsChang...";
-	};
-	37A9F81104E4BFCC000001CF = {
-		fRef = 37C3CB3404CDAD30000001CF;
-		isa = PBXTextBookmark;
-		name = "Clicker.h: 18";
-		rLen = 0;
-		rLoc = 420;
-		rType = 0;
-		vrLen = 1763;
-		vrLoc = 0;
 	};
 	37A9F81204E4BFCC000001CF = {
 		fRef = 32DBCFA20370C41700C91783;
@@ -9412,26 +10766,6 @@
 		rLoc = 317;
 		rType = 0;
 		vrLen = 401;
-		vrLoc = 0;
-	};
-	37A9F81404E4BFCC000001CF = {
-		fRef = 371E964D04E1C4C1000001CF;
-		isa = PBXTextBookmark;
-		name = "common_prefix.h: 3";
-		rLen = 0;
-		rLoc = 82;
-		rType = 0;
-		vrLen = 433;
-		vrLoc = 0;
-	};
-	37A9F81504E4BFCC000001CF = {
-		fRef = 37C3CB3204CDAD30000001CF;
-		isa = PBXTextBookmark;
-		name = "ClickAction.h: initWithType:andModifiers:andString:forCorner:andClicker:";
-		rLen = 147;
-		rLoc = 311;
-		rType = 0;
-		vrLen = 1326;
 		vrLoc = 0;
 	};
 	37A9F81604E4BFCC000001CF = {
@@ -9458,13 +10792,6 @@
 		isa = PBXDocBookmark;
 		name = "NSMutableDictionary.html: stations rem...";
 	};
-	37A9F81904E4BFCC000001CF = {
-		fRef = 37A9F8D504E4BFCC000001CF;
-		glyphRangeLength = 1596;
-		glyphRangeLocation = 14745;
-		isa = PBXDocBookmark;
-		name = "NSUserDefaults.html: setPersisten...";
-	};
 	37A9F81A04E4BFCC000001CF = {
 		fRef = 37A9F8D604E4BFCC000001CF;
 		isa = PBXTextBookmark;
@@ -9489,26 +10816,6 @@
 		isa = PBXDocBookmark;
 		name = "NSDictionary.html: Class at a G...";
 	};
-	37A9F81D04E4BFCC000001CF = {
-		fRef = 37C3CB3704CDAD30000001CF;
-		isa = PBXTextBookmark;
-		name = "ClickView.m: 217";
-		rLen = 0;
-		rLoc = 6817;
-		rType = 0;
-		vrLen = 1220;
-		vrLoc = 6006;
-	};
-	37A9F81E04E4BFCC000001CF = {
-		fRef = F506C03C013D9D7901CA16C8;
-		isa = PBXTextBookmark;
-		name = "ClickBoxPref.h: syncCurrentAction";
-		rLen = 0;
-		rLoc = 3301;
-		rType = 0;
-		vrLen = 1795;
-		vrLoc = 2034;
-	};
 	37A9F82204E4BFCC000001CF = {
 		fRef = 371E965004E1CAA9000001CF;
 		isa = PBXTextBookmark;
@@ -9524,7 +10831,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 193";
 		rLen = 0;
-		rLoc = 8185;
+		rLoc = 9350;
 		rType = 0;
 		vrLen = 2309;
 		vrLoc = 1374;
@@ -9534,7 +10841,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: ";
 		rLen = 0;
-		rLoc = 2287;
+		rLoc = 2158;
 		rType = 0;
 		vrLen = 1434;
 		vrLoc = 74;
@@ -9554,7 +10861,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 193";
 		rLen = 0;
-		rLoc = 8185;
+		rLoc = 9350;
 		rType = 0;
 		vrLen = 2311;
 		vrLoc = 1094;
@@ -9564,7 +10871,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: ";
 		rLen = 54;
-		rLoc = 2270;
+		rLoc = 2141;
 		rType = 0;
 		vrLen = 1313;
 		vrLoc = 0;
@@ -9584,7 +10891,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 34";
 		rLen = 2;
-		rLoc = 2325;
+		rLoc = 2196;
 		rType = 0;
 		vrLen = 1313;
 		vrLoc = 0;
@@ -9594,7 +10901,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: screenEntry:";
 		rLen = 11;
-		rLoc = 757;
+		rLoc = 778;
 		rType = 0;
 		vrLen = 1630;
 		vrLoc = 0;
@@ -9604,7 +10911,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: cwind";
 		rLen = 0;
-		rLoc = 3045;
+		rLoc = 2916;
 		rType = 0;
 		vrLen = 1520;
 		vrLoc = 593;
@@ -9614,7 +10921,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: screenEntry:";
 		rLen = 0;
-		rLoc = 753;
+		rLoc = 774;
 		rType = 0;
 		vrLen = 1625;
 		vrLoc = 0;
@@ -9624,7 +10931,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 29";
 		rLen = 0;
-		rLoc = 1000;
+		rLoc = 871;
 		rType = 0;
 		vrLen = 1340;
 		vrLoc = 0;
@@ -9644,7 +10951,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 43";
 		rLen = 0;
-		rLoc = 1662;
+		rLoc = 1533;
 		rType = 0;
 		vrLen = 1533;
 		vrLoc = 0;
@@ -9654,7 +10961,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 199";
 		rLen = 11;
-		rLoc = 8391;
+		rLoc = 9556;
 		rType = 0;
 		vrLen = 2014;
 		vrLoc = 5922;
@@ -9674,7 +10981,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 249";
 		rLen = 11;
-		rLoc = 9888;
+		rLoc = 11285;
 		rType = 0;
 		vrLen = 1597;
 		vrLoc = 7956;
@@ -9684,7 +10991,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 56";
 		rLen = 43;
-		rLoc = 1929;
+		rLoc = 1800;
 		rType = 0;
 		vrLen = 1499;
 		vrLoc = 572;
@@ -9694,7 +11001,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: createClickWindowAtCorner:withActionList:onScreen:";
 		rLen = 0;
-		rLoc = 836;
+		rLoc = 857;
 		rType = 0;
 		vrLen = 1671;
 		vrLoc = 0;
@@ -9704,7 +11011,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 74";
 		rLen = 13;
-		rLoc = 2382;
+		rLoc = 2253;
 		rType = 0;
 		vrLen = 1319;
 		vrLoc = 1450;
@@ -9714,7 +11021,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: clearScreen:";
 		rLen = 0;
-		rLoc = 836;
+		rLoc = 857;
 		rType = 0;
 		vrLen = 1671;
 		vrLoc = 0;
@@ -9724,7 +11031,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 510";
 		rLen = 0;
-		rLoc = 17140;
+		rLoc = 15480;
 		rType = 0;
 		vrLen = 1948;
 		vrLoc = 16121;
@@ -9734,7 +11041,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.h: 10";
 		rLen = 0;
-		rLoc = 169;
+		rLoc = 142;
 		rType = 0;
 		vrLen = 823;
 		vrLoc = 0;
@@ -9744,7 +11051,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: clearScreen:";
 		rLen = 0;
-		rLoc = 836;
+		rLoc = 857;
 		rType = 0;
 		vrLen = 1671;
 		vrLoc = 0;
@@ -9754,7 +11061,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 422";
 		rLen = 0;
-		rLoc = 14070;
+		rLoc = 12410;
 		rType = 0;
 		vrLen = 1864;
 		vrLoc = 13238;
@@ -9774,7 +11081,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 761";
 		rLen = 39;
-		rLoc = 27009;
+		rLoc = 30901;
 		rType = 0;
 		vrLen = 2140;
 		vrLoc = 30102;
@@ -9784,7 +11091,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 494";
 		rLen = 113;
-		rLoc = 16415;
+		rLoc = 14755;
 		rType = 0;
 		vrLen = 1949;
 		vrLoc = 15347;
@@ -9794,7 +11101,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: 44";
 		rLen = 0;
-		rLoc = 1664;
+		rLoc = 1619;
 		rType = 0;
 		vrLen = 1731;
 		vrLoc = 0;
@@ -9804,7 +11111,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 548";
 		rLen = 24;
-		rLoc = 18728;
+		rLoc = 17068;
 		rType = 0;
 		vrLen = 1713;
 		vrLoc = 17389;
@@ -9814,7 +11121,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: 26";
 		rLen = 0;
-		rLoc = 612;
+		rLoc = 633;
 		rType = 0;
 		vrLen = 1731;
 		vrLoc = 0;
@@ -9824,7 +11131,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 258";
 		rLen = 117;
-		rLoc = 7947;
+		rLoc = 6190;
 		rType = 0;
 		vrLen = 2072;
 		vrLoc = 7716;
@@ -9834,9 +11141,9 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: 18";
 		rLen = 10;
-		rLoc = 422;
+		rLoc = 443;
 		rType = 0;
-		vrLen = 1768;
+		vrLen = 1763;
 		vrLoc = 0;
 	};
 	37A9F84404E4BFCC000001CF = {
@@ -9844,7 +11151,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 304";
 		rLen = 0;
-		rLoc = 10060;
+		rLoc = 8599;
 		rType = 0;
 		vrLen = 1756;
 		vrLoc = 8570;
@@ -9854,7 +11161,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: 18";
 		rLen = 0;
-		rLoc = 420;
+		rLoc = 441;
 		rType = 0;
 		vrLen = 1763;
 		vrLoc = 0;
@@ -9864,7 +11171,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 552";
 		rLen = 0;
-		rLoc = 18504;
+		rLoc = 16844;
 		rType = 0;
 		vrLen = 1959;
 		vrLoc = 17275;
@@ -9874,7 +11181,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 249";
 		rLen = 11;
-		rLoc = 9888;
+		rLoc = 11285;
 		rType = 0;
 		vrLen = 1532;
 		vrLoc = 7956;
@@ -9894,7 +11201,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 39";
 		rLen = 0;
-		rLoc = 1172;
+		rLoc = 1176;
 		rType = 0;
 		vrLen = 1392;
 		vrLoc = 3;
@@ -9904,7 +11211,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 582";
 		rLen = 0;
-		rLoc = 19573;
+		rLoc = 17913;
 		rType = 0;
 		vrLen = 1740;
 		vrLoc = 18411;
@@ -9924,7 +11231,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 582";
 		rLen = 0;
-		rLoc = 19573;
+		rLoc = 17913;
 		rType = 0;
 		vrLen = 1682;
 		vrLoc = 18411;
@@ -9934,7 +11241,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 761";
 		rLen = 39;
-		rLoc = 27009;
+		rLoc = 30901;
 		rType = 0;
 		vrLen = 2140;
 		vrLoc = 30102;
@@ -9944,7 +11251,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 52";
 		rLen = 0;
-		rLoc = 1806;
+		rLoc = 1963;
 		rType = 0;
 		vrLen = 1826;
 		vrLoc = 496;
@@ -9954,7 +11261,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 203";
 		rLen = 0;
-		rLoc = 8230;
+		rLoc = 8007;
 		rType = 0;
 		vrLen = 1997;
 		vrLoc = 6638;
@@ -9964,7 +11271,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 52";
 		rLen = 0;
-		rLoc = 1806;
+		rLoc = 1963;
 		rType = 0;
 		vrLen = 1782;
 		vrLoc = 496;
@@ -9974,7 +11281,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 25";
 		rLen = 0;
-		rLoc = 391;
+		rLoc = 838;
 		rType = 0;
 		vrLen = 1639;
 		vrLoc = 150;
@@ -9994,7 +11301,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 52";
 		rLen = 0;
-		rLoc = 1806;
+		rLoc = 1963;
 		rType = 0;
 		vrLen = 1782;
 		vrLoc = 496;
@@ -10004,7 +11311,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 27";
 		rLen = 0;
-		rLoc = 465;
+		rLoc = 912;
 		rType = 0;
 		vrLen = 2349;
 		vrLoc = 3157;
@@ -10024,7 +11331,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 35";
 		rLen = 0;
-		rLoc = 1165;
+		rLoc = 1169;
 		rType = 0;
 		vrLen = 1376;
 		vrLoc = 0;
@@ -10034,7 +11341,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 891";
 		rLen = 116;
-		rLoc = 32184;
+		rLoc = 35909;
 		rType = 0;
 		vrLen = 2161;
 		vrLoc = 32953;
@@ -10044,7 +11351,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 52";
 		rLen = 0;
-		rLoc = 1806;
+		rLoc = 1963;
 		rType = 0;
 		vrLen = 1782;
 		vrLoc = 496;
@@ -10054,7 +11361,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 891";
 		rLen = 116;
-		rLoc = 32184;
+		rLoc = 35909;
 		rType = 0;
 		vrLen = 2143;
 		vrLoc = 32953;
@@ -10064,7 +11371,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 52";
 		rLen = 0;
-		rLoc = 1806;
+		rLoc = 1963;
 		rType = 0;
 		vrLen = 1782;
 		vrLoc = 496;
@@ -10074,7 +11381,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 191";
 		rLen = 10;
-		rLoc = 7078;
+		rLoc = 6855;
 		rType = 0;
 		vrLen = 1775;
 		vrLoc = 6370;
@@ -10084,7 +11391,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 61";
 		rLen = 0;
-		rLoc = 2098;
+		rLoc = 2255;
 		rType = 0;
 		vrLen = 1774;
 		vrLoc = 496;
@@ -10094,7 +11401,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 193";
 		rLen = 0;
-		rLoc = 7362;
+		rLoc = 7139;
 		rType = 0;
 		vrLen = 1697;
 		vrLoc = 6370;
@@ -10104,7 +11411,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 62";
 		rLen = 0;
-		rLoc = 2112;
+		rLoc = 2269;
 		rType = 0;
 		vrLen = 1788;
 		vrLoc = 496;
@@ -10114,7 +11421,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 910";
 		rLen = 0;
-		rLoc = 32569;
+		rLoc = 36294;
 		rType = 0;
 		vrLen = 2142;
 		vrLoc = 33672;
@@ -10124,7 +11431,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 188";
 		rLen = 99;
-		rLoc = 7738;
+		rLoc = 8672;
 		rType = 0;
 		vrLen = 2090;
 		vrLoc = 5428;
@@ -10144,7 +11451,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 936";
 		rLen = 24;
-		rLoc = 33545;
+		rLoc = 37364;
 		rType = 0;
 		vrLen = 2154;
 		vrLoc = 33710;
@@ -10154,7 +11461,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: hideOthersAction";
 		rLen = 0;
-		rLoc = 687;
+		rLoc = 728;
 		rType = 0;
 		vrLen = 1227;
 		vrLoc = 0;
@@ -10164,7 +11471,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: paramPsn";
 		rLen = 0;
-		rLoc = 4434;
+		rLoc = 6652;
 		rType = 0;
 		vrLen = 1626;
 		vrLoc = 546;
@@ -10174,7 +11481,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: setIcon:";
 		rLen = 8;
-		rLoc = 913;
+		rLoc = 954;
 		rType = 0;
 		vrLen = 1252;
 		vrLoc = 0;
@@ -10184,7 +11491,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: ";
 		rLen = 0;
-		rLoc = 2626;
+		rLoc = 2995;
 		rType = 0;
 		vrLen = 1462;
 		vrLoc = 813;
@@ -10194,7 +11501,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 936";
 		rLen = 24;
-		rLoc = 33545;
+		rLoc = 37364;
 		rType = 0;
 		vrLen = 2154;
 		vrLoc = 33710;
@@ -10204,7 +11511,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 65";
 		rLen = 28;
-		rLoc = 2574;
+		rLoc = 2943;
 		rType = 0;
 		vrLen = 1460;
 		vrLoc = 813;
@@ -10214,7 +11521,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: setLabel:";
 		rLen = 0;
-		rLoc = 864;
+		rLoc = 905;
 		rType = 0;
 		vrLen = 1281;
 		vrLoc = 0;
@@ -10224,7 +11531,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 936";
 		rLen = 24;
-		rLoc = 33545;
+		rLoc = 37364;
 		rType = 0;
 		vrLen = 2036;
 		vrLoc = 33670;
@@ -10234,7 +11541,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 142";
 		rLen = 0;
-		rLoc = 3628;
+		rLoc = 3997;
 		rType = 0;
 		vrLen = 1162;
 		vrLoc = 3381;
@@ -10244,7 +11551,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 939";
 		rLen = 0;
-		rLoc = 33732;
+		rLoc = 37551;
 		rType = 0;
 		vrLen = 1391;
 		vrLoc = 36204;
@@ -10254,7 +11561,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 52";
 		rLen = 0;
-		rLoc = 1819;
+		rLoc = 1976;
 		rType = 0;
 		vrLen = 1788;
 		vrLoc = 496;
@@ -10264,7 +11571,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 1047";
 		rLen = 0;
-		rLoc = 37461;
+		rLoc = 41311;
 		rType = 0;
 		vrLen = 370;
 		vrLoc = 38110;
@@ -10274,7 +11581,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: initWithType:andModifiers:andString:forCorner:withLabel:andClicker:";
 		rLen = 147;
-		rLoc = 311;
+		rLoc = 352;
 		rType = 0;
 		vrLen = 1281;
 		vrLoc = 0;
@@ -10284,7 +11591,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 125";
 		rLen = 0;
-		rLoc = 4597;
+		rLoc = 4988;
 		rType = 0;
 		vrLen = 1754;
 		vrLoc = 5370;
@@ -10294,7 +11601,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 99";
 		rLen = 0;
-		rLoc = 3439;
+		rLoc = 3637;
 		rType = 0;
 		vrLen = 1732;
 		vrLoc = 2083;
@@ -10304,7 +11611,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 125";
 		rLen = 0;
-		rLoc = 4597;
+		rLoc = 4988;
 		rType = 0;
 		vrLen = 1743;
 		vrLoc = 5370;
@@ -10364,7 +11671,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 125";
 		rLen = 0;
-		rLoc = 4597;
+		rLoc = 4988;
 		rType = 0;
 		vrLen = 1743;
 		vrLoc = 5370;
@@ -10374,7 +11681,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 190";
 		rLen = 0;
-		rLoc = 7894;
+		rLoc = 8951;
 		rType = 0;
 		vrLen = 2113;
 		vrLoc = 5632;
@@ -10384,7 +11691,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: flags";
 		rLen = 0;
-		rLoc = 18482;
+		rLoc = 18318;
 		rType = 0;
 		vrLen = 2114;
 		vrLoc = 17613;
@@ -10394,7 +11701,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 272";
 		rLen = 4;
-		rLoc = 10997;
+		rLoc = 12394;
 		rType = 0;
 		vrLen = 2325;
 		vrLoc = 8476;
@@ -10404,7 +11711,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: initWithType:andModifiers:andString:forCorner:andClicker:";
 		rLen = 147;
-		rLoc = 311;
+		rLoc = 352;
 		rType = 0;
 		vrLen = 1281;
 		vrLoc = 0;
@@ -10414,7 +11721,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 272";
 		rLen = 4;
-		rLoc = 10997;
+		rLoc = 12394;
 		rType = 0;
 		vrLen = 2325;
 		vrLoc = 8476;
@@ -10434,7 +11741,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 300";
 		rLen = 0;
-		rLoc = 12008;
+		rLoc = 11783;
 		rType = 0;
 		vrLen = 2203;
 		vrLoc = 11072;
@@ -10444,7 +11751,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 65";
 		rLen = 0;
-		rLoc = 2189;
+		rLoc = 2346;
 		rType = 0;
 		vrLen = 1811;
 		vrLoc = 866;
@@ -10454,7 +11761,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 541";
 		rLen = 0;
-		rLoc = 21727;
+		rLoc = 22637;
 		rType = 0;
 		vrLen = 2065;
 		vrLoc = 20282;
@@ -10464,7 +11771,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 57";
 		rLen = 13;
-		rLoc = 1962;
+		rLoc = 2119;
 		rType = 0;
 		vrLen = 1777;
 		vrLoc = 866;
@@ -10474,7 +11781,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 1007";
 		rLen = 0;
-		rLoc = 37727;
+		rLoc = 41577;
 		rType = 0;
 		vrLen = 1998;
 		vrLoc = 36094;
@@ -10484,7 +11791,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 103";
 		rLen = 0;
-		rLoc = 3578;
+		rLoc = 3844;
 		rType = 0;
 		vrLen = 1703;
 		vrLoc = 2099;
@@ -10494,7 +11801,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 328";
 		rLen = 0;
-		rLoc = 13282;
+		rLoc = 13057;
 		rType = 0;
 		vrLen = 2012;
 		vrLoc = 11458;
@@ -10534,7 +11841,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: numberOfRowsInTableView:";
 		rLen = 0;
-		rLoc = 32006;
+		rLoc = 35731;
 		rType = 0;
 		vrLen = 1626;
 		vrLoc = 30390;
@@ -10544,7 +11851,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 255";
 		rLen = 0;
-		rLoc = 10131;
+		rLoc = 11528;
 		rType = 0;
 		vrLen = 1692;
 		vrLoc = 8127;
@@ -10554,7 +11861,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 23";
 		rLen = 0;
-		rLoc = 391;
+		rLoc = 838;
 		rType = 0;
 		vrLen = 1510;
 		vrLoc = 0;
@@ -10564,7 +11871,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 255";
 		rLen = 0;
-		rLoc = 10131;
+		rLoc = 11528;
 		rType = 0;
 		vrLen = 1376;
 		vrLoc = 0;
@@ -10574,7 +11881,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 582";
 		rLen = 0;
-		rLoc = 19573;
+		rLoc = 17913;
 		rType = 0;
 		vrLen = 1682;
 		vrLoc = 18411;
@@ -10584,7 +11891,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 23";
 		rLen = 0;
-		rLoc = 390;
+		rLoc = 837;
 		rType = 0;
 		vrLen = 1519;
 		vrLoc = 0;
@@ -10594,7 +11901,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 494";
 		rLen = 5;
-		rLoc = 16088;
+		rLoc = 14428;
 		rType = 0;
 		vrLen = 1646;
 		vrLoc = 15397;
@@ -10604,7 +11911,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: oldval";
 		rLen = 5;
-		rLoc = 23731;
+		rLoc = 25663;
 		rType = 0;
 		vrLen = 1485;
 		vrLoc = 22503;
@@ -10614,7 +11921,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 103";
 		rLen = 0;
-		rLoc = 3578;
+		rLoc = 3844;
 		rType = 0;
 		vrLen = 1844;
 		vrLoc = 456;
@@ -10624,7 +11931,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 482";
 		rLen = 5;
-		rLoc = 19481;
+		rLoc = 19317;
 		rType = 0;
 		vrLen = 2296;
 		vrLoc = 17838;
@@ -10634,7 +11941,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 16";
 		rLen = 0;
-		rLoc = 382;
+		rLoc = 386;
 		rType = 0;
 		vrLen = 1376;
 		vrLoc = 0;
@@ -10654,7 +11961,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 22";
 		rLen = 0;
-		rLoc = 643;
+		rLoc = 647;
 		rType = 0;
 		vrLen = 1378;
 		vrLoc = 0;
@@ -10664,7 +11971,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 851";
 		rLen = 4;
-		rLoc = 32593;
+		rLoc = 36318;
 		rType = 0;
 		vrLen = 1757;
 		vrLoc = 30602;
@@ -10674,7 +11981,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: initWithType:andModifiers:andString:forCorner:andClicker:";
 		rLen = 147;
-		rLoc = 311;
+		rLoc = 352;
 		rType = 0;
 		vrLen = 1326;
 		vrLoc = 0;
@@ -10684,7 +11991,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 847";
 		rLen = 13;
-		rLoc = 32406;
+		rLoc = 36131;
 		rType = 0;
 		vrLen = 2097;
 		vrLoc = 30911;
@@ -10694,7 +12001,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 279";
 		rLen = 0;
-		rLoc = 10715;
+		rLoc = 12112;
 		rType = 0;
 		vrLen = 2127;
 		vrLoc = 6322;
@@ -10704,7 +12011,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 772";
 		rLen = 6;
-		rLoc = 29698;
+		rLoc = 33423;
 		rType = 0;
 		vrLen = 2380;
 		vrLoc = 26710;
@@ -10714,7 +12021,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 103";
 		rLen = 0;
-		rLoc = 3578;
+		rLoc = 3844;
 		rType = 0;
 		vrLen = 1804;
 		vrLoc = 456;
@@ -10724,7 +12031,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 846";
 		rLen = 116;
-		rLoc = 32184;
+		rLoc = 35909;
 		rType = 0;
 		vrLen = 2118;
 		vrLoc = 31493;
@@ -10734,7 +12041,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 22";
 		rLen = 0;
-		rLoc = 643;
+		rLoc = 647;
 		rType = 0;
 		vrLen = 1440;
 		vrLoc = 0;
@@ -10744,7 +12051,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 734";
 		rLen = 0;
-		rLoc = 27626;
+		rLoc = 31018;
 		rType = 0;
 		vrLen = 1643;
 		vrLoc = 25770;
@@ -10754,7 +12061,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 103";
 		rLen = 0;
-		rLoc = 3578;
+		rLoc = 3844;
 		rType = 0;
 		vrLen = 1870;
 		vrLoc = 229;
@@ -10764,7 +12071,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 499";
 		rLen = 0;
-		rLoc = 20058;
+		rLoc = 21292;
 		rType = 0;
 		vrLen = 2209;
 		vrLoc = 18159;
@@ -10774,7 +12081,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 20";
 		rLen = 0;
-		rLoc = 508;
+		rLoc = 512;
 		rType = 0;
 		vrLen = 1401;
 		vrLoc = 0;
@@ -10784,7 +12091,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 624";
 		rLen = 26;
-		rLoc = 24059;
+		rLoc = 25922;
 		rType = 0;
 		vrLen = 1530;
 		vrLoc = 23125;
@@ -10794,7 +12101,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: syncCurrentAction";
 		rLen = 0;
-		rLoc = 3301;
+		rLoc = 3499;
 		rType = 0;
 		vrLen = 1730;
 		vrLoc = 2099;
@@ -10803,8 +12110,8 @@
 		fRef = F506C03D013D9D7901CA16C8;
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 539";
-		rLen = 15;
-		rLoc = 21623;
+		rLen = 0;
+		rLoc = 22637;
 		rType = 0;
 		vrLen = 1817;
 		vrLoc = 20561;
@@ -10823,8 +12130,8 @@
 		fRef = F506C03D013D9D7901CA16C8;
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 541";
-		rLen = 41;
-		rLoc = 21728;
+		rLen = 0;
+		rLoc = 22637;
 		rType = 0;
 		vrLen = 1815;
 		vrLoc = 20561;
@@ -10844,7 +12151,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 539";
 		rLen = 0;
-		rLoc = 21645;
+		rLoc = 22637;
 		rType = 0;
 		vrLen = 1815;
 		vrLoc = 20561;
@@ -10864,7 +12171,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 582";
 		rLen = 15;
-		rLoc = 22917;
+		rLoc = 24849;
 		rType = 0;
 		vrLen = 1280;
 		vrLoc = 21978;
@@ -10874,7 +12181,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 328";
 		rLen = 0;
-		rLoc = 14813;
+		rLoc = 16996;
 		rType = 0;
 		vrLen = 2331;
 		vrLoc = 10024;
@@ -10914,7 +12221,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 324";
 		rLen = 49;
-		rLoc = 12517;
+		rLoc = 13914;
 		rType = 0;
 		vrLen = 2120;
 		vrLoc = 11017;
@@ -10934,7 +12241,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 404";
 		rLen = 0;
-		rLoc = 14796;
+		rLoc = 16979;
 		rType = 0;
 		vrLen = 2046;
 		vrLoc = 13151;
@@ -10954,7 +12261,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 161";
 		rLen = 55;
-		rLoc = 5671;
+		rLoc = 5677;
 		rType = 0;
 		vrLen = 1639;
 		vrLoc = 5037;
@@ -10974,7 +12281,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 582";
 		rLen = 15;
-		rLoc = 22917;
+		rLoc = 24849;
 		rType = 0;
 		vrLen = 1281;
 		vrLoc = 21977;
@@ -10993,8 +12300,8 @@
 		fRef = F506C03D013D9D7901CA16C8;
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 538";
-		rLen = 9;
-		rLoc = 21514;
+		rLen = 0;
+		rLoc = 22637;
 		rType = 0;
 		vrLen = 1903;
 		vrLoc = 20218;
@@ -11004,7 +12311,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 115";
 		rLen = 32;
-		rLoc = 3079;
+		rLoc = 3448;
 		rType = 0;
 		vrLen = 755;
 		vrLoc = 2572;
@@ -11013,8 +12320,8 @@
 		fRef = F506C03D013D9D7901CA16C8;
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 539";
-		rLen = 9;
-		rLoc = 21514;
+		rLen = 0;
+		rLoc = 22637;
 		rType = 0;
 		vrLen = 1928;
 		vrLoc = 20491;
@@ -11034,7 +12341,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 217";
 		rLen = 0;
-		rLoc = 6817;
+		rLoc = 7268;
 		rType = 0;
 		vrLen = 1220;
 		vrLoc = 6006;
@@ -11044,7 +12351,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 76";
 		rLen = 0;
-		rLoc = 2571;
+		rLoc = 2940;
 		rType = 0;
 		vrLen = 1641;
 		vrLoc = 973;
@@ -11054,7 +12361,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: syncCurrentAction";
 		rLen = 0;
-		rLoc = 3301;
+		rLoc = 3499;
 		rType = 0;
 		vrLen = 1795;
 		vrLoc = 2034;
@@ -11064,7 +12371,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 552";
 		rLen = 0;
-		rLoc = 22269;
+		rLoc = 23802;
 		rType = 0;
 		vrLen = 1916;
 		vrLoc = 20418;
@@ -11084,7 +12391,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 628";
 		rLen = 20;
-		rLoc = 24105;
+		rLoc = 25970;
 		rType = 0;
 		vrLen = 1480;
 		vrLoc = 22728;
@@ -11094,7 +12401,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 313";
 		rLen = 5;
-		rLoc = 11326;
+		rLoc = 12723;
 		rType = 0;
 		vrLen = 2429;
 		vrLoc = 9833;
@@ -11104,7 +12411,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 111";
 		rLen = 0;
-		rLoc = 2971;
+		rLoc = 3340;
 		rType = 0;
 		vrLen = 676;
 		vrLoc = 2471;
@@ -11124,7 +12431,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 313";
 		rLen = 0;
-		rLoc = 11338;
+		rLoc = 12735;
 		rType = 0;
 		vrLen = 2388;
 		vrLoc = 9833;
@@ -11134,7 +12441,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: labelSetting";
 		rLen = 2;
-		rLoc = 2603;
+		rLoc = 2972;
 		rType = 0;
 		vrLen = 1625;
 		vrLoc = 950;
@@ -11143,8 +12450,8 @@
 		fRef = F506C03D013D9D7901CA16C8;
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 622";
-		rLen = 12;
-		rLoc = 24010;
+		rLen = 0;
+		rLoc = 25869;
 		rType = 0;
 		vrLen = 1469;
 		vrLoc = 22728;
@@ -11154,7 +12461,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 397";
 		rLen = 0;
-		rLoc = 15170;
+		rLoc = 17353;
 		rType = 0;
 		vrLen = 2296;
 		vrLoc = 12914;
@@ -11164,7 +12471,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: ";
 		rLen = 0;
-		rLoc = 13554;
+		rLoc = 11894;
 		rType = 0;
 		vrLen = 1772;
 		vrLoc = 12636;
@@ -11184,7 +12491,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 397";
 		rLen = 0;
-		rLoc = 15170;
+		rLoc = 17353;
 		rType = 0;
 		vrLen = 2296;
 		vrLoc = 12914;
@@ -11194,7 +12501,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: ";
 		rLen = 0;
-		rLoc = 13554;
+		rLoc = 11894;
 		rType = 0;
 		vrLen = 1792;
 		vrLoc = 12636;
@@ -11204,7 +12511,7 @@
 		isa = PBXTextBookmark;
 		name = "CornerClickSupport.m: 397";
 		rLen = 0;
-		rLoc = 15170;
+		rLoc = 17353;
 		rType = 0;
 		vrLen = 2296;
 		vrLoc = 12914;
@@ -11218,12 +12525,6 @@
 		rType = 0;
 		vrLen = 2108;
 		vrLoc = 159;
-	};
-	37A9F8D004E4BFCC000001CF = {
-		isa = PBXFileReference;
-		name = NSView.html;
-		path = /System/Library/Frameworks/AppKit.framework/Versions/C/Resources/English.lproj/Documentation/Reference/ObjC_classic/Classes/NSView.html;
-		refType = 0;
 	};
 	37A9F8D104E4BFCC000001CF = {
 		isa = PBXFileReference;
@@ -11247,12 +12548,6 @@
 		isa = PBXFileReference;
 		name = NSMutableDictionary.html;
 		path = /System/Library/Frameworks/Foundation.framework/Versions/C/Resources/English.lproj/Documentation/Reference/ObjC_classic/Classes/NSMutableDictionary.html;
-		refType = 0;
-	};
-	37A9F8D504E4BFCC000001CF = {
-		isa = PBXFileReference;
-		name = NSUserDefaults.html;
-		path = /System/Library/Frameworks/Foundation.framework/Versions/C/Resources/English.lproj/Documentation/Reference/ObjC_classic/Classes/NSUserDefaults.html;
 		refType = 0;
 	};
 	37A9F8D604E4BFCC000001CF = {
@@ -11355,7 +12650,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 123";
 		rLen = 0;
-		rLoc = 19422;
+		rLoc = 19258;
 		rType = 0;
 		vrLen = 1212;
 		vrLoc = 5654;
@@ -11375,7 +12670,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 220";
 		rLen = 191;
-		rLoc = 23108;
+		rLoc = 25040;
 		rType = 0;
 		vrLen = 1566;
 		vrLoc = 6841;
@@ -11385,7 +12680,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: oneTimeMakeWindow";
 		rLen = 0;
-		rLoc = 10539;
+		rLoc = 8822;
 		rType = 0;
 		vrLen = 1372;
 		vrLoc = 6914;
@@ -11435,7 +12730,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: nc";
 		rLen = 328;
-		rLoc = 9006;
+		rLoc = 7373;
 		rType = 0;
 		vrLen = 1376;
 		vrLoc = 6914;
@@ -11445,7 +12740,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 220";
 		rLen = 191;
-		rLoc = 23108;
+		rLoc = 25040;
 		rType = 0;
 		vrLen = 1566;
 		vrLoc = 6841;
@@ -11465,7 +12760,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 28";
 		rLen = 0;
-		rLoc = 1248;
+		rLoc = 1695;
 		rType = 0;
 		vrLen = 1714;
 		vrLoc = 0;
@@ -11475,7 +12770,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 207";
 		rLen = 0;
-		rLoc = 10539;
+		rLoc = 8822;
 		rType = 0;
 		vrLen = 1376;
 		vrLoc = 6914;
@@ -11485,7 +12780,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: ";
 		rLen = 0;
-		rLoc = 8385;
+		rLoc = 8160;
 		rType = 0;
 		vrLen = 2014;
 		vrLoc = 2255;
@@ -11495,7 +12790,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 23";
 		rLen = 18;
-		rLoc = 846;
+		rLoc = 968;
 		rType = 0;
 		vrLen = 1501;
 		vrLoc = 0;
@@ -11505,7 +12800,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 91";
 		rLen = 0;
-		rLoc = 6274;
+		rLoc = 6051;
 		rType = 0;
 		vrLen = 1579;
 		vrLoc = 3219;
@@ -11515,7 +12810,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 23";
 		rLen = 18;
-		rLoc = 846;
+		rLoc = 968;
 		rType = 0;
 		vrLen = 1501;
 		vrLoc = 0;
@@ -11535,7 +12830,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: state";
 		rLen = 0;
-		rLoc = 17383;
+		rLoc = 17158;
 		rType = 0;
 		vrLen = 1594;
 		vrLoc = 3219;
@@ -11545,7 +12840,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 23";
 		rLen = 18;
-		rLoc = 846;
+		rLoc = 968;
 		rType = 0;
 		vrLen = 1501;
 		vrLoc = 0;
@@ -11555,7 +12850,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 124";
 		rLen = 0;
-		rLoc = 17660;
+		rLoc = 17435;
 		rType = 0;
 		vrLen = 1429;
 		vrLoc = 3691;
@@ -11565,7 +12860,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 27";
 		rLen = 0;
-		rLoc = 1054;
+		rLoc = 1176;
 		rType = 0;
 		vrLen = 1547;
 		vrLoc = 0;
@@ -11575,7 +12870,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 125";
 		rLen = 0;
-		rLoc = 17660;
+		rLoc = 17435;
 		rType = 0;
 		vrLen = 2589;
 		vrLoc = 612;
@@ -11585,7 +12880,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 23";
 		rLen = 18;
-		rLoc = 846;
+		rLoc = 968;
 		rType = 0;
 		vrLen = 1547;
 		vrLoc = 0;
@@ -11595,7 +12890,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: ";
 		rLen = 0;
-		rLoc = 17583;
+		rLoc = 17358;
 		rType = 0;
 		vrLen = 1513;
 		vrLoc = 3777;
@@ -11605,7 +12900,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: ";
 		rLen = 122;
-		rLoc = 9571;
+		rLoc = 7999;
 		rType = 0;
 		vrLen = 1361;
 		vrLoc = 6914;
@@ -11615,7 +12910,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 118";
 		rLen = 0;
-		rLoc = 17583;
+		rLoc = 17358;
 		rType = 0;
 		vrLen = 1566;
 		vrLoc = 3688;
@@ -11625,7 +12920,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 39";
 		rLen = 0;
-		rLoc = 4190;
+		rLoc = 6408;
 		rType = 0;
 		vrLen = 994;
 		vrLoc = 560;
@@ -11635,7 +12930,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: ";
 		rLen = 0;
-		rLoc = 10960;
+		rLoc = 9243;
 		rType = 0;
 		vrLen = 1361;
 		vrLoc = 6914;
@@ -11645,7 +12940,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 134";
 		rLen = 0;
-		rLoc = 17479;
+		rLoc = 17254;
 		rType = 0;
 		vrLen = 1841;
 		vrLoc = 4350;
@@ -11655,7 +12950,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: ";
 		rLen = 0;
-		rLoc = 10960;
+		rLoc = 9243;
 		rType = 0;
 		vrLen = 1361;
 		vrLoc = 6914;
@@ -11665,7 +12960,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 123";
 		rLen = 0;
-		rLoc = 14541;
+		rLoc = 14316;
 		rType = 0;
 		vrLen = 1724;
 		vrLoc = 4063;
@@ -11675,7 +12970,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: nsinv";
 		rLen = 0;
-		rLoc = 17222;
+		rLoc = 15562;
 		rType = 0;
 		vrLen = 1483;
 		vrLoc = 10208;
@@ -11685,7 +12980,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 123";
 		rLen = 0;
-		rLoc = 14541;
+		rLoc = 14316;
 		rType = 0;
 		vrLen = 1646;
 		vrLoc = 4063;
@@ -11695,7 +12990,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: actionChosen:";
 		rLen = 0;
-		rLoc = 2220;
+		rLoc = 2377;
 		rType = 0;
 		vrLen = 1504;
 		vrLoc = 0;
@@ -11705,7 +13000,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 145";
 		rLen = 0;
-		rLoc = 17479;
+		rLoc = 17254;
 		rType = 0;
 		vrLen = 2002;
 		vrLoc = 4154;
@@ -11715,7 +13010,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: actionChosen:";
 		rLen = 0;
-		rLoc = 2220;
+		rLoc = 2377;
 		rType = 0;
 		vrLen = 1504;
 		vrLoc = 0;
@@ -11725,7 +13020,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 158";
 		rLen = 0;
-		rLoc = 17479;
+		rLoc = 17254;
 		rType = 0;
 		vrLen = 2128;
 		vrLoc = 5024;
@@ -11735,7 +13030,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 198";
 		rLen = 226;
-		rLoc = 9109;
+		rLoc = 7476;
 		rType = 0;
 		vrLen = 1360;
 		vrLoc = 6916;
@@ -11745,7 +13040,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 158";
 		rLen = 0;
-		rLoc = 17479;
+		rLoc = 17254;
 		rType = 0;
 		vrLen = 1910;
 		vrLoc = 5024;
@@ -11755,7 +13050,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 198";
 		rLen = 226;
-		rLoc = 9109;
+		rLoc = 7476;
 		rType = 0;
 		vrLen = 1362;
 		vrLoc = 6914;
@@ -11765,7 +13060,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 111";
 		rLen = 0;
-		rLoc = 12781;
+		rLoc = 12556;
 		rType = 0;
 		vrLen = 1991;
 		vrLoc = 4792;
@@ -11775,7 +13070,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 215";
 		rLen = 0;
-		rLoc = 11131;
+		rLoc = 9414;
 		rType = 0;
 		vrLen = 1349;
 		vrLoc = 6914;
@@ -11785,7 +13080,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 111";
 		rLen = 0;
-		rLoc = 12781;
+		rLoc = 12556;
 		rType = 0;
 		vrLen = 1971;
 		vrLoc = 5311;
@@ -11795,7 +13090,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: sr";
 		rLen = 0;
-		rLoc = 11421;
+		rLoc = 9704;
 		rType = 0;
 		vrLen = 1523;
 		vrLoc = 6914;
@@ -11805,7 +13100,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 156";
 		rLen = 0;
-		rLoc = 17479;
+		rLoc = 17254;
 		rType = 0;
 		vrLen = 2391;
 		vrLoc = 5528;
@@ -11815,7 +13110,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 218";
 		rLen = 0;
-		rLoc = 11372;
+		rLoc = 9655;
 		rType = 0;
 		vrLen = 1704;
 		vrLoc = 7024;
@@ -11825,7 +13120,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 29";
 		rLen = 18;
-		rLoc = 1806;
+		rLoc = 2197;
 		rType = 0;
 		vrLen = 1961;
 		vrLoc = 2214;
@@ -11835,7 +13130,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: checkIfHelperAppRunning";
 		rLen = 0;
-		rLoc = 3776;
+		rLoc = 4042;
 		rType = 0;
 		vrLen = 1520;
 		vrLoc = 150;
@@ -11845,7 +13140,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 164";
 		rLen = 0;
-		rLoc = 17479;
+		rLoc = 17254;
 		rType = 0;
 		vrLen = 2141;
 		vrLoc = 4879;
@@ -11855,7 +13150,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 222";
 		rLen = 0;
-		rLoc = 10921;
+		rLoc = 9204;
 		rType = 0;
 		vrLen = 2113;
 		vrLoc = 7024;
@@ -11875,7 +13170,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 209";
 		rLen = 199;
-		rLoc = 9790;
+		rLoc = 8218;
 		rType = 0;
 		vrLen = 2113;
 		vrLoc = 7024;
@@ -11885,7 +13180,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 100";
 		rLen = 0;
-		rLoc = 8910;
+		rLoc = 8685;
 		rType = 0;
 		vrLen = 1770;
 		vrLoc = 3488;
@@ -11915,7 +13210,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: helperAppDidTerminate:";
 		rLen = 0;
-		rLoc = 11620;
+		rLoc = 11395;
 		rType = 0;
 		vrLen = 1974;
 		vrLoc = 3465;
@@ -11925,7 +13220,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 222";
 		rLen = 0;
-		rLoc = 10921;
+		rLoc = 9204;
 		rType = 0;
 		vrLen = 2234;
 		vrLoc = 7171;
@@ -11955,7 +13250,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 114";
 		rLen = 0;
-		rLoc = 11620;
+		rLoc = 11395;
 		rType = 0;
 		vrLen = 1875;
 		vrLoc = 3465;
@@ -11985,7 +13280,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 222";
 		rLen = 0;
-		rLoc = 10921;
+		rLoc = 9204;
 		rType = 0;
 		vrLen = 2234;
 		vrLoc = 7171;
@@ -11995,7 +13290,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: checkIfHelperAppRunning";
 		rLen = 2;
-		rLoc = 8420;
+		rLoc = 8195;
 		rType = 0;
 		vrLen = 1875;
 		vrLoc = 3465;
@@ -12005,7 +13300,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: checkIfHelperAppRunning";
 		rLen = 0;
-		rLoc = 3495;
+		rLoc = 3693;
 		rType = 0;
 		vrLen = 1517;
 		vrLoc = 153;
@@ -12015,7 +13310,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 99";
 		rLen = 30;
-		rLoc = 8533;
+		rLoc = 8308;
 		rType = 0;
 		vrLen = 1721;
 		vrLoc = 3579;
@@ -12025,7 +13320,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 222";
 		rLen = 0;
-		rLoc = 10921;
+		rLoc = 9204;
 		rType = 0;
 		vrLen = 2284;
 		vrLoc = 7119;
@@ -12035,7 +13330,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 112";
 		rLen = 0;
-		rLoc = 11412;
+		rLoc = 11187;
 		rType = 0;
 		vrLen = 1728;
 		vrLoc = 3951;
@@ -12045,7 +13340,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 224";
 		rLen = 0;
-		rLoc = 10921;
+		rLoc = 9204;
 		rType = 0;
 		vrLen = 1799;
 		vrLoc = 7299;
@@ -12055,7 +13350,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 98";
 		rLen = 0;
-		rLoc = 8455;
+		rLoc = 8230;
 		rType = 0;
 		vrLen = 1759;
 		vrLoc = 3951;
@@ -12065,7 +13360,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 217";
 		rLen = 56;
-		rLoc = 10543;
+		rLoc = 8826;
 		rType = 0;
 		vrLen = 1801;
 		vrLoc = 7246;
@@ -12075,7 +13370,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 121";
 		rLen = 0;
-		rLoc = 12549;
+		rLoc = 12324;
 		rType = 0;
 		vrLen = 1715;
 		vrLoc = 4552;
@@ -12095,7 +13390,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 101";
 		rLen = 0;
-		rLoc = 12549;
+		rLoc = 12324;
 		rType = 0;
 		vrLen = 1828;
 		vrLoc = 2579;
@@ -12105,7 +13400,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 24";
 		rLen = 19;
-		rLoc = 889;
+		rLoc = 1011;
 		rType = 0;
 		vrLen = 1520;
 		vrLoc = 150;
@@ -12115,7 +13410,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 115";
 		rLen = 79;
-		rLoc = 13160;
+		rLoc = 12935;
 		rType = 0;
 		vrLen = 1697;
 		vrLoc = 2846;
@@ -12135,7 +13430,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 198";
 		rLen = 0;
-		rLoc = 17479;
+		rLoc = 17254;
 		rType = 0;
 		vrLen = 2379;
 		vrLoc = 6692;
@@ -12145,7 +13440,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 230";
 		rLen = 0;
-		rLoc = 11030;
+		rLoc = 9313;
 		rType = 0;
 		vrLen = 2230;
 		vrLoc = 0;
@@ -12155,7 +13450,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 361";
 		rLen = 0;
-		rLoc = 23070;
+		rLoc = 25002;
 		rType = 0;
 		vrLen = 1575;
 		vrLoc = 12673;
@@ -12165,7 +13460,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 54";
 		rLen = 0;
-		rLoc = 3776;
+		rLoc = 4042;
 		rType = 0;
 		vrLen = 1575;
 		vrLoc = 153;
@@ -12175,7 +13470,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 361";
 		rLen = 0;
-		rLoc = 23070;
+		rLoc = 25002;
 		rType = 0;
 		vrLen = 1458;
 		vrLoc = 12815;
@@ -12185,7 +13480,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 53";
 		rLen = 0;
-		rLoc = 3576;
+		rLoc = 3774;
 		rType = 0;
 		vrLen = 1601;
 		vrLoc = 150;
@@ -12194,8 +13489,8 @@
 		fRef = F506C03D013D9D7901CA16C8;
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 238";
-		rLen = 63;
-		rLoc = 17922;
+		rLen = 65;
+		rLoc = 17697;
 		rType = 0;
 		vrLen = 1875;
 		vrLoc = 9126;
@@ -12205,7 +13500,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: notifyAppOfPreferences:";
 		rLen = 22;
-		rLoc = 3531;
+		rLoc = 3729;
 		rType = 0;
 		vrLen = 1558;
 		vrLoc = 198;
@@ -12215,7 +13510,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 446";
 		rLen = 0;
-		rLoc = 31731;
+		rLoc = 35456;
 		rType = 0;
 		vrLen = 1573;
 		vrLoc = 15371;
@@ -12235,7 +13530,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 53";
 		rLen = 0;
-		rLoc = 2478;
+		rLoc = 2349;
 		rType = 0;
 		vrLen = 2423;
 		vrLoc = 574;
@@ -12245,7 +13540,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 24";
 		rLen = 0;
-		rLoc = 822;
+		rLoc = 944;
 		rType = 0;
 		vrLen = 1673;
 		vrLoc = 154;
@@ -12255,7 +13550,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 392";
 		rLen = 0;
-		rLoc = 23962;
+		rLoc = 25864;
 		rType = 0;
 		vrLen = 1374;
 		vrLoc = 14421;
@@ -12265,7 +13560,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 24";
 		rLen = 0;
-		rLoc = 822;
+		rLoc = 944;
 		rType = 0;
 		vrLen = 1672;
 		vrLoc = 154;
@@ -12275,7 +13570,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 277";
 		rLen = 0;
-		rLoc = 19422;
+		rLoc = 19258;
 		rType = 0;
 		vrLen = 1389;
 		vrLoc = 13823;
@@ -12285,7 +13580,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: saveChanges";
 		rLen = 0;
-		rLoc = 2774;
+		rLoc = 2972;
 		rType = 0;
 		vrLen = 1667;
 		vrLoc = 200;
@@ -12295,7 +13590,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 316";
 		rLen = 0;
-		rLoc = 22676;
+		rLoc = 24608;
 		rType = 0;
 		vrLen = 1405;
 		vrLoc = 11682;
@@ -12305,7 +13600,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 54";
 		rLen = 0;
-		rLoc = 2478;
+		rLoc = 2349;
 		rType = 0;
 		vrLen = 2612;
 		vrLoc = 529;
@@ -12315,7 +13610,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 34";
 		rLen = 0;
-		rLoc = 4087;
+		rLoc = 4480;
 		rType = 0;
 		vrLen = 1028;
 		vrLoc = 79;
@@ -12325,7 +13620,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: action";
 		rLen = 0;
-		rLoc = 2478;
+		rLoc = 2349;
 		rType = 0;
 		vrLen = 2573;
 		vrLoc = 574;
@@ -12335,7 +13630,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: stringNameForActionType:";
 		rLen = 0;
-		rLoc = 1322;
+		rLoc = 1277;
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 0;
@@ -12345,7 +13640,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: urlEntered:";
 		rLen = 0;
-		rLoc = 2774;
+		rLoc = 2972;
 		rType = 0;
 		vrLen = 1667;
 		vrLoc = 200;
@@ -12355,7 +13650,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 280";
 		rLen = 0;
-		rLoc = 19422;
+		rLoc = 19258;
 		rType = 0;
 		vrLen = 1938;
 		vrLoc = 9595;
@@ -12365,7 +13660,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 54";
 		rLen = 0;
-		rLoc = 2478;
+		rLoc = 2349;
 		rType = 0;
 		vrLen = 2573;
 		vrLoc = 574;
@@ -12375,7 +13670,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 280";
 		rLen = 0;
-		rLoc = 19422;
+		rLoc = 19258;
 		rType = 0;
 		vrLen = 1927;
 		vrLoc = 9595;
@@ -12385,7 +13680,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 25";
 		rLen = 0;
-		rLoc = 821;
+		rLoc = 899;
 		rType = 0;
 		vrLen = 1703;
 		vrLoc = 200;
@@ -12395,7 +13690,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 284";
 		rLen = 0;
-		rLoc = 20549;
+		rLoc = 21301;
 		rType = 0;
 		vrLen = 1946;
 		vrLoc = 10238;
@@ -12405,7 +13700,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 25";
 		rLen = 0;
-		rLoc = 821;
+		rLoc = 899;
 		rType = 0;
 		vrLen = 1704;
 		vrLoc = 199;
@@ -12415,7 +13710,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 329";
 		rLen = 0;
-		rLoc = 22547;
+		rLoc = 24184;
 		rType = 0;
 		vrLen = 1329;
 		vrLoc = 12312;
@@ -12425,7 +13720,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 59";
 		rLen = 0;
-		rLoc = 2478;
+		rLoc = 2349;
 		rType = 0;
 		vrLen = 2551;
 		vrLoc = 1220;
@@ -12435,7 +13730,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 412";
 		rLen = 45;
-		rLoc = 24326;
+		rLoc = 26194;
 		rType = 0;
 		vrLen = 1595;
 		vrLoc = 15082;
@@ -12445,7 +13740,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.h: 59";
 		rLen = 0;
-		rLoc = 3776;
+		rLoc = 4042;
 		rType = 0;
 		vrLen = 1710;
 		vrLoc = 245;
@@ -12455,7 +13750,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 417";
 		rLen = 0;
-		rLoc = 25091;
+		rLoc = 28568;
 		rType = 0;
 		vrLen = 1572;
 		vrLoc = 14691;
@@ -12465,7 +13760,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 59";
 		rLen = 0;
-		rLoc = 2478;
+		rLoc = 2349;
 		rType = 0;
 		vrLen = 1779;
 		vrLoc = 2553;
@@ -12475,7 +13770,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 414";
 		rLen = 0;
-		rLoc = 24970;
+		rLoc = 28078;
 		rType = 0;
 		vrLen = 1574;
 		vrLoc = 14691;
@@ -12495,7 +13790,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 12";
 		rLen = 116;
-		rLoc = 561;
+		rLoc = 781;
 		rType = 0;
 		vrLen = 1462;
 		vrLoc = 0;
@@ -12515,7 +13810,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 18";
 		rLen = 725;
-		rLoc = 879;
+		rLoc = 1293;
 		rType = 0;
 		vrLen = 1462;
 		vrLoc = 0;
@@ -12545,7 +13840,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 40";
 		rLen = 283;
-		rLoc = 1606;
+		rLoc = 2020;
 		rType = 0;
 		vrLen = 1226;
 		vrLoc = 431;
@@ -12565,7 +13860,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 185";
 		rLen = 0;
-		rLoc = 8536;
+		rLoc = 6903;
 		rType = 0;
 		vrLen = 1657;
 		vrLoc = 6306;
@@ -12585,7 +13880,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 40";
 		rLen = 283;
-		rLoc = 1606;
+		rLoc = 2020;
 		rType = 0;
 		vrLen = 1444;
 		vrLoc = 998;
@@ -12605,7 +13900,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 40";
 		rLen = 283;
-		rLoc = 1606;
+		rLoc = 2020;
 		rType = 0;
 		vrLen = 1444;
 		vrLoc = 998;
@@ -12615,7 +13910,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 185";
 		rLen = 0;
-		rLoc = 8536;
+		rLoc = 6903;
 		rType = 0;
 		vrLen = 1637;
 		vrLoc = 6326;
@@ -12625,7 +13920,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 34";
 		rLen = 0;
-		rLoc = 4087;
+		rLoc = 4480;
 		rType = 0;
 		vrLen = 975;
 		vrLoc = 0;
@@ -12635,7 +13930,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: 18";
 		rLen = 0;
-		rLoc = 1135;
+		rLoc = 1207;
 		rType = 0;
 		vrLen = 354;
 		vrLoc = 0;
@@ -12655,7 +13950,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 185";
 		rLen = 0;
-		rLoc = 8536;
+		rLoc = 6903;
 		rType = 0;
 		vrLen = 2436;
 		vrLoc = 726;
@@ -12675,7 +13970,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: 18";
 		rLen = 0;
-		rLoc = 772;
+		rLoc = 813;
 		rType = 0;
 		vrLen = 374;
 		vrLoc = 0;
@@ -12685,7 +13980,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 35";
 		rLen = 0;
-		rLoc = 2478;
+		rLoc = 2349;
 		rType = 0;
 		vrLen = 1684;
 		vrLoc = 993;
@@ -12705,7 +14000,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: 10";
 		rLen = 0;
-		rLoc = 270;
+		rLoc = 311;
 		rType = 0;
 		vrLen = 397;
 		vrLoc = 0;
@@ -12725,7 +14020,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: 10";
 		rLen = 0;
-		rLoc = 270;
+		rLoc = 311;
 		rType = 0;
 		vrLen = 397;
 		vrLoc = 0;
@@ -12765,7 +14060,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: 10";
 		rLen = 0;
-		rLoc = 270;
+		rLoc = 311;
 		rType = 0;
 		vrLen = 397;
 		vrLoc = 0;
@@ -12775,7 +14070,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 62";
 		rLen = 0;
-		rLoc = 3516;
+		rLoc = 3885;
 		rType = 0;
 		vrLen = 1639;
 		vrLoc = 143;
@@ -12785,7 +14080,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: 16";
 		rLen = 0;
-		rLoc = 636;
+		rLoc = 677;
 		rType = 0;
 		vrLen = 557;
 		vrLoc = 0;
@@ -12795,7 +14090,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 65";
 		rLen = 0;
-		rLoc = 2843;
+		rLoc = 3212;
 		rType = 0;
 		vrLen = 1044;
 		vrLoc = 1485;
@@ -12805,7 +14100,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: 20";
 		rLen = 0;
-		rLoc = 713;
+		rLoc = 754;
 		rType = 0;
 		vrLen = 570;
 		vrLoc = 0;
@@ -12815,7 +14110,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 77";
 		rLen = 0;
-		rLoc = 2972;
+		rLoc = 3341;
 		rType = 0;
 		vrLen = 794;
 		vrLoc = 1485;
@@ -12825,7 +14120,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: 23";
 		rLen = 0;
-		rLoc = 789;
+		rLoc = 830;
 		rType = 0;
 		vrLen = 570;
 		vrLoc = 0;
@@ -12835,7 +14130,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 77";
 		rLen = 0;
-		rLoc = 2972;
+		rLoc = 3341;
 		rType = 0;
 		vrLen = 840;
 		vrLoc = 1953;
@@ -12845,7 +14140,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: 23";
 		rLen = 0;
-		rLoc = 789;
+		rLoc = 830;
 		rType = 0;
 		vrLen = 570;
 		vrLoc = 0;
@@ -12855,7 +14150,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 77";
 		rLen = 0;
-		rLoc = 2972;
+		rLoc = 3341;
 		rType = 0;
 		vrLen = 1687;
 		vrLoc = 166;
@@ -12865,7 +14160,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 165";
 		rLen = 0;
-		rLoc = 8536;
+		rLoc = 6903;
 		rType = 0;
 		vrLen = 1685;
 		vrLoc = 4925;
@@ -12875,7 +14170,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 40";
 		rLen = 283;
-		rLoc = 1606;
+		rLoc = 2020;
 		rType = 0;
 		vrLen = 1444;
 		vrLoc = 998;
@@ -12885,7 +14180,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.h: 18";
 		rLen = 30;
-		rLoc = 465;
+		rLoc = 438;
 		rType = 0;
 		vrLen = 380;
 		vrLoc = 0;
@@ -12895,7 +14190,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 22";
 		rLen = 45;
-		rLoc = 757;
+		rLoc = 977;
 		rType = 0;
 		vrLen = 1178;
 		vrLoc = 0;
@@ -12905,7 +14200,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.h: 19";
 		rLen = 0;
-		rLoc = 694;
+		rLoc = 667;
 		rType = 0;
 		vrLen = 424;
 		vrLoc = 0;
@@ -12955,7 +14250,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: 19";
 		rLen = 0;
-		rLoc = 270;
+		rLoc = 284;
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 0;
@@ -12965,7 +14260,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 288";
 		rLen = 0;
-		rLoc = 12663;
+		rLoc = 10946;
 		rType = 0;
 		vrLen = 1403;
 		vrLoc = 9933;
@@ -12985,7 +14280,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: icon";
 		rLen = 0;
-		rLoc = 789;
+		rLoc = 830;
 		rType = 0;
 		vrLen = 570;
 		vrLoc = 0;
@@ -12995,7 +14290,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 74";
 		rLen = 0;
-		rLoc = 2943;
+		rLoc = 3312;
 		rType = 0;
 		vrLen = 713;
 		vrLoc = 1665;
@@ -13005,7 +14300,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 288";
 		rLen = 0;
-		rLoc = 12663;
+		rLoc = 10946;
 		rType = 0;
 		vrLen = 1839;
 		vrLoc = 4792;
@@ -13015,7 +14310,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: icon";
 		rLen = 0;
-		rLoc = 789;
+		rLoc = 830;
 		rType = 0;
 		vrLen = 570;
 		vrLoc = 0;
@@ -13025,7 +14320,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 74";
 		rLen = 0;
-		rLoc = 2943;
+		rLoc = 3312;
 		rType = 0;
 		vrLen = 1677;
 		vrLoc = 50;
@@ -13035,7 +14330,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: icon";
 		rLen = 0;
-		rLoc = 789;
+		rLoc = 830;
 		rType = 0;
 		vrLen = 570;
 		vrLoc = 0;
@@ -13045,7 +14340,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.m: 74";
 		rLen = 0;
-		rLoc = 2943;
+		rLoc = 3312;
 		rType = 0;
 		vrLen = 1677;
 		vrLoc = 50;
@@ -13055,7 +14350,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 288";
 		rLen = 0;
-		rLoc = 12663;
+		rLoc = 10946;
 		rType = 0;
 		vrLen = 2237;
 		vrLoc = 193;
@@ -13075,7 +14370,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 123";
 		rLen = 0;
-		rLoc = 4780;
+		rLoc = 5231;
 		rType = 0;
 		vrLen = 1367;
 		vrLoc = 2531;
@@ -13085,7 +14380,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.h: setAction:";
 		rLen = 0;
-		rLoc = 694;
+		rLoc = 667;
 		rType = 0;
 		vrLen = 424;
 		vrLoc = 0;
@@ -13095,7 +14390,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 100";
 		rLen = 0;
-		rLoc = 4170;
+		rLoc = 4619;
 		rType = 0;
 		vrLen = 1470;
 		vrLoc = 2190;
@@ -13105,7 +14400,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.h: setAction:";
 		rLen = 0;
-		rLoc = 694;
+		rLoc = 667;
 		rType = 0;
 		vrLen = 424;
 		vrLoc = 0;
@@ -13125,7 +14420,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: initWithType:andString:forCorner:withLabel:";
 		rLen = 177;
-		rLoc = 460;
+		rLoc = 501;
 		rType = 0;
 		vrLen = 570;
 		vrLoc = 0;
@@ -13135,7 +14430,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 100";
 		rLen = 0;
-		rLoc = 3885;
+		rLoc = 4332;
 		rType = 0;
 		vrLen = 1645;
 		vrLoc = 2185;
@@ -13155,7 +14450,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickAction.h: initWithType:andString:forCorner:withLabel:";
 		rLen = 177;
-		rLoc = 460;
+		rLoc = 501;
 		rType = 0;
 		vrLen = 570;
 		vrLoc = 0;
@@ -13175,7 +14470,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 288";
 		rLen = 0;
-		rLoc = 12663;
+		rLoc = 10946;
 		rType = 0;
 		vrLen = 2227;
 		vrLoc = 193;
@@ -13185,7 +14480,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 100";
 		rLen = 0;
-		rLoc = 3885;
+		rLoc = 4332;
 		rType = 0;
 		vrLen = 851;
 		vrLoc = 5452;
@@ -13195,7 +14490,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.h: setAction:";
 		rLen = 0;
-		rLoc = 694;
+		rLoc = 667;
 		rType = 0;
 		vrLen = 424;
 		vrLoc = 0;
@@ -13205,7 +14500,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 100";
 		rLen = 0;
-		rLoc = 3885;
+		rLoc = 4332;
 		rType = 0;
 		vrLen = 886;
 		vrLoc = 5417;
@@ -13215,7 +14510,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 288";
 		rLen = 0;
-		rLoc = 12663;
+		rLoc = 10946;
 		rType = 0;
 		vrLen = 1370;
 		vrLoc = 9714;
@@ -13235,7 +14530,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 298";
 		rLen = 0;
-		rLoc = 22102;
+		rLoc = 23719;
 		rType = 0;
 		vrLen = 1547;
 		vrLoc = 11387;
@@ -13245,7 +14540,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 100";
 		rLen = 0;
-		rLoc = 3885;
+		rLoc = 4332;
 		rType = 0;
 		vrLen = 1836;
 		vrLoc = 1767;
@@ -13265,7 +14560,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickBoxPref.m: 300";
 		rLen = 0;
-		rLoc = 22102;
+		rLoc = 23719;
 		rType = 0;
 		vrLen = 1593;
 		vrLoc = 11387;
@@ -13275,7 +14570,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 164";
 		rLen = 0;
-		rLoc = 8536;
+		rLoc = 6903;
 		rType = 0;
 		vrLen = 1772;
 		vrLoc = 4776;
@@ -13285,7 +14580,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 100";
 		rLen = 0;
-		rLoc = 3885;
+		rLoc = 4332;
 		rType = 0;
 		vrLen = 1768;
 		vrLoc = 1767;
@@ -13295,7 +14590,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.h: setAction:";
 		rLen = 0;
-		rLoc = 694;
+		rLoc = 667;
 		rType = 0;
 		vrLen = 424;
 		vrLoc = 0;
@@ -13304,8 +14599,8 @@
 		fRef = 37C3CB3504CDAD30000001CF;
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 73";
-		rLen = 50;
-		rLoc = 3756;
+		rLen = 0;
+		rLoc = 3530;
 		rType = 0;
 		vrLen = 1151;
 		vrLoc = 1856;
@@ -13315,7 +14610,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: 35";
 		rLen = 0;
-		rLoc = 1322;
+		rLoc = 1277;
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 0;
@@ -13325,7 +14620,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 151";
 		rLen = 0;
-		rLoc = 8536;
+		rLoc = 6903;
 		rType = 0;
 		vrLen = 1707;
 		vrLoc = 4306;
@@ -13335,7 +14630,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.h: createClickWindowAtCorner:withActionType:andString:";
 		rLen = 0;
-		rLoc = 553;
+		rLoc = 574;
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 0;
@@ -13345,7 +14640,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 164";
 		rLen = 0;
-		rLoc = 8536;
+		rLoc = 6903;
 		rType = 0;
 		vrLen = 1654;
 		vrLoc = 4883;
@@ -13355,7 +14650,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 100";
 		rLen = 0;
-		rLoc = 3885;
+		rLoc = 4332;
 		rType = 0;
 		vrLen = 1768;
 		vrLoc = 1767;
@@ -13365,7 +14660,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.h: setAction:";
 		rLen = 0;
-		rLoc = 515;
+		rLoc = 488;
 		rType = 0;
 		vrLen = 429;
 		vrLoc = 0;
@@ -13375,7 +14670,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 23";
 		rLen = 0;
-		rLoc = 775;
+		rLoc = 995;
 		rType = 0;
 		vrLen = 1614;
 		vrLoc = 2285;
@@ -13385,7 +14680,7 @@
 		isa = PBXTextBookmark;
 		name = "Clicker.m: 288";
 		rLen = 0;
-		rLoc = 12663;
+		rLoc = 10946;
 		rType = 0;
 		vrLen = 1443;
 		vrLoc = 9397;
@@ -13395,7 +14690,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.h: action";
 		rLen = 0;
-		rLoc = 494;
+		rLoc = 467;
 		rType = 0;
 		vrLen = 434;
 		vrLoc = 0;
@@ -13405,7 +14700,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 18";
 		rLen = 0;
-		rLoc = 730;
+		rLoc = 950;
 		rType = 0;
 		vrLen = 1188;
 		vrLoc = 0;
@@ -13425,7 +14720,7 @@
 		isa = PBXTextBookmark;
 		name = "ClickView.m: 97";
 		rLen = 0;
-		rLoc = 3269;
+		rLoc = 3698;
 		rType = 0;
 		vrLen = 1814;
 		vrLoc = 2233;

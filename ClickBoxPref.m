@@ -13,13 +13,23 @@
 
 - (void) mainViewDidLoad
 {
+    NSArray *columns;
+    NSImageCell *imgcell;
+    columns = [actionTable tableColumns];
+    imgcell = [[[NSImageCell alloc] initImageCell:nil] autorelease];
+    [[columns objectAtIndex:0] setDataCell: imgcell];
+
+
+    [[[columns objectAtIndex:2] dataCell] setFont: [NSFont systemFontOfSize:10]];
+    [actionTable setDataSource:self];
+    [readmeTextView readRTFDFromFile:[[self bundle] pathForResource:@"Readme" ofType:@"rtf"]];
+    [readmeTextView setContinuousSpellCheckingEnabled: NO];
+    
 
 }
 - (void) didSelect
 {
     
-    NSArray *columns;
-    NSImageCell *imgcell;
     appSettings = [[CornerClickSupport settingsFromUserPreferences] retain];
     //NSDictionary *prefs=[[NSUserDefaults standardUserDefaults]
       //persistentDomainForName:@"CornerClickPref"];
@@ -51,7 +61,6 @@
                                                           object: nil
                                               suspensionBehavior:NSNotificationSuspensionBehaviorCoalesce];
     
-        [cornerChoicePopupButton selectItemAtIndex: 0];
         chosenCorner=0;
         chosenScreen=0;
         active=NO;
@@ -134,19 +143,7 @@
     [self refreshWithCornerSettings];
     [self refreshWithSettings:nil];
 
-    columns = [actionTable tableColumns];
-    imgcell = [[[NSImageCell alloc] initImageCell:nil] autorelease];
-    [[columns objectAtIndex:0] setIdentifier: @"icon"];
-    [[columns objectAtIndex:0] setDataCell: imgcell];
-    [[columns objectAtIndex:1] setIdentifier: @"desc"];
-    [[columns objectAtIndex:2] setIdentifier: @"modifiers"];
-
-
-    [[[columns objectAtIndex:2] dataCell] setFont: [NSFont systemFontOfSize:10]];
-    [actionTable setDataSource:self];
-    [readmeTextView readRTFDFromFile:[[self bundle] pathForResource:@"Readme" ofType:@"rtf"]];
-    [readmeTextView setContinuousSpellCheckingEnabled: NO];
-    /*
+     /*
     [readmeTextView setEditable:YES];
     [readmeTextView setSelectedRange: NSMakeRange([[readmeTextView string] length],0)];
 
@@ -490,32 +487,58 @@
         [triggerChoicePopupButton setEnabled:YES];
         [actionChoicePopupButton selectItemAtIndex: [theAction type]];
         [triggerChoicePopupButton selectItemAtIndex: 0]; //TODO handle other types of triggers
+
+
         
         NSString *str = [theAction string];
         NSString *label = [theAction labelSetting];
-        if(str!=nil){
-            if([str hasSuffix:@".app"]){
-                [chosenFileLabel setStringValue: [[str lastPathComponent] stringByDeletingPathExtension]];
-            }else{
-                [chosenFileLabel setStringValue: [str lastPathComponent]];
-            }
-            [fileIconImageView setImage: [[NSWorkspace sharedWorkspace] iconForFile: str]];
-        }else{
-            [chosenFileLabel setStringValue: @"no file chosen"];
-            [fileIconImageView setImage: nil];
+        switch([theAction type]){
+            case ACT_FILE:
+                if(str!=nil){
+                    if([str hasSuffix:@".app"]){
+                        [chosenFileLabel setStringValue: [[str lastPathComponent] stringByDeletingPathExtension]];
+                    }else{
+                        [chosenFileLabel setStringValue: str];
+                    }
+                    [fileIconImageView setImage: [[NSWorkspace sharedWorkspace] iconForFile: str]];
+                }else{
+                    [chosenFileLabel setStringValue: @"no file chosen"];
+                    [fileIconImageView setImage: nil];
+                }
+                break;
+            case ACT_URL:
+                if(str!=nil){
+                    [urlTextField setStringValue:str];
+                }else{
+                    [urlTextField setStringValue:@"http://"];
+                }
+                if(label!=nil){
+                    [urlLabelField setStringValue:label];
+                }else{
+                    [urlLabelField setStringValue:@""];
+                }
+                break;
+            case ACT_SCPT:
+                if(str!=nil){
+                    [chosenScriptLabel setStringValue: str];
+                    [scriptIconImageView setImage: [[NSWorkspace sharedWorkspace] iconForFile: str]];
+                }else{
+                    [chosenScriptLabel setStringValue: @"no script chosen"];
+                    [scriptIconImageView setImage: nil];
+                }
+                if(label!=nil){
+                    [scriptLabelField setStringValue: label];
+                }else{
+                    [scriptLabelField setStringValue: @""];
+                }
+                break;
         }
-        if(str!=nil){
-            [urlTextField setStringValue:str];
-        }else{
-            [urlTextField setStringValue:@"http://"];
-        }
-        if(label!=nil){
-            [urlLabelField setStringValue:label];
-        }else{
-            [urlLabelField setStringValue:@""];
-        }
+
         [self setSubFrameForActionType: [theAction type]];
+        
     }else{
+        [fileChooseButton setEnabled:NO];
+        [fileChooseButton setEnabled:NO];
         [removeActionButton setEnabled:NO];
         [optionKeyCheckBox setEnabled:NO];
         [shiftKeyCheckBox setEnabled:NO];
@@ -528,6 +551,13 @@
         [actionChoicePopupButton setEnabled:NO];
         [triggerChoicePopupButton setEnabled:NO];
         [self setSubFrameForActionType: -1];
+        [chosenFileLabel setStringValue:@""];
+        [fileIconImageView setImage:nil];
+        [urlTextField setStringValue:@""];
+        [urlLabelField setStringValue:@""];
+        [chosenScriptLabel setStringValue:@""];
+        [scriptLabelField setStringValue:@""];
+        [scriptIconImageView setImage:nil];
     }
 }
 
@@ -539,37 +569,58 @@
     [sheet orderOut: self];
     if(returnCode==NSOKButton){
         thefile = [[[sheet filenames] objectAtIndex:0] retain];
-        NSLog(@"chosen file: %@, retain: %d",thefile,[thefile retainCount]);
-        [currentAction setString:thefile];
-        NSLog(@"setStringed.  retain: %d",[thefile retainCount]);
-        [currentAction setLabelSetting:thefile];
-        NSLog(@"setLabelSetting.  retain: %d",[thefile retainCount]);
-        
-        if([thefile hasSuffix:@".app"]){
-            [chosenFileLabel setStringValue: [[thefile lastPathComponent] stringByDeletingPathExtension]];
-        }else{
-            [chosenFileLabel setStringValue: [thefile lastPathComponent]];
-        }
+        switch([currentAction type]){
+            case ACT_FILE:
+                [currentAction setString:thefile];
+                [currentAction setLabelSetting:thefile];
 
-        [fileIconImageView setImage: [[NSWorkspace sharedWorkspace] iconForFile: thefile]];
-        [self syncCurrentAction];
-        //[self notifyAppOfPreferences: [appSettings asDictionary]];
+                if([thefile hasSuffix:@".app"]){
+                    [chosenFileLabel setStringValue: [[thefile lastPathComponent] stringByDeletingPathExtension]];
+                }else{
+                    [chosenFileLabel setStringValue: thefile];
+                }
+
+                    [fileIconImageView setImage: [[NSWorkspace sharedWorkspace] iconForFile: thefile]];
+                break;
+            case ACT_SCPT:
+                [currentAction setString:thefile];
+                [currentAction setLabelSetting:nil];
+                [chosenFileLabel setStringValue: thefile];
+                [fileIconImageView setImage: [[NSWorkspace sharedWorkspace] iconForFile: thefile]];
+                if([[scriptLabelField stringValue] length] == 0){
+                    [scriptLabelField setStringValue: [[thefile lastPathComponent] stringByDeletingPathExtension]];
+                }
+                    [scriptLabelField selectText:self];
+                break;
+
+        }
         [self saveChanges];
         [actionTable reloadData];
-        NSLog(@"finished open sheet");
         [thefile release];
     }
 }
 
 - (void) urlEntered: (id) sender
 {
-    [currentAction setString:[urlTextField stringValue]];
-    if([[urlLabelField stringValue] length] > 0){
-        [currentAction setLabelSetting:[urlLabelField stringValue]];
-    }else{
-        [currentAction setLabelSetting:nil];
-    }
+    switch([currentAction type]){
+        case ACT_URL:
+            [currentAction setString:[urlTextField stringValue]];
+            if([[urlLabelField stringValue] length] > 0){
+                [currentAction setLabelSetting:[urlLabelField stringValue]];
+            }else{
+                [currentAction setLabelSetting:nil];
+            }
+            break;
+        case ACT_SCPT:
 
+            if([[scriptLabelField stringValue] length] > 0){
+                [currentAction setLabelSetting:[scriptLabelField stringValue]];
+            }else{
+                [currentAction setLabelSetting:nil];
+            }
+            break;
+    }
+    
     //[self notifyAppOfPreferences: [appSettings asDictionary]];
     [self saveChanges];
     [actionTable reloadData];
@@ -625,9 +676,7 @@
         return;
     }
     [currentAction setType: [sender indexOfSelectedItem] ];
-    [self syncCurrentAction];
     [self setSubFrameForActionType: [sender indexOfSelectedItem]];
-    //[self notifyAppOfPreferences: [appSettings asDictionary]];
     [self saveChanges];
     [actionTable reloadData];
 }
@@ -643,7 +692,14 @@
 
 - (void) setSubFrameForActionType: (int) type
 {
+    float diffh=0,diffy=0;
     NSArray *sub = [actionView subviews];
+    NSRect oldr = [[NSApp mainWindow] frame];
+    NSRect oldt = [myTabView frame];
+    NSLog(@"old window: %@, oldTabView : %@, old actionView : %@",
+          NSStringFromRect(oldr),NSStringFromRect(oldt),NSStringFromRect([actionView frame]));
+    diffh-=[actionView frame].size.height;
+    diffy+=[actionView frame].size.height;
     int i;
     for(i=0;i<[sub count];i++){
         [[sub objectAtIndex:i] retain];
@@ -651,25 +707,45 @@
     }
     //NSRect frame = [actionView frame];
     switch(type){
-        case 0: //open file
-            [actionView addSubview: chooseFileView];
-            [actionView setFrameSize: [chooseFileView frame].size];
+        case ACT_SCPT:
+            [actionView addSubview: chooseScriptView];
+            diffh+=[chooseScriptView frame].size.height;
+            diffy-=[chooseScriptView frame].size.height;
+            [actionView setFrameSize: [chooseScriptView frame].size];
+            //[actionView setFrameOrigin: NSMakePoint([actionView frame].origin.x,[actionView frame].origin.y+diffy)];
+            
             break;
-        case 3:
+        case ACT_FILE: //open file
+            [actionView addSubview: chooseFileView];
+            diffh+=[chooseFileView frame].size.height;
+            diffy-=[chooseFileView frame].size.height;
+            [actionView setFrameSize: [chooseFileView frame].size];
+            //[actionView setFrameOrigin: NSMakePoint([actionView frame].origin.x,[actionView frame].origin.y+diffy)];
+            break;
+        case ACT_URL:
             [actionView addSubview: chooseURLView];
+            diffh+=[chooseURLView frame].size.height;
+            diffy-=[chooseURLView frame].size.height;
             [actionView setFrameSize: [chooseURLView frame].size];
+            //[actionView setFrameOrigin: NSMakePoint([actionView frame].origin.x,[actionView frame].origin.y+diffy)];
             break;
         default:
-            //[actionView setFrameSize: NSMakeSize(frame.size.width,0)];
+            //[actionView setFrameSize: NSMakeSize([actionView frame].size.width,0)];
             break;
     }
     [actionView setNeedsDisplay:YES];
+    oldt.size.height+=diffh;
+    //[myTabView setFrameSize: oldt.size];
+    oldr.origin.y+=diffy;
+    oldr.size.height+=diffh;
+    //[[actionView window] setFrame:oldr display:YES animate:YES];
+    NSLog(@"new window: %@, oldTabView : %@, old actionView : %@",
+          NSStringFromRect(oldr),NSStringFromRect(oldt),NSStringFromRect([actionView frame]));
 }
 - (void)doChooseCorner:(int) corner
 {
     //NSLog(@"Choose corner: %d",[sender indexOfSelectedItem]);
     chosenCorner=corner;
-    [cornerChoicePopupButton selectItemAtIndex:corner];
     [cornerMatrix selectCellWithTag:corner];
     
     [self refreshWithCornerSettings];
@@ -758,6 +834,18 @@
 {
     [self doChooseScreen:[sender indexOfSelectedItem] withPopupWindow:YES];
 
+}
+
+
+- (IBAction)chooseNextScreen:(id)sender
+{
+    if(chosenScreen+1 >= [allScreens count]){
+        [screenIDButton selectItemAtIndex:0];
+        [self doChooseScreen:0 withPopupWindow:YES];
+    }else{
+        [screenIDButton selectItemAtIndex:chosenScreen+1];
+        [self doChooseScreen:chosenScreen+1 withPopupWindow:YES];
+    }
 }
 
 - (void)displayScreenIdentification
@@ -886,23 +974,25 @@
     //NSLog(@"objectValueForTableColumn called: currentAcctions : %@",currentActions);
     if([[aTableColumn identifier] isEqualToString: @"icon"]){
         switch(type){
-            case 0:
+            case ACT_SCPT:
+            case ACT_FILE:
                 if([theAction string]!=nil)
                     return [[NSWorkspace sharedWorkspace] iconForFile:[theAction string]];
                 else
                     return nil;
                 break;
-            case 3: return [[[NSImage alloc] initWithContentsOfFile: [[self bundle] pathForResource:@"BookmarkPreferences" ofType:@"tiff"]] autorelease];
+            case ACT_URL: return [[[NSImage alloc] initWithContentsOfFile: [[self bundle] pathForResource:@"BookmarkPreferences" ofType:@"tiff"]] autorelease];
             default: return nil;
         }
     }
     else if([[aTableColumn identifier] isEqualToString: @"desc"]){
         switch(type){
-            case 0:
+            case ACT_SCPT:
+            case ACT_FILE:
                 return [theAction label];
-            case 1: return @"Hide Current Application";
-            case 2: return @"Hide Other Applications";
-            case 3:
+            case ACT_HIDE: return @"Hide Current Application";
+            case ACT_HIDO: return @"Hide Other Applications";
+            case ACT_URL:
                 if([theAction labelSetting] !=nil){
                     theFile= [theAction labelSetting];
                 }else if([theAction string] !=nil){
@@ -1021,7 +1111,7 @@
 
     [actionTable selectRow:[appSettings countActionsForScreen:[allScreens objectAtIndex:chosenScreen] andCorner:chosenCorner]-1 byExtendingSelection:NO];
         
-    [self refreshWithSettings:newAct];
+    //[self refreshWithSettings:newAct];
   
 }
 - (IBAction)optionKeyCheckBoxClicked:(id)sender

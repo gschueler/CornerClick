@@ -14,6 +14,12 @@
 #define BL_CORNER 2
 #define BR_CORNER 3
 
+#define ACT_FILE 0
+#define ACT_HIDE 1
+#define ACT_HIDO 2
+#define ACT_URL 3
+#define ACT_SCPT 4
+
 #define DEBUG_LEVEL 1
 #define DEBUG(x)	if(DEBUG_LEVEL>0)NSLog((x))
 

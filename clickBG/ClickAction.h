@@ -13,6 +13,7 @@
     NSString *myLabel;
     NSString *trueLabel;
     Clicker *myClicker;
+    NSAppleScript *myScript;
 }
 
 - (void)doAction:(NSEvent*)theEvent;
@@ -36,9 +37,11 @@
 -(void) setModifiers: (int) modifiers;
 
 -(void)setIconAndLabelUserProvided: (NSString *) label;
+- (void) runAppleScriptAction;
 
 
 //static
++ (void) logAppleScriptError:(NSDictionary *) err atStep:(NSString *)step;
 + (NSString *) stringNameForActionType: (int) type;
 + (NSString *) labelNameForActionType: (int) type;
 + (BOOL) validActionType: (int) type andString: (NSString *) action;

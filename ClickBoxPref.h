@@ -14,16 +14,19 @@
 {
     IBOutlet NSPopUpButton *actionChoicePopupButton;
     IBOutlet NSTextField *chosenFileLabel;
-    IBOutlet NSPopUpButton *cornerChoicePopupButton;
     IBOutlet NSButton *enabledCheckBox;
     IBOutlet NSButton *fileChooseButton;
     IBOutlet NSPopUpButton *triggerChoicePopupButton;
     IBOutlet NSImageView *fileIconImageView;
+    IBOutlet NSImageView *scriptIconImageView;
+    IBOutlet NSTextField *chosenScriptLabel;
     IBOutlet NSView *actionView;
     IBOutlet NSView *chooseFileView;
     IBOutlet NSView *chooseURLView;
+    IBOutlet NSView *chooseScriptView;
     IBOutlet NSTextField *urlTextField;
     IBOutlet NSTextField *urlLabelField;
+    IBOutlet NSTextField *scriptLabelField;
     IBOutlet NSButton *appEnabledCheckBox;
     IBOutlet NSButton *showTooltipCheckBox;
     IBOutlet NSButton *delayTooltipCheckBox;
@@ -39,6 +42,7 @@
     IBOutlet NSTextView *readmeTextView;
     IBOutlet NSMatrix *cornerMatrix;
     IBOutlet NSPopUpButton *screenIDButton;
+    IBOutlet NSTabView *myTabView;
     //NSMutableDictionary *tl;
     //NSMutableDictionary *tr;
     //NSMutableDictionary *bl;
@@ -65,6 +69,7 @@
     CornerClickSettings *appSettings;
 }
 - (void)doChooseCorner:(int) corner;
+- (IBAction)chooseNextScreen:(id)sender;
 - (IBAction)screenIDClicked:(id)sender;
 - (IBAction)tlCornerClick:(id)sender;
 - (IBAction)trCornerClick:(id)sender;
@@ -100,6 +105,7 @@
 - (void) refreshWithCornerSettings;
 - (void) checkIfHelperAppRunning;
 - (void) notifyAppOfPreferences:(NSDictionary *) prefs;
+- (void) doChooseScreen: (int) which withPopupWindow: (BOOL) popup;
 
 - (void) setSubFrameForActionType: (int) type;
 - (void)toggleModifier: (int)modifier toState:(BOOL) used;

@@ -4,15 +4,15 @@
 
 @interface Clicker : NSObject
 {
-    ClickWindow *tlWin;
-    ClickWindow *blWin;
-    ClickWindow *trWin;
-    ClickWindow *brWin;
-    ClickWindow **windows[4];
+   // ClickWindow *tlWin;
+   // ClickWindow *blWin;
+   // ClickWindow *trWin;
+   // ClickWindow *brWin;
+   // ClickWindow **windows[4];
     NSTrackingRectTag track[4];
-    ClickAction *tlAction;
-    NSMutableDictionary *preferences;
-    NSString *cornerNames[4];
+   // ClickAction *tlAction;
+    //NSMutableDictionary *preferences;
+    //NSString *cornerNames[4];
     NSMutableDictionary *allScreens;
     NSMutableDictionary *screenWindows;
     NSMutableDictionary *trackCache;
@@ -34,7 +34,6 @@
 - (void) setWindow:(ClickWindow *)window forScreen:(NSNumber *) screenNum atCorner:(int) corner;
 - (BOOL) createClickWindowAtCorner: (int) corner withActionList: (NSArray *) actions onScreen:(NSNumber *) screenNum;
 - (void) prefPaneChangedPreferences: (NSNotification *) notice;
-- (void) loadFromPreferences: (NSDictionary *) sourcePreferences;
 - (BOOL) validActionType: (int) type andString: (NSString *) action;
 - (void) makeHoverWindow;
 - (NSString *) stringNameForActionType: (int) type;

@@ -43,7 +43,7 @@
     if(label!=nil)
         trueLabel = [label copy];
     switch(theType){
-        case 0:
+        case ACT_FILE:
             if([[myString lastPathComponent] hasSuffix:@".app"]){
                 myLabel = [[[myString lastPathComponent] stringByDeletingPathExtension] retain];
             }else{
@@ -51,14 +51,14 @@
             }
             myIcon = [[[NSWorkspace sharedWorkspace] iconForFile: myString] retain];
             break;
-        case 1:
+        case ACT_HIDE:
             myLabel=[[NSString stringWithString:@"Hide Current Application"] retain];
 
             break;
-        case 2:
+        case ACT_HIDO:
             myLabel=[[NSString stringWithString:@"Hide Other Applications"] retain];
             break;
-        case 3:
+        case ACT_URL:
             if(label !=nil){
                 myLabel = [label copy];
             }
@@ -68,6 +68,15 @@
                 myLabel=[[NSString stringWithString:myString] retain];
             }
             myIcon = [[NSImage imageNamed:@"BookmarkPreferences"] retain];
+            break;
+        case ACT_SCPT:
+            if(label !=nil){
+                myLabel = [label copy];
+            }
+            else {
+                myLabel = [[[myString lastPathComponent] stringByDeletingPathExtension] retain];
+            }
+            myIcon = [[[NSWorkspace sharedWorkspace] iconForFile: myString] retain];
             break;
         default:
             myLabel=[[NSString stringWithString:@"?!@#"] retain];
@@ -152,6 +161,7 @@
     [myLabel release];
     [myIcon release];
     [trueLabel release];
+    [myScript release];
 }
 - (void)doAction:(NSEvent*)theEvent
 {
@@ -169,8 +179,68 @@
         case 3:
             [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:myString]];
             break;
+        case 4:
+            [self runAppleScriptAction];
+            break;
         default:
             break;
+    }
+}
+
++ (void) logAppleScriptError:(NSDictionary *) err atStep:(NSString *)step
+{
+    NSLog(@"Error %@ AppleScript: Message: %@, Error Number: %@, AppName: %@, BriefMessage: %@, Range:%@",step,
+          [err objectForKey:@"NSAppleScriptErrorMessage"],
+          [err objectForKey:@"NSAppleScriptErrorNumber"],
+          [err objectForKey:@"NSAppleScriptErrorAppName"],
+          [err objectForKey:@"NSAppleScriptErrorBriefMessage"],
+          NSStringFromRange([[err objectForKey:@"NSAppleScriptErrorRange"] rangeValue])
+          );
+          
+    /*
+
+     NSAppleScriptErrorMessage
+     An NSString that supplies a detailed description of the error condition.
+
+     NSAppleScriptErrorNumber
+     An NSNumber that specifies the error number.
+
+     NSAppleScriptErrorAppName
+     An NSString that specifies the name of the application that generated the error.
+
+     NSAppleScriptErrorBriefMessage
+     An NSString that provides a brief description of the error.
+
+     NSAppleScriptErrorRange
+     */
+    
+}
+
+- (void) runAppleScriptAction
+{
+    NSDictionary *err;
+    NSAppleEventDescriptor *evt;
+    if(myScript==nil){
+        myScript = [[NSAppleScript alloc] initWithContentsOfURL:[NSURL fileURLWithPath:myString] error:&err];
+    }
+
+    if(myScript==nil){
+        [ClickAction logAppleScriptError:err atStep:@"Loading"];
+        return;
+    }
+    if(![myScript isCompiled]){
+        if(![myScript compileAndReturnError:&err]){
+            [ClickAction logAppleScriptError:err atStep:@"Compiling"];
+            return;
+        }
+    }
+    evt = [myScript executeAndReturnError:&err];
+    if(evt==nil){
+        [ClickAction logAppleScriptError:err atStep:@"Executing"];
+        return;
+    }
+    else{
+        DEBUG(@"Applescript executed.");
     }
 }
 
@@ -209,8 +279,10 @@
 + (NSString *) stringNameForActionType: (int) type
 {
     switch(type){
+        case 4:
         case 0: return @"chosenFilePath";
         case 3: return @"chosenURL";
+
         default: return nil;
     }
 }
@@ -219,6 +291,7 @@
 {
     switch(type){
         case 3: return @"urlDesc";
+        case 4: return @"scriptDesc";
         default: return nil;
     }
 }
@@ -236,6 +309,9 @@
             if(action !=nil && [action length]>0)
                 return YES;
             break;
+        case 4:
+            if(action !=nil)
+                return YES;
         default:
             return NO;
     }

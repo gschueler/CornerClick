@@ -1,7 +1,7 @@
 "Main Screen" = "Pantalla Principal";
 "Screen #%d" = "Pantalla #%d";
 "New CornerClick Version" = "Nueva Versi—n de CornerClick";
-"An old version of CornerClick was active (version %d.%d.%d). It will be deactivated and version %d.%d.%d will be activated."="Una antigua versi—n de  CornerClick estaba activa (versi—n %d.%d.%d). Ser‡ desactivada y la versi—n %d.%d.%d ser‡ activada.";
+"An old version of CornerClick was active (version %d.%d). It will be deactivated and version %d.%d will be activated."="Una antigua versi—n de  CornerClick estaba activa (versi—n %d.%d). Ser‡ desactivada y la versi—n %d.%d ser‡ activada.";
 
 "Deactivate Failed"="Desactivaci—n fallida";
 "The CornerClick helper application could not be deactivated."="La aplicaci—n ayudante de CornerClick podr’a no ser desactivada.";
@@ -21,3 +21,11 @@
 "Open URL %@"="Abrir URL %@";
 "Click"="Click";
 
+"%d screens"="%d screens";
+"Right-Click"="Right-Click";
+"Open Readme File"="Open Readme File";
+"Quick..."="Quick...";
+"Scripts"="Scripts";
+"Files"="Files";
+"CornerClick Preferences"="CornerClick Preferences";
+"/Scripts"="/Scripts";

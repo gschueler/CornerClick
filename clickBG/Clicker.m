@@ -4,12 +4,12 @@
 
 - (void) loadFromPreferences: (NSDictionary *) sourcePreferences
 {
-    NSFileWrapper *temp;
+    NSString *label,*action;
     if(preferences!=nil){
         //NSLog(@"preferences retainCount before release: %d",[preferences retainCount]);
         [preferences release];
     }
-    preferences = [[NSDictionary alloc] initWithDictionary: sourcePreferences copyItems:YES];
+    preferences = [[NSMutableDictionary alloc] initWithDictionary: sourcePreferences copyItems:YES];
     // NSLog(@"Loading Preferences: %@",preferences);
     if(preferences){
         int i;
@@ -24,35 +24,15 @@
             [icons[i] release];
             icons[i]=nil;
             if([[[preferences objectForKey:corn] objectForKey:@"enabled"] intValue] == 1){
-                
-                NSString *action = [[[preferences objectForKey:corn] objectForKey:@"chosenFilePath"] retain];
+
                 int actionType =[[[preferences objectForKey: corn] objectForKey:@"action"] intValue];
+                action = [[[preferences objectForKey:corn] objectForKey:[self stringNameForActionType:actionType]] retain];
+                label = [[[preferences objectForKey:corn] objectForKey:[self labelNameForActionType:actionType]] retain];
                 if([self validActionType: actionType andString: action]){
                     //NSLog(@"loading corner %@: %@",corn,[preferences objectForKey:corn]);
-                    [self createClickWindowAtCorner: i withActionType:actionType andString: action];
+                    [self createClickWindowAtCorner: i withActionType:actionType andString: action
+                                          withLabel: label];
 
-                    switch(actionType){
-                        case 0:
-                            if([[action lastPathComponent] hasSuffix:@".app"]){
-                                hover[i] = [[[action lastPathComponent] stringByDeletingPathExtension] retain];
-                            }else{
-                                hover[i] =[[action lastPathComponent] retain];
-                            }
-
-                            temp = [[[NSFileWrapper alloc] initWithPath: action] autorelease];
-                            icons[i]=[[temp icon] retain];
-                            break;
-                        case 1:
-                            hover[i]=[[NSString stringWithString:@"Hide Current Application"] retain];
-
-                            break;
-                        case 2:
-                            hover[i]=[[NSString stringWithString:@"Hide Other Applications"] retain];
-                            break;
-                        default:
-                            return;
-
-                    }
                 }else if(*windows[i]!=nil){
                     //NSLog(@"closing corner %@: ",corn);
                     [[*windows[i] contentView] removeTrackingRect: track[i]];
@@ -75,6 +55,29 @@
     }
 }
 
+
+- (void) changeCorner: (int) corner toAction: (ClickAction *) action
+{
+
+}
+
+- (NSString *) stringNameForActionType: (int) type
+{
+    switch(type){
+        case 0: return @"chosenFilePath";
+        case 3: return @"chosenURL";
+        default: return nil;
+    }
+}
+
+- (NSString *) labelNameForActionType: (int) type
+{
+    switch(type){
+        case 3: return @"urlDesc";
+        default: return nil;
+    }
+}
+
 - (BOOL) validActionType: (int) type andString: (NSString *) action
 {
     switch(type){
@@ -84,6 +87,10 @@
             break;
         case 1: return YES;
         case 2: return YES;
+        case 3:
+            if(action !=nil && [action length]>0)
+                return YES;
+            break;
         default:
             return NO;
     }
@@ -140,37 +147,37 @@
     }
 }
 
-- (void) createClickWindowAtCorner: (int) corner withActionType: (int) type andString: (NSString *)filePath 
+- (void) createClickWindowAtCorner: (int) corner withActionType: (int) type andString: (NSString *)filePath withLabel:(NSString *) label
 {
+    ClickAction *act;
     ClickWindow **theWindow;
     NSRect myRect;
-    NSRect screenRect=[[NSScreen mainScreen] frame];
     theWindow = windows[corner];
     myRect = [self rectForCorner:corner];
+
+    act = [[[ClickAction alloc] initWithType:type andString:filePath forCorner: corner withLabel:label] autorelease];
     if(*theWindow !=nil){
         //NSLog(@"closing corner %d",corner);
-        [[*theWindow contentView] removeTrackingRect: track[corner]];
-        [*theWindow close];
-        *theWindow=nil;
+        //[[*theWindow contentView] removeTrackingRect: track[corner]];
+        //[*theWindow close];
+        //*theWindow=nil;
+        [[*theWindow contentView] setClickAction: act];
+    }else{
+        *theWindow = [[ClickWindow alloc] initWithContentRect: myRect
+                                                    styleMask: NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:YES corner:corner];
+        [*theWindow setOpaque:NO];
+        [*theWindow setHasShadow:NO];
+        [*theWindow setLevel: NSStatusWindowLevel];
+        [*theWindow setAlphaValue: 0.1];
+    
+    
+        ClickView *tlView = [[[ClickView alloc] initWithFrame:[*theWindow frame] action:act  corner:corner] autorelease];
+        [*theWindow setContentView: tlView];
+    
+        BOOL isInside=(NSPointInRect([NSEvent mouseLocation],[*theWindow frame]));
+        track[corner] = [[*theWindow contentView] addTrackingRect:[[*theWindow contentView] bounds] owner:self userData:[[NSNumber numberWithInt:corner] retain] assumeInside:isInside];
+        [*theWindow orderFront: self];
     }
-    *theWindow = [[ClickWindow alloc] initWithContentRect: myRect
-                                                styleMask: NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:YES corner:corner];
-    [*theWindow setOpaque:NO];
-    [*theWindow setHasShadow:NO];
-    [*theWindow setLevel: NSStatusWindowLevel];
-    [*theWindow setAlphaValue: 0.0];
-
-
-    ClickAction *act = [[[ClickAction alloc] initWithType:type andString:filePath] autorelease];
-    ClickView *tlView = [[[ClickView alloc] initWithFrame:[*theWindow frame] action:act  corner:corner] autorelease];
-    [*theWindow setContentView: tlView];
-
-    BOOL isInside=(NSPointInRect([NSEvent mouseLocation],[*theWindow frame]));
-    track[corner] = [[*theWindow contentView] addTrackingRect:[[*theWindow contentView] bounds] owner:self userData:[[NSNumber numberWithInt:corner] retain] assumeInside:isInside];
-
-    //    [tlWin makeMainWindow];
-    [*theWindow orderFront: self];
-//    NSLog(@"window frame is: %f,%f w: %f, h: %f",[*theWindow frame].origin.x, [*theWindow frame].origin.y, [*theWindow frame].size.width, [*theWindow frame].size.height);
     
 }
 
@@ -200,8 +207,41 @@
             name: @"CornerClickLoadPrefsNotification"
             object: nil
  suspensionBehavior:NSNotificationSuspensionBehaviorCoalesce];
+    [nc addObserver: self
+           selector: @selector(appDisabledByPreferences:)
+               name:@"CornerClickDisableAppNotification"
+             object:nil
+ suspensionBehavior:NSNotificationSuspensionBehaviorCoalesce];
 
+    [nc addObserver: self
+           selector: @selector(pingAppNotification:)
+               name: @"CornerClickPingAppNotification"
+             object: nil
+ suspensionBehavior:NSNotificationSuspensionBehaviorCoalesce];
+    
     [self oneTimeMakeWindow];
+}
+
+- (void) pingAppNotification: (NSNotification *) notice
+{
+    //NSLog(@"app got ping: %@",[notice userInfo]);
+    [[NSDistributedNotificationCenter defaultCenter]
+postNotificationName: @"CornerClickPingBackNotification"
+              object: nil
+            userInfo: [NSDictionary dictionaryWithObject: [NSNumber numberWithInt: CB_APP_VERSION] forKey: @"CornerClickAppVersion"]
+  deliverImmediately: YES
+        ];
+}
+
+- (void) appDisabledByPreferences: (NSNotification *)notice
+{
+    //NSLog(@"told to disable");
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName: @"CornerClickDisableAppReplyNotification"
+                                                                   object: nil
+                                                                 userInfo: nil
+                                                       deliverImmediately: YES
+        ];
+    [NSApp terminate:nil];
 }
 
 - (void)oneTimeMakeWindow
@@ -243,10 +283,9 @@
         delayTimer=nil;
     }
     if(lastHoverCorner != corner){
-
         [hoverView setPointCorner: corner];
-        [hoverView setDrawString: hover[corner]];
-        [hoverView setIcon: icons[corner]];
+        [hoverView setDrawString: [[[*windows[corner] contentView] clickAction] label]];
+        [hoverView setIcon: [[[*windows[corner] contentView] clickAction] icon]];
     
         switch(corner){
             case 0:
@@ -313,7 +352,7 @@
     NSNumber *num = (NSNumber *)[theEvent userData];
     window =  *windows[[num intValue]];
     if(window !=nil){
-        [window setAlphaValue: 0.0];
+        [window setAlphaValue: 0.1];
     }else{
         NSLog(@"no window");
     }

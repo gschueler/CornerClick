@@ -15,4 +15,6 @@
 
 - (void) drawBuf: (NSRect) rect;
 - (void) setSelected: (BOOL) selected;
+- (ClickAction *) clickAction;
+- (void) setClickAction: (ClickAction *) action;
 @end

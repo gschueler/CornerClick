@@ -13,6 +13,8 @@
     return win;
 }
 
+
+
 - (int) corner
 {
     return corner;

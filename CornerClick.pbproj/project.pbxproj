@@ -148,6 +148,7 @@
 			files = (
 				32DBCFA30370C41700C91783,
 				F506C03E013D9D7901CA16C8,
+				372314A204CF3755000001CF,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -159,6 +160,7 @@
 				F506C041013D9D8001CA16C8,
 				F506C044013D9D8C01CA16C8,
 				37C3CB7A04CDB35E000001CF,
+				372314A604CF37DA000001CF,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -167,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F506C03F013D9D7901CA16C8,
+				372314A304CF3756000001CF,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -192,6 +195,7 @@
 				F506C040013D9D8001CA16C8,
 				089C167DFE841241C02AAC07,
 				F506C042013D9D8C01CA16C8,
+				372314A404CF37DA000001CF,
 			);
 			isa = PBXGroup;
 			name = Resources;
@@ -335,6 +339,39 @@
 //372
 //373
 //374
+		372314A204CF3755000001CF = {
+			fileRef = 37C3CB3204CDAD30000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		372314A304CF3756000001CF = {
+			fileRef = 37C3CB3304CDAD30000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		372314A404CF37DA000001CF = {
+			children = (
+				372314A504CF37DA000001CF,
+			);
+			isa = PBXVariantGroup;
+			name = BookmarkPreferences.tiff;
+			path = "";
+			refType = 4;
+		};
+		372314A504CF37DA000001CF = {
+			isa = PBXFileReference;
+			name = English;
+			path = English.lproj/BookmarkPreferences.tiff;
+			refType = 4;
+		};
+		372314A604CF37DA000001CF = {
+			fileRef = 372314A404CF37DA000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		37C3CB2804CDABD2000001CF = {
 			buildActionMask = 2147483647;
 			files = (
@@ -353,6 +390,7 @@
 			files = (
 				37C3CB5D04CDADFF000001CF,
 				37C3CB5E04CDADFF000001CF,
+				37C3CBC804CE7BEA000001CF,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,7 +432,6 @@
 				37C3CB2C04CDABD2000001CF,
 			);
 			buildSettings = {
-				OPTIMIZATION_CFLAGS = "";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
@@ -625,6 +662,7 @@
 		};
 		37C3CB5804CDADFF000001CF = {
 			children = (
+				37C3CBC604CE7BEA000001CF,
 				37C3CB5904CDADFF000001CF,
 				37C3CB5B04CDADFF000001CF,
 			);
@@ -684,6 +722,27 @@
 		37C3CB8404CDB53D000001CF = {
 			isa = PBXTargetDependency;
 			target = 37C3CB2D04CDABD2000001CF;
+		};
+		37C3CBC604CE7BEA000001CF = {
+			children = (
+				37C3CBC704CE7BEA000001CF,
+			);
+			isa = PBXVariantGroup;
+			name = BookmarkPreferences.tiff;
+			path = "";
+			refType = 4;
+		};
+		37C3CBC704CE7BEA000001CF = {
+			isa = PBXFileReference;
+			name = English;
+			path = BookmarkPreferences.tiff;
+			refType = 4;
+		};
+		37C3CBC804CE7BEA000001CF = {
+			fileRef = 37C3CBC604CE7BEA000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 //370
 //371

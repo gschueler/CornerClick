@@ -20,10 +20,21 @@
     IBOutlet NSImageView *fileIconImageView;
     IBOutlet NSView *actionView;
     IBOutlet NSView *chooseFileView;
+    IBOutlet NSView *chooseURLView;
+    IBOutlet NSTextField *urlTextField;
+    IBOutlet NSTextField *urlLabelField;
     IBOutlet NSButton *appEnabledCheckBox;
     IBOutlet NSButton *showTooltipCheckBox;
     IBOutlet NSButton *delayTooltipCheckBox;
     IBOutlet NSProgressIndicator *appLaunchIndicator;
+    IBOutlet NSTextField *appLaunchErrorLabel;
+    IBOutlet NSButton *addActionButton;
+    IBOutlet NSButton *removeActionButton;
+    IBOutlet NSTableView *actionTable;
+    IBOutlet NSButton *optionKeyCheckBox;
+    IBOutlet NSButton *shiftKeyCheckBox;
+    IBOutlet NSButton *commandKeyCheckBox;
+    IBOutlet NSButton *controlKeyCheckBox;
     NSMutableDictionary *tl;
     NSMutableDictionary *tr;
     NSMutableDictionary *bl;
@@ -32,6 +43,7 @@
     NSMutableDictionary *appPrefs;
     int chosenCorner;
     BOOL active;
+    NSTimer *disableTimer;
 }
 - (IBAction)actionChosen:(id)sender;
 - (IBAction)cornerChosen:(id)sender;
@@ -41,11 +53,22 @@
 - (IBAction)appEnable:(id)sender;
 - (IBAction)tooltipEnable:(id)sender;
 - (IBAction)tooltipDelay:(id)sender;
+- (IBAction)urlEntered:(id)sender;
+- (IBAction)removeActionButtonClicked:(id)sender;
+- (IBAction)addActionButtonClicked:(id)sender;
+- (IBAction)optionKeyCheckBoxClicked:(id)sender;
+- (IBAction)shiftKeyCheckBoxClicked:(id)sender;
+- (IBAction)commandKeyCheckBoxClicked:(id)sender;
+- (IBAction)controlKeyCheckBoxClicked:(id)sender;
 - (void) mainViewDidLoad;
 - (void) didUnselect;
 - (void) saveChanges;
 - (void) saveChangesFromNotification:(NSNotification *)aNotification;
 
 - (void) refreshWithSettings:(NSDictionary *)settings;
+- (void) checkIfHelperAppRunning;
+- (void) notifyAppOfPreferences:(NSDictionary *) prefs;
+- (NSDictionary *) makePrefs;
+- (void) setSubFrameForActionType: (int) type;
 
 @end

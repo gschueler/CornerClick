@@ -10,4 +10,7 @@
 #import "GrayView.h"
 #define CWSIZE 10
 #define HWSIZE 5
+
+#define CB_APP_VERSION 1
+
 #endif

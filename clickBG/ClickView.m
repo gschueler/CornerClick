@@ -9,13 +9,133 @@
         myAction=[anAction retain];
         drawed=nil;
         corner=theCorner;
+        [self registerForDraggedTypes:[NSArray arrayWithObjects:NSURLPboardType,
+            NSFilenamesPboardType, nil]];
     }
     return self;
 }
 
+- (ClickAction *) clickAction
+{
+    return myAction;
+}
+
+- (void) setClickAction: (ClickAction *) action
+{
+    [action retain];
+    [myAction release];
+    myAction=action;
+}
+
+- (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender
+{
+    NSLog(@"draggingEntered");
+    if ((NSDragOperationGeneric & [sender draggingSourceOperationMask])
+        == NSDragOperationGeneric)
+    {
+        //this means that the sender is offering the type of operation we want
+        //return that we want the NSDragOperationGeneric operation that they
+        //are offering
+        [self setSelected: YES];
+        [[self window] setAlphaValue: 1.0];
+        [self setNeedsDisplay: YES];
+        return NSDragOperationGeneric;
+    }
+    else
+    {
+        //since they aren't offering the type of operation we want, we have
+        //to tell them we aren't interested
+        return NSDragOperationNone;
+    }
+}
+
+- (void)draggingExited:(id <NSDraggingInfo>)sender
+{
+    NSLog(@"draggingExited");
+    //we aren't particularily interested in this so we will do nothing
+    //this is one of the methods that we do not have to implement
+    [self setSelected: NO];
+    [self setNeedsDisplay: YES];
+}
+
+- (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender
+{
+    return YES;
+}
+
+- (BOOL)performDragOperation:(id <NSDraggingInfo>)sender
+{
+    ClickAction *temp;
+    NSURL *url;
+    NSPasteboard *paste = [sender draggingPasteboard];
+    //gets the dragging-specific pasteboard from the sender
+    NSArray *types = [NSArray arrayWithObjects:
+        NSURLPboardType,
+        NSFilenamesPboardType, nil];
+    //a list of types that we can accept
+    NSString *desiredType = [paste availableTypeFromArray:types];
+    NSData *carriedData = [paste dataForType:desiredType];
+
+    [self setSelected: NO];
+    [self setNeedsDisplay: YES];
+    if (nil == carriedData)
+    {
+        //the operation failed for some reason
+        NSRunAlertPanel(@"Paste Error", @"Sorry, but the past operation failed",
+                        nil, nil, nil);
+        return NO;
+    }
+    else
+    {
+        //the pasteboard was able to give us some meaningful data
+        if( [desiredType isEqualToString:NSURLPboardType]){
+//            id test = [paste propertyListForType:@"NSURLPboardType"];
+            url = [NSURL URLFromPasteboard:paste];
+            if(url!=nil){
+                temp = [[ClickAction alloc] initWithType:3 andString:[url absoluteString] forCorner:[myAction corner]];
+                [myAction release];
+                myAction=temp;
+            }
+        }else
+        if ([desiredType isEqualToString:NSFilenamesPboardType])
+        {
+            //we have a list of file names in an NSData object
+            NSArray *fileArray =
+            [paste propertyListForType:@"NSFilenamesPboardType"];
+            //be caseful since this method returns id.
+            //We just happen to know that it will be an array.
+            NSString *path = [fileArray objectAtIndex:0];
+            //assume that we can ignore all but the first path in the list
+            NSLog(@"got new path: %@",path);
+            temp = [[ClickAction alloc] initWithType:0 andString:path forCorner:[myAction corner]];
+                //-(id)initWithType: (int) type andString: (NSString *)theString forCorner: (int) corner withLabel:(NSString *) label;
+            [myAction release];
+            myAction = temp;
+        }
+        else
+        {
+            //this can't happen
+            NSAssert(NO, @"This can't happen");
+            return NO;
+        }
+    }
+//    [self setNeedsDisplay:YES];    //redraw us with the new image
+    return YES;
+}
+
+
+- (void)draggingEnded:(id <NSDraggingInfo>)sender
+{
+    //we don't do anything in our implementation
+    //this could be ommitted since NSDraggingDestination is an infomal
+    //protocol and returns nothing
+    [self setSelected: NO];
+    [self setNeedsDisplay: YES];
+}
+
 - (void) setSelected: (BOOL)isSelected
 {
-    if(selected != isSelected){
+    if(selected && !isSelected || !selected && isSelected){
         //NSLog(@"drawed retainCount before release: %d",[drawed retainCount]);
         [drawed release];
         drawed=nil;
@@ -83,7 +203,7 @@
 
 
     if(selected)
-        [[[NSColor whiteColor] colorWithAlphaComponent:0.25] set];
+        [[[NSColor whiteColor] colorWithAlphaComponent:0.50] set];
     else
         [[[NSColor blackColor] colorWithAlphaComponent:0.50] set];
 

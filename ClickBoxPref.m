@@ -15,13 +15,21 @@
 {
     NSDictionary *prefs=[[NSUserDefaults standardUserDefaults]
       persistentDomainForName:@"CornerClickPref"];
-    NSLog(@"Identifier is %@",[[NSBundle bundleForClass:[self class]] bundleIdentifier]);
+    //NSLog(@"Identifier is %@",[[NSBundle bundleForClass:[self class]] bundleIdentifier]);
 
     [[NSNotificationCenter defaultCenter]
    addObserver:self
    selector:@selector(saveChangesFromNotification:)
            name:NSApplicationWillTerminateNotification
          object:nil];
+
+
+    [[NSDistributedNotificationCenter defaultCenter] addObserver: self
+                                                        selector: @selector(helperAppIsRunning:)
+                                                            name: @"CornerClickPingBackNotification"
+                                                          object: nil
+                                              suspensionBehavior:NSNotificationSuspensionBehaviorCoalesce];
+    
         [cornerChoicePopupButton selectItemAtIndex: 0];
         chosenCorner=0;
         active=NO;
@@ -37,11 +45,8 @@
         [showTooltipCheckBox setState:[[appPrefs objectForKey:@"tooltip"] intValue]];
         [delayTooltipCheckBox setState:[[appPrefs objectForKey:@"tooltipDelayed"] intValue]];
         [delayTooltipCheckBox setEnabled: ([[appPrefs objectForKey:@"tooltip"] intValue]==1)];
+        [appEnabledCheckBox setState: [[appPrefs objectForKey:@"appEnabled"] intValue]];
         
-       // [website setStringValue:[prefs objectForKey:@"website"]];
-        //[author setState:1 atRow:[[prefs objectForKey:@"author"] intValue]
-        //          column:0];
-        //[rating setFloatValue:[[prefs objectForKey:@"rating"] floatValue]];
     }else{
         tl = [[NSMutableDictionary dictionaryWithCapacity:4] retain];
         [tl setObject: [NSNumber numberWithInt:0] forKey:@"enabled"];
@@ -55,41 +60,170 @@
         appPrefs = [[NSMutableDictionary dictionaryWithCapacity:3] retain];
         [appPrefs setObject: [NSNumber numberWithInt:1] forKey:@"tooltip"];
         [appPrefs setObject: [NSNumber numberWithInt:1] forKey:@"tooltipDelayed"];
-        
-/*
-        tr = [[NSMutableDictionary dictionaryWithCapacity:4] retain];
-        [tr setObject: [NSNumber numberWithInt:0] forKey:@"enabled"];
-        [tr setObject: [NSNumber numberWithInt:0] forKey:@"action"];
-        [tr setObject: [NSNumber numberWithInt:0] forKey:@"trigger"];
-        [tr setObject: @"" forKey:@"chosenFilePath"];
-        bl = [[NSMutableDictionary dictionaryWithCapacity:4] retain];
-        [bl setObject: [NSNumber numberWithInt:0] forKey:@"enabled"];
-        [bl setObject: [NSNumber numberWithInt:0] forKey:@"action"];
-        [bl setObject: [NSNumber numberWithInt:0] forKey:@"trigger"];
-        [bl setObject: @"" forKey:@"chosenFilePath"];
-        br = [[NSMutableDictionary dictionaryWithCapacity:4] retain];
-        [br setObject: [NSNumber numberWithInt:0] forKey:@"enabled"];
-        [br setObject: [NSNumber numberWithInt:0] forKey:@"action"];
-        [br setObject: [NSNumber numberWithInt:0] forKey:@"trigger"];
-        [br setObject: @"" forKey:@"chosenFilePath"];
-     */   
+        [appPrefs setObject:[NSNumber numberWithInt: 0] forKey:@"appEnabled"]; 
     }
     currentDict = tl;
     [self refreshWithSettings: currentDict];
-    //NSLog(@"loaded main view.  current: %@",currentDict);
-    //NSLog(@"retain count of current: %d",[currentDict retainCount]);
+
+    [self checkIfHelperAppRunning];
+}
+
+
+- (void) checkIfHelperAppRunning
+{
+    //NSLog(@"send ping to app");
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName: @"CornerClickPingAppNotification"
+                                                                   object: nil
+                                                                 userInfo: [NSDictionary dictionaryWithObject: [NSNumber numberWithInt: CB_APP_VERSION] forKey: @"CornerClickAppVersion"]
+                                                       deliverImmediately: YES];
+}
+
+- (void) setAutoLaunch: (BOOL) launch forApp: (NSString *)path
+{
+    NSMutableDictionary *prefs;
+    NSDictionary *item;
+    NSMutableArray *mprefs;
+    int i;
+    prefs = [[[NSUserDefaults standardUserDefaults] persistentDomainForName:@"loginwindow"] mutableCopy];
+    if(prefs!=nil){
+        mprefs = [[prefs objectForKey:@"AutoLaunchedApplicationDictionary"] mutableCopy];
+        for(i=0;i<[mprefs count];i++){
+            item = (NSDictionary *)[mprefs objectAtIndex: i];
+            if([path isEqualToString: [item objectForKey:@"Path"]]){
+                if(launch)
+                    return;
+                else{
+                    [mprefs removeObjectAtIndex: i];
+                    [prefs setObject: mprefs forKey:@"AutoLaunchedApplicationDictionary"];
+                    [[NSUserDefaults standardUserDefaults] setPersistentDomain: prefs forName:@"loginwindow"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    return;
+                }
+            }
+        }
+        if(launch){
+            [mprefs addObject: [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: path, [NSNumber numberWithBool:NO],nil]
+                                                        forKeys: [NSArray arrayWithObjects: @"Path", @"Hide",nil]
+                ]
+                ];
+            [prefs setObject: mprefs forKey:@"AutoLaunchedApplicationDictionary"];
+            [[NSUserDefaults standardUserDefaults] setPersistentDomain: prefs forName:@"loginwindow"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            return;
+        }
+    }
+}
+
+- (void) helperAppIsRunning: (NSNotification *) notice
+{
+    NSNumber *num = [[notice userInfo] objectForKey:@"CornerClickAppVersion"];
+    int vers = [num intValue];
+    int maj = (int)((vers/1000));
+    int min= vers%1000;
+    active=YES;
+    if(vers != CB_APP_VERSION){
+        [appLaunchErrorLabel setStringValue: [NSString stringWithFormat: @"A different version (v%d.%d) is running.",
+            maj,min]];        
+    }else{
+        [appLaunchErrorLabel setStringValue: @""];
+
+    }
+    [appLaunchIndicator stopAnimation:self];
+    [appEnabledCheckBox setState: 1 ];
+}
+
+- (void) helperAppDidTerminate: (NSNotification *)notice
+{
+
+    [[NSDistributedNotificationCenter defaultCenter]  removeObserver:self
+                                                name:@"CornerClickDisableAppReplyNotification"
+                                                object:nil];
+
+    if(disableTimer!=nil){
+        [disableTimer invalidate];
+        [disableTimer release];
+        disableTimer=nil;
+    }
+    [appLaunchErrorLabel setStringValue: @""];
+    [appLaunchIndicator stopAnimation:self];
+    [appEnabledCheckBox setState:0];
+    active=NO;
+    [appPrefs setObject:[NSNumber numberWithInt: active?1:0] forKey:@"appEnabled"];
+}
+
+- (void) helperAppTerminateTimeout
+{
+    [[NSDistributedNotificationCenter defaultCenter]  removeObserver:self
+                                                 name:@"CornerClickDisableAppReplyNotification"
+                                               object:nil];
+    if(disableTimer!=nil){
+        [disableTimer invalidate];
+        [disableTimer release];
+        disableTimer=nil;
+    }
+    //NSLog(@"Failed to quit bg app");
+    [appLaunchErrorLabel setStringValue: @"Couldn't quit helper application"];
+    [appLaunchIndicator stopAnimation:self];
+    [appEnabledCheckBox setState:1];
+    [appEnabledCheckBox setNeedsDisplay: YES];
+    active=YES;
+    [appPrefs setObject:[NSNumber numberWithInt: active?1:0] forKey:@"appEnabled"];
 }
 
 - (IBAction)appEnable:(id)sender
 {
+    NSBundle *bundle;
+    NSString *apppath;
+    BOOL success;
+    bundle = [NSBundle bundleForClass:[ClickBoxPref class]];
+    apppath = [bundle pathForResource:@"CornerClickBG" ofType:@"app"];
     //appLaunchIndicator
-    if(active){
+    if(active && [sender state]==0){
+
+        if(disableTimer==nil){
+            [appLaunchIndicator startAnimation:self];
+            //register for app terminated messages
+
+            [[NSDistributedNotificationCenter defaultCenter] addObserver: self
+                                                                selector: @selector(helperAppDidTerminate:)
+                                                                    name: @"CornerClickDisableAppReplyNotification"
+                                                                  object: nil
+                                                      suspensionBehavior:NSNotificationSuspensionBehaviorCoalesce];
+            
+            NSInvocation *nsinv = [NSInvocation invocationWithMethodSignature: [self methodSignatureForSelector:@selector(helperAppTerminateTimeout)]];
+            [nsinv setSelector:@selector(helperAppTerminateTimeout)];
+            [nsinv setTarget:self];
+            disableTimer = [[NSTimer scheduledTimerWithTimeInterval:20 invocation:nsinv repeats:NO] retain];
+
+            [self setAutoLaunch:NO forApp:apppath];
+        }
+        [[NSDistributedNotificationCenter defaultCenter] postNotificationName: @"CornerClickDisableAppNotification"
+                                                                       object: nil
+                                                                     userInfo:nil
+                                                           deliverImmediately:YES];
+        
+    }else if(!active && [sender state]){
+        [appLaunchErrorLabel setStringValue: @""];
         [appLaunchIndicator startAnimation:self];
-        active=NO;
-    }else{
-        [appLaunchIndicator stopAnimation:self];
-        active=YES;
+        [self saveChanges];
+        if(apppath ==nil)
+            success=NO;
+        else
+            success = [[NSWorkspace sharedWorkspace] launchApplication: apppath];
+        if(!success){
+            //NSLog(@"Failed to launch bg app");
+            [appLaunchErrorLabel setStringValue: @"Couldn't launch helper application"];
+            [appLaunchIndicator stopAnimation:self];
+            [appEnabledCheckBox setState:0];
+            active=NO;
+        }else{
+            [self setAutoLaunch:YES forApp:apppath];
+            [appLaunchErrorLabel setStringValue: @""];
+            [appLaunchIndicator stopAnimation:self];
+            active=YES;
+        }
     }
+    [appPrefs setObject:[NSNumber numberWithInt: active?1:0] forKey:@"appEnabled"];
 }
 - (IBAction)tooltipEnable:(id)sender
 {
@@ -101,6 +235,7 @@
     }
 
     [delayTooltipCheckBox setEnabled: ([sender state]==NSOnState)];
+    [self notifyAppOfPreferences:[self makePrefs]];
 
 }
 - (IBAction)tooltipDelay:(id)sender
@@ -110,6 +245,7 @@
     if(appPrefs){
         //NSLog(@"CurrentDict type: %@",[currentDict class]);
         [appPrefs setObject: [NSNumber numberWithInt: state ] forKey:@"tooltipDelayed"];
+        [self notifyAppOfPreferences:[self makePrefs]];
     }
 }
 
@@ -121,8 +257,10 @@
     [enabledCheckBox setState:[[settings objectForKey:@"enabled"] intValue]];
     [actionChoicePopupButton selectItemAtIndex: [[settings objectForKey:@"action"] intValue]];
     [triggerChoicePopupButton selectItemAtIndex: [[settings objectForKey:@"trigger"] intValue]];
-    [appEnabledCheckBox setState:[[settings objectForKey:@"appEnabled"] intValue]];
-    
+    [appEnabledCheckBox setState:[[appPrefs objectForKey:@"appEnabled"] intValue]];
+
+    NSString *url = [settings objectForKey:@"chosenURL"];
+    NSString *urld = [settings objectForKey:@"urlDesc"];
     NSString *label = [settings objectForKey:@"chosenFilePath"];
     if(label){
         NSFileWrapper *temp = [[[NSFileWrapper alloc] initWithPath: [settings objectForKey:@"chosenFilePath"]] autorelease];
@@ -137,20 +275,17 @@
         [chosenFileLabel setStringValue: @"no file chosen"];
         [fileIconImageView setImage: nil];
     }
-    NSArray *sub = [actionView subviews];
-    if([sub count] && [sub objectAtIndex:0]!=nil){
-        [[sub objectAtIndex:0] retain];
-        [[sub objectAtIndex:0] removeFromSuperview];
+    if(url!=nil){
+        [urlTextField setStringValue:url];
+    }else{
+        [urlTextField setStringValue:@"http://"];
     }
-    switch([[settings objectForKey:@"action"] intValue]){
-        case 0:
-            [actionView addSubview: chooseFileView];
-            break;
-        case 1:
-            break;
+    if(urld!=nil){
+        [urlLabelField setStringValue:urld];
+    }else{
+        [urlLabelField setStringValue:@""];
     }
-
-    
+    [self setSubFrameForActionType: [[settings objectForKey:@"action"] intValue]];    
 }
 
 - (void)openSheetDidEnd:(NSOpenPanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
@@ -161,17 +296,29 @@
         NSString *thefile = [[sheet filenames] objectAtIndex:0];
         [currentDict setObject:thefile forKey:@"chosenFilePath"];
         [chosenFileLabel setStringValue: [thefile lastPathComponent]];
-        NSFileWrapper *temp = [[[NSFileWrapper alloc] initWithPath: thefile] autorelease];
-        [fileIconImageView setImage: [temp icon]];
+        
+        //NSFileWrapper *temp = [[[NSFileWrapper alloc] initWithPath: thefile] autorelease];
+        [fileIconImageView setImage: [[NSWorkspace sharedWorkspace] iconForFile: thefile]];
+        [self notifyAppOfPreferences:[self makePrefs]];
     }
 
 }
 
+- (void) urlEntered: (id) sender
+{
+    [currentDict setObject:[urlTextField stringValue] forKey:@"chosenURL"];
+    if([[urlLabelField stringValue] length] > 0){
+        [currentDict setObject:[urlLabelField stringValue] forKey:@"urlDesc"];
+    }else{
+        [currentDict removeObjectForKey:@"urlDesc"];
+    }
+    [self notifyAppOfPreferences:[self makePrefs]];
+}
 
 - (void) didUnselect
 {
     //NSLog(@"didUnselect");
-    [self saveChanges];
+    //[self notifyAppOfPreferences:[self makePrefs]];
 }
 
 - (void) saveChangesFromNotification:(NSNotification*)aNotification
@@ -179,7 +326,7 @@
     [self saveChanges];
 }
 
-- (void) saveChanges
+- (NSDictionary *)makePrefs
 {
     NSDictionary *prefs;
     NSDictionary *tlcpy;
@@ -198,9 +345,16 @@
         brcpy,@"br",
         [appPrefs objectForKey:@"tooltip"],@"tooltip",
         [appPrefs objectForKey:@"tooltipDelayed"],@"tooltipDelayed",
+        [NSNumber numberWithInt: active?1:0 ],@"appEnabled",
         nil];
-    
 
+    [prefs autorelease];
+    return prefs;
+}
+- (void) saveChanges
+{
+
+    NSDictionary *prefs = [self makePrefs];
 
     //NSLog(@"Made Dictionary");
     
@@ -212,10 +366,13 @@
     [[NSUserDefaults standardUserDefaults] setPersistentDomain:prefs
          forName:@"CornerClickPref"];
 
+    [[NSUserDefaults standardUserDefaults] synchronize];
     //NSLog(@"setDomain");
+    [self notifyAppOfPreferences: prefs];
+}
 
-    [prefs autorelease];
-
+- (void) notifyAppOfPreferences: (NSDictionary *) prefs
+{
     //notify the app if it's running
     [[NSDistributedNotificationCenter defaultCenter]
      postNotificationName: @"CornerClickLoadPrefsNotification" object: nil
@@ -232,18 +389,33 @@
         return;
     }
     [currentDict setObject: [NSNumber numberWithInt: [sender indexOfSelectedItem] ] forKey:@"action"];
+    [self setSubFrameForActionType: [sender indexOfSelectedItem]];
+    [self notifyAppOfPreferences:[self makePrefs]];
+}
+
+- (void) setSubFrameForActionType: (int) type
+{
     NSArray *sub = [actionView subviews];
-    if([sub count] && [sub objectAtIndex:0]){
-        [[sub objectAtIndex:0] retain];
-        [[sub objectAtIndex:0] removeFromSuperview];
+    int i;
+    for(i=0;i<[sub count];i++){
+        [[sub objectAtIndex:i] retain];
+        [[sub objectAtIndex:i] removeFromSuperview];
     }
-    switch([sender indexOfSelectedItem]){
+    NSRect frame = [actionView frame];
+    switch(type){
         case 0: //open file
             [actionView addSubview: chooseFileView];
+            [actionView setFrameSize: [chooseFileView frame].size];
             break;
-        case 1:
+        case 3:
+            [actionView addSubview: chooseURLView];
+            [actionView setFrameSize: [chooseURLView frame].size];
+            break;
+        default:
+            //[actionView setFrameSize: NSMakeSize(frame.size.width,0)];
             break;
     }
+    [actionView setNeedsDisplay:YES];
 }
 
 - (IBAction)cornerChosen:(id)sender
@@ -274,6 +446,7 @@
     if(currentDict){
         //NSLog(@"CurrentDict type: %@",[currentDict class]);
         [currentDict setObject: [NSNumber numberWithInt: state ] forKey:@"enabled"];
+        [self notifyAppOfPreferences:[self makePrefs]];
     }
 }
 
@@ -294,6 +467,7 @@
 
     //NSLog(@"Choose trigger: %d",[sender indexOfSelectedItem]);
     [currentDict setObject: [NSNumber numberWithInt: [sender indexOfSelectedItem] ] forKey:@"trigger"];
+    [self notifyAppOfPreferences:[self makePrefs]];
 
 }
 @end

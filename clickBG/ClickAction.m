@@ -3,19 +3,98 @@
 
 @implementation ClickAction
 
--(id)initWithType: (int) type andString: (NSString *)theString
+-(id)initWithType: (int) type andString: (NSString *)theString forCorner: (int)corner
+{
+    return [self initWithType:type andString:theString  forCorner: corner withLabel:nil];
+    
+}
+-(id)initWithType: (int) type andString: (NSString *)theString forCorner: (int)corner withLabel: (NSString *)label 
 {
     id me=[super init];
-    if(theString!=nil){
-        myString = [[NSString stringWithString:theString] retain];
+    if(me){
+        myIcon=nil;
+        theCorner=corner;
+        if(theString != nil)
+            myString = [[NSString stringWithString:theString] retain];
+        switch(type){
+            case 0:
+                if([[myString lastPathComponent] hasSuffix:@".app"]){
+                   myLabel = [[[myString lastPathComponent] stringByDeletingPathExtension] retain];
+                }else{
+                    myLabel =[[myString lastPathComponent] retain];
+                }
+                myIcon = [[[NSWorkspace sharedWorkspace] iconForFile: myString] retain];
+                /*
+                NSLog(@"init NSFileWrapper");
+                temp = [[NSFileWrapper alloc] initWithPath: myString];
+                if(temp!=nil){
+
+                    NSLog(@"NSFileWrapper not nil");
+                    [temp autorelease];
+                    myIcon=[[temp icon] copy];
+                    NSLog(@"isDirectory: %d",[temp isDirectory]);
+                    NSLog(@"isSymbolicLink: %d",[temp isSymbolicLink]);
+                    NSLog(@"isRegularFile: %d",[temp isRegularFile]);
+                }else{
+                    NSLog(@"temp failed init");
+                }
+                 */
+                break;
+            case 1:
+                myLabel=[[NSString stringWithString:@"Hide Current Application"] retain];
+
+                break;
+            case 2:
+                myLabel=[[NSString stringWithString:@"Hide Other Applications"] retain];
+                break;
+            case 3:
+                if(label !=nil){
+                    myLabel = [label retain];
+                }
+                else if([myString length]> 30){
+                    myLabel=[[NSString stringWithFormat:@"%@É",[myString substringToIndex:30]] retain];
+                }else{
+                    myLabel=[[NSString stringWithString:myString] retain];
+                }
+                myIcon = [[NSImage imageNamed:@"BookmarkPreferences"] retain];
+                break;
+            default:
+                myLabel=[[NSString stringWithString:@"?!@#"] retain];
+                
+        }
+        
     }
     theType=type;
     return me;
 }
 
+-(int)type
+{
+    return theType;
+}
+
+-(int)corner
+{
+    return theCorner;
+}
+-(NSString *)string
+{
+    return [[myString copy] autorelease];
+}
+-(NSString *)label
+{
+    return [[myLabel copy] autorelease];
+}
+-(NSImage *)icon
+{
+    return [[myIcon copy] autorelease];
+}
+
 - (void) dealloc
 {
     [myString release];
+    [myLabel release];
+    [myIcon release];
 }
 - (void)doAction:(NSEvent*)theEvent
 {
@@ -31,6 +110,8 @@
             [self hideOthersAction];
             break;
         case 3:
+            [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:myString]];
+            break;
         default:
             break;
     }
@@ -52,6 +133,7 @@
     ProcessSerialNumber psn;
     ProcessSerialNumber paramPsn;
     BOOL sameanswer;
+    
     err =GetFrontProcess(&psn);
     paramPsn.highLongOfPSN=0;
     paramPsn.lowLongOfPSN=0;

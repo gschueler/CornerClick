@@ -16,7 +16,7 @@
     NSString *hover[4];
     //NSArray *windows;
     ClickAction *tlAction;
-    NSDictionary *preferences;
+    NSMutableDictionary *preferences;
 
     NSString *cornerNames[4];
 
@@ -26,9 +26,11 @@
     GrayView *hoverView;
     int lastHoverCorner;
 }
-- (void) createClickWindowAtCorner: (int) corner withActionType: (int) type andString: (NSString *)filePath ;
+- (void) createClickWindowAtCorner: (int) corner withActionType: (int) type andString: (NSString *)filePath withLabel:(NSString *) label;
 - (void)prefPaneChangedPreferences:(NSNotification *)notice;
 - (void) loadFromPreferences: (NSDictionary *) sourcePreferences;
 - (BOOL) validActionType: (int) type andString: (NSString *) action;
 - (void)oneTimeMakeWindow;
+-(NSString *) stringNameForActionType:(int) type;
+- (NSString *) labelNameForActionType: (int) type;
 @end

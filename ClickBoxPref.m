@@ -13,6 +13,12 @@
 
 - (void) mainViewDidLoad
 {
+    NSMutableArray *tempArray;
+    NSMutableDictionary *tempDict;
+    NSArray *columns;
+    NSImageCell *imgcell;
+    int i;
+    
     NSDictionary *prefs=[[NSUserDefaults standardUserDefaults]
       persistentDomainForName:@"CornerClickPref"];
     //NSLog(@"Identifier is %@",[[NSBundle bundleForClass:[self class]] bundleIdentifier]);
@@ -22,6 +28,12 @@
    selector:@selector(saveChangesFromNotification:)
            name:NSApplicationWillTerminateNotification
          object:nil];
+
+    [[NSNotificationCenter defaultCenter]
+        addObserver: self
+           selector:@selector(tableSelectionChanged:)
+               name:NSTableViewSelectionDidChangeNotification
+             object:actionTable];
 
 
     [[NSDistributedNotificationCenter defaultCenter] addObserver: self
@@ -42,30 +54,118 @@
         appPrefs = [prefs mutableCopy];
 
 
-        [showTooltipCheckBox setState:[[appPrefs objectForKey:@"tooltip"] intValue]];
-        [delayTooltipCheckBox setState:[[appPrefs objectForKey:@"tooltipDelayed"] intValue]];
-        [delayTooltipCheckBox setEnabled: ([[appPrefs objectForKey:@"tooltip"] intValue]==1)];
-        [appEnabledCheckBox setState: [[appPrefs objectForKey:@"appEnabled"] intValue]];
-        
-    }else{
-        tl = [[NSMutableDictionary dictionaryWithCapacity:4] retain];
-        [tl setObject: [NSNumber numberWithInt:0] forKey:@"enabled"];
-        [tl setObject: [NSNumber numberWithInt:0] forKey:@"action"];
-        [tl setObject: [NSNumber numberWithInt:0] forKey:@"trigger"];
-        //[tl setObject: @"" forKey:@"chosenFilePath"];
-        tr = [[NSMutableDictionary alloc] initWithDictionary: tl copyItems:YES];
-        bl = [[NSMutableDictionary alloc] initWithDictionary: tl copyItems:YES];
-        br = [[NSMutableDictionary alloc] initWithDictionary: tl copyItems:YES];
+        tempArray = [[tl objectForKey:@"actionList"] mutableCopy];
+        for(i=0;i<[tempArray count];i++){
+            tempDict = [[tempArray objectAtIndex:i] mutableCopy];
+            [tempArray replaceObjectAtIndex:i withObject:tempDict];
+        }
+        [tl setObject:tempArray forKey:@"actionList"];
+    
 
+        tempArray = [[tr objectForKey:@"actionList"] mutableCopy];
+        for(i=0;i<[tempArray count];i++){
+            tempDict = [[tempArray objectAtIndex:i] mutableCopy];
+            [tempArray replaceObjectAtIndex:i withObject:tempDict];
+        }
+        [tr setObject:tempArray forKey:@"actionList"];
+    
+
+        tempArray = [[bl objectForKey:@"actionList"] mutableCopy];
+        for(i=0;i<[tempArray count];i++){
+            tempDict = [[tempArray objectAtIndex:i] mutableCopy];
+            [tempArray replaceObjectAtIndex:i withObject:tempDict];
+        }
+
+        [bl setObject:tempArray forKey:@"actionList"];
+    
+
+        tempArray = [[br objectForKey:@"actionList"] mutableCopy];
+        for(i=0;i<[tempArray count];i++){
+            tempDict = [[tempArray objectAtIndex:i] mutableCopy];
+            [tempArray replaceObjectAtIndex:i withObject:tempDict];
+        }
+
+        [br setObject:tempArray forKey:@"actionList"];
+        
+
+    }else{
+        tempArray = [NSMutableArray arrayWithCapacity:4];
+        tl = [[NSMutableDictionary dictionaryWithCapacity:4] retain];
+        [tl setObject: [NSNumber numberWithInt:1] forKey:@"enabled"];
+
+        [tl setObject:  tempArray forKey:@"actionList"];
+        tr = [[NSMutableDictionary alloc] initWithDictionary: tl copyItems:YES];
+        [tr setObject:  [tempArray mutableCopy] forKey:@"actionList"];
+        bl = [[NSMutableDictionary alloc] initWithDictionary: tl copyItems:YES];
+        [bl setObject:  [tempArray mutableCopy] forKey:@"actionList"];
+        br = [[NSMutableDictionary alloc] initWithDictionary: tl copyItems:YES];
+        [br setObject:  [tempArray mutableCopy] forKey:@"actionList"];
+        
         appPrefs = [[NSMutableDictionary dictionaryWithCapacity:3] retain];
         [appPrefs setObject: [NSNumber numberWithInt:1] forKey:@"tooltip"];
         [appPrefs setObject: [NSNumber numberWithInt:1] forKey:@"tooltipDelayed"];
-        [appPrefs setObject:[NSNumber numberWithInt: 0] forKey:@"appEnabled"]; 
-    }
-    currentDict = tl;
-    [self refreshWithSettings: currentDict];
+        [appPrefs setObject:[NSNumber numberWithInt: 0] forKey:@"appEnabled"];
 
+
+        
+    }
+    [showTooltipCheckBox setState:[[appPrefs objectForKey:@"tooltip"] intValue]];
+    [delayTooltipCheckBox setState:[[appPrefs objectForKey:@"tooltipDelayed"] intValue]];
+    [delayTooltipCheckBox setEnabled: ([[appPrefs objectForKey:@"tooltip"] intValue]==1)];
+    [appEnabledCheckBox setState: [[appPrefs objectForKey:@"appEnabled"] intValue]];
+    
+    currentDict = tl;
+    currentActions = [tl objectForKey:@"actionList"];
+    [self refreshWithCornerSettings: currentDict];
+    [self refreshWithSettings:nil];
+    currentActionDict=nil;
+
+    columns = [actionTable tableColumns];
+    imgcell = [[[NSImageCell alloc] initImageCell:nil] autorelease];
+    [[columns objectAtIndex:0] setIdentifier: @"icon"];
+    [[columns objectAtIndex:0] setDataCell: imgcell];
+//    [[columns objectAtIndex:0] setMinWidth: 20];
+  //  [[columns objectAtIndex:0] setMaxWidth: 20];
+    [[columns objectAtIndex:1] setIdentifier: @"desc"];
+    [[columns objectAtIndex:2] setIdentifier: @"modifiers"];
+
+    /*txtcell = [[[NSTextFieldCell alloc] initTextCell:@""] autorelease];
+    [txtcell setTextColor:[NSColor grayColor]];
+    [txtcell setFont: [NSFont fontWithName:@"Lucida Grande" size:10]];
+    [txtcell setAlignment: NSRightTextAlignment];
+    
+
+    [[columns objectAtIndex:2] setDataCell: txtcell];
+*/
+    [[[columns objectAtIndex:2] dataCell] setFont: [NSFont systemFontOfSize:10]];
+    [actionTable setDataSource:self];
+    [readmeTextView readRTFDFromFile:[[NSBundle bundleForClass: [ClickBoxPref class]] pathForResource:@"Readme" ofType:@"rtf"]];
+    [readmeTextView setContinuousSpellCheckingEnabled: NO];
+    /*
+    [readmeTextView setEditable:YES];
+    [readmeTextView setSelectedRange: NSMakeRange([[readmeTextView string] length],0)];
+
+    [readmeTextView insertText:@"\n"];
+    [readmeTextView insertText: [self makeAttributedLink:@"mailto:greg-cc@vario.us" forString:@"greg-cc@vario.us"]];
+    [readmeTextView insertText:@"\n"];
+    [readmeTextView insertText: [self makeAttributedLink:@"http://greg.vario.us" forString:@"http://greg.vario.us"]];
+
+    [readmeTextView setEditable:NO];
+    [readmeTextView scrollRangeToVisible: NSMakeRange(0,0)];
+     */
     [self checkIfHelperAppRunning];
+}
+
+- (NSAttributedString *)makeAttributedLink:(NSString *) link forString:(NSString *) string
+{
+    return
+        [[[NSAttributedString alloc] initWithString:string
+                                         attributes:
+            [NSDictionary dictionaryWithObjects:
+                [NSArray arrayWithObjects:[NSURL URLWithString:link],[NSColor blueColor],[NSNumber numberWithInt:1],nil]
+                                        forKeys:
+                [NSArray arrayWithObjects:NSLinkAttributeName,NSForegroundColorAttributeName,NSUnderlineStyleAttributeName,nil]
+                ]] autorelease];
 }
 
 
@@ -249,70 +349,110 @@
     }
 }
 
+- (void) refreshWithCornerSettings: (NSDictionary *) settings
+{
+    int enabled=[[settings objectForKey:@"enabled"] intValue];
+    [enabledCheckBox setState:enabled];
+    //[appEnabledCheckBox setState:[[appPrefs objectForKey:@"appEnabled"] intValue]];
+}
+
 - (void) refreshWithSettings:(NSDictionary *)settings
 {
-
+    int flags=0;
+    NSString *theString;
     //NSLog(@"retain count of settings: %d",[settings retainCount]);
+    if(settings!=nil){
+        flags = [[settings objectForKey:@"modifiers"] intValue];
+        
+        [removeActionButton setEnabled:YES];
+        [optionKeyCheckBox setEnabled:YES];
+        [shiftKeyCheckBox setEnabled:YES];
+        [controlKeyCheckBox setEnabled:YES];
+        [commandKeyCheckBox setEnabled:YES];
+        NSLog(@"flags (%d) & OPTION_MASK (%d) : %d",flags,OPTION_MASK,(flags & OPTION_MASK));
+        [optionKeyCheckBox setState: ((flags & OPTION_MASK) > 0 ? NSOnState: NSOffState)];
+        [shiftKeyCheckBox setState: ((flags & SHIFT_MASK) > 0 ? NSOnState: NSOffState)];
+        [controlKeyCheckBox setState: ((flags & CONTROL_MASK) > 0 ? NSOnState: NSOffState)];
+        [commandKeyCheckBox setState: ((flags & COMMAND_MASK) > 0 ? NSOnState: NSOffState)];
+        
+        [actionChoicePopupButton setEnabled:YES];
+        [triggerChoicePopupButton setEnabled:YES];
+        [actionChoicePopupButton selectItemAtIndex: [[settings objectForKey:@"action"] intValue]];
+        [triggerChoicePopupButton selectItemAtIndex: [[settings objectForKey:@"trigger"] intValue]];
     
-    [enabledCheckBox setState:[[settings objectForKey:@"enabled"] intValue]];
-    [actionChoicePopupButton selectItemAtIndex: [[settings objectForKey:@"action"] intValue]];
-    [triggerChoicePopupButton selectItemAtIndex: [[settings objectForKey:@"trigger"] intValue]];
-    [appEnabledCheckBox setState:[[appPrefs objectForKey:@"appEnabled"] intValue]];
-
-    NSString *url = [settings objectForKey:@"chosenURL"];
-    NSString *urld = [settings objectForKey:@"urlDesc"];
-    NSString *label = [settings objectForKey:@"chosenFilePath"];
-    if(label){
-        NSFileWrapper *temp = [[[NSFileWrapper alloc] initWithPath: [settings objectForKey:@"chosenFilePath"]] autorelease];
-        if(temp){
-            [chosenFileLabel setStringValue: [[settings objectForKey:@"chosenFilePath"] lastPathComponent]];
-            [fileIconImageView setImage: [temp icon]];
+        NSString *url = [settings objectForKey:@"chosenURL"];
+        NSString *urld = [settings objectForKey:@"urlDesc"];
+        NSString *label = [settings objectForKey:@"chosenFilePath"];
+        if(label){
+            theString=[settings objectForKey:@"chosenFilePath"];
+            if([theString hasSuffix:@".app"]){
+                [chosenFileLabel setStringValue: [[theString lastPathComponent] stringByDeletingPathExtension]];
+            }else{
+                [chosenFileLabel setStringValue: [theString lastPathComponent]];
+            }
+            [fileIconImageView setImage: [[NSWorkspace sharedWorkspace] iconForFile: theString]];
         }else{
             [chosenFileLabel setStringValue: @"no file chosen"];
             [fileIconImageView setImage: nil];
         }
+        if(url!=nil){
+            [urlTextField setStringValue:url];
+        }else{
+            [urlTextField setStringValue:@"http://"];
+        }
+        if(urld!=nil){
+            [urlLabelField setStringValue:urld];
+        }else{
+            [urlLabelField setStringValue:@""];
+        }
+        [self setSubFrameForActionType: [[settings objectForKey:@"action"] intValue]];
     }else{
-        [chosenFileLabel setStringValue: @"no file chosen"];
-        [fileIconImageView setImage: nil];
+        [removeActionButton setEnabled:NO];
+        [optionKeyCheckBox setEnabled:NO];
+        [shiftKeyCheckBox setEnabled:NO];
+        [controlKeyCheckBox setEnabled:NO];
+        [commandKeyCheckBox setEnabled:NO];
+        [optionKeyCheckBox setState:NSOffState];
+        [shiftKeyCheckBox setState:NSOffState];
+        [controlKeyCheckBox setState:NSOffState];
+        [commandKeyCheckBox setState:NSOffState];
+        [actionChoicePopupButton setEnabled:NO];
+        [triggerChoicePopupButton setEnabled:NO];
+        [self setSubFrameForActionType: -1];
     }
-    if(url!=nil){
-        [urlTextField setStringValue:url];
-    }else{
-        [urlTextField setStringValue:@"http://"];
-    }
-    if(urld!=nil){
-        [urlLabelField setStringValue:urld];
-    }else{
-        [urlLabelField setStringValue:@""];
-    }
-    [self setSubFrameForActionType: [[settings objectForKey:@"action"] intValue]];    
 }
 
 - (void)openSheetDidEnd:(NSOpenPanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
     //NSLog(@"Sheet finished");
 
+    [sheet orderOut: self];
     if(returnCode==NSOKButton){
         NSString *thefile = [[sheet filenames] objectAtIndex:0];
-        [currentDict setObject:thefile forKey:@"chosenFilePath"];
-        [chosenFileLabel setStringValue: [thefile lastPathComponent]];
+        [currentActionDict setObject:thefile forKey:@"chosenFilePath"];
+        if([thefile hasSuffix:@".app"]){
+            [chosenFileLabel setStringValue: [[thefile lastPathComponent] stringByDeletingPathExtension]];
+        }else{
+            [chosenFileLabel setStringValue: [thefile lastPathComponent]];
+        }
         
         //NSFileWrapper *temp = [[[NSFileWrapper alloc] initWithPath: thefile] autorelease];
         [fileIconImageView setImage: [[NSWorkspace sharedWorkspace] iconForFile: thefile]];
         [self notifyAppOfPreferences:[self makePrefs]];
+        [actionTable reloadData];
     }
-
 }
 
 - (void) urlEntered: (id) sender
 {
-    [currentDict setObject:[urlTextField stringValue] forKey:@"chosenURL"];
+    [currentActionDict setObject:[urlTextField stringValue] forKey:@"chosenURL"];
     if([[urlLabelField stringValue] length] > 0){
-        [currentDict setObject:[urlLabelField stringValue] forKey:@"urlDesc"];
+        [currentActionDict setObject:[urlLabelField stringValue] forKey:@"urlDesc"];
     }else{
-        [currentDict removeObjectForKey:@"urlDesc"];
+        [currentActionDict removeObjectForKey:@"urlDesc"];
     }
     [self notifyAppOfPreferences:[self makePrefs]];
+    [actionTable reloadData];
 }
 
 - (void) didUnselect
@@ -384,13 +524,14 @@
 {
 
     //NSLog(@"Choose action: %d",[sender indexOfSelectedItem]);
-    int oldval = [[currentDict objectForKey: @"action"] intValue];
+    int oldval = [[currentActionDict objectForKey: @"action"] intValue];
     if(oldval==[sender indexOfSelectedItem]){
         return;
     }
-    [currentDict setObject: [NSNumber numberWithInt: [sender indexOfSelectedItem] ] forKey:@"action"];
+    [currentActionDict setObject: [NSNumber numberWithInt: [sender indexOfSelectedItem] ] forKey:@"action"];
     [self setSubFrameForActionType: [sender indexOfSelectedItem]];
     [self notifyAppOfPreferences:[self makePrefs]];
+    [actionTable reloadData];
 }
 
 - (void) setSubFrameForActionType: (int) type
@@ -401,7 +542,7 @@
         [[sub objectAtIndex:i] retain];
         [[sub objectAtIndex:i] removeFromSuperview];
     }
-    NSRect frame = [actionView frame];
+    //NSRect frame = [actionView frame];
     switch(type){
         case 0: //open file
             [actionView addSubview: chooseFileView];
@@ -435,8 +576,16 @@
         case 3:
             currentDict = br;
             break;
+        default: currentDict=nil;
+            break;
     }
-    [self refreshWithSettings: currentDict];
+
+    currentActions = [currentDict objectForKey:@"actionList"];
+    [self refreshWithCornerSettings: currentDict];
+    [self refreshWithSettings:nil];
+    currentActionDict=nil;
+    [actionTable deselectRow:[actionTable selectedRow]];
+    [actionTable setNeedsDisplay:YES];
 }
 
 - (IBAction)enableChosen:(id)sender
@@ -446,6 +595,11 @@
     if(currentDict){
         //NSLog(@"CurrentDict type: %@",[currentDict class]);
         [currentDict setObject: [NSNumber numberWithInt: state ] forKey:@"enabled"];
+        [self refreshWithCornerSettings: currentDict];
+        [self refreshWithSettings:nil];
+        currentActionDict=nil;
+        [actionTable deselectRow:[actionTable selectedRow]];
+        [actionTable setNeedsDisplay:YES];
         [self notifyAppOfPreferences:[self makePrefs]];
     }
 }
@@ -457,17 +611,183 @@
     [openPanel setAllowsMultipleSelection: NO];
     [openPanel setCanChooseDirectories: YES];
     [openPanel setCanChooseFiles: YES];
-//    [openPanel beginSheetForDirectory: nil file: nil fileTypes: nil modalForWindow:[self window] modalDelegate:self didEndSelector:@selector(openSheetDidEnd:) contextInfo: nil];
-    int result = [openPanel runModalForDirectory: nil file: nil types: nil];
-    [self openSheetDidEnd:openPanel returnCode: result contextInfo:nil];
+    [openPanel beginSheetForDirectory: nil file: nil types: nil modalForWindow:[NSApp mainWindow] modalDelegate:self didEndSelector:@selector(openSheetDidEnd:returnCode:contextInfo:) contextInfo: nil];
+    //int result = [openPanel runModalForDirectory: nil file: nil types: nil];
+    //[self openSheetDidEnd:openPanel returnCode: result contextInfo:nil];
 }
 
 - (IBAction)triggerChosen:(id)sender
 {
 
     //NSLog(@"Choose trigger: %d",[sender indexOfSelectedItem]);
-    [currentDict setObject: [NSNumber numberWithInt: [sender indexOfSelectedItem] ] forKey:@"trigger"];
+    [currentActionDict setObject: [NSNumber numberWithInt: [sender indexOfSelectedItem] ] forKey:@"trigger"];
     [self notifyAppOfPreferences:[self makePrefs]];
-
+    [actionTable reloadData];
 }
+
+- (int)numberOfRowsInTableView:(NSTableView *)aTableView
+{
+    return [currentActions count];
+}
+
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+{
+    int type,modifiers;
+    NSString *theFile;
+    NSDictionary *obj = [currentActions objectAtIndex:rowIndex];
+    type = [[obj objectForKey:@"action"] intValue];
+    modifiers = [[obj objectForKey:@"modifiers"] intValue];
+    //NSLog(@"objectValueForTableColumn called: currentAcctions : %@",currentActions);
+    if([[aTableColumn identifier] isEqualToString: @"icon"]){
+        switch(type){
+            case 0: return [[NSWorkspace sharedWorkspace] iconForFile:[obj objectForKey:@"chosenFilePath"]];
+            case 3: return [[[NSImage alloc] initWithContentsOfFile: [[NSBundle bundleForClass:[ClickBoxPref class]] pathForResource:@"BookmarkPreferences" ofType:@"tiff"]] autorelease];
+            default: return nil;
+        }
+    }
+    else if([[aTableColumn identifier] isEqualToString: @"desc"]){
+        switch(type){
+            case 0:
+                theFile=[obj objectForKey:@"chosenFilePath"];
+                if([theFile hasSuffix:@".app"]){
+                    return [[theFile lastPathComponent] stringByDeletingPathExtension];
+                }else{
+                    return [theFile lastPathComponent];
+                }
+                return theFile;
+            case 1: return @"Hide Current Application";
+            case 2: return @"Hide Other Applications";
+            case 3:
+                if([obj objectForKey:@"urlDesc"] !=nil){
+                    theFile= [obj objectForKey:@"urlDesc"];
+                }else if([obj objectForKey:@"chosenURL"] !=nil){
+                    theFile= [obj objectForKey:@"chosenURL"];
+                }else{
+                    theFile=@"";
+                }
+                return [NSString stringWithFormat:@"Open URL %@",theFile];
+            default: return @"???";
+        }
+    }else if([[aTableColumn identifier] isEqualToString: @"modifiers"]){
+        theFile = @"";
+        if(modifiers & SHIFT_MASK){
+            theFile = [NSString stringWithFormat:@"%C",(unichar)0x21E7];
+        }
+        if(modifiers & OPTION_MASK){
+            if([theFile length]){
+                theFile = [NSString stringWithFormat:@"%@ + %C",theFile,(unichar)0x2325];
+            }else{
+                theFile = [NSString stringWithFormat:@"%C",(unichar)0x2325];
+            }
+        }
+
+        if(modifiers & COMMAND_MASK){
+            if([theFile length]){
+                theFile = [NSString stringWithFormat:@"%@ + %C",theFile,(unichar)0x2318];
+            }else{
+                theFile = [NSString stringWithFormat:@"%C",(unichar)0x2318];
+            }
+        }
+
+        if(modifiers & CONTROL_MASK){
+            if([theFile length]){
+                theFile = [NSString stringWithFormat:@"%@ + %C",theFile,(unichar)0x2303];
+            }else{
+                theFile = [NSString stringWithFormat:@"%C",(unichar)0x2303];
+            }
+        }
+
+        if([theFile length]){
+            theFile = [NSString stringWithFormat:@"%@ Click",theFile];
+        }else{
+            theFile = @"Click";
+        }
+        return theFile;
+        
+    }
+    return nil;
+}
+
+
+- (void)tableSelectionChanged:(NSNotification *) notice
+{
+    if([notice object]==actionTable){
+        //NSLog(@"selection changed to: %d",[actionTable selectedRow]);
+        if([actionTable selectedRow]>=0){
+            currentActionDict=[currentActions objectAtIndex:[actionTable selectedRow]];
+            [self refreshWithSettings:currentActionDict];
+        }else{
+            [self refreshWithSettings:nil];
+        }
+    }
+}
+
+- (void)toggleModifier: (int)modifier toState:(BOOL) used
+{
+    int flags=0;
+    if([currentActionDict objectForKey:@"modifiers"] !=nil){
+        flags = [[currentActionDict objectForKey:@"modifiers"] intValue];
+    }else{
+        flags=0;
+    }
+    if(used){
+        flags = flags|modifier;
+    }else{
+        flags = flags & (~modifier);
+    }
+    [currentActionDict setObject:[NSNumber numberWithInt: flags] forKey:@"modifiers"];
+}
+
+- (IBAction)removeActionButtonClicked:(id)sender
+{
+    //NSLog(@"selection changed to: %d",[actionTable selectedRow]);
+    if([actionTable selectedRow]>=0){
+
+        currentActionDict=nil;
+        [currentActions removeObjectAtIndex:[actionTable selectedRow]];
+        [self refreshWithSettings:nil];
+        [actionTable reloadData];
+        [self notifyAppOfPreferences:[self makePrefs]];
+    }else{
+        [self refreshWithSettings:nil];
+    }    
+}
+- (IBAction)addActionButtonClicked:(id)sender
+{
+    //NSLog(@"selection changed to: %d",[actionTable selectedRow]);
+    NSMutableDictionary *newAct = [NSMutableDictionary dictionaryWithCapacity:4];
+    [currentActions addObject:newAct];
+    
+    [newAct setObject: [NSNumber numberWithInt:0] forKey:@"action"];
+    [newAct setObject: [NSNumber numberWithInt:0] forKey:@"trigger"];
+    currentActionDict=newAct;
+
+    [actionTable selectRow:[currentActions count]-1 byExtendingSelection:NO];
+        
+    [self refreshWithSettings:newAct];
+  
+}
+- (IBAction)optionKeyCheckBoxClicked:(id)sender
+{
+    [self toggleModifier: OPTION_MASK toState: [sender state]==0?NO:YES];
+    [self notifyAppOfPreferences:[self makePrefs]];
+}
+- (IBAction)shiftKeyCheckBoxClicked:(id)sender
+{
+    [self toggleModifier: SHIFT_MASK toState: [sender state]==0?NO:YES];
+    [self notifyAppOfPreferences:[self makePrefs]];
+}
+- (IBAction)commandKeyCheckBoxClicked:(id)sender
+{
+    [self toggleModifier: COMMAND_MASK toState: [sender state]==0?NO:YES];
+    [self notifyAppOfPreferences:[self makePrefs]];
+}
+- (IBAction)controlKeyCheckBoxClicked:(id)sender
+{
+
+    [self toggleModifier: CONTROL_MASK toState: [sender state]==0?NO:YES];
+    [self notifyAppOfPreferences:[self makePrefs]];
+}
+
+
 @end

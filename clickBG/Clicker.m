@@ -4,7 +4,7 @@
 
 - (void) loadFromPreferences: (NSDictionary *) sourcePreferences
 {
-    NSString *label,*action;
+    NSArray *subPref;
     if(preferences!=nil){
         //NSLog(@"preferences retainCount before release: %d",[preferences retainCount]);
         [preferences release];
@@ -16,32 +16,11 @@
         lastHoverCorner=-1;
         for(i=0;i<4;i++){
             NSString *corn = cornerNames[i];
-            //NSLog(@"hover[%d] retainCount before release: %d",i,[hover[i] retainCount]);
-            [hover[i] release];
-            hover[i]=nil;
-
-            //NSLog(@"icons[%d] retainCount before release: %d",i,[icons[i] retainCount]);
-            [icons[i] release];
-            icons[i]=nil;
-            if([[[preferences objectForKey:corn] objectForKey:@"enabled"] intValue] == 1){
-
-                int actionType =[[[preferences objectForKey: corn] objectForKey:@"action"] intValue];
-                action = [[[preferences objectForKey:corn] objectForKey:[self stringNameForActionType:actionType]] retain];
-                label = [[[preferences objectForKey:corn] objectForKey:[self labelNameForActionType:actionType]] retain];
-                if([self validActionType: actionType andString: action]){
-                    //NSLog(@"loading corner %@: %@",corn,[preferences objectForKey:corn]);
-                    [self createClickWindowAtCorner: i withActionType:actionType andString: action
-                                          withLabel: label];
-
-                }else if(*windows[i]!=nil){
-                    //NSLog(@"closing corner %@: ",corn);
-                    [[*windows[i] contentView] removeTrackingRect: track[i]];
-                    [*windows[i] close];
-
-                    //NSLog(@"*windows[%d] retainCount before release: %d",i,[*windows[i] retainCount]);
-
-                    *windows[i]=nil;
-                }
+            subPref = [[preferences objectForKey: corn] objectForKey:@"actionList"];
+            if([[[preferences objectForKey:corn] objectForKey:@"enabled"] intValue] == 1
+               && subPref!=nil &&
+               [self createClickWindowAtCorner: i withActionList: subPref]){
+                
             }else if(*windows[i]!=nil){
                 //NSLog(@"closing corner %@: ",corn);
                 [[*windows[i] contentView] removeTrackingRect: track[i]];
@@ -146,40 +125,69 @@
             return;
     }
 }
-
-- (void) createClickWindowAtCorner: (int) corner withActionType: (int) type andString: (NSString *)filePath withLabel:(NSString *) label
+- (BOOL) createClickWindowAtCorner: (int) corner withActionList: (NSArray *) actions
 {
-    ClickAction *act;
+    int a,actionType,modifiers;
+    NSString *action;
+    NSString *label;
+    NSDictionary *subPref;
     ClickWindow **theWindow;
     NSRect myRect;
     theWindow = windows[corner];
-    myRect = [self rectForCorner:corner];
-
-    act = [[[ClickAction alloc] initWithType:type andString:filePath forCorner: corner withLabel:label] autorelease];
+    myRect = [self rectForCorner:corner];    
+    NSMutableArray *clickActions = [NSMutableArray arrayWithCapacity:[actions count]];
+    for(a=0;a<[actions count];a++){
+        subPref = [actions objectAtIndex:a];
+        actionType =[[subPref objectForKey:@"action"] intValue];
+        action = [[subPref objectForKey:[self stringNameForActionType:actionType]] retain];
+        label = [[subPref objectForKey:[self labelNameForActionType:actionType]] retain];
+        modifiers = [[subPref objectForKey:@"modifiers"] intValue];
+        if([self validActionType: actionType andString: action]){
+            //NSLog(@"loading corner %@: %@",corn,[subPref objectForKey:corn]);
+            [clickActions addObject:
+                [[[ClickAction alloc] initWithType:actionType
+                                      andModifiers:modifiers
+                                          andString:action
+                                          forCorner: corner
+                                          withLabel:label]
+                    autorelease]];    
+        }
+    }
+    if([clickActions count]==0){
+        return NO;
+    }
     if(*theWindow !=nil){
         //NSLog(@"closing corner %d",corner);
         //[[*theWindow contentView] removeTrackingRect: track[corner]];
         //[*theWindow close];
         //*theWindow=nil;
-        [[*theWindow contentView] setClickAction: act];
+        [[*theWindow contentView] setClickActions: clickActions];
     }else{
         *theWindow = [[ClickWindow alloc] initWithContentRect: myRect
-                                                    styleMask: NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:YES corner:corner];
+                                                    styleMask: NSBorderlessWindowMask
+                                                      backing: NSBackingStoreBuffered
+                                                        defer: YES
+                                                       corner: corner];
         [*theWindow setOpaque:NO];
         [*theWindow setHasShadow:NO];
         [*theWindow setLevel: NSStatusWindowLevel];
         [*theWindow setAlphaValue: 0.1];
-    
-    
-        ClickView *tlView = [[[ClickView alloc] initWithFrame:[*theWindow frame] action:act  corner:corner] autorelease];
+
+
+        ClickView *tlView = [[[ClickView alloc]initWithFrame:[*theWindow frame]
+                                                      actions:clickActions
+                                                      corner:corner] autorelease];
         [*theWindow setContentView: tlView];
-    
+        [*theWindow setInitialFirstResponder:tlView];
+
         BOOL isInside=(NSPointInRect([NSEvent mouseLocation],[*theWindow frame]));
         track[corner] = [[*theWindow contentView] addTrackingRect:[[*theWindow contentView] bounds] owner:self userData:[[NSNumber numberWithInt:corner] retain] assumeInside:isInside];
         [*theWindow orderFront: self];
     }
     
+    return YES;
 }
+
 
 - (void) awakeFromNib
 {
@@ -270,78 +278,159 @@ postNotificationName: @"CornerClickPingBackNotification"
 
 - (void)prefPaneChangedPreferences:(NSNotification *)notice
 {
-    NSLog(@"got preferences changed notification, reloading");
+    //NSLog(@"got preferences changed notification, reloading");
     [self loadFromPreferences: [notice userInfo]];
 }
 
--(void)showHover: (int) corner
+-(void)showHover: (int) corner withModifiers: (unsigned int) modifiers
 {
+    ClickAction *theAction;
     NSPoint newPoint;
     NSPoint oldPoint=[self pointForCorner: corner];
     if(delayTimer!=nil){
         [delayTimer invalidate];
+        [delayTimer release];
         delayTimer=nil;
     }
     if(lastHoverCorner != corner){
-        [hoverView setPointCorner: corner];
-        [hoverView setDrawString: [[[*windows[corner] contentView] clickAction] label]];
-        [hoverView setIcon: [[[*windows[corner] contentView] clickAction] icon]];
-    
-        switch(corner){
-            case 0:
-                newPoint = NSMakePoint(oldPoint.x+HWSIZE,oldPoint.y-HWSIZE-[hoverWin frame].size.height);
-                break;
-            case 1:
-                newPoint = NSMakePoint(oldPoint.x-HWSIZE-[hoverWin frame].size.width,oldPoint.y-HWSIZE-[hoverWin frame].size.height);
-                break;
-            case 2:
-                newPoint = NSMakePoint(oldPoint.x+HWSIZE,oldPoint.y+HWSIZE);
-                break;
-            case 3:
-                newPoint = NSMakePoint(oldPoint.x-HWSIZE-[hoverWin frame].size.width,oldPoint.y+HWSIZE);
-                break;
-            default:
-                return;
-    
-        }
-        [hoverWin setFrameOrigin: newPoint];
+        theAction = [[*windows[corner] contentView] clickActionForModifierFlags: modifiers];
+        if(theAction !=nil){
+            [hoverView setPointCorner: corner];
+            [hoverView setDrawString: [theAction label]];
+            [hoverView setIcon: [theAction icon]];
+        
+            switch(corner){
+                case 0:
+                    newPoint = NSMakePoint(oldPoint.x+HWSIZE,oldPoint.y-HWSIZE-[hoverWin frame].size.height);
+                    break;
+                case 1:
+                    newPoint = NSMakePoint(oldPoint.x-HWSIZE-[hoverWin frame].size.width,oldPoint.y-HWSIZE-[hoverWin frame].size.height);
+                    break;
+                case 2:
+                    newPoint = NSMakePoint(oldPoint.x+HWSIZE,oldPoint.y+HWSIZE);
+                    break;
+                case 3:
+                    newPoint = NSMakePoint(oldPoint.x-HWSIZE-[hoverWin frame].size.width,oldPoint.y+HWSIZE);
+                    break;
+                default:
+                    return;
+        
+            }
+            [hoverWin setFrameOrigin: newPoint];
 
-        lastHoverCorner=corner;
+            lastHoverCorner=-1;
+            [hoverWin setAlphaValue: 1.0];
+            
+            [hoverWin orderBack:self];
+        }else{
+            lastHoverCorner=-1;
+        }
     }
-    [hoverWin setAlphaValue: 1.0];
-    [hoverWin orderBack:self];
+}
+
+-(void) hideHoverDoFadeout
+{
+    [hoverWin setAlphaValue: [hoverWin alphaValue]-0.1];
+    if([hoverWin alphaValue]<=0.0){
+        [delayTimer invalidate];
+        [delayTimer release];
+        delayTimer=nil;
+        //NSLog(@"Faded out");
+    }
+}
+-(void) hideHoverFadeOut
+{
+    if( delayTimer!=nil){
+        [delayTimer invalidate];
+        [delayTimer release];
+        delayTimer=nil;
+    }
+    NSInvocation *nsinv = [NSInvocation invocationWithMethodSignature: [self methodSignatureForSelector:@selector(hideHoverDoFadeout)]];
+    [nsinv setSelector:@selector(hideHoverDoFadeout)];
+    [nsinv setTarget:self];
+
+    delayTimer = [[NSTimer scheduledTimerWithTimeInterval:0.05 invocation:nsinv repeats:YES] retain];
+
 }
 
 
-
-- (void)mouseEntered:(NSEvent *)theEvent
+- (void) keyDown: (NSEvent *)theEvent
 {
-    ClickWindow *window;
-    int corn;
-    if([theEvent modifierFlags] & NSControlKeyMask){
-        NSLog(@"With Control Key");
+    if([theEvent type]==NSFlagsChanged){
+        NSLog(@"modifiers changed to: shift %d, ctrl %d, option %d, command %d",[theEvent modifierFlags]&NSShiftKeyMask,
+              [theEvent modifierFlags]&NSControlKeyMask,
+              [theEvent modifierFlags]&NSAlternateKeyMask,
+              [theEvent modifierFlags]&NSCommandKeyMask);
+
     }
-    NSNumber *num = (NSNumber *)[theEvent userData];
-    corn=[num intValue];
-    window =  *windows[[num intValue]];
+}
+
+- (void)recalcAndShowHoverWindow: (int) corner modifiers: (unsigned int) modifiers
+{
+    int corn=corner;
+    ClickWindow *window;
+    if( delayTimer!=nil){
+        [delayTimer invalidate];
+        [delayTimer release];
+        delayTimer=nil;
+        [hoverWin setAlphaValue:0.0];
+    }
+    window =  *windows[corner];
     //NSLog(@"retaincount for window: %d",[window retainCount]);
     if(window !=nil ){
         if([[preferences objectForKey:@"tooltip"] intValue]){
             if([[preferences objectForKey:@"tooltipDelayed"] intValue]){
-                NSInvocation *nsinv = [NSInvocation invocationWithMethodSignature: [self methodSignatureForSelector:@selector(showHover:)]];
-                [nsinv setSelector:@selector(showHover:)];
+                NSInvocation *nsinv = [NSInvocation invocationWithMethodSignature: [self methodSignatureForSelector:@selector(showHover:withModifiers:)]];
+                [nsinv setSelector:@selector(showHover:withModifiers:)];
                 [nsinv setTarget:self];
                 [nsinv setArgument: &corn atIndex:2];
+                [nsinv setArgument: &modifiers atIndex:3];
                 delayTimer = [[NSTimer scheduledTimerWithTimeInterval:1 invocation:nsinv repeats:NO] retain];
             }else{
-                [self showHover:corn];
+                [self showHover:corn withModifiers:modifiers];
             }
         }
-
-        [window setAlphaValue: 1.0];
-        [window orderFront:self];
-    }
+        if([[window contentView] clickActionForModifierFlags: modifiers]!=nil){
+            [window setAlphaValue: 1.0];
+            [window orderFront:self];
+            //[window makeMainWindow];
+        }
+    } 
 }
+
+- (void)mouseEntered:(NSEvent *)theEvent
+{
+    NSEvent *newEvent;
+    int corn;
+    unsigned int modifiers=[theEvent modifierFlags];
+    NSNumber *num = (NSNumber *)[theEvent userData];
+    corn=[num intValue];
+    [self recalcAndShowHoverWindow: corn modifiers: modifiers];
+   // NSLog(@" can become main: %d",[*windows[corn] canBecomeKeyWindow]);
+    //[*windows[corn] makeKeyAndOrderFront:nil];
+    //NSLog(@" key window is %@",[[NSApp keyWindow] description]);
+    //NSLog(@" key window is %@",[[NSApp mainWindow] description]);
+    return;
+    
+    while(1){
+        newEvent = [NSApp nextEventMatchingMask:
+            NSAnyEventMask
+            //NSFlagsChangedMask | NSMouseEnteredMask | NSMouseExitedMask | NSLeftMouseDownMask | NSKeyDownMask
+                                        untilDate: nil
+                                            inMode: NSEventTrackingRunLoopMode //NSDefaultRunLoopMode
+                                        dequeue: NO];
+        NSLog(@"got event type: %@",[newEvent description]);
+        if([newEvent type]&NSFlagsChangedMask || [newEvent type] &NSKeyDownMask){
+            [self recalcAndShowHoverWindow: corn modifiers: [newEvent modifierFlags]];
+        }else{
+            return;
+        }
+        
+    }
+
+    
+}
+
 
 - (void)mouseExited:(NSEvent *)theEvent
 {
@@ -354,14 +443,10 @@ postNotificationName: @"CornerClickPingBackNotification"
     if(window !=nil){
         [window setAlphaValue: 0.1];
     }else{
-        NSLog(@"no window");
+        //NSLog(@"no window");
     }
     if([[preferences objectForKey:@"tooltip"] intValue]){
-        if([[preferences objectForKey:@"tooltipDelayed"] intValue] && delayTimer!=nil){
-            [delayTimer invalidate];
-            delayTimer=nil;
-        }
-        [hoverWin setAlphaValue: 0.0];
+        [self hideHoverFadeOut];
     }
     
 }

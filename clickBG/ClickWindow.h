@@ -1,8 +1,6 @@
 /* ClickWindow */
 
 #import <Cocoa/Cocoa.h>
-#import "ClickAction.h"
-
 
 @interface ClickWindow : NSWindow
 {

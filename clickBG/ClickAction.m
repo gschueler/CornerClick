@@ -3,74 +3,71 @@
 
 @implementation ClickAction
 
--(id)initWithType: (int) type andString: (NSString *)theString forCorner: (int)corner
+-(id)initWithType: (int) type andModifiers: (int) modifiers andString: (NSString *)theString forCorner: (int)corner
 {
-    return [self initWithType:type andString:theString  forCorner: corner withLabel:nil];
+    return [self initWithType:type andModifiers:  modifiers andString:theString  forCorner: corner withLabel:nil];
     
 }
--(id)initWithType: (int) type andString: (NSString *)theString forCorner: (int)corner withLabel: (NSString *)label 
+-(id)initWithType: (int) type andModifiers: (int) modifiers andString: (NSString *)theString forCorner: (int)corner withLabel: (NSString *)label 
 {
-    id me=[super init];
-    if(me){
+    if(self=[super init]){
         myIcon=nil;
         theCorner=corner;
-        if(theString != nil)
+        theType=type;
+        theModifiers=modifiers;
+        if(theString != nil){
             myString = [[NSString stringWithString:theString] retain];
-        switch(type){
-            case 0:
-                if([[myString lastPathComponent] hasSuffix:@".app"]){
-                   myLabel = [[[myString lastPathComponent] stringByDeletingPathExtension] retain];
-                }else{
-                    myLabel =[[myString lastPathComponent] retain];
-                }
-                myIcon = [[[NSWorkspace sharedWorkspace] iconForFile: myString] retain];
-                /*
-                NSLog(@"init NSFileWrapper");
-                temp = [[NSFileWrapper alloc] initWithPath: myString];
-                if(temp!=nil){
-
-                    NSLog(@"NSFileWrapper not nil");
-                    [temp autorelease];
-                    myIcon=[[temp icon] copy];
-                    NSLog(@"isDirectory: %d",[temp isDirectory]);
-                    NSLog(@"isSymbolicLink: %d",[temp isSymbolicLink]);
-                    NSLog(@"isRegularFile: %d",[temp isRegularFile]);
-                }else{
-                    NSLog(@"temp failed init");
-                }
-                 */
-                break;
-            case 1:
-                myLabel=[[NSString stringWithString:@"Hide Current Application"] retain];
-
-                break;
-            case 2:
-                myLabel=[[NSString stringWithString:@"Hide Other Applications"] retain];
-                break;
-            case 3:
-                if(label !=nil){
-                    myLabel = [label retain];
-                }
-                else if([myString length]> 30){
-                    myLabel=[[NSString stringWithFormat:@"%@É",[myString substringToIndex:30]] retain];
-                }else{
-                    myLabel=[[NSString stringWithString:myString] retain];
-                }
-                myIcon = [[NSImage imageNamed:@"BookmarkPreferences"] retain];
-                break;
-            default:
-                myLabel=[[NSString stringWithString:@"?!@#"] retain];
-                
         }
-        
+        [self setIconAndLabelUserProvided:label];
     }
-    theType=type;
-    return me;
+    return self;
+}
+
+-(void)setIconAndLabelUserProvided: (NSString *) label
+{
+    [myLabel release];
+    [myIcon release];
+    switch(theType){
+        case 0:
+            if([[myString lastPathComponent] hasSuffix:@".app"]){
+                myLabel = [[[myString lastPathComponent] stringByDeletingPathExtension] retain];
+            }else{
+                myLabel =[[myString lastPathComponent] retain];
+            }
+            myIcon = [[[NSWorkspace sharedWorkspace] iconForFile: myString] retain];
+            break;
+        case 1:
+            myLabel=[[NSString stringWithString:@"Hide Current Application"] retain];
+
+            break;
+        case 2:
+            myLabel=[[NSString stringWithString:@"Hide Other Applications"] retain];
+            break;
+        case 3:
+            if(label !=nil){
+                myLabel = [label retain];
+            }
+            else if([myString length]> 30){
+                myLabel=[[NSString stringWithFormat:@"%@É",[myString substringToIndex:30]] retain];
+            }else{
+                myLabel=[[NSString stringWithString:myString] retain];
+            }
+            myIcon = [[NSImage imageNamed:@"BookmarkPreferences"] retain];
+            break;
+        default:
+            myLabel=[[NSString stringWithString:@"?!@#"] retain];
+
+    }
+    
 }
 
 -(int)type
 {
     return theType;
+}
+-(int)modifiers
+{
+    return theModifiers;
 }
 
 -(int)corner
@@ -88,6 +85,38 @@
 -(NSImage *)icon
 {
     return [[myIcon copy] autorelease];
+}
+
+
+-(void) setString: (NSString *) string
+{
+    [string retain];
+    [myString release];
+    myString=string;
+}
+-(void) setLabel: (NSString *) label
+{
+    [label retain];
+    [myLabel release];
+    myLabel=label;
+}
+-(void) setIcon: (NSImage *) icon
+{
+    [icon retain];
+    [myIcon release];
+    myIcon=icon;
+}
+-(void) setCorner: (int) corner
+{
+    theCorner=corner;
+}
+-(void) setType: (int) type
+{
+    theType=type;
+}
+-(void) setModifiers: (int) modifiers
+{
+    theModifiers=modifiers;
 }
 
 - (void) dealloc

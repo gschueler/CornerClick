@@ -11,7 +11,8 @@
 
 @interface GrayView : NSView {
     NSImage *iconImage;
-    NSColor *fadeColor;
+    NSColor *fadeFromColor;
+    NSColor *fadeToColor;
     NSImage *textArea;
     NSString *myString;
     NSDictionary *stringAttrs;
@@ -27,12 +28,14 @@
 - (id) initWithFrame: (NSRect) frame andString: (NSString *)msg andImage: (NSImage *) img;
 - (id) initWithFrame: (NSRect) frame andString: (NSString *)msg;
 - (id) initWithFrame: (NSRect) frame andString: (NSString *)msg andImage: (NSImage *) img
-           fadeColor: (NSColor *)fadeCol fadeAlpha: (float)fAlpha cornerSize: (float) cornerSize
+            fadeFrom: (NSColor *)fromCol fadeTo: (NSColor *) toCol cornerSize: (float) cornerSize
          pointCorner: (int) pCorner;
-- (void) setFadeColor: (NSColor *)color;
-- (void) setFadeAlpha: (float) fadeAlpha;
+- (void) setFadeFromColor: (NSColor *)color;
+- (void) setFadeToColor: (NSColor *) color;
 - (void) setPointCorner: (int) pCorner;
 - (void) drawFadeFrame: (NSRect)rect;
+- (void) drawGradient: (NSRect) therect fromColor:(NSColor *) from toColor:(NSColor *) to
+            direction: (int) dir;
 - (void) setDrawString: (NSString *) drawString;
 - (void) setIcon: (NSImage *) icon;
 - (void) recalcSize;

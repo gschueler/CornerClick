@@ -5,8 +5,15 @@
 
 - (id)initWithFrame:(NSRect)frameRect action:(ClickAction *)anAction corner:(int) theCorner;
 {
+    self = [self initWithFrame:frameRect actions: [NSArray arrayWithObject: anAction] corner:theCorner];
+    return self;
+}
+
+- (id)initWithFrame:(NSRect)frameRect actions:(NSArray *)actions corner:(int) theCorner;
+{
     if(self = [super initWithFrame:frameRect]){
-        myAction=[anAction retain];
+        myActions = [actions retain];
+        //myAction=[anAction retain];
         drawed=nil;
         corner=theCorner;
         [self registerForDraggedTypes:[NSArray arrayWithObjects:NSURLPboardType,
@@ -15,16 +22,16 @@
     return self;
 }
 
-- (ClickAction *) clickAction
+- (NSArray *) clickActions
 {
-    return myAction;
+    return myActions;
 }
 
-- (void) setClickAction: (ClickAction *) action
+- (void) setClickActions: (NSArray *) actions
 {
-    [action retain];
-    [myAction release];
-    myAction=action;
+    [actions retain];
+    [myActions release];
+    myActions=actions;
 }
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender
@@ -92,7 +99,7 @@
 //            id test = [paste propertyListForType:@"NSURLPboardType"];
             url = [NSURL URLFromPasteboard:paste];
             if(url!=nil){
-                temp = [[ClickAction alloc] initWithType:3 andString:[url absoluteString] forCorner:[myAction corner]];
+                temp = [[ClickAction alloc] initWithType:3 andModifiers: 0 andString:[url absoluteString] forCorner:[myAction corner]];
                 [myAction release];
                 myAction=temp;
             }
@@ -107,7 +114,7 @@
             NSString *path = [fileArray objectAtIndex:0];
             //assume that we can ignore all but the first path in the list
             NSLog(@"got new path: %@",path);
-            temp = [[ClickAction alloc] initWithType:0 andString:path forCorner:[myAction corner]];
+            temp = [[ClickAction alloc] initWithType:0 andModifiers: 0 andString:path forCorner:[myAction corner]];
                 //-(id)initWithType: (int) type andString: (NSString *)theString forCorner: (int) corner withLabel:(NSString *) label;
             [myAction release];
             myAction = temp;
@@ -220,17 +227,54 @@
 {
     [drawed release];
     [myAction release];
+    [myActions release];
+}
+- (ClickAction *) clickActionForModifierFlags:(unsigned int) modifiers
+{
+    int i;
+    ClickAction *theAction;
+    int flags=0;
+    unsigned int evtFlags = modifiers;
+    if(evtFlags & NSShiftKeyMask)
+        flags|=SHIFT_MASK;
+    if(evtFlags & NSAlternateKeyMask)
+        flags|=OPTION_MASK;
+    if(evtFlags & NSCommandKeyMask)
+        flags|=COMMAND_MASK;
+    if(evtFlags & NSControlKeyMask)
+        flags|=CONTROL_MASK;
+    for(i=0;i<[myActions count]; i++){
+        theAction = (ClickAction *)[myActions objectAtIndex:i];
+        if([theAction modifiers]==flags){
+            return theAction;
+            //return;
+        }
+    }
+    return nil;
 }
 
 - (void)mouseDown:(NSEvent *)theEvent
 {
-
-    [myAction doAction: theEvent];
-}
-
-- (void) rightMouseDown:(NSEvent *)theEvent
-{
-    [NSApp terminate:nil];
+    int i;
+    ClickAction *theAction;
+    int flags=0;
+    unsigned int evtFlags = [theEvent modifierFlags];
+    if(evtFlags & NSShiftKeyMask)
+        flags|=SHIFT_MASK;
+    if(evtFlags & NSAlternateKeyMask)
+        flags|=OPTION_MASK;
+    if(evtFlags & NSCommandKeyMask)
+        flags|=COMMAND_MASK;
+    if(evtFlags & NSControlKeyMask)
+        flags|=CONTROL_MASK;
+    for(i=0;i<[myActions count]; i++){
+        theAction = (ClickAction *)[myActions objectAtIndex:i];
+        if([theAction modifiers]==flags){
+            //NSLog(@"do action %@",[theAction label]);
+            [theAction doAction:theEvent];
+            //return;
+        }
+    }
 }
 
 

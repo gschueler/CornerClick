@@ -16,10 +16,10 @@
     self = [self initWithFrame: frame
                      andString: msg
                       andImage: nil
-                     fadeColor: nil
-                     fadeAlpha:-1
-                    cornerSize:-1
-                   pointCorner:-1];
+                      fadeFrom: nil
+                        fadeTo: nil
+                    cornerSize: -1
+                   pointCorner: -1];
         
     
     return self;
@@ -30,16 +30,16 @@
     self = [self initWithFrame: frame
                      andString: msg
                       andImage: img
-                     fadeColor: nil
-                     fadeAlpha:-1
-                    cornerSize:-1
-                   pointCorner:-1];
+                      fadeFrom: nil
+                        fadeTo: nil
+                    cornerSize: -1
+                   pointCorner: -1];
 
 
     return self;
 }
 - (id) initWithFrame: (NSRect) frame andString: (NSString *)msg andImage: (NSImage *) img
-           fadeColor: (NSColor *)fadeCol fadeAlpha: (float)fAlpha cornerSize: (float) cornerSize
+            fadeFrom: (NSColor *)fromCol fadeTo: (NSColor *) toCol cornerSize: (float) cornerSize
          pointCorner: (int) pCorner
 
 {
@@ -57,7 +57,7 @@
         if(msg!=nil){
             myString = [msg retain];
             stringAttrs = [[NSDictionary dictionaryWithObjects:
-                [NSArray arrayWithObjects: [NSFont boldSystemFontOfSize: 16.0],
+                [NSArray arrayWithObjects: [NSFont boldSystemFontOfSize: 32.0],
                     [NSColor whiteColor],nil]
                                                        forKeys:
                 [NSArray arrayWithObjects: NSFontAttributeName,
@@ -65,7 +65,7 @@
                 ] retain];
 
             shadowAttrs = [[NSDictionary dictionaryWithObjects:
-                [NSArray arrayWithObjects: [NSFont boldSystemFontOfSize: 16.0],
+                [NSArray arrayWithObjects: [NSFont boldSystemFontOfSize: 32.0],
                     [NSColor blackColor],nil]
                                                        forKeys:
                 [NSArray arrayWithObjects: NSFontAttributeName,
@@ -75,12 +75,16 @@
             msg=nil;
         }
         textArea = [[NSImage alloc] initWithSize: frame.size];
-        if(fadeCol!=nil){
-            fadeColor = [fadeCol retain];
+        if(fromCol!=nil){
+            fadeFromColor = [fromCol retain];
         }else{
-            fadeColor = [NSColor blackColor];
+            fadeFromColor = [[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha: 0.6] retain];
         }
-        fadeAlpha= (fAlpha < 0 ? 0.15 : fAlpha);
+        if(toCol!=nil){
+            fadeToColor = [toCol retain];
+        }else{
+            fadeToColor = [[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha: 0.2] retain];
+        }
         roundingSize= (cornerSize <= 0 ? 22 : cornerSize);
         insetSize = 10;
         pointCorner=pCorner;
@@ -94,9 +98,62 @@
 
     return self;
 }
+
+- (void)drawRoundedRect: (NSRect)rect rounding: (float) theRounding alpha: (float) alpha color: (NSColor *) color
+{
+    NSBezierPath *fadePath;
+    float ox=rect.origin.x;
+    float oy=rect.origin.y;
+    float wide=ox+rect.size.width;
+    float high=oy+rect.size.height;
+    float rounding=theRounding;
+    if(rounding > (rect.size.width/2) || rounding > (rect.size.height/2)){
+        rounding = rect.size.height/2;
+        if(rounding > rect.size.width/2)
+            rounding= rect.size.width/2;
+    }
+
+    fadePath = [[NSBezierPath bezierPath] retain];
+    [fadePath moveToPoint: NSMakePoint(wide-rounding,oy)];
+        [fadePath appendBezierPathWithArcWithCenter:NSMakePoint(wide-rounding,rounding+oy)
+                                             radius: rounding
+                                         startAngle:270.0
+                                           endAngle:0.0];
+        [fadePath
+appendBezierPathWithArcWithCenter:NSMakePoint(wide-rounding,high-rounding)
+                           radius: rounding
+                       startAngle:0.0
+                         endAngle:90.0];
+        [fadePath appendBezierPathWithArcWithCenter:NSMakePoint(ox+rounding,high-rounding)
+                                             radius: rounding
+                                         startAngle:90.0
+                                           endAngle:180.0];
+        [fadePath appendBezierPathWithArcWithCenter:NSMakePoint(ox+rounding,oy+rounding)
+                                             radius: rounding
+                                         startAngle:180.0
+                                           endAngle:270.0];
+    [fadePath closePath];
+    //[fadePath setLineWidth: 0.5];
+
+
+    // [[NSColor clearColor] set];
+    // NSRectFill(NSMakeRect(ox,oy,rect.size.width, rect.size.height));
+    //[[NSGraphicsContext currentContext] saveGraphicsState];
+    //[fadePath setClip];
+    [[color colorWithAlphaComponent: alpha] set];
+    //NSRectFill(rect);
+    //[[NSGraphicsContext currentContext] restoreGraphicsState];
+    [fadePath fill];
+    //[[NSColor blackColor] set];
+    //[fadePath stroke];
+    [fadePath release];
+}
+
+
 - (void)drawFadeFrame: (NSRect)rect
 {
     NSBezierPath *fadePath;
+    NSImage *tempImg;
     float ox=rect.origin.x;
     float oy=rect.origin.y;
     float taily=oy;
@@ -163,13 +220,24 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
    // NSRectFill(NSMakeRect(ox,oy,rect.size.width, rect.size.height));
     //[[NSGraphicsContext currentContext] saveGraphicsState];
     //[fadePath setClip];
-    [[fadeColor colorWithAlphaComponent: fadeAlpha] set];
+    //[[fadeColor colorWithAlphaComponent: fadeAlpha] set];
+    [[NSColor blackColor] set];
     //NSRectFill(rect);
     //[[NSGraphicsContext currentContext] restoreGraphicsState];
     [fadePath fill];
     //[[NSColor blackColor] set];
     //[fadePath stroke];
-    
+    [fadePath release];
+    tempImg = [[NSImage alloc] initWithSize:NSMakeSize(rect.size.width,rect.size.height)];
+    [tempImg lockFocus];
+    [self drawGradient: NSMakeRect(0,0,rect.size.width,rect.size.height)
+             fromColor: fadeFromColor
+               toColor: fadeToColor
+             direction: (pointCorner==2||pointCorner==3 ? -1 : 1)
+        ];
+    [tempImg unlockFocus];
+    [tempImg compositeToPoint: NSZeroPoint operation:NSCompositeSourceIn];
+    [tempImg release];
 }
 
 - (void) setIcon: (NSImage *) icon
@@ -216,6 +284,8 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 - (NSRect) preferredFrame
 {
     NSSize textSize = [myString sizeWithAttributes: stringAttrs];
+    textSize.width/=2;
+    textSize.height/=2;
     if(iconImage!=nil){
         textSize.width+=36;
         if(textSize.height<32)
@@ -226,61 +296,125 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 
 }
 
+
+- (void) drawGradient: (NSRect) therect fromColor:(NSColor *) from toColor:(NSColor *) to
+            direction: (int) dir
+{
+    int i=0;
+    NSColor *tcol;
+    float dR = ([from redComponent] - [to redComponent])/therect.size.height;
+    float dG = ([from greenComponent] - [to greenComponent])/therect.size.height;
+    float dB = ([from blueComponent] - [to blueComponent])/therect.size.height;
+    float dA = ([from alphaComponent] - [to alphaComponent])/therect.size.height;
+    BOOL up = (dir > 0 ? YES : NO );
+    int change;
+    //NSLog(@"dir is %d, dR %f, dG %f, dB %f, dA %f",dir,dR,dG,dB,dA);
+
+
+    for(i=0;i<therect.size.height;i++){
+        change = (up?i : (therect.size.height-1)-i);
+        tcol =[NSColor colorWithCalibratedRed: [from redComponent] - (change*dR)
+                                   green: [from greenComponent] - (change*dG)
+                                    blue: [from blueComponent] - (change*dB)
+                                   alpha: [from alphaComponent] - (change*dA)
+            ];
+        [tcol set];
+/*        NSLog(@"color %@\n values: %f, %f, %f, %f",tcol, [from redComponent] + (i*dR),
+              [from greenComponent] + (i*dG),
+              [from blueComponent] + (i * dB),
+              [from alphaComponent] + (i * dA));
+*/
+        NSRectFill(NSMakeRect(0,i,therect.size.width,1));
+    }
+}
+
 - (void)drawRect:(NSRect)therect
 {
     BOOL aa;
+    NSImage *tempImg;
+    NSSize tSize;
     NSRect rect = [self frame];
-    NSPoint inside=NSMakePoint((roundingSize - insetSize)+2,2+(roundingSize - insetSize) + (pointCorner==2||pointCorner==3 ? tailLen: 0));
+
+
+    NSPoint inside=NSMakePoint((roundingSize - insetSize),(roundingSize - insetSize) + (pointCorner==2||pointCorner==3 ? tailLen: 0));
+    NSPoint interior=NSMakePoint(4,4 + (pointCorner==2||pointCorner==3 ? tailLen: 0));
+
     if(dirty){
-        [textArea setSize: NSMakeSize(rect.size.width+4,rect.size.height+4)];
+        [textArea setSize: NSMakeSize(rect.size.width,rect.size.height)];
         [textArea lockFocus];
+        
         [[NSColor clearColor] set];
-        NSRectFill(NSMakeRect(0,0,rect.size.width+4, rect.size.height+4));
-        [self drawFadeFrame: NSMakeRect(2,2,rect.size.width,rect.size.height)];
+        NSRectFill(NSMakeRect(0,0,rect.size.width, rect.size.height));
+        //draw the bubble background for the content
+        [self drawFadeFrame: NSMakeRect(0,0,rect.size.width,rect.size.height)];
+
         float xoff=0;
         float yoff=0;
+        float extra=0;
+        
+        tSize=[myString sizeWithAttributes: stringAttrs];
+
+        //draw an icon if it's set
         if(iconImage!=nil){
-            NSSize textSize = [myString sizeWithAttributes: stringAttrs];
+            xoff+=36;
+            yoff+=(32 - (tSize.height/2))/2;
 
             [iconImage compositeToPoint: inside operation:NSCompositeSourceOver];
-            xoff+=36;
-            yoff+=(32 - textSize.height)/2;
         }
+
+        //create a new image, draw double size text, composite at half size on top of bubble
+        tempImg = [[NSImage alloc] initWithSize:tSize];
+        [tempImg lockFocus];
+        
+        [[NSColor clearColor] set];
+        NSRectFill(NSMakeRect(0,0,tSize.width,tSize.height));
         aa = [[NSGraphicsContext currentContext] shouldAntialias];
         [[NSGraphicsContext currentContext] setShouldAntialias: YES];
-        [myString drawAtPoint:NSMakePoint(inside.x+xoff-1,inside.y+yoff-1)
-               withAttributes: shadowAttrs ];
+        
+        [myString drawAtPoint:NSZeroPoint withAttributes: stringAttrs ];
+        
+        [tempImg unlockFocus];
 
-        [myString drawAtPoint:NSMakePoint(inside.x+xoff,inside.y+yoff)
-               withAttributes: stringAttrs ];
-
-        [textArea unlockFocus];
         [[NSGraphicsContext currentContext] setShouldAntialias: aa];
+        
+        //NSImageRep *brep = [tempImg bestRepresentationForDevice:nil];
+        
+        [tempImg  drawInRect:NSMakeRect(inside.x+xoff, inside.y+yoff, tSize.width/2,tSize.height/2)
+                             fromRect:NSMakeRect(0, 0, tSize.width, tSize.height)
+                            operation:NSCompositeSourceOver
+                             fraction:1.0];
+        [tempImg release];
+        
+        [textArea unlockFocus];
         dirty=NO;
     }
     [[NSColor clearColor] set];
-    NSRectFill(NSMakeRect(rect.origin.x-1,rect.origin.y-1,rect.size.width+1, rect.size.height+1));
+    NSRectFill(rect);
 
     [[NSGraphicsContext currentContext] setShouldAntialias: NO];
-    [textArea compositeToPoint:NSMakePoint(rect.origin.x-2,rect.origin.y-2) operation:NSCompositeSourceOver];
+    [textArea compositeToPoint:NSMakePoint(rect.origin.x,rect.origin.y) operation:NSCompositeSourceOver];
+
     if(pointCorner==1){
         //[[textArea TIFFRepresentation] writeToFile: [@"~/Desktop/test.tiff" stringByExpandingTildeInPath] atomically:YES];
     }
 
 }
 
-- (void) setFadeColor: (NSColor *) color
+- (void) setFadeFromColor: (NSColor *) color
 {
     [color retain];
     //NSLog(@"fadeColor retainCount before release: %d",[fadeColor retainCount]);
-    [fadeColor release];
-    fadeColor = color;
-}
-- (void) setFadeAlpha: (float) alpha
-{
-    fadeAlpha=alpha;
+    [fadeFromColor release];
+    fadeFromColor = color;
 }
 
+- (void) setFadeToColor: (NSColor *) color
+{
+    [color retain];
+    //NSLog(@"fadeColor retainCount before release: %d",[fadeColor retainCount]);
+    [fadeToColor release];
+    fadeToColor = color;
+}
 - (void) setPointCorner: (int) pCorner
 {
     pointCorner=pCorner;
@@ -296,5 +430,16 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
     return NO;
 }
 
+
+- (void) dealloc
+{
+    [iconImage release];
+    [fadeFromColor release];
+    [fadeToColor release];
+    [textArea release];
+    [myString release];
+    [stringAttrs release];
+    [shadowAttrs release];
+}
 
 @end

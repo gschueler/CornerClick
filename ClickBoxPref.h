@@ -7,7 +7,8 @@
 //
 
 #import <PreferencePanes/PreferencePanes.h>
-
+#import <AppKit/NSTableView.h>
+#import "clickBG/ClickAction.h"
 
 @interface ClickBoxPref : NSPreferencePane
 {
@@ -35,14 +36,19 @@
     IBOutlet NSButton *shiftKeyCheckBox;
     IBOutlet NSButton *commandKeyCheckBox;
     IBOutlet NSButton *controlKeyCheckBox;
+    IBOutlet NSTextView *readmeTextView;
     NSMutableDictionary *tl;
     NSMutableDictionary *tr;
     NSMutableDictionary *bl;
     NSMutableDictionary *br;
     NSMutableDictionary *currentDict;
+    NSMutableDictionary *currentActionDict;
     NSMutableDictionary *appPrefs;
+    NSMutableArray *currentActions;
     int chosenCorner;
+    int chosenAction;
     BOOL active;
+    ClickAction *currentAction;
     NSTimer *disableTimer;
 }
 - (IBAction)actionChosen:(id)sender;
@@ -66,9 +72,12 @@
 - (void) saveChangesFromNotification:(NSNotification *)aNotification;
 
 - (void) refreshWithSettings:(NSDictionary *)settings;
+- (void) refreshWithCornerSettings: (NSDictionary *) settings;
 - (void) checkIfHelperAppRunning;
 - (void) notifyAppOfPreferences:(NSDictionary *) prefs;
 - (NSDictionary *) makePrefs;
 - (void) setSubFrameForActionType: (int) type;
+- (void)toggleModifier: (int)modifier toState:(BOOL) used;
+- (NSAttributedString *)makeAttributedLink:(NSString *) link forString:(NSString *) string;
 
 @end

@@ -120,7 +120,7 @@
 	<key>CFBundleExecutable</key>
 	<string>CornerClick</string>
 	<key>CFBundleIconFile</key>
-	<string></string>
+	<string>Pref</string>
 	<key>CFBundleIdentifier</key>
 	<string>CornerClickPref</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -161,6 +161,9 @@
 				F506C044013D9D8C01CA16C8,
 				37C3CB7A04CDB35E000001CF,
 				372314A604CF37DA000001CF,
+				3723153504CF7AC3000001CF,
+				3723153804CF7CF4000001CF,
+				3723153A04CF806C000001CF,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -192,6 +195,9 @@
 		};
 		089C167CFE841241C02AAC07 = {
 			children = (
+				3723153904CF806C000001CF,
+				3723153404CF7AC3000001CF,
+				3723153704CF7CF4000001CF,
 				F506C040013D9D8001CA16C8,
 				089C167DFE841241C02AAC07,
 				F506C042013D9D8C01CA16C8,
@@ -368,6 +374,39 @@
 		};
 		372314A604CF37DA000001CF = {
 			fileRef = 372314A404CF37DA000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3723153404CF7AC3000001CF = {
+			isa = PBXFileReference;
+			path = Readme.rtf;
+			refType = 4;
+		};
+		3723153504CF7AC3000001CF = {
+			fileRef = 3723153404CF7AC3000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3723153704CF7CF4000001CF = {
+			isa = PBXFileReference;
+			path = Pref.icns;
+			refType = 4;
+		};
+		3723153804CF7CF4000001CF = {
+			fileRef = 3723153704CF7CF4000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3723153904CF806C000001CF = {
+			isa = PBXFileReference;
+			path = Logo.tiff;
+			refType = 4;
+		};
+		3723153A04CF806C000001CF = {
+			fileRef = 3723153904CF806C000001CF;
 			isa = PBXBuildFile;
 			settings = {
 			};

@@ -6,6 +6,7 @@
 @interface ClickView : NSView
 {
     ClickAction *myAction;
+    NSArray *myActions;
     NSImage *drawed;
     BOOL selected;
     int corner;
@@ -13,8 +14,13 @@
 
 - (id)initWithFrame:(NSRect)frameRect action:(ClickAction *)anAction corner:(int)theCorner;
 
+- (id)initWithFrame:(NSRect)frameRect actions:(NSArray *)actions corner:(int) theCorner;
+
 - (void) drawBuf: (NSRect) rect;
 - (void) setSelected: (BOOL) selected;
-- (ClickAction *) clickAction;
-- (void) setClickAction: (ClickAction *) action;
+//- (ClickAction *) clickAction;
+//- (void) setClickAction: (ClickAction *) action;
+- (NSArray *) clickActions;
+- (void) setClickActions: (NSArray *) actions;
+- (ClickAction *) clickActionForModifierFlags: (unsigned int)modifiers;
 @end

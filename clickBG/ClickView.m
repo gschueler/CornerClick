@@ -36,6 +36,7 @@
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender
 {
+    return NSDragOperationNone;
     NSLog(@"draggingEntered");
     if ((NSDragOperationGeneric & [sender draggingSourceOperationMask])
         == NSDragOperationGeneric)

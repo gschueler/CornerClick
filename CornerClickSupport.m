@@ -7,13 +7,11 @@
 //
 
 #import "CornerClickSupport.h"
-
-
 @implementation CornerClickSupport
 
-+ (void) savePreferences: (CornerClickSettings *) settings;
++ (void) savePreferences: (CornerClickSettings *) settings
 {
-    NSDictionary *tdict;
+    NSMutableDictionary *tdict;
     //NSString *s=nil;
     //NSData *data;
     [[NSUserDefaults standardUserDefaults]
@@ -21,6 +19,15 @@
 
     tdict=[[settings asDictionary] retain];
 
+    NSEnumerator *en = [[settings namedKeys] keyEnumerator];
+    id obj;
+    while(obj = [en nextObject]){
+        if([tdict objectForKey:obj]==nil){
+            [tdict setObject:[[settings namedKeys] objectForKey:obj]
+                      forKey:obj];
+        }
+    }
+    
     //NSLog(@"prop list: %d %@",[data length],[data description]);
     //NSLog(@"saving settings, retaincount: %d",[tdict retainCount]);
     [[NSUserDefaults standardUserDefaults] setPersistentDomain:tdict
@@ -31,22 +38,17 @@
     
 }
 
-+ (CornerClickSettings *) settingsFromUserPreferences
++ (NSDictionary *) appPrefs
 {
-	return [CornerClickSupport settingsFromUserPreferencesWithClicker: nil];
-}
-+ (CornerClickSettings *) settingsFromUserPreferencesWithClicker: (Clicker *) clicker
-{
+    
     NSDictionary *prefs;
-
+    
     prefs = [[NSUserDefaults standardUserDefaults]
       persistentDomainForName:CC_PREF_BUNDLE_ID_STR];
     if(prefs==nil){
         prefs = [CornerClickSupport loadOldVersionPreferences];
     }
-    //NSLog(@"loaded prefs: %@",prefs);
-    return [[[CornerClickSettings alloc] initWithUserPreferences: prefs andClicker: clicker] autorelease];
-    
+    return prefs;
 }
 
 + (NSDictionary *) loadOldVersionPreferences
@@ -210,21 +212,279 @@
 {
 	return (NSNumber *)[[screen deviceDescription] objectForKey:@"NSScreenNumber"];
 }
++ (int) modifiersForExposeAction: (int) action
+{
+    NSDictionary *def = [[NSUserDefaults standardUserDefaults] persistentDomainForName:@"com.apple.symbolichotkeys"];
+    NSDictionary *keys = (NSDictionary *)[def objectForKey:@"AppleSymbolicHotKeys"];
+    NSString* special[3] = {
+        @"32",
+        @"33",
+        @"36"
+    };
+    if(action < 0 || action > 2 ){
+        NSLog(@"ERROR: not a valid expose action to look for: %d",action);
+        return -1;
+    }
+    NSDictionary *settings = (NSDictionary *)[keys objectForKey:special[action]];
+    if(nil == settings){
+        DEBUG(@"ERROR: settings for special int is nil");        
+        //NSLog(@"keys: %@",keys);
+        return -1;
+    }
+    NSNumber *enable = [settings objectForKey:@"enabled"];
+    if(nil == enable){
+        DEBUG(@"ERROR: number for enabled is nil");
+        return -1;
+    }
+    if([enable boolValue]){
+        NSDictionary * val = (NSDictionary *)[settings objectForKey:@"value"];
+        if(nil == val){
+            DEBUG(@"ERROR: 'value' is nil");
+            return -1;
+        }
+        NSArray *arr = (NSArray *)[val objectForKey:@"parameters"];
+        if(nil == arr){
+            DEBUG(@"ERROR: 'parameters' is nil");
+            return -1;
+        }
+        
+        NSNumber *key =  [arr objectAtIndex:2];
+        return [key intValue];
+    }else{
+        
+        return -1;
+    }
+    
+}
++ (int) keyCodeForExposeAction: (int) action
+{
+    NSDictionary *def = [[NSUserDefaults standardUserDefaults] persistentDomainForName:@"com.apple.symbolichotkeys"];
+    NSDictionary *keys = (NSDictionary *)[def objectForKey:@"AppleSymbolicHotKeys"];
+    NSString* special[3] = {
+        @"32",
+        @"33",
+        @"36"
+    };
+    if(action < 0 || action > 2 ){
+        NSLog(@"ERROR: not a valid expose action to look for: %d",action);
+        return -1;
+    }
+    NSDictionary *settings = (NSDictionary *)[keys objectForKey:special[action]];
+    if(nil == settings){
+        DEBUG(@"ERROR: settings for special int is nil");        
+        //NSLog(@"keys: %@",keys);
+        return -1;
+    }
+    NSNumber *enable = [settings objectForKey:@"enabled"];
+    if(nil == enable){
+        DEBUG(@"ERROR: number for enabled is nil");
+        return -1;
+    }
+    if([enable boolValue]){
+        NSDictionary * val = (NSDictionary *)[settings objectForKey:@"value"];
+        if(nil == val){
+            DEBUG(@"ERROR: 'value' is nil");
+            return -1;
+        }
+        NSArray *arr = (NSArray *)[val objectForKey:@"parameters"];
+        if(nil == arr){
+            DEBUG(@"ERROR: 'parameters' is nil");
+            return -1;
+        }
+        
+        NSNumber *key =  [arr objectAtIndex:1];
+        return [key intValue];
+    }else{
+        
+        return -1;
+    }
+
+}
+
++ (void) generateKeystrokeForKeyCode: (int) keycode withModifiers: (int) modifiers
+{
+    CGEventErr err;
+    int i;
+    if(keycode < 0){
+        DEBUG(@"generateKeystrokeForKeyCode < 0");
+        NSBeep();
+        return;
+    }
+    /*
+     
+     CG_EXTERN CGError CGEnableEventStateCombining(boolean_t doCombineState);
+     
+     CGPostKeyboardEvent( (CGCharCode)0, (CGKeyCode)56, true );
+     
+     */
+    
+    //ignore the actual modifiers from the user 
+    
+    err = CGEnableEventStateCombining(false);
+    if(err != 0){
+        NSLog(@"error setting CGEnableEventStateCombining(false)");
+        return;
+    }
+    
+    //flags masks
+    int masks[] = {
+        NSShiftKeyMask,
+        NSCommandKeyMask,
+        NSControlKeyMask,
+        NSAlternateKeyMask,
+        NSFunctionKeyMask
+    };
+    //keycode equivalents
+    int codes[] = {
+        0x38, //shift
+        0x37, //command
+        0x3b, //control
+        0x3a, //option
+        0x3f //function
+    };
+    
+    //if the modifier is used, send a keydown for the right key
+
+    for(i=0; i< 5;i++){
+        if(modifiers & masks[i]){
+  //          NSLog(@"keydown for code: %d",codes[i]);
+            err = CGPostKeyboardEvent((CGCharCode)0, (CGKeyCode)codes[i],true);
+            if(err != 0){
+                NSLog(@"error setting CGPostKeyboardEvent");
+                return;
+            }   
+        }
+    }
+    
+    //send keydown for the actual key
+//    NSLog(@"keydown for action code: %d",keycode);
+    err = CGPostKeyboardEvent((CGCharCode)0, (CGKeyCode)keycode,true);
+    if(err != 0){
+        NSLog(@"error sending CGPostKeyboardEvent");
+        return;
+    }
+    
+    //send a keyup for the actual key
+    //NSLog(@"keyup for action code: %d",keycode);
+    err = CGPostKeyboardEvent((CGCharCode)0, (CGKeyCode)keycode,false);
+    if(err != 0){
+        NSLog(@"error sending CGPostKeyboardEvent");
+        return;
+    }
+    
+    //send keyups for the appropriate modifiers again
+    for(i=4; i> -1;i--){
+        if(modifiers & masks[i]){
+            //NSLog(@"keyup for code: %d",codes[i]);
+            err = CGPostKeyboardEvent((CGCharCode)0, (CGKeyCode)codes[i],false);
+            if(err != 0){
+                NSLog(@"error sending CGPostKeyboardEvent");
+                return;
+            }   
+        }
+    }
+    
+    //enable state combining
+    err = CGEnableEventStateCombining(true);
+    if(err != 0){
+        NSLog(@"error setting CGEnableEventStateCombining(true)");
+        return;
+    }
+    
+}
+
++ (NSNumber *)numberFromSomething:(id)obj
+{
+    if([obj isKindOfClass: [NSString class]]){
+        return [NSNumber numberWithInt:[obj intValue]];
+    }else if([obj isKindOfClass: [NSNumber class]]){
+        return obj;
+    }else{
+        return nil;
+    }
+}
 
 @end
 
+static CornerClickSettings* _CCsharedSettings;
+
 @implementation CornerClickSettings
+
++ (id)allocWithZone:(NSZone *)zone
+{
+    @synchronized(self) {
+        if (_CCsharedSettings == nil) {
+            return [super allocWithZone:zone];   
+        }   
+    }
+    return _CCsharedSettings;
+}
+
++ (CornerClickSettings *) sharedSettingsFromUserPreferences
+{
+    [CornerClickSettings sharedSettingsFromUserPreferencesWithClicker:nil];
+}
++ (CornerClickSettings *) sharedSettingsFromUserPreferencesWithClicker: (Clicker *) clicker
+{
+    @synchronized(self) {
+        if (_CCsharedSettings == nil) {
+            _CCsharedSettings = [[self alloc] initWithUserPreferences:[CornerClickSupport appPrefs]
+                                                            andClicker:clicker] ;
+        }else{
+            [_CCsharedSettings setUserPreferences:[CornerClickSupport appPrefs]
+                                       andClicker:clicker] ;
+        }
+    }
+    return _CCsharedSettings;
+}
+
++ (CornerClickSettings *) sharedSettings
+{
+    return _CCsharedSettings;
+}
+- (id)copyWithZone:(NSZone *)zone
+{
+    return self;   
+}
+- (id)retain
+{
+    return self;   
+}
+- (unsigned)retainCount
+{
+    return UINT_MAX;  //denotes an object that cannot be released
+}
+- (void)release
+{
+    //do nothing
+}
+
+- (id)autorelease
+{
+    return self;
+}
 
 - (id) init
 {
     return [self initWithUserPreferences: nil];
 }
+
 - (id) initWithUserPreferences: (NSDictionary *) prefs
 {
 	return [self initWithUserPreferences: prefs andClicker: nil];
 }
+
 - (id) initWithUserPreferences: (NSDictionary *) prefs andClicker: (Clicker *) clicker
 {
+    if(self = [super init]){
+        [self setUserPreferences:prefs andClicker:clicker];
+    }
+    return self;
+}
+
+- (void) setUserPreferences: (NSDictionary *) prefs andClicker: (Clicker *) clicker
+{
+    
     int num=-1;
     int i,j;
     NSEnumerator *en;
@@ -234,8 +494,10 @@
     ClickAction *act;
     id key;
 
-    if(self = [super init]){
-
+    if(self){
+        if(nil == namedKeys){
+            namedKeys = [[NSMutableDictionary alloc] init];
+        }
         if(temp!=nil) {
             num = [[temp objectForKey:@"appVersion"] intValue];
             if(num < CC_MIN_VERSION || num > CC_MAX_VERSION ){
@@ -246,22 +508,31 @@
         }
         if(temp!=nil){
 			myClicker=clicker;
-            appEnabled = [[prefs objectForKey:@"appEnabled"] boolValue];
-            toolTipEnabled = [[prefs objectForKey:@"tooltip"] boolValue];
-            toolTipDelayed = [[prefs objectForKey:@"tooltipDelayed"] boolValue];
+            [namedKeys addEntriesFromDictionary:prefs];
+                appEnabled = [[CornerClickSupport numberFromSomething:[prefs objectForKey:@"appEnabled"]] boolValue];
+            toolTipEnabled = [[CornerClickSupport numberFromSomething:[prefs objectForKey:@"tooltip"]] boolValue];
+            toolTipDelayed = [[CornerClickSupport numberFromSomething:[prefs objectForKey:@"tooltipDelayed"]] boolValue];
 			if(nil != [prefs objectForKey:@"colorOption"]){
-				colorOption = [[prefs objectForKey:@"colorOption"] intValue];
+				colorOption = [[CornerClickSupport numberFromSomething:[prefs objectForKey:@"colorOption"]] intValue];
 			}else{
 				colorOption=0;
 			}
+            if(nil != [prefs objectForKey:@"textSize"]){
+                textSize = [[CornerClickSupport numberFromSomething:[prefs objectForKey:@"textSize"]] floatValue];   
+            }else{
+                textSize=32.0;
+            }
+            if(nil != [prefs objectForKey:@"iconSize"]){
+                iconSize = [[CornerClickSupport numberFromSomething:[prefs objectForKey:@"iconSize"]] floatValue];
+            }else{
+                iconSize=32.0;   
+            }
 
 			NSArray *colors = [prefs objectForKey:@"colors"];
 		   if(nil!=colors && [colors count]>0 && nil!=[colors objectAtIndex:0]){
-			   //NSLog(@"loading color from prefs");
 				highlightColor = [(NSColor *)[NSUnarchiver unarchiveObjectWithData:[colors objectAtIndex:0]] retain];				
 			}else{
-			   //NSLog(@"using default color");
-				highlightColor = [[self defaultHighlightColor] retain];
+				highlightColor = [[CornerClickSettings defaultHighlightColor] retain];
 			}
 			/*if(nil!=colors && [colors count]>1 && nil!=[colors objectAtIndex:1]){
 				bubbleColorA = [(NSColor *)[NSUnarchiver unarchiveObjectWithData:[colors objectAtIndex:1]] retain];				
@@ -295,26 +566,38 @@
             toolTipEnabled=YES;
             toolTipDelayed=YES;
 			colorOption=0;
-			highlightColor = [[self defaultHighlightColor] retain];
-			bubbleColorA = [[self defaultBubbleColorA] retain];
-			bubbleColorB = [[self defaultBubbleColorB] retain];
+			highlightColor = [[CornerClickSettings defaultHighlightColor] retain];
+			bubbleColorA = [[CornerClickSettings defaultBubbleColorA] retain];
+			bubbleColorB = [[CornerClickSettings defaultBubbleColorB] retain];
+            textSize=32.0;
+            iconSize=32;
         }
         
     }
-    return self;
 }
 
-- (NSColor *) defaultHighlightColor
+- (NSMutableDictionary *) namedKeys
+{
+    return [[namedKeys retain] autorelease];
+}
+- (void) setNamedKeys: (NSMutableDictionary *) keys
+{
+    [keys retain];
+    [namedKeys release];
+    namedKeys=keys;
+}
+
++ (NSColor *) defaultHighlightColor
 {
 	return [NSColor redColor];
 }
-- (NSColor *) defaultBubbleColorA
++ (NSColor *) defaultBubbleColorA
 {
 	return [NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha: 0.6];
 }
-- (NSColor *) defaultBubbleColorB
++ (NSColor *) defaultBubbleColorB
 {
-	return [NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha: 0.2];
+	return [NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha: 0.4];
 }
 
 - (NSArray *) actionsForScreen: (NSNumber *)screenNum andCorner:(int) corner
@@ -368,7 +651,7 @@
 }
 - (BOOL) cornerEnabled:(int) corner forScreen:(NSNumber *)screenNum
 {
-    return [[[[self screenArray:screenNum] objectAtIndex: corner]  objectForKey:@"enabled"] boolValue];
+    return [[CornerClickSupport numberFromSomething:[[[self screenArray:screenNum] objectAtIndex: corner]  objectForKey:@"enabled"]] boolValue];
 }
 
 - (int) countActionsForScreen: (NSNumber *)screenNum andCorner:(int) corner
@@ -382,6 +665,10 @@
 - (void) setAppEnabled:(BOOL) enabled
 {
     appEnabled=enabled;
+}
+- (BOOL) isToolTipEnabled
+{
+    return toolTipEnabled;
 }
 - (BOOL) toolTipEnabled
 {
@@ -440,6 +727,22 @@
 {
 	colorOption=option;
 }
+- (void) setIconSize:(float)size
+{
+    iconSize=size;
+}
+- (float) iconSize
+{
+    return iconSize;
+}
+- (float) textSize
+{
+    return textSize;
+}
+- (void) setTextSize:(float)size
+{
+    textSize=size;
+}
 
 - (NSMutableArray *) screenArray:(NSNumber *) screenNum
 {
@@ -490,13 +793,13 @@
     int actionType,modifiers,trigger;
     NSString *action,*label;
     ClickAction *click=nil;
-    actionType =[[dict objectForKey:@"action"] intValue];
+    actionType =[[CornerClickSupport numberFromSomething:[dict objectForKey:@"action"]] intValue];
     action = [dict objectForKey:[ClickAction stringNameForActionType:actionType]];
     label = [dict objectForKey:[ClickAction labelNameForActionType:actionType]];
-    modifiers = [[dict objectForKey:@"modifiers"] intValue];
+    modifiers = [[CornerClickSupport numberFromSomething:[dict objectForKey:@"modifiers"]] intValue];
 	trigger =0;
 	if([dict objectForKey:@"trigger"]!=nil){
-		trigger = [[dict objectForKey:@"trigger"] intValue];
+		trigger = [[CornerClickSupport numberFromSomething:[dict objectForKey:@"trigger"]] intValue];
 	}
 	//DEBUG(@"load action from dictionary. trigger: %d, object: %@", trigger, [dict objectForKey:@"trigger"]);
 
@@ -607,8 +910,48 @@
 			//[NSArchiver archivedDataWithRootObject:bubbleColorB],
 			nil] forKey:@"colors"];
 	}
+    [md setObject: [NSNumber numberWithFloat:textSize] forKey:@"textSize"];
+    [md setObject: [NSNumber numberWithFloat:iconSize] forKey:@"iconSize"];
 	[sc release];
     
     return md;
 }
 @end
+
+
+/*
+ 
+ typedef int CGSConnection;
+ typedef int CGSWindow;
+ typedef enum {
+     CGSTagExposeFade	= 0x0002,   // Fade out when Expose activates.
+     CGSTagNoShadow		= 0x0008,   // No window shadow.
+     CGSTagTransparent   = 0x0200,   // Transparent to mouse clicks.
+     CGSTagSticky		= 0x0800,   // Appears on all workspaces.
+ } CGSWindowTag;
+ 
+ 
+ 
+@implementation NSWindow (ExposeStickiness)
+-(void)setExposeSticky:(BOOL)flag {
+    CGSConnection cid;
+    CGSWindow wid;
+    
+    wid = [self windowNumber ];
+    cid = _CGSDefaultConnection();
+    int tags[2];
+    tags[0] = tags[1] = 0;
+    OSStatus retVal = CGSGetWindowTags(cid, wid, tags, 32);
+    if(!retVal) {
+        if (flag)
+            tags[0] = tags[0] | CGSTagExposeFade;
+        else
+            tags[0] = tags[0] & CGSTagExposeFade;
+        
+        retVal = CGSSetWindowTags(cid, wid, tags, 32);
+    }
+}
+
+
+@end
+*/

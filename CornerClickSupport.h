@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ClickAction.h"
+#import <Carbon/Carbon.h>
 
 @class CornerClickSettings;
 
@@ -17,17 +18,20 @@
 + (id) deepMutableCopyOfObject: (id) obj;
 + (NSMutableArray *) deepMutableCopyOfArray:(NSArray *) arr;
 + (NSMutableDictionary *) deepMutableCopyOfDictionary:(NSDictionary *) dict;
-
++ (NSDictionary *) appPrefs;
 + (void) savePreferences: (CornerClickSettings *) settings;
-+ (CornerClickSettings *) settingsFromUserPreferences;
-+ (CornerClickSettings *) settingsFromUserPreferencesWithClicker: (Clicker *) clicker;
 + (NSDictionary *) loadOldVersionPreferences;
 + (NSString *) labelForModifiers:(int)modifiers andTrigger:(int) trigger localBundle:(NSBundle *) bundle;
 + (NSNumber *) numberForScreen:(NSScreen *)screen;
++ (int) modifiersForExposeAction: (int) action;
++ (int) keyCodeForExposeAction: (int) action;
++ (void) generateKeystrokeForKeyCode: (int) keycode withModifiers:(int)modifiers;
++ (NSNumber *)numberFromSomething:(id)obj;
 @end
 
 @interface CornerClickSettings : NSObject {
     NSMutableDictionary *theScreens;
+    NSMutableDictionary *namedKeys;
     BOOL appEnabled;
     BOOL toolTipEnabled;
     BOOL toolTipDelayed;
@@ -36,9 +40,19 @@
 	NSColor *highlightColor;
 	NSColor *bubbleColorA;
 	NSColor *bubbleColorB;
+    float iconSize;
+    float textSize;
 }
++ (CornerClickSettings *) sharedSettingsFromUserPreferencesWithClicker: (Clicker *) clicker;
++ (CornerClickSettings *) sharedSettingsFromUserPreferences;
++ (CornerClickSettings *) sharedSettings;
+- (void) setUserPreferences: (NSDictionary *) prefs andClicker: (Clicker *) clicker;
+
 - (id) initWithUserPreferences: (NSDictionary *) settings andClicker: (Clicker *)clicker;
 - (id) initWithUserPreferences: (NSDictionary *) settings;
+- (NSMutableDictionary *)namedKeys;
+- (void) setNamedKeys:(NSMutableDictionary *) keys;
+
 - (NSArray *) actionsForScreen: (NSNumber *)screenNum andCorner:(int) corner;
 - (NSArray *) actionsForScreen: (NSNumber *)screenNum andCorner:(int) corner andModifiers: (int) modifiers;
 - (ClickAction *) actionAtIndex: (int) index forScreen:(NSNumber *)screenNum andCorner:(int) corner;
@@ -57,13 +71,15 @@
 - (BOOL) toolTipDelayed;
 - (void) setHighlightColor: (NSColor *)color;
 - (NSColor *) highlightColor;
-- (NSColor *) defaultHighlightColor;
++ (NSColor *) defaultHighlightColor;
 - (void) setBubbleColorA: (NSColor *)color;
 - (NSColor *) bubbleColorA;
-- (NSColor *) defaultBubbleColorA;
++ (NSColor *) defaultBubbleColorA;
 - (void) setBubbleColorB: (NSColor *)color;
 - (NSColor *) bubbleColorB;
-- (NSColor *) defaultBubbleColorB;
++ (NSColor *) defaultBubbleColorB;
+- (float) iconSize;
+- (float) textSize;
 - (void) setToolTipDelayed: (BOOL) delayed;
 - (void) blahArray:(NSArray *)a level:(int) level;
 - (void) blahDict:(NSDictionary *)a level:(int) level;
@@ -79,3 +95,11 @@
 
 
 @end
+/*
+@interface NSWindow (ExposeStickiness)
+
+-(void)setExposeSticky:(BOOL)flag ;
+
+@end
+
+*/

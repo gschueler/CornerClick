@@ -39,12 +39,16 @@
     IBOutlet NSButton *shiftKeyCheckBox;
     IBOutlet NSButton *commandKeyCheckBox;
     IBOutlet NSButton *controlKeyCheckBox;
+    IBOutlet NSButton *functionKeyCheckBox;
     IBOutlet NSTextView *readmeTextView;
     IBOutlet NSMatrix *cornerMatrix;
     IBOutlet NSPopUpButton *screenIDButton;
     IBOutlet NSTabView *myTabView;
     IBOutlet NSView *chooseButtonView;
     IBOutlet NSButton *cycleScreensButton;
+    IBOutlet NSColorWell *highlightColorWell;
+    IBOutlet NSColorWell *bubbleColorWellA;
+    IBOutlet NSColorWell *bubbleColorWellB;
     //NSMutableDictionary *tl;
     //NSMutableDictionary *tr;
     //NSMutableDictionary *bl;
@@ -94,6 +98,12 @@
 - (IBAction)shiftKeyCheckBoxClicked:(id)sender;
 - (IBAction)commandKeyCheckBoxClicked:(id)sender;
 - (IBAction)controlKeyCheckBoxClicked:(id)sender;
+- (IBAction)functionKeyCheckBoxClicked:(id)sender;
+- (IBAction)highlightColorWellChosen:(id)sender;
+- (IBAction)bubbleColorWellAChosen:(id)sender;
+- (IBAction)bubbleColorWellBChosen:(id)sender;
+- (IBAction)gotoWebURL:(id)sender;
+- (IBAction)gotoEmailURL:(id)sender;
 
 - (void) deactivateHelper;
 - (void) activateHelper;

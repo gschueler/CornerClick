@@ -1,6 +1,7 @@
 /* Clicker */
 
 #import <Cocoa/Cocoa.h>
+#import <Carbon/Carbon.h>
 
 @interface Clicker : NSObject
 {
@@ -18,10 +19,13 @@
     NSMutableDictionary *trackCache;
 
     NSTimer *delayTimer;
-    
+    NSTimer *fadeTimer;
+    NSNumber *lastScreen;
     NSWindow *hoverWin;
-    GrayView *hoverView;
-    int lastHoverCorner;
+    BubbleView *hoverView;
+	ProcessSerialNumber lastActiveProc;
+	BOOL actionPerformed;
+	int lastHoverCorner;
     int lastCornerEntered;
     float hoverAlpha;
     CornerClickSettings *appSettings;
@@ -42,8 +46,14 @@
 - (void) hideHoverDoFadeout;
 - (void)recalcAndShowHoverWindow: (int) corner onScreen:(NSNumber *)screenNum modifiers: (unsigned int) modifiers;
 - (void)recalcAndShowHoverWindow: (int) corner onScreen:(NSNumber *)screenNum modifiers: (unsigned int) modifiers
-                         doDelay: (BOOL) delay;
+                         doDelay: (BOOL) delay actionList: (BubbleActionsList *)actionsList;
 - (void) mouseExited: (NSEvent *) theEvent;
 - (void) mouseDownTrigger: (NSEvent *) theEvent;
-
+- (NSColor *) highlightColor;
+- (ProcessSerialNumber) lastActivePSN;
+- (void) getNextPSN;
++ (void) listProcs;
++(unsigned int) eventFlagsForMods:(int)mods;
++(int) modsForEventFlags:(unsigned int) evtFlags;
++ (int) add:(int)a to:(int)b mod:(int)m;
 @end

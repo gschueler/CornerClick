@@ -8,7 +8,7 @@
 #import "ClickWindow.h"
 #import "ClickAction.h"
 #import "ClickView.h"
-#import "GrayView.h"
+#import "BubbleView.h"
 #import "Clicker.h"
 
 #import "common_prefix.h"

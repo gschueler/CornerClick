@@ -2,7 +2,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface ClickWindow : NSWindow
+@interface ClickWindow : NSPanel
 {
     int corner;
 }

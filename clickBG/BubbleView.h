@@ -1,24 +1,26 @@
 //
-//  GrayView.h
-//  TestBox
+//  BubbleView.h
+//  CornerClick
 //
-//  Created by Greg Schueler on Fri Jul 18 2003.
-//  Copyright (c) 2003 __MyCompanyName__. All rights reserved.
+//  Created by Greg Schueler on Fri Apr 30 2004.
+//  Copyright (c) 2004 __MyCompanyName__. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import "BubbleAction.h"
+#import "BubbleActionsList.h"
 
+@class BubbleAction;
 
-@interface GrayView : NSView {
-    NSImage *iconImage;
+@interface BubbleView : NSView {
     NSColor *fadeFromColor;
     NSColor *fadeToColor;
     NSImage *textArea;
-    NSString *myString;
     NSDictionary *stringAttrs;
     NSDictionary *shadowAttrs;
-	NSArray *actions;
-	NSRect prefFrame;
+	BubbleActionsList *drawingObject;
+	
+	NSArray *images;
     float fadeAlpha;
     float roundingSize;
     float insetSize;
@@ -27,31 +29,35 @@
     int tailLen;
     BOOL drawHilite;
 	BOOL showModifierTitle;
+	NSRect prefFrame;
 }
 
-- (id) initWithFrame: (NSRect) frame andString: (NSString *)msg andImage: (NSImage *) img;
-- (id) initWithFrame: (NSRect) frame andString: (NSString *)msg;
-- (id) initWithFrame: (NSRect) frame andString: (NSString *)msg andImage: (NSImage *) img
-            fadeFrom: (NSColor *)fromCol fadeTo: (NSColor *) toCol cornerSize: (float) cornerSize
+- (id) initWithFrame: (NSRect) frame
+		   andDrawingObject: (BubbleActionsList *)obj;
+
+- (id) initWithFrame: (NSRect) frame 
+	andDrawingObject: (BubbleActionsList *)obj
+            fadeFrom: (NSColor *)fromCol
+			  fadeTo: (NSColor *) toCol
+		  cornerSize: (float) cornerSize
          pointCorner: (int) pCorner;
+
 - (void) setFadeFromColor: (NSColor *)color;
 - (void) setFadeToColor: (NSColor *) color;
 - (void) setPointCorner: (int) pCorner;
-- (void) setActions: (NSArray *) actions;
+- (void) setDrawingObject: (BubbleActionsList *) obj;
 - (void) drawFadeFrame: (NSRect)rect;
 - (void) drawGradient: (NSRect) therect fromColor:(NSColor *) from toColor:(NSColor *) to
             direction: (int) dir;
-- (void) setDrawString: (NSString *) drawString;
-- (void) setIcon: (NSImage *) icon;
 - (void) setDrawFont:(NSFont *) font color:(NSColor *) color;
 - (void) setDrawHilite:(BOOL)draw;
 - (BOOL) drawHilite;
 - (void) setInsetSize:(float) size;
-- (void) setShowModifiersTitle: (BOOL) showTitle;
-- (BOOL) showModifiersTitle;
 - (float) insetSize;
 - (void) recalcSize;
 - (NSRect) preferredFrame;
-- (NSRect) calcPreferredFrame;
-
+- (void) calcPreferredFrame;
+- (BubbleActionsList *) bubbleActionsList: (NSArray *)actions selected:(int) sel;
+- (BubbleAction *) bubbleAction: (NSArray *)actions;
++ (NSBezierPath *)roundedRect: (NSRect)rect rounding: (float) theRounding;
 @end

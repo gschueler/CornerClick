@@ -55,9 +55,10 @@
             iconImage=nil;
         }
         if(msg!=nil){
-            myString = [msg retain];
+            myString = [[NSString stringWithString:msg] retain];
             stringAttrs = [[NSDictionary dictionaryWithObjects:
-                [NSArray arrayWithObjects: [NSFont boldSystemFontOfSize: 32.0],
+                [NSArray arrayWithObjects: 
+					[NSFont boldSystemFontOfSize: 32.0],
                     [NSColor whiteColor],nil]
                                                        forKeys:
                 [NSArray arrayWithObjects: NSFontAttributeName,
@@ -315,6 +316,39 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
     [tempImg release];
 }
 
+- (void) setActionsTemp: (NSArray *) theActions
+{
+	[theActions retain];
+	[actions release];
+	if(actions!=theActions){
+		dirty=YES;
+	}
+	[self setIcon:nil];
+	[self setDrawString:nil];
+	actions=theActions;
+	[self recalcSize];
+	//[self display];
+	[self setNeedsDisplay:YES];
+}
+- (void) setActions: (NSArray *) theActions
+{
+	[theActions retain];
+	[actions release];
+	if(actions!=theActions){
+		dirty=YES;
+	}
+	actions=theActions;
+	/*if(theActions !=nil && [theActions count] > 0){
+		ClickAction *act = (ClickAction *)[theActions objectAtIndex:0];
+		[self setIcon:[act icon]];
+		[self setDrawString:[act label]];		
+	}*/
+	[self recalcSize];
+	[self setNeedsDisplay:YES];
+	//[self display];
+}
+
+
 - (void) setIcon: (NSImage *) icon
 {
     [icon retain];
@@ -326,7 +360,8 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
     if(dirty){
        // NSLog(@"set Icon: now dirty");
         [self recalcSize];
-        [self display];
+        //[self display];
+		[self setNeedsDisplay:YES];
     }
 }
 
@@ -344,36 +379,78 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
     if(dirty){
         //NSLog(@"set draw string: now dirty");
         [self recalcSize];
-        [self display];
-    }
-}
-
-
-- (void) recalcSize
-{
-    NSRect pref = [self preferredFrame];
-    //NSLog(@"recalc'd size: %@",NSStringFromRect(pref));
-    if([self frame].size.width != pref.size.width || [self frame].size.height != pref.size.height){
-        [self setFrame: pref];
-        [[self window] setFrame: NSMakeRect([[self window] frame].origin.x,[[self window] frame].origin.y,pref.size.width,pref.size.height) display: NO];
+        //[self display];
+		[self setNeedsDisplay:YES];
     }
 }
 
 - (NSRect) preferredFrame
 {
+	return prefFrame;
+}
+
+- (void) recalcSize
+{
+    prefFrame = [self calcPreferredFrame];
+    NSLog(@"recalc'd size: %@",NSStringFromRect(prefFrame));
+    /*if([self frame].size.width != prefFrame.size.width || [self frame].size.height != prefFrame.size.height){
+        [self setFrame: prefFrame];
+        //[[self window] setFrame: NSMakeRect([[self window] frame].origin.x,[[self window] frame].origin.y,pref.size.width,pref.size.height) display: NO];
+		[self setNeedsDisplay:YES];
+    }*/
+}
+
+- (NSRect) calcPreferredFrame
+{
     NSSize textSize;
-    if(myString == nil){
-        textSize=NSMakeSize(0,0);
-    }else{
-        textSize = [myString sizeWithAttributes: stringAttrs];
-        textSize.width/=2;
-        textSize.height/=2;
-    }
-    if(iconImage!=nil){
-        textSize.width+=36;
-        if(textSize.height<32)
-            textSize.height=32;
-    }
+	NSSize temp;
+	int i;
+	float x,y;
+	float mwidth,mheight;
+	mwidth=0;
+	mheight=0;
+	if(actions != nil){
+		textSize=NSMakeSize(0,0);
+		for(i=0;i<[actions count];i++){
+			x=0;
+			y=0;
+			ClickAction* act = (ClickAction*)[actions objectAtIndex:i];
+			if([act label]!=nil){
+				temp = [[act label] sizeWithAttributes:stringAttrs];
+				x = temp.width/2;
+				y = temp.height/2;
+			}
+			if([act icon]!=nil){
+				
+					x+=36;
+				if(y<32)
+					y=32;
+			}
+			if(x>mwidth){
+				mwidth=x;
+			}
+			mheight+=y;
+			if(i>0)
+				mheight+=(int)ceil(roundingSize - insetSize);
+		}
+		textSize.width=mwidth;
+		textSize.height=mheight;
+	}
+    else{
+			
+		if(myString == nil){
+			textSize=NSMakeSize(0,0);
+		}else{
+			textSize = [myString sizeWithAttributes: stringAttrs];
+			textSize.width/=2;
+			textSize.height/=2;
+		}
+		if(iconImage!=nil){
+			textSize.width+=36;
+			if(textSize.height<32)
+				textSize.height=32;
+		}
+	}
     textSize.height+=(pointCorner>=0 ? tailLen : 0 );
     return NSMakeRect([self frame].origin.x,[self frame].origin.y,(int)ceil(((roundingSize - insetSize)*2) + textSize.width),(int)ceil(((roundingSize - insetSize)*2)+textSize.height));
 
@@ -421,13 +498,134 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
     }
 }
 
+- (void)drawAction:(NSString*)label withIcon:(NSImage*)icon atPoint:(NSPoint)inside
+{
+	BOOL aa;
+    NSImage *tempImg;
+    NSSize tSize;
+    NSRect rect = [self frame];
+	
+	
+	float xoff=0;
+	float yoff=0;
+	
+	if(label == nil){
+		tSize=NSMakeSize(0,0);
+	}else{
+		tSize=[label sizeWithAttributes: stringAttrs];
+	}
+	//draw an icon if it's set
+	if(icon!=nil){
+		xoff+=36;
+		yoff+=(32 - (tSize.height/2))/2;
+		[icon drawInRect:NSMakeRect(inside.x, inside.y, 32, 32) 
+				fromRect:NSMakeRect(0,0,[icon size].width, [icon size].height)
+			   operation:NSCompositeSourceOver
+				fraction:1.0];
+		//[icon compositeToPoint: inside operation:NSCompositeSourceOver];
+	}
+	
+	if(label!=nil){
+		//create a new image, draw double size text, composite at half size on top of bubble
+		
+		tempImg = [[NSImage alloc] initWithSize:tSize];
+		[tempImg lockFocus];
+		
+		[[NSColor clearColor] set];
+		NSRectFill(NSMakeRect(0,0,tSize.width,tSize.height));
+		aa = [[NSGraphicsContext currentContext] shouldAntialias];
+		[[NSGraphicsContext currentContext] setShouldAntialias: YES];
+		
+		
+		[label drawAtPoint:NSZeroPoint withAttributes: stringAttrs ];
+		
+		[tempImg unlockFocus];
+		
+		[[NSGraphicsContext currentContext] setShouldAntialias: aa];
+		
+		//NSImageRep *brep = [tempImg bestRepresentationForDevice:nil];
+		
+		[tempImg  drawInRect:NSMakeRect(inside.x+xoff, inside.y+yoff, tSize.width/2,tSize.height/2)
+					fromRect:NSMakeRect(0, 0, tSize.width, tSize.height)
+				   operation:NSCompositeSourceOver
+					fraction:1.0];
+		[tempImg release];
+	}
+	
+	
+}
+
 - (void)drawRect:(NSRect)therect
 {
     BOOL aa;
     NSImage *tempImg;
     NSSize tSize;
     NSRect rect = [self frame];
+	NSPoint inside;
+	float intHeight = rect.size.height-(int)ceil((roundingSize-insetSize)) - (pointCorner==2||pointCorner==3 ? 0:tailLen) ;
+	float curHeight=intHeight;
+	
+	float tF;
+	int i;
+	
+    if(dirty){
+        [textArea setSize: NSMakeSize(rect.size.width,rect.size.height)];
+        [textArea lockFocus];
+		
+        [[NSColor clearColor] set];
+        NSRectFill(NSMakeRect(0,0,rect.size.width, rect.size.height));
+        //draw the bubble background for the content
+        [self drawFadeFrame: NSMakeRect(0,0,rect.size.width,rect.size.height)];
+		
+		
+		if(actions==nil){
+			inside=NSMakePoint((roundingSize - insetSize),(roundingSize - insetSize) + (pointCorner==2||pointCorner==3 ? tailLen: 0));
+			[self drawAction:myString withIcon:iconImage atPoint:inside];
+		}else{
+			for(i=0;i<[actions count];i++){
+				ClickAction *act = (ClickAction *)[actions objectAtIndex:i];
+				tF=0;
+				if([act label]!=nil){
+					NSSize temp = [[act label] sizeWithAttributes:stringAttrs];
+					tF = temp.height/2;
+					
+				}
+				if([act icon] !=nil && tF<32){
+					tF=32;
+				}
+				curHeight = curHeight-tF;
+				if(i>0){
+					curHeight-=(roundingSize -insetSize);
+				}
+				inside = NSMakePoint((roundingSize -insetSize), curHeight); 
+				[self drawAction:[act label] withIcon:[act icon] atPoint:inside];
+					
+				
+			}
+		}
+        [textArea unlockFocus];
+        dirty=NO;
+    }
+    [[NSColor clearColor] set];
+    NSRectFill(rect);
+	
+    [[NSGraphicsContext currentContext] setShouldAntialias: NO];
+    [textArea compositeToPoint:NSMakePoint(rect.origin.x,rect.origin.y) operation:NSCompositeSourceOver];
+	
+    if(DEBUG_ON){
+        if(pointCorner==1){
+            [[textArea TIFFRepresentation] writeToFile: [@"~/Desktop/test.tiff" stringByExpandingTildeInPath] atomically:YES];
+        }
+    }
+	
+}
 
+- (void)drawRectOld:(NSRect)therect
+{
+    BOOL aa;
+    NSImage *tempImg;
+    NSSize tSize;
+    NSRect rect = [self frame];
 
     NSPoint inside=NSMakePoint((roundingSize - insetSize),(roundingSize - insetSize) + (pointCorner==2||pointCorner==3 ? tailLen: 0));
 
@@ -506,24 +704,36 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 
 - (void) setFadeFromColor: (NSColor *) color
 {
-    NSColor *temp = [color colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
-    [temp retain];
+    NSColor *temp = [color copy];
+	
     //NSLog(@"fadeColor retainCount before release: %d",[fadeColor retainCount]);
     [fadeFromColor release];
     fadeFromColor = temp;
+	dirty=YES;
+	[self setNeedsDisplay:YES];
+	
 }
 
 - (void) setFadeToColor: (NSColor *) color
 {
-    NSColor *temp = [color colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
-    [temp retain];
+    //NSColor *temp = [color colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+    //[temp retain];
+	NSColor *temp = [color copy];
     //NSLog(@"fadeColor retainCount before release: %d",[fadeColor retainCount]);
+	
     [fadeToColor release];
     fadeToColor = temp;
+	[self setNeedsDisplay:YES];
+	dirty=YES;
 }
 - (void) setPointCorner: (int) pCorner
 {
     pointCorner=pCorner;
+}
+
+- (void) setShowModifiersTitle: (BOOL) showTitle
+{
+	showModifierTitle=showTitle;
 }
 
 - (void)setDrawHilite:(BOOL)draw
@@ -534,12 +744,17 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 {
     return drawHilite;
 }
+- (BOOL) showModifiersTitle
+{
+	return showModifierTitle;
+}
 
 - (void) setInsetSize:(float) size
 {
     insetSize=size;
     [self recalcSize];
-    [self display];
+    //[self display];
+	[self setNeedsDisplay:YES];
 }
 - (float) insetSize
 {

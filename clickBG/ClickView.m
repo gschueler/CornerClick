@@ -40,6 +40,8 @@
     }
     [myActions release];
     myActions = ma;
+	[uniqueModifiers release];
+	uniqueModifiers=nil;
 }
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender
@@ -224,7 +226,7 @@
     if(selected)
         [[[NSColor whiteColor] colorWithAlphaComponent:0.50] set];
     else
-        [[[NSColor redColor] colorWithAlphaComponent:0.50] set];
+        [[myClicker highlightColor] set];
 
     [path fill];
     
@@ -233,6 +235,12 @@
     //[NSBezierPath strokeLineFromPoint:*from toPoint:*to];
 //    [path stroke];
     [drawed unlockFocus];
+}
+
+- (void) colorsChanged
+{
+	[drawed release];
+	drawed=nil;
 }
 
 - (void) dealloc
@@ -263,6 +271,56 @@
     }
     return nil;
 }
+- (NSArray *) clickActionsForModifierFlags:(unsigned int) modifiers
+{
+	return [self clickActionsForModifierFlags:modifiers andTrigger:-1];
+}
+
+- (NSArray *) clickActionsForModifierFlags:(unsigned int) modifiers
+								andTrigger:(int) trigger
+{
+    int i;
+    ClickAction *theAction;
+	NSMutableArray *thearr = [[NSMutableArray alloc] init];
+    int flags=0;
+    unsigned int evtFlags = modifiers;
+	flags = [Clicker modsForEventFlags:evtFlags];
+    for(i=0;i<[myActions count]; i++){
+        theAction = (ClickAction *)[myActions objectAtIndex:i];
+        if([theAction modifiers]==flags && (trigger<0 || [theAction trigger]==trigger)){
+						   
+			[thearr addObject: theAction];
+            //return theAction;
+            //return;
+        }
+    }
+    return [thearr autorelease];
+}
+
+- (NSArray *) uniqueModifiersList
+{
+	int i;
+	if(uniqueModifiers!=nil){
+		return uniqueModifiers;
+	}
+	NSMutableArray *arr = [[NSMutableArray alloc] init];
+	NSCountedSet *cs = [[[NSCountedSet alloc] init] autorelease];
+    
+	for(i=0;i<[myActions count]; i++){
+        ClickAction *theAction = (ClickAction *)[myActions objectAtIndex:i];
+		NSNumber *num = [NSNumber numberWithInt:[theAction modifiers]];
+		
+		if([cs countForObject:num]==0){
+			if(DEBUG_ON)NSLog(@"found unique mod: %d",[theAction modifiers]);
+			[cs addObject:num];
+			[arr addObject:num];
+		}
+        
+    }
+	uniqueModifiers=arr;
+	return uniqueModifiers;
+    
+}
 
 - (void)mouseDown:(NSEvent *)theEvent
 {
@@ -270,25 +328,17 @@
     ClickAction *theAction;
     int flags=0;
     unsigned int evtFlags = [theEvent modifierFlags];
-    if(evtFlags & NSShiftKeyMask)
-        flags|=SHIFT_MASK;
-    if(evtFlags & NSAlternateKeyMask)
-        flags|=OPTION_MASK;
-    if(evtFlags & NSCommandKeyMask)
-        flags|=COMMAND_MASK;
-    if(evtFlags & NSControlKeyMask)
-        flags|=CONTROL_MASK;
-    [myClicker mouseDownTrigger:theEvent];
+    flags = [myClicker mouseDownTrigger:theEvent onView:self];
     for(i=0;i<[myActions count]; i++){
         theAction = (ClickAction *)[myActions objectAtIndex:i];
         if([theAction modifiers]==flags){
             //NSLog(@"do action %@",[theAction label]);
+			[myClicker actionActivating: theAction];
             [theAction doAction:theEvent];
             //return;
         }
     }
 }
-
 
 
 - (void) setTrackingRectTag:(NSTrackingRectTag) tag
@@ -298,6 +348,10 @@
 - (NSTrackingRectTag) trackingRectTag
 {
     return trackTag;
+}
+- (BOOL) acceptsFirstResponder
+{
+	return NO;
 }
 
 @end

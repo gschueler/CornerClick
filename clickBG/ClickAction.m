@@ -10,6 +10,14 @@
 }
 -(id)initWithType: (int) type andModifiers: (int) modifiers andString: (NSString *)theString forCorner: (int)corner withLabel: (NSString *)label andClicker:(Clicker *) clicker
 {
+	return [self initWithType:type andModifiers:modifiers andTrigger:0
+					andString:theString forCorner:corner withLabel:label
+				   andClicker:clicker];
+}
+
+-(id)initWithType: (int) type andModifiers: (int) modifiers andTrigger: (int) trigger andString: (NSString *)theString
+		forCorner: (int)corner withLabel: (NSString *)label andClicker:(Clicker *) clicker
+{
     if(self=[super init]){
         myIcon=nil;
         trueLabel=nil;
@@ -18,6 +26,7 @@
         theType=type;
         theModifiers=modifiers;
         myClicker=clicker;
+		theTrigger=trigger;
         if(theString != nil){
             //myString = [[NSString stringWithString:theString] retain];
             myString = [theString copy];
@@ -58,10 +67,11 @@
             break;
         case ACT_HIDE:
             myLabel=[[NSString stringWithString: LOCALIZE([NSBundle mainBundle],@"Hide Current Application") ] retain];
-
+			myIcon = [[NSImage imageNamed:@"HideAppIcon"] retain];
             break;
         case ACT_HIDO:
             myLabel=[[NSString stringWithString: LOCALIZE([NSBundle mainBundle],@"Hide Other Applications") ] retain];
+			myIcon = [[NSImage imageNamed:@"HideOthersIcon"] retain];
             break;
         case ACT_URL:
             if(label !=nil){
@@ -134,7 +144,15 @@
 {
     return myIcon;
 }
+-(int) trigger
+{
+	return theTrigger;
+}
 
+-(void) setTrigger: (int) trigger
+{
+	theTrigger=trigger;
+}
 
 -(void) setString: (NSString *) string
 {
@@ -281,10 +299,24 @@
 - (void) hideCurrentAction
 {
     ProcessSerialNumber psn;
+//    ProcessSerialNumber paramPsn;
     OSErr err;
-    err=GetFrontProcess(&psn);
-    if(err==0)
-        ShowHideProcess(&psn,(Boolean)NO);
+	//NSLog(@"myClicker class: %@",[myClicker class]);
+	//psn = [myClicker lastActivePSN];
+	psn.highLongOfPSN==0;
+	psn.lowLongOfPSN== 0;
+	err = GetFrontProcess(&psn);
+    if(err==0){
+	}else{
+		NSLog(@"error after get front process");
+	}
+
+    err=ShowHideProcess(&psn, (Boolean)NO);
+    if(err==0){
+	}else{
+		NSLog(@"error after get front process");
+	}
+	//[myClicker getNextPSN];
 }
 
 - (void) hideOthersAction

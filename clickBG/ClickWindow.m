@@ -15,17 +15,21 @@
 
 -( BOOL) canBecomeKeyWindow
 {
-    return NO;
+    return YES;
 }
 -( BOOL) canBecomeMainWindow
 {
-    return NO;
+    return YES;
 }
 
+-(BOOL) acceptsFirstResponder
+{
+	return YES;
+}
 
 - (void) flagsChanged:(NSEvent *)theEvent
 {
-    NSLog(@"flagsChanged in ClickWindow.m");
+    if(DEBUG_ON)NSLog(@"flagsChanged in ClickWindow.m");
     [[NSApp delegate] flagsChanged:theEvent];
 }
 
@@ -33,5 +37,29 @@
 {
     return corner;
 }
+
+
+- (void)rightMouseDown:(NSEvent *)theEvent
+{
+	if(DEBUG_ON)NSLog(@"Right mouse button in ClickWindow.m");
+}
+
+- (void)scrollWheel: (NSEvent *)theEvent
+{
+	if(DEBUG_ON)NSLog(@"scroll wheel motion in ClickWindow.m: %@", theEvent);
+	[[NSApp delegate] scrollWheel:theEvent atCorner:corner];
+}
+
+- (BOOL)acceptsFirstMouse:(NSEvent *)theEvent
+{
+	return YES;
+}
+- (void)keyDown:(NSEvent *)theEvent
+{
+	if(DEBUG_ON)NSLog(@"key down event in ClickWindow.m");
+	[[NSApp delegate] keyDown:theEvent];
+	
+}
+
 @end
 

@@ -9,6 +9,7 @@
     int theType;
     int theCorner;
     int theModifiers;
+	int theTrigger;
     NSImage *myIcon;
     NSString *myLabel;
     NSString *trueLabel;
@@ -20,6 +21,8 @@
 - (void)doAction:(NSEvent*)theEvent;
 -(id)initWithType: (int) type andModifiers: (int) modifiers andString: (NSString *)theString forCorner: (int) corner andClicker:(Clicker *) clicker;
 -(id)initWithType: (int) type andModifiers: (int) modifiers andString: (NSString *)theString forCorner: (int) corner withLabel:(NSString *) label andClicker:(Clicker *) clicker;
+-(id)initWithType: (int) type andModifiers: (int) modifiers andTrigger: (int) trigger andString: (NSString *)theString
+		forCorner: (int)corner withLabel: (NSString *)label andClicker:(Clicker *) clicker;
 -(void)hideCurrentAction;
 -(void)hideOthersAction;
 -(int)type;
@@ -29,6 +32,7 @@
 -(NSString *)label;
 -(NSImage *)icon;
 - (NSString *) labelSetting;
+-(int)trigger;
 - (void) setLabelSetting:(NSString *) label;
 -(void) setString: (NSString *) string;
 -(void) setLabel: (NSString *) label;
@@ -36,6 +40,8 @@
 -(void) setCorner: (int) corner;
 -(void) setType: (int) type;
 -(void) setModifiers: (int) modifiers;
+-(void) setTrigger: (int) trigger;
+
 
 -(void)setIconAndLabelUserProvided: (NSString *) label;
 - (void) runAppleScriptAction;

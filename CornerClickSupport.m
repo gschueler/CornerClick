@@ -33,6 +33,10 @@
 
 + (CornerClickSettings *) settingsFromUserPreferences
 {
+	return [CornerClickSupport settingsFromUserPreferencesWithClicker: nil];
+}
++ (CornerClickSettings *) settingsFromUserPreferencesWithClicker: (Clicker *) clicker
+{
     NSDictionary *prefs;
 
     prefs = [[NSUserDefaults standardUserDefaults]
@@ -41,7 +45,7 @@
         prefs = [CornerClickSupport loadOldVersionPreferences];
     }
     //NSLog(@"loaded prefs: %@",prefs);
-    return [[[CornerClickSettings alloc] initWithUserPreferences: prefs] autorelease];
+    return [[[CornerClickSettings alloc] initWithUserPreferences: prefs andClicker: clicker] autorelease];
     
 }
 
@@ -149,6 +153,61 @@
     return md;
 }
 
+
++(NSString *) labelForModifiers:(int)modifiers andTrigger:(int) trigger localBundle:(NSBundle *) bundle
+{
+	NSString *theFile = @"";
+	if(modifiers & SHIFT_MASK){
+		theFile = [NSString stringWithFormat:@"%C",(unichar)0x21E7];
+	}
+	if(modifiers & OPTION_MASK){
+		if([theFile length]){
+			theFile = [NSString stringWithFormat:@"%@%C",theFile,(unichar)0x2325];
+		}else{
+			theFile = [NSString stringWithFormat:@"%C",(unichar)0x2325];
+		}
+	}
+	
+	if(modifiers & COMMAND_MASK){
+		if([theFile length]){
+			theFile = [NSString stringWithFormat:@"%@%C",theFile,(unichar)0x2318];
+		}else{
+			theFile = [NSString stringWithFormat:@"%C",(unichar)0x2318];
+		}
+	}
+	
+	if(modifiers & CONTROL_MASK){
+		if([theFile length]){
+			theFile = [NSString stringWithFormat:@"%@%C",theFile,(unichar)0x2303];
+		}else{
+			theFile = [NSString stringWithFormat:@"%C",(unichar)0x2303];
+		}
+	}
+	if(modifiers & FN_MASK){
+		if([theFile length]){
+			theFile = [NSString stringWithFormat:@"%@Fn",theFile];
+		}else{
+			theFile = @"Fn";
+		}
+	}
+	NSString *clickName;
+	if(trigger == 0){
+		clickName=@"Click";
+	}else if(trigger == 1){
+		clickName=@"Right-Click";
+	}else{
+		clickName=@"???";
+		
+	}
+	if([theFile length]){
+		theFile = [NSString stringWithFormat:@"%@ %@",theFile,LOCALIZE(bundle,clickName)];
+	}else{
+		theFile = LOCALIZE(bundle,clickName);
+	}
+	return theFile;
+}
+
+
 @end
 
 @implementation CornerClickSettings
@@ -157,8 +216,11 @@
 {
     return [self initWithUserPreferences: nil];
 }
-
 - (id) initWithUserPreferences: (NSDictionary *) prefs
+{
+	return [self initWithUserPreferences: prefs andClicker: nil];
+}
+- (id) initWithUserPreferences: (NSDictionary *) prefs andClicker: (Clicker *) clicker
 {
     int num=-1;
     int i,j;
@@ -175,10 +237,27 @@
             if(num!=CC_APP_VERSION){
                 return nil;
             }
+			myClicker=clicker;
             appEnabled = [[prefs objectForKey:@"appEnabled"] boolValue];
             toolTipEnabled = [[prefs objectForKey:@"tooltip"] boolValue];
             toolTipDelayed = [[prefs objectForKey:@"tooltipDelayed"] boolValue];
-
+			NSArray *colors = [prefs objectForKey:@"colors"];
+			
+			if(nil!=colors && [colors count]>0 && nil!=[colors objectAtIndex:0]){
+				highlightColor = [(NSColor *)[NSUnarchiver unarchiveObjectWithData:[colors objectAtIndex:0]] retain];				
+			}else{
+				highlightColor = [[self defaultHighlightColor] retain];
+			}
+			if(nil!=colors && [colors count]>1 && nil!=[colors objectAtIndex:1]){
+				bubbleColorA = [(NSColor *)[NSUnarchiver unarchiveObjectWithData:[colors objectAtIndex:1]] retain];				
+			}else{
+				bubbleColorA = [[self defaultBubbleColorA] retain];
+			}
+			if(nil!=colors && [colors count]>2 && nil!=[colors objectAtIndex:2]){
+				bubbleColorB = [(NSColor *)[NSUnarchiver unarchiveObjectWithData:[colors objectAtIndex:2]] retain];				
+			}else{
+				bubbleColorB = [[self defaultBubbleColorB] retain];
+			}
             theScreens=[CornerClickSupport deepMutableCopyOfObject: [prefs objectForKey:@"screens"]];
             en=[theScreens keyEnumerator];
             while(key = [en nextObject]){
@@ -188,7 +267,7 @@
                     if(actions==nil || [actions count]==0)
                         continue;
                     for(j=0;j<[actions count];j++){
-                        act = [CornerClickSettings actionFromDictionary:[actions objectAtIndex:j] withCorner: i];
+                        act = [CornerClickSettings actionFromDictionary:[actions objectAtIndex:j] withCorner: i andClicker: myClicker];
                         [actions replaceObjectAtIndex:j withObject:act];
                     }
                 }
@@ -200,10 +279,26 @@
             appEnabled=NO;
             toolTipEnabled=YES;
             toolTipDelayed=YES;
+			highlightColor = [[self defaultHighlightColor] retain];
+			bubbleColorA = [[self defaultBubbleColorA] retain];
+			bubbleColorB = [[self defaultBubbleColorB] retain];
         }
         
     }
     return self;
+}
+
+- (NSColor *) defaultHighlightColor
+{
+	return [[NSColor redColor] colorWithAlphaComponent:0.50] ;
+}
+- (NSColor *) defaultBubbleColorA
+{
+	return [NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha: 0.6];
+}
+- (NSColor *) defaultBubbleColorB
+{
+	return [NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha: 0.2];
 }
 
 - (NSArray *) actionsForScreen: (NSNumber *)screenNum andCorner:(int) corner
@@ -309,6 +404,38 @@
     toolTipDelayed=delayed;
 }
 
+- (void) setHighlightColor: (NSColor *)color
+{
+	NSColor *c = [color copy];
+	[highlightColor release];
+	highlightColor = c;
+}
+- (NSColor *) highlightColor
+{
+	return [[highlightColor retain] autorelease];
+}
+- (void) setBubbleColorA: (NSColor *)color
+{
+	
+	NSColor *c = [color copy];
+	[bubbleColorA release];
+	bubbleColorA = c;
+}
+- (NSColor *) bubbleColorA
+{
+	return [[bubbleColorA retain] autorelease];
+}
+- (void) setBubbleColorB: (NSColor *)color
+{
+	
+	[color retain];
+	[bubbleColorB release];
+	bubbleColorB = color;
+}
+- (NSColor *) bubbleColorB
+{
+	return [[bubbleColorB retain] autorelease];
+}
 
 - (NSMutableArray *) screenArray:(NSNumber *) screenNum
 {
@@ -344,26 +471,36 @@
         if([action labelSetting]!=nil)
             [md setObject:[action labelSetting] forKey:[ClickAction labelNameForActionType:[action type]]];
     [md setObject:[NSNumber numberWithInt:[action modifiers]] forKey:@"modifiers"];
+	[md setObject:[NSNumber numberWithInt:[action trigger]] forKey:@"trigger"];
     return [md autorelease];
 }
 
 + (ClickAction *) actionFromDictionary:(NSDictionary *) dict withCorner: (int) corner
 {
-    int actionType,modifiers;
+	return [CornerClickSettings actionFromDictionary: dict withCorner: corner andClicker: nil];
+}
++ (ClickAction *) actionFromDictionary:(NSDictionary *) dict withCorner: (int) corner andClicker: (Clicker *) clicker
+{
+    int actionType,modifiers,trigger;
     NSString *action,*label;
     ClickAction *click=nil;
     actionType =[[dict objectForKey:@"action"] intValue];
     action = [dict objectForKey:[ClickAction stringNameForActionType:actionType]];
     label = [dict objectForKey:[ClickAction labelNameForActionType:actionType]];
     modifiers = [[dict objectForKey:@"modifiers"] intValue];
+	trigger =0;
+	if([dict objectForKey:@"trigger"]!=nil){
+		trigger = [[dict objectForKey:@"trigger"] intValue];
+	}
 
     if([ClickAction validActionType: actionType andString: action]){
             click = [[[ClickAction alloc] initWithType:actionType
-                                  andModifiers:modifiers
+										  andModifiers:modifiers
+											andTrigger:trigger
                                      andString:action
                                      forCorner: corner
                                      withLabel:label
-                                    andClicker:self]
+                                    andClicker:clicker]
                 autorelease];
     }else{
         NSLog(@"invalid action from actionFromDictionary:%@",dict);
@@ -454,6 +591,12 @@
     [md setObject: [NSNumber numberWithBool: appEnabled] forKey:@"appEnabled"];
     [md setObject: [NSNumber numberWithBool: toolTipEnabled] forKey:@"tooltip"];
     [md setObject: [NSNumber numberWithBool: toolTipDelayed] forKey:@"tooltipDelayed"];
+	
+	[md setObject: [NSArray arrayWithObjects: 
+		[NSArchiver archivedDataWithRootObject:highlightColor], 
+		[NSArchiver archivedDataWithRootObject:bubbleColorA], 
+		[NSArchiver archivedDataWithRootObject:bubbleColorB],
+		nil] forKey:@"colors"];
     [sc release];
     
     return md;

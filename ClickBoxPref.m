@@ -70,7 +70,14 @@
     [delayTooltipCheckBox setState:[appSettings toolTipDelayed]?1:0];
     [delayTooltipCheckBox setEnabled: [appSettings toolTipEnabled]];
     [appEnabledCheckBox setState: [appSettings appEnabled]];
+	[highlightColorWell setColor:[appSettings highlightColor]];
+	[bubbleColorWellA setColor:[appSettings bubbleColorA]];
+    [bubbleColorWellA setEnabled: [appSettings toolTipEnabled]];
+	[bubbleColorWellB setColor:[appSettings bubbleColorB]];
+    [bubbleColorWellB setEnabled: [appSettings toolTipEnabled]];
 
+	//[[NSColorPanel sharedColorPanel] setShowsAlpha:YES];
+	
     [self checkScreens];
     
 
@@ -387,8 +394,10 @@
 - (IBAction)tooltipEnable:(id)sender
 {
     [appSettings setToolTipEnabled:[sender state]==NSOnState];
- 
+	
     [delayTooltipCheckBox setEnabled: ([sender state]==NSOnState)];
+    [bubbleColorWellA setEnabled: ([sender state]==NSOnState)];
+    [bubbleColorWellB setEnabled: ([sender state]==NSOnState)];
     //[self notifyAppOfPreferences: [appSettings asDictionary]];
     [self saveChanges];
     
@@ -420,12 +429,14 @@
         [shiftKeyCheckBox setEnabled:YES];
         [controlKeyCheckBox setEnabled:YES];
         [commandKeyCheckBox setEnabled:YES];
+        [functionKeyCheckBox setEnabled:YES];
         //NSLog(@"flags (%d) & OPTION_MASK (%d) : %d",flags,OPTION_MASK,(flags & OPTION_MASK));
 
         [optionKeyCheckBox setState: ((flags & OPTION_MASK) > 0 ? NSOnState: NSOffState)];
         [shiftKeyCheckBox setState: ((flags & SHIFT_MASK) > 0 ? NSOnState: NSOffState)];
         [controlKeyCheckBox setState: ((flags & CONTROL_MASK) > 0 ? NSOnState: NSOffState)];
         [commandKeyCheckBox setState: ((flags & COMMAND_MASK) > 0 ? NSOnState: NSOffState)];
+        [functionKeyCheckBox setState: ((flags & FN_MASK) > 0 ? NSOnState: NSOffState)];
         
         [actionChoicePopupButton setEnabled:YES];
         [triggerChoicePopupButton setEnabled:YES];
@@ -512,10 +523,12 @@
         [shiftKeyCheckBox setEnabled:NO];
         [controlKeyCheckBox setEnabled:NO];
         [commandKeyCheckBox setEnabled:NO];
+        [functionKeyCheckBox setEnabled:NO];
         [optionKeyCheckBox setState:NSOffState];
         [shiftKeyCheckBox setState:NSOffState];
         [controlKeyCheckBox setState:NSOffState];
         [commandKeyCheckBox setState:NSOffState];
+        [functionKeyCheckBox setState:NSOffState];
         [actionChoicePopupButton setEnabled:NO];
         [triggerChoicePopupButton setEnabled:NO];
         [self setSubFrameForActionType: -1];
@@ -820,60 +833,54 @@
     }
 }
 
-- (void)displayScreenIdentification
+- (void)displayPopupAlert: (NSString *)grayString withHilite: (BOOL) hilite fadeFrom:(NSColor *) colorA to:(NSColor *) colorB
+				 onScreen: (NSScreen *)theScreen
 {
-    NSScreen *theScreen=[screenNums objectForKey:[allScreens objectAtIndex:chosenScreen]];
-    NSEvent *nextEvt;
     NSRect pref,theRect;
-    NSString *grayString;
     if(screenIdWindow==nil){
-        if(chosenScreen==0)
-                grayString=LOCALIZE([self bundle],@"Main Screen");
-            else
-                grayString=[NSString stringWithFormat: LOCALIZE([self bundle],@"Screen #%d") , chosenScreen+1];
-            
         screenIdView = [[GrayView alloc] initWithFrame: NSMakeRect(0,0,10,10)
-                                             andString: (eerepeated>4 ?[NSString stringWithString:@"Main Screen Turn On!"]: grayString )
+                                             andString:  grayString
                                               andImage: nil
-                                              fadeFrom: [NSColor colorWithCalibratedRed:0 green:0 blue:1 alpha:0.25]
-                                                fadeTo: [NSColor colorWithCalibratedRed:0 green:0 blue:0.5 alpha:1]
+                                              fadeFrom: colorA
+                                                fadeTo: colorB
                                             cornerSize: -1
                                            pointCorner: -1];
-
-        [screenIdView setDrawHilite:YES];
+		
+        [screenIdView setDrawHilite:hilite];
         pref = [screenIdView preferredFrame];
         [screenIdView setFrame:pref];
-        screenIdWindow = [[NSWindow alloc] initWithContentRect:pref styleMask:NSBorderlessWindowMask backing:
-                                  NSBackingStoreBuffered defer:YES screen:theScreen ];
+        screenIdWindow = [[NSWindow alloc] initWithContentRect:pref 
+													 styleMask:NSBorderlessWindowMask 
+													   backing:NSBackingStoreBuffered
+														 defer:YES
+														screen:theScreen ];
         [screenIdWindow setLevel:NSStatusWindowLevel];
         [screenIdWindow setAlphaValue:1.0];
         [screenIdWindow setHasShadow: NO];
         [screenIdWindow setOpaque:NO];
-
+		
         [screenIdWindow setContentView: screenIdView];
         [screenIdView setInsetSize: -5];
         [screenIdView setDrawFont:[NSFont boldSystemFontOfSize:96] color:[NSColor whiteColor]];
     }else{
-        if(chosenScreen==0)
-            grayString=LOCALIZE([self bundle],@"Main Screen");
-        else
-            grayString=[NSString stringWithFormat: LOCALIZE([self bundle],@"Screen #%d") , chosenScreen+1];
         [screenIdWindow setAlphaValue:0];
         [screenIdWindow orderBack:self];
-        [screenIdView setDrawString: (eerepeated>4 ?[NSString stringWithString:@"Main Screen Turn On!"]: grayString ) ];
+        [screenIdView setDrawString: grayString ];
+		[screenIdView setFadeFromColor:colorA];
+		[screenIdView setFadeToColor:colorB];
     }
     pref = [screenIdView preferredFrame];
-
+	
     theRect = NSIntegralRect(NSMakeRect([theScreen frame].origin.x + (([theScreen frame].size.width/2) - (pref.size.width/2)),
                                         [theScreen frame].origin.y + (([theScreen frame].size.height/2) - (pref.size.height/2)),
                                         pref.size.width,
                                         pref.size.height));
-
+	
     [screenIdWindow setFrame: theRect display:YES];
     [screenIdWindow setAlphaValue:1.0];
     //NSLog(@"at rect: %@",NSStringFromRect(theRect));
     [screenIdWindow orderFront:self];
-
+	
     //make timer to fade out.
     if( delayTimer!=nil){
         [delayTimer invalidate];
@@ -883,26 +890,41 @@
     NSInvocation *nsinv = [NSInvocation invocationWithMethodSignature: [self methodSignatureForSelector:@selector(fadeScreenIdentification)]];
     [nsinv setSelector:@selector(fadeScreenIdentification)];
     [nsinv setTarget:self];
-
+	
     delayTimer = [[NSTimer scheduledTimerWithTimeInterval:2 invocation:nsinv repeats:NO] retain];
-    return;
-    //do loop until click
-    while(1){
-        nextEvt = [NSApp nextEventMatchingMask: NSLeftMouseDownMask | NSRightMouseDownMask | NSLeftMouseUpMask | NSRightMouseUpMask | NSKeyDownMask | NSKeyUpMask
-                                     untilDate: [NSDate distantFuture]
-                                        inMode: NSEventTrackingRunLoopMode
-                                       dequeue: YES];
-        if(   [nextEvt type] & NSLeftMouseDown
-              || [nextEvt type] & NSRightMouseDown
-              || [nextEvt type] & NSLeftMouseUp
-              || [nextEvt type] & NSRightMouseUp
-              || [nextEvt type] & NSKeyDown
-              || [nextEvt type] & NSKeyUp){
-            break;
-        }
-
-    }
     
+}
+
+- (void) displayColorExample
+{
+	NSLog(@"display color example");
+	[self displayPopupAlert:LOCALIZE([self bundle], @"Color Test")
+				 withHilite:YES
+				   fadeFrom:[appSettings bubbleColorA]
+						 to:[appSettings bubbleColorB]
+				   onScreen:[NSScreen mainScreen]];
+}
+
+- (void)displayScreenIdentification
+{
+    NSScreen *theScreen=[screenNums objectForKey:[allScreens objectAtIndex:chosenScreen]];
+    NSEvent *nextEvt;
+    NSRect pref,theRect;
+    NSString *grayString;
+
+        if(chosenScreen==0)
+                grayString=LOCALIZE([self bundle],@"Main Screen");
+            else
+                grayString=[NSString stringWithFormat: LOCALIZE([self bundle],@"Screen #%d") , chosenScreen+1];
+            
+			if(eerepeated>4){
+				grayString=[NSString stringWithString:@"Main Screen Turn On!"];
+			}
+			[self displayPopupAlert:grayString
+						 withHilite:YES 
+						   fadeFrom: [NSColor colorWithCalibratedRed:0 green:0 blue:1 alpha:0.25]
+								 to: [NSColor colorWithCalibratedRed:0 green:0 blue:0.5 alpha:1]
+						   onScreen:theScreen];                                         
 }
 
 - (void) fadeScreenIdentification
@@ -923,6 +945,12 @@
     //nothing to do yet
     //[self notifyAppOfPreferences: [appSettings asDictionary]];
     //[actionTable reloadData];
+	[currentAction setTrigger:[sender indexOfSelectedItem]];
+
+	[self syncCurrentAction];
+	
+    [self saveChanges];
+    [actionTable reloadData];
 }
 
 - (int)numberOfRowsInTableView:(NSTableView *)aTableView
@@ -938,7 +966,7 @@
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
-    int type,modifiers;
+    int type,modifiers, trigger;
     NSString *theFile;
     ClickAction *theAction;
     theAction = [appSettings actionAtIndex:rowIndex
@@ -947,6 +975,7 @@
 
     type = [theAction type];
     modifiers = [theAction modifiers];
+	trigger = [theAction trigger];
     //NSLog(@"objectValueForTableColumn called: currentAcctions : %@",currentActions);
     if([[aTableColumn identifier] isEqualToString: @"icon"]){
         switch(type){
@@ -958,7 +987,11 @@
                     return nil;
                 break;
             case ACT_URL: return [[[NSImage alloc] initWithContentsOfFile: [[self bundle] pathForResource:@"BookmarkPreferences" ofType:@"tiff"]] autorelease];
-            default: return nil;
+			case ACT_HIDE:
+				return [[[NSImage alloc] initWithContentsOfFile: [[self bundle] pathForImageResource:@"HideAppIcon" ]] autorelease];
+			case ACT_HIDO:
+				return [[[NSImage alloc] initWithContentsOfFile: [[self bundle] pathForImageResource:@"HideOthersIcon" ]] autorelease];
+			default: return nil;
         }
     }
     else if([[aTableColumn identifier] isEqualToString: @"desc"]){
@@ -980,39 +1013,7 @@
             default: return @"???";
         }
     }else if([[aTableColumn identifier] isEqualToString: @"modifiers"]){
-        theFile = @"";
-        if(modifiers & SHIFT_MASK){
-            theFile = [NSString stringWithFormat:@"%C",(unichar)0x21E7];
-        }
-        if(modifiers & OPTION_MASK){
-            if([theFile length]){
-                theFile = [NSString stringWithFormat:@"%@%C",theFile,(unichar)0x2325];
-            }else{
-                theFile = [NSString stringWithFormat:@"%C",(unichar)0x2325];
-            }
-        }
-
-        if(modifiers & COMMAND_MASK){
-            if([theFile length]){
-                theFile = [NSString stringWithFormat:@"%@%C",theFile,(unichar)0x2318];
-            }else{
-                theFile = [NSString stringWithFormat:@"%C",(unichar)0x2318];
-            }
-        }
-
-        if(modifiers & CONTROL_MASK){
-            if([theFile length]){
-                theFile = [NSString stringWithFormat:@"%@%C",theFile,(unichar)0x2303];
-            }else{
-                theFile = [NSString stringWithFormat:@"%C",(unichar)0x2303];
-            }
-        }
-
-        if([theFile length]){
-            theFile = [NSString stringWithFormat:@"%@ %@",theFile,LOCALIZE([self bundle],@"Click")];
-        }else{
-            theFile = LOCALIZE([self bundle],@"Click");
-        }
+        theFile = [CornerClickSupport labelForModifiers:modifiers andTrigger:trigger localBundle:[self bundle]];
         return theFile;
         
     }
@@ -1048,6 +1049,55 @@
     [currentAction setModifiers:flags];
     [self syncCurrentAction];
 }
+
+- (IBAction)highlightColorWellChosen:(id)sender
+{
+	NSLog(@"corner color: %@",[highlightColorWell color]);
+	
+    [appSettings setHighlightColor:[sender color]];
+	
+    //[self notifyAppOfPreferences: [appSettings asDictionary]];
+    [self saveChanges];
+}
+- (IBAction)bubbleColorWellAChosen:(id)sender
+{
+	
+	NSLog(@"bubble color: %@",[bubbleColorWellA color]);
+	[appSettings setBubbleColorA:[[bubbleColorWellA color] colorWithAlphaComponent:0.8]];
+	[appSettings setBubbleColorB:[[bubbleColorWellA color] colorWithAlphaComponent:0.4]];
+	
+    //[self notifyAppOfPreferences: [appSettings asDictionary]];
+	
+    [self saveChanges];
+	[self displayColorExample];
+	
+}
+- (IBAction)bubbleColorWellBChosen:(id)sender
+{
+	
+	NSLog(@"bubble color: %@",[bubbleColorWellB color]);
+	//[appSettings setBubbleColorB:[bubbleColorWellB color]];
+	
+    //[self notifyAppOfPreferences: [appSettings asDictionary]];
+	
+    //[self saveChanges];
+	//[self displayColorExample];
+	
+}
+
+
+- (IBAction)gotoWebURL:(id)sender
+{
+	[[NSWorkspace sharedWorkspace] openURL:
+		[NSURL URLWithString:WEB_SITE_URL]];
+}
+- (IBAction)gotoEmailURL:(id)sender
+{
+	
+	[[NSWorkspace sharedWorkspace] openURL:
+		[NSURL URLWithString:EMAIL_URL]];
+}
+
 
 - (IBAction)removeActionButtonClicked:(id)sender
 {
@@ -1117,6 +1167,14 @@
 {
 
     [self toggleModifier: CONTROL_MASK toState: [sender state]==0?NO:YES];
+    //[self notifyAppOfPreferences: [appSettings asDictionary]];
+    [self saveChanges];
+    [actionTable reloadData];
+}
+- (IBAction)functionKeyCheckBoxClicked:(id)sender
+{
+	
+    [self toggleModifier: FN_MASK toState: [sender state]==0?NO:YES];
     //[self notifyAppOfPreferences: [appSettings asDictionary]];
     [self saveChanges];
     [actionTable reloadData];

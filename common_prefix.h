@@ -2,10 +2,14 @@
 #import "CornerClickSupport.h"
 #define CC_PREF_BUNDLE_ID_STR [NSString stringWithString:@"us.vario.greg.CornerClick"]
 
-#define SHIFT_MASK 1
-#define OPTION_MASK 2
-#define COMMAND_MASK 4
-#define CONTROL_MASK 8
+#define WEB_SITE_URL @"http://greg.vario.us/cornerclick"
+#define EMAIL_URL @"mailto:greg-cornerclick@vario.us"
+
+#define SHIFT_MASK (1<<0)
+#define OPTION_MASK (1<<1)
+#define COMMAND_MASK (1<<2)
+#define CONTROL_MASK (1<<3)
+#define FN_MASK (1<<4)
 
 #define MAX_CORNERS 4
 

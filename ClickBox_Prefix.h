@@ -5,6 +5,7 @@
 #ifdef __OBJC__
 #import <Foundation/Foundation.h>
 #import <AppKit/AppKit.h>
+#import "clickBG/BubbleView.h"
 #import "clickBG/GrayView.h"
 
 #import "common_prefix.h"

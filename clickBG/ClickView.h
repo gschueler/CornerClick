@@ -7,6 +7,7 @@
 {
     Clicker *myClicker;
     NSArray *myActions;
+	NSArray *uniqueModifiers;
     NSImage *drawed;
     NSTrackingRectTag trackTag;
     BOOL selected;
@@ -23,6 +24,9 @@
 - (NSArray *) clickActions;
 - (void) setClickActions: (NSArray *) actions;
 - (ClickAction *) clickActionForModifierFlags: (unsigned int)modifiers;
+- (NSArray *) clickActionsForModifierFlags:(unsigned int) modifiers;
 - (void) setTrackingRectTag:(NSTrackingRectTag) tag;
 - (NSTrackingRectTag) trackingRectTag;
+- (NSArray *) uniqueModifiersList;
+- (void) colorsChanged;
 @end

@@ -10,8 +10,11 @@
 			);
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 3;
+				DEPLOYMENT_LOCATION = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				OPTIMIZATION_CFLAGS = "-O0";
@@ -25,7 +28,12 @@
 			);
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 4;
+				DEPLOYMENT_LOCATION = NO;
+				DEPLOYMENT_POSTPROCESSING = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				VERSIONING_SYSTEM = "apple-generic";
 				ZERO_LINK = NO;
 			};
 			isa = PBXBuildStyle;
@@ -73,8 +81,8 @@
 				089C167CFE841241C02AAC07,
 				089C1671FE841209C02AAC07,
 				19C28FB8FE9D52D311CA2CBB,
-				372A7AF3054CABCD002E4C67,
 				372A7B1A054CABDF002E4C67,
+				379D4CAF0699FD6B00D08BC2,
 				372A7B30054CABEA002E4C67,
 			);
 			isa = PBXGroup;
@@ -103,18 +111,18 @@
 		};
 		089C167CFE841241C02AAC07 = {
 			children = (
-				3764085706423CC8003E7644,
-				3764085806423CC8003E7644,
-				375936980640F63C003D651A,
+				3744AB340694B29F00D94D1E,
+				37B2717A069172C900D7FD10,
 				375CF3ED04FB2300000001CF,
 				375CF3E104FAF603000001CF,
-				089C167DFE841241C02AAC07,
 				F506C042013D9D8C01CA16C8,
 				37ED565C04ECD433000001CF,
 				37ED565904ECC83A000001CF,
 				37940C6904DB0A4E000001CF,
 				37940C6A04DB0A4E000001CF,
 				375CF3E604FAF6B9000001CF,
+				3744A75C06948DCC00D94D1E,
+				3744A75D06948DCC00D94D1E,
 				37940C6B04DB0A4E000001CF,
 				37940C6C04DB0A4F000001CF,
 				3723153904CF806C000001CF,
@@ -122,28 +130,6 @@
 			);
 			isa = PBXGroup;
 			name = Resources;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		089C167DFE841241C02AAC07 = {
-			children = (
-				089C167EFE841241C02AAC07,
-				375CF3E904FAF76B000001CF,
-				3779428E05472A1E00E76D21,
-				371229E105714D2100A46218,
-			);
-			isa = PBXVariantGroup;
-			name = InfoPlist.strings;
-			path = "";
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		089C167EFE841241C02AAC07 = {
-			fileEncoding = 10;
-			isa = PBXFileReference;
-			lastKnownFileType = text.plist.strings;
-			name = English;
-			path = English.lproj/InfoPlist.strings;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -160,6 +146,8 @@
 			children = (
 				F506C03C013D9D7901CA16C8,
 				F506C03D013D9D7901CA16C8,
+				37DE95B506524752006985D3,
+				37DE95B606524752006985D3,
 				37C3CB3104CDAD30000001CF,
 				371E965004E1CAA9000001CF,
 				371E965104E1CAA9000001CF,
@@ -220,9 +208,9 @@
 //194
 		19C28FB8FE9D52D311CA2CBB = {
 			children = (
-				372A7AF4054CABCD002E4C67,
 				372A7B1B054CABDF002E4C67,
 				372A7B31054CABEA002E4C67,
+				3744AA600694AED700D94D1E,
 			);
 			isa = PBXGroup;
 			name = Products;
@@ -277,22 +265,6 @@
 			refType = 4;
 			sourceTree = "<group>";
 		};
-		371229E005714D1100A46218 = {
-			isa = PBXFileReference;
-			lastKnownFileType = text.rtf;
-			name = Spanish;
-			path = Spanish.lproj/Readme.rtf;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		371229E105714D2100A46218 = {
-			isa = PBXFileReference;
-			lastKnownFileType = text.plist.strings;
-			name = French;
-			path = French.lproj/InfoPlist.strings;
-			refType = 4;
-			sourceTree = "<group>";
-		};
 		371229E205714D2900A46218 = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.nib;
@@ -314,13 +286,15 @@
 			files = (
 			);
 			inputPaths = (
+				CornerClick.prefPane,
 			);
 			isa = PBXShellScriptBuildPhase;
 			outputPaths = (
+				production/CornerClick.dmg,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "mkdir production\ncp TemplateDmg.dmg production/CornerClick.dmg\nif [ -d \"/Volumes/Corner Click\" ] ; then\n    osascript -e \"Tell Application \\\"Finder\\\" to eject POSIX path \\\"/Volumes/Corner Click\\\"\"\nfi\nopen production/CornerClick.dmg\ncp -r build/CornerClick.prefPane \"/Volumes/Corner Click/\"\ncp English.lproj/Readme.rtf \"/Volumes/Corner Click/Readme - English.rtf\"\ncp Japanese.lproj/Readme.rtf \"/Volumes/Corner Click/Readme - Japanese - 日本語.rtf\"\ncp Spanish.lproj/Readme.rtf \"/Volumes/Corner Click/Readme - Spanish - Español.rtf\"\ncp French.lproj/Readme.rtf \"/Volumes/Corner Click/Readme - French - Français.rtf\"\n";
+			shellScript = "#!/bin/sh\nif [ -z \"$DO_FULL_DEPLOY\" ] ; then \n    exit 0\nfi\n\nPATH=$PATH:/Developer/Tools\nCP=CpMac\nMOUNTED=$BUILD_DIR/mounted\nmkdir production || echo \"production dir already exists\"\n$CP TemplateDmg.dmg production/CornerClick.dmg\nif [ -d \"/Volumes/Corner Click\" ] ; then\n    echo osascript -e \"Tell Application \\\"Finder\\\" to eject POSIX path \\\"/Volumes/Corner Click\\\"\"\nfi\nhdiutil attach production/CornerClick.dmg -mountpoint \"$MOUNTED\" \n\n$CP -r $BUILD_DIR/$FULL_PRODUCT_NAME \"$MOUNTED/$FULL_PRODUCT_NAME\"\n$CP English.lproj/Readme.rtf \"$MOUNTED/Readme - English.rtf\"\n#$CP Japanese.lproj/Readme.rtf \"$MOUNTED/Readme - Japanese - 日本語.rtf\"\n#$CP Spanish.lproj/Readme.rtf \"$MOUNTED/Readme - Spanish - Español.rtf\"\n#$CP French.lproj/Readme.rtf \"$MOUNTED/Readme - French - Français.rtf\"\n\n#hdiutil unmount \"$MOUNTED\"\n\n";
 		};
 		371AAD7F04DC3CA2000001CF = {
 			children = (
@@ -450,8 +424,12 @@
 			buildRules = (
 			);
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 0.2;
+				COPYING_PRESERVES_HFS_DATA = YES;
+				CURRENT_PROJECT_VERSION = "";
+				DEPLOYMENT_LOCATION = NO;
+				DYLIB_CURRENT_VERSION = "";
 				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ClickBox_Prefix.h;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
@@ -476,7 +454,7 @@
 			name = PrefPane;
 			productInstallPath = "$(HOME)/Library/PreferencePanes";
 			productName = ClickBox;
-			productReference = 372A7AF4054CABCD002E4C67;
+			productReference = 3744AA600694AED700D94D1E;
 			productType = "com.apple.product-type.bundle";
 		};
 		372A7AD5054CABCD002E4C67 = {
@@ -491,6 +469,7 @@
 				376408A106425346003E7644,
 				376409020642571B003E7644,
 				376409100642573E003E7644,
+				37DE95B706524752006985D3,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -535,7 +514,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				375934070640D987003D651A,
-				372A7ADD054CABCD002E4C67,
 				372A7ADE054CABCD002E4C67,
 				372A7AE0054CABCD002E4C67,
 				372A7AE1054CABCD002E4C67,
@@ -546,17 +524,13 @@
 				372A7AE6054CABCD002E4C67,
 				372A7AE7054CABCD002E4C67,
 				372A7AE8054CABCD002E4C67,
-				3764085906423CC8003E7644,
-				3764085A06423CC8003E7644,
+				3744AB350694B29F00D94D1E,
+				37B2717C069172C900D7FD10,
+				3744A75E06948DCC00D94D1E,
+				3744A75F06948DCC00D94D1E,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
-		};
-		372A7ADD054CABCD002E4C67 = {
-			fileRef = 089C167DFE841241C02AAC07;
-			isa = PBXBuildFile;
-			settings = {
-			};
 		};
 		372A7ADE054CABCD002E4C67 = {
 			fileRef = F506C042013D9D8C01CA16C8;
@@ -628,6 +602,7 @@
 				376408A206425346003E7644,
 				376409030642571B003E7644,
 				376409110642573E003E7644,
+				37DE95B806524752006985D3,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -684,21 +659,6 @@
 			isa = PBXRezBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		372A7AF3054CABCD002E4C67 = {
-			isa = PBXFileReference;
-			lastKnownFileType = text.plist;
-			path = "Info-ClickBox__Upgraded_.plist";
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		372A7AF4054CABCD002E4C67 = {
-			explicitFileType = wrapper.cfbundle;
-			includeInIndex = 0;
-			isa = PBXFileReference;
-			path = CornerClick.prefPane;
-			refType = 3;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		372A7AFB054CABDF002E4C67 = {
 			buildPhases = (
 				372A7AFC054CABDF002E4C67,
@@ -710,6 +670,7 @@
 			buildRules = (
 			);
 			buildSettings = {
+				CURRENT_PROJECT_VERSION = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = clickBG/CornerClickBG_Prefix.h;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
@@ -720,6 +681,7 @@
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = CornerClickBG;
 				SECTORDER_FLAGS = "";
+				VERSIONING_SYSTEM = "apple-generic";
 				WARNING_CFLAGS = "-Wmost";
 				WRAPPER_EXTENSION = app;
 			};
@@ -808,8 +770,6 @@
 				372A7B09054CABDF002E4C67,
 				372A7B0A054CABDF002E4C67,
 				372A7B0B054CABDF002E4C67,
-				3764085B06423CC8003E7644,
-				3764085C06423CC8003E7644,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1124,46 +1084,70 @@
 			target = 372A7AFB054CABDF002E4C67;
 			targetProxy = 372A7B35054CAC02002E4C67;
 		};
+		3744A75C06948DCC00D94D1E = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			path = AddAction.png;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		3744A75D06948DCC00D94D1E = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			path = RemoveAction.png;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		3744A75E06948DCC00D94D1E = {
+			fileRef = 3744A75C06948DCC00D94D1E;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3744A75F06948DCC00D94D1E = {
+			fileRef = 3744A75D06948DCC00D94D1E;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3744AA600694AED700D94D1E = {
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = 0;
+			isa = PBXFileReference;
+			path = CornerClick.prefPane;
+			refType = 3;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3744AB340694B29F00D94D1E = {
+			children = (
+				37DE9483065213BE006985D3,
+				37B012540698BC3500E7D0FF,
+			);
+			isa = PBXVariantGroup;
+			name = Information.rtf;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		3744AB350694B29F00D94D1E = {
+			fileRef = 3744AB340694B29F00D94D1E;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		375934070640D987003D651A = {
 			fileRef = 372A7B1B054CABDF002E4C67;
 			isa = PBXBuildFile;
 			settings = {
 			};
 		};
-		375936980640F63C003D651A = {
-			isa = PBXFileReference;
-			lastKnownFileType = archive.asdictionary;
-			name = AppleScriptKit.asdictionary;
-			path = /System/Library/Frameworks/AppleScriptKit.framework/Versions/A/Resources/AppleScriptKit.asdictionary;
-			refType = 0;
-			sourceTree = "<absolute>";
-		};
-		375CF3E004FAF5B5000001CF = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.nib;
-			name = Japanese;
-			path = Japanese.lproj/ClickBoxPref.nib;
-			refType = 4;
-			sourceTree = "<group>";
-		};
 		375CF3E104FAF603000001CF = {
 			children = (
 				3723153404CF7AC3000001CF,
-				375CF3E304FAF603000001CF,
 				371229DF05714D0A00A46218,
-				371229E005714D1100A46218,
 			);
 			isa = PBXVariantGroup;
 			name = Readme.rtf;
 			path = "";
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		375CF3E304FAF603000001CF = {
-			isa = PBXFileReference;
-			lastKnownFileType = text.rtf;
-			name = Japanese;
-			path = Japanese.lproj/Readme.rtf;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1174,20 +1158,13 @@
 			refType = 4;
 			sourceTree = "<group>";
 		};
-		375CF3E904FAF76B000001CF = {
-			isa = PBXFileReference;
-			lastKnownFileType = text.plist.strings;
-			name = Japanese;
-			path = Japanese.lproj/InfoPlist.strings;
-			refType = 4;
-			sourceTree = "<group>";
-		};
 		375CF3ED04FB2300000001CF = {
 			children = (
 				375CF3EE04FB2300000001CF,
 				375CF3F104FBAC0B000001CF,
 				3779428D0547268B00E76D21,
 				371229E305714E0A00A46218,
+				3798ADF3064FFB9900E6DD8A,
 			);
 			isa = PBXVariantGroup;
 			name = Localizable.strings;
@@ -1211,44 +1188,6 @@
 			path = Japanese.lproj/Localizable.strings;
 			refType = 4;
 			sourceTree = "<group>";
-		};
-		3764085706423CC8003E7644 = {
-			isa = PBXFileReference;
-			lastKnownFileType = image.png;
-			path = HideOthersIcon.png;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		3764085806423CC8003E7644 = {
-			isa = PBXFileReference;
-			lastKnownFileType = image.png;
-			path = HideAppIcon.png;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		3764085906423CC8003E7644 = {
-			fileRef = 3764085706423CC8003E7644;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		3764085A06423CC8003E7644 = {
-			fileRef = 3764085806423CC8003E7644;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		3764085B06423CC8003E7644 = {
-			fileRef = 3764085706423CC8003E7644;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		3764085C06423CC8003E7644 = {
-			fileRef = 3764085806423CC8003E7644;
-			isa = PBXBuildFile;
-			settings = {
-			};
 		};
 		3764089D06425346003E7644 = {
 			fileEncoding = 4;
@@ -1370,27 +1309,11 @@
 			settings = {
 			};
 		};
-		3779428C0547268100E76D21 = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.nib;
-			name = Spanish;
-			path = Spanish.lproj/ClickBoxPref.nib;
-			refType = 4;
-			sourceTree = "<group>";
-		};
 		3779428D0547268B00E76D21 = {
 			isa = PBXFileReference;
 			lastKnownFileType = text.plist.strings;
 			name = Spanish;
 			path = Spanish.lproj/Localizable.strings;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		3779428E05472A1E00E76D21 = {
-			isa = PBXFileReference;
-			lastKnownFileType = text.plist.strings;
-			name = Spanish;
-			path = Spanish.lproj/InfoPlist.strings;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1449,6 +1372,64 @@
 			path = 3.tiff;
 			refType = 4;
 			sourceTree = "<group>";
+		};
+		3798ADF3064FFB9900E6DD8A = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.strings;
+			name = German;
+			path = German.lproj/Localizable.strings;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		379D4CAF0699FD6B00D08BC2 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			path = "Info-ClickBox__Upgraded_.plist";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		37B012540698BC3500E7D0FF = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.rtf;
+			name = French;
+			path = French.lproj/Information.rtf;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		37B0125C0698BC3C00E7D0FF = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			name = French;
+			path = French.lproj/quickFiles.plist;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		37B2717A069172C900D7FD10 = {
+			children = (
+				37B2717B069172C900D7FD10,
+				37B0125C0698BC3C00E7D0FF,
+			);
+			isa = PBXVariantGroup;
+			name = quickFiles.plist;
+			path = "";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		37B2717B069172C900D7FD10 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			name = English;
+			path = English.lproj/quickFiles.plist;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		37B2717C069172C900D7FD10 = {
+			fileRef = 37B2717A069172C900D7FD10;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		37C3CB3104CDAD30000001CF = {
 			children = (
@@ -1641,6 +1622,42 @@
 			refType = 4;
 			sourceTree = "<group>";
 		};
+		37DE9483065213BE006985D3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.rtf;
+			name = English;
+			path = English.lproj/Information.rtf;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		37DE95B506524752006985D3 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = FileActionMenuItem.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		37DE95B606524752006985D3 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			path = FileActionMenuItem.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		37DE95B706524752006985D3 = {
+			fileRef = 37DE95B506524752006985D3;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37DE95B806524752006985D3 = {
+			fileRef = 37DE95B606524752006985D3;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		37ED565904ECC83A000001CF = {
 			isa = PBXFileReference;
 			lastKnownFileType = image.tiff;
@@ -1701,8 +1718,6 @@
 		F506C042013D9D8C01CA16C8 = {
 			children = (
 				F506C043013D9D8C01CA16C8,
-				375CF3E004FAF5B5000001CF,
-				3779428C0547268100E76D21,
 				371229E205714D2900A46218,
 			);
 			isa = PBXVariantGroup;

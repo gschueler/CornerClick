@@ -12,6 +12,7 @@
 @implementation BubbleActionsList
 
 - (id) initWithAttributes: (NSDictionary *) attrs
+      smallTextAttributes: (NSDictionary *) sattrs
 			   andSpacing: (float) spacing
 			   andActions: (NSArray *) actions
 			 itemSelected: (int) theSelected
@@ -23,7 +24,9 @@
 		spacingSize=spacing;
 		selected = theSelected;
 		attributes = [[NSDictionary alloc] initWithDictionary:attrs];
+		smallTextAttributes = [[NSDictionary alloc] initWithDictionary:sattrs];
 		bubbleActions = nil;
+        showAllModifiers=NO;
 		if(theColor != nil){
 			highlightColor = [theColor copy];			
 		}else{
@@ -59,6 +62,15 @@
 		BubbleAction *ba = (BubbleAction *)[bubbleActions objectAtIndex:i];
 		NSSize actSz = [ba preferredSize];
 		sz.height+=actSz.height;
+        if(showAllModifiers && [bubbleActions count]>1){
+            NSSize temp = [[ba modifiersLabel] sizeWithAttributes: smallTextAttributes];
+            sz.height+=6+temp.height;
+            if(temp.width > sz.width){
+                sz.width=temp.width;
+            }
+            if(i==0)
+                sz.height+=(spacingSize/2);
+        }
 		if(i>0){
 			sz.height+=spacingSize;
 		}
@@ -70,6 +82,15 @@
 }
 
 
+- (BOOL) showAllModifiers
+{
+    return showAllModifiers;
+}
+- (void) setShowAllModifiers: (BOOL)show
+{
+    showAllModifiers=show;
+	[self calcPreferredSize];
+}
 - (NSSize) preferredSize
 {
 	return detSize;
@@ -148,10 +169,28 @@
 		oy=0;
 		BubbleAction *ba = (BubbleAction *)[bubbleActions objectAtIndex:i];
 		NSSize sz = [ba preferredSize];
-		cur = cur - sz.height;
 		if(i>0){
-			cur-=spacingSize;
+			cur-=ht;
 		}
+        if(showAllModifiers && [bubbleActions count]>1){
+            NSString *label = [ba modifiersLabel];
+            NSSize tsz = [label sizeWithAttributes:smallTextAttributes];
+            NSRect t = NSMakeRect(rect.origin.x  , rect.origin.y+cur - 6 - tsz.height, rect.size.width, 6 + tsz.height );
+            
+            [[[NSColor whiteColor] colorWithAlphaComponent:0.6] set];
+            //[[BubbleView roundedRect:t rounding:3] stroke];
+            [BubbleView drawRoundedBezel:t rounding:12 depth:1.5];
+            [label drawAtPoint:NSMakePoint(rect.origin.x + rect.size.width/2 - tsz.width/2, rect.origin.y+cur  -tsz.height -3 ) withAttributes:smallTextAttributes];
+            //NSRectFill(t);
+            
+            cur-=(6+tsz.height);
+            if(i==0)
+                cur-=ht;
+        }
+		if(i>0){
+			cur-=ht;
+		}
+		cur = cur - sz.height;
 		if(i==selected){
 			
 			[self drawSelectedInFrame: NSMakeRect(rect.origin.x-ht,rect.origin.y+cur-ht,rect.size.width+spacingSize,sz.height+spacingSize)];
@@ -167,9 +206,16 @@
 	NSBezierPath *nbp = [BubbleView roundedRect:rect rounding:16];
 	//[[NSColor clearColor] set];
 	//[nbp fill];
-	[[highlightColor colorWithAlphaComponent:0.50] set];
+    [[highlightColor colorWithAlphaComponent:0.75] set];
 	[nbp fill];
-	[[NSColor whiteColor] set];
+    /*[BubbleView drawRoundedBezel:rect
+                        rounding:16
+                           depth:1.5
+                         bgColor:[highlightColor colorWithAlphaComponent:0.8]
+                     shadowColor:[NSColor blackColor]
+                      shineColor:[NSColor whiteColor]];
+	*/
+    [[NSColor whiteColor] set];
 	[nbp setLineJoinStyle:NSRoundLineJoinStyle];
 	[nbp setLineWidth:3];
 	[nbp stroke];
@@ -180,6 +226,7 @@
 	[highlightColor release];
 	[attributes release];
 	[bubbleActions release];
+    [smallTextAttributes dealloc];
 }
 
 @end

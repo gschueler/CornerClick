@@ -24,6 +24,5 @@
 #define DEBUG(x)	if(DEBUG_LEVEL>0)NSLog((x))
 #define DEBUG_ON ( DEBUG_LEVEL > 0 ? YES : NO )
 
-#if DEBUG_LEVEL < 1
 #define CC_APP_VERSION 2
-#endif
+#define CC_PATCH_VERSION 1

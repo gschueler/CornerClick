@@ -13,10 +13,6 @@
 
 #import "common_prefix.h"
 
-#if DEBUG_LEVEL > 0
-#define CC_APP_VERSION 2
-#endif
-
 #define CWSIZE 10
 #define HWSIZE 5
 

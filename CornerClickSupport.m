@@ -74,7 +74,7 @@
                 [md setObject:[NSNumber numberWithInt:CC_APP_VERSION] forKey:@"appVersion"];
                 [md autorelease];
                 loaded=md;
-                //[[NSUserDefaults standardUserDefaults] removePersistentDomainForName:@"CornerClickPref"];
+                [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:@"CornerClickPref"];
                 break;
         }
         if(loaded!=nil)

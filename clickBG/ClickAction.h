@@ -55,5 +55,8 @@
 + (NSString *) labelNameForActionType: (int) type;
 + (BOOL) validActionType: (int) type andString: (NSString *) action;
 
++ (void) exposeAllWindowsAction;
++ (void) exposeApplicationWindowsAction;
++ (void) exposeDesktopAction;
 
 @end

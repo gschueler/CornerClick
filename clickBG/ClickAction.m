@@ -106,6 +106,25 @@
             }
             
             break;
+        case ACT_EALL:
+            myLabel=[[NSString stringWithFormat:@"%@ - %@",
+                 LOCALIZE([NSBundle mainBundle],@"Expose") ,
+                 LOCALIZE([NSBundle mainBundle],@"All Windows")] retain];
+			myIcon = [[NSImage imageNamed:@"WindowVous"] retain];
+            
+            break;
+        case ACT_EAPP:
+            myLabel=[[NSString stringWithFormat:@"%@ - %@",
+                LOCALIZE([NSBundle mainBundle],@"Expose") ,
+                LOCALIZE([NSBundle mainBundle],@"Application Windows")] retain];
+			myIcon = [[NSImage imageNamed:@"WindowVous"] retain];
+            break;
+        case ACT_EDES:
+            myLabel=[[NSString stringWithFormat:@"%@ - %@",
+                LOCALIZE([NSBundle mainBundle],@"Expose") ,
+                LOCALIZE([NSBundle mainBundle],@"Desktop")] retain];
+			myIcon = [[NSImage imageNamed:@"WindowVous"] retain];
+            break;
         default:
             myLabel=[[NSString stringWithString:@"?!@#"] retain];
 
@@ -206,10 +225,10 @@
         case 0:
             [[NSWorkspace sharedWorkspace] openFile:myString];
             break;
-        case 1:
+        case 1 : 
             [self hideCurrentAction];
             break;
-        case 2:
+        case 2 :
             [self hideOthersAction];
             break;
         case 3:
@@ -218,9 +237,76 @@
         case 4:
             [self runAppleScriptAction];
             break;
+        case 5:
+            [ClickAction exposeAllWindowsAction];
+            break;
+        case 6:
+            [ClickAction exposeApplicationWindowsAction];
+            break;
+        case 7:
+            [ClickAction exposeDesktopAction];
+            break;
         default:
             break;
     }
+}
+
++ (void) exposeAllWindowsAction
+{
+    [CornerClickSupport generateKeystrokeForKeyCode:
+        [CornerClickSupport keyCodeForExposeAction:0] 
+                                      withModifiers: 
+        [CornerClickSupport modifiersForExposeAction:0]];
+}
++ (void) exposeApplicationWindowsAction
+{
+    
+    [CornerClickSupport generateKeystrokeForKeyCode:
+        [CornerClickSupport keyCodeForExposeAction:1] 
+                                      withModifiers: 
+        [CornerClickSupport modifiersForExposeAction:1]];}
++ (void) exposeDesktopAction
+{
+    
+    [CornerClickSupport generateKeystrokeForKeyCode:
+        [CornerClickSupport keyCodeForExposeAction:2] 
+                                      withModifiers: 
+        [CornerClickSupport modifiersForExposeAction:2]];}
+
+
+- (void) toggleAppAction
+{
+    
+    ProcessSerialNumber psn;
+    FSRef file;
+    //    ProcessSerialNumber paramPsn;
+    OSErr err;
+	//NSLog(@"myClicker class: %@",[myClicker class]);
+	//psn = [myClicker lastActivePSN];
+	psn.highLongOfPSN = 0;
+	psn.lowLongOfPSN = 0;
+	err = GetFrontProcess(&psn);
+    if(err==0){
+	}else{
+		NSLog(@"error after get front process");
+        return;
+	}
+    
+    err = GetProcessBundleLocation(&psn,&file);
+    if(err!=0){
+		NSLog(@"error after get Process bundle location");
+        return;
+	}
+    
+ //   err = FSGetCatalogInfo(&psn,null,null,
+    
+    err=ShowHideProcess(&psn, (Boolean)NO);
+    if(err==0){
+	}else{
+		NSLog(@"error after get front process");
+	}
+	//[myClicker getNextPSN];
+    
 }
 
 + (void) logAppleScriptError:(NSDictionary *) err atStep:(NSString *)step
@@ -383,18 +469,22 @@
 + (BOOL) validActionType: (int) type andString: (NSString *) action
 {
     switch(type){
-        case 0:
+        case ACT_FILE:
             if(action !=nil)
                 return YES;
             break;
-        case 1: return YES;
-        case 2: return YES;
-        case 3:
+        case ACT_HIDE: return YES;
+        case ACT_HIDO: return YES;
+        case ACT_URL:
             if(action !=nil && [action length]>0)
                 return YES;
             break;
-        case 4:
+        case ACT_SCPT:
             if(action !=nil)
+                return YES;
+        case ACT_EALL:
+        case ACT_EAPP:
+        case ACT_EDES:
                 return YES;
         default:
             return NO;

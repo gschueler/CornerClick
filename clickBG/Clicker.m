@@ -21,7 +21,7 @@
     }
     appSettings = [[CornerClickSupport settingsFromUserPreferences] retain];
     //[CornerClickSupport savePreferences:appSettings];
-    NSLog(@"loaded prefs: %@",appSettings);
+    //NSLog(@"loaded prefs: %@",appSettings);
 
     for(j=0;j<[screens count];j++){
         skey =[[[screens objectAtIndex:j] deviceDescription] objectForKey:@"NSScreenNumber"] ;
@@ -213,19 +213,19 @@
 - (NSRect) rectForCorner: (int) corner onScreen:(NSNumber *)screenNum
 {
     NSRect myRect;
-    NSRect screenRect=[[allScreens objectForKey:screenNum] frame];
+    NSRect r=[[allScreens objectForKey:screenNum] frame];
     switch(corner){
         case 0:
-            myRect = NSMakeRect(screenRect.origin.x,screenRect.origin.y+screenRect.size.height-CWSIZE,CWSIZE,CWSIZE);
+            myRect = NSMakeRect(NSMinX(r),NSMaxY(r)-CWSIZE,CWSIZE,CWSIZE);
             break;
         case 1:
-            myRect =  NSMakeRect(screenRect.origin.x+screenRect.size.width-CWSIZE,screenRect.origin.y+screenRect.size.height-CWSIZE,CWSIZE,CWSIZE);
+            myRect =  NSMakeRect(NSMaxX(r)-CWSIZE,NSMaxY(r)-CWSIZE,CWSIZE,CWSIZE);
             break;
         case 2:
-            myRect =  NSMakeRect(screenRect.origin.x,screenRect.origin.y,CWSIZE,CWSIZE);
+            myRect =  NSMakeRect(NSMinX(r),NSMinY(r),CWSIZE,CWSIZE);
             break;
         case 3:
-            myRect =  NSMakeRect(screenRect.origin.x+screenRect.size.width-CWSIZE,screenRect.origin.y,CWSIZE,CWSIZE);
+            myRect =  NSMakeRect(NSMaxX(r)-CWSIZE,NSMinY(r),CWSIZE,CWSIZE);
             break;
         default:
             NSLog(@"Bad corner identifier: %d",corner);
@@ -264,11 +264,13 @@
     NSArray *temparr;
     ClickWindow *window = [self windowForScreen:screenNum atCorner:corner] ;
     myRect = [self rectForCorner:corner onScreen:screenNum];
+    //NSLog(@"rect for corner: %d, is %@",corner, NSStringFromRect(myRect));
     if([actions count]==0){
         return NO;
     }
     if(window !=nil){
         [[window contentView] setClickActions: actions];
+        [window setFrameOrigin:myRect.origin];
     }else{
         window = [[ClickWindow alloc] initWithContentRect: myRect
                                                     styleMask: NSBorderlessWindowMask

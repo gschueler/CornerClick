@@ -1,11 +1,11 @@
-VERS=0.4
+VERS=0.6
 
 
-compress:
-	bin/compressimg "production/CornerClick.dmg" "build/CornerClick ${VERS}.dmg"
+compress: 
+	bin/compressimg "build/CornerClick-rw.dmg" "build/CornerClick ${VERS}.dmg"
 
-createdmg:
-	hdiutil create "build/CornerClick ${VERS}.dmg" -srcdir dmg-source -volname "CornerClick ${VERS}"
+dmg: 
+	hdiutil create "build/CornerClick-rw.dmg" -srcdir dmg-source -ov -attach -format UDRW -volname "CornerClick ${VERS}"
 
 bundle:
 	./execwindow.sh "CornerClick ${VERS}"

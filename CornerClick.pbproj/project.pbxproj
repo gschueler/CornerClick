@@ -6,8 +6,6 @@
 	objectVersion = 39;
 	objects = {
 		06F27B30FFEEEFEF11CA0E56 = {
-			buildRules = (
-			);
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 3;
@@ -24,11 +22,9 @@
 			name = Development;
 		};
 		06F27B31FFEEEFEF11CA0E56 = {
-			buildRules = (
-			);
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEPLOYMENT_LOCATION = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -101,8 +97,7 @@
 			sourceTree = "<group>";
 		};
 		089C1672FE841209C02AAC07 = {
-			fallbackIsa = PBXFileReference;
-			isa = PBXFrameworkReference;
+			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = Foundation.framework;
 			path = /System/Library/Frameworks/Foundation.framework;
@@ -120,6 +115,7 @@
 				37ED565904ECC83A000001CF,
 				37940C6904DB0A4E000001CF,
 				37940C6A04DB0A4E000001CF,
+				372688CF06FAF7F800E1F893,
 				375CF3E604FAF6B9000001CF,
 				3744A75C06948DCC00D94D1E,
 				3744A75D06948DCC00D94D1E,
@@ -134,8 +130,7 @@
 			sourceTree = "<group>";
 		};
 		089C167FFE841241C02AAC07 = {
-			fallbackIsa = PBXFileReference;
-			isa = PBXFrameworkReference;
+			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = AppKit.framework;
 			path = /System/Library/Frameworks/AppKit.framework;
@@ -178,8 +173,7 @@
 			sourceTree = "<group>";
 		};
 		1058C7ADFEA557BF11CA2CBB = {
-			fallbackIsa = PBXFileReference;
-			isa = PBXFrameworkReference;
+			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = Cocoa.framework;
 			path = /System/Library/Frameworks/Cocoa.framework;
@@ -257,14 +251,6 @@
 //372
 //373
 //374
-		371229DF05714D0A00A46218 = {
-			isa = PBXFileReference;
-			lastKnownFileType = text.rtf;
-			name = French;
-			path = French.lproj/Readme.rtf;
-			refType = 4;
-			sourceTree = "<group>";
-		};
 		371229E205714D2900A46218 = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.nib;
@@ -274,6 +260,7 @@
 			sourceTree = "<group>";
 		};
 		371229E305714E0A00A46218 = {
+			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = text.plist.strings;
 			name = French;
@@ -412,6 +399,25 @@
 			refType = 4;
 			sourceTree = "<group>";
 		};
+		372688CF06FAF7F800E1F893 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.tiff;
+			path = WindowVous.tif;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		372688D006FAF7F800E1F893 = {
+			fileRef = 372688CF06FAF7F800E1F893;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		372688D106FAF7F800E1F893 = {
+			fileRef = 372688CF06FAF7F800E1F893;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		372A7AD3054CABCD002E4C67 = {
 			buildPhases = (
 				372A7AD5054CABCD002E4C67,
@@ -470,6 +476,7 @@
 				376409020642571B003E7644,
 				376409100642573E003E7644,
 				37DE95B706524752006985D3,
+				377318BA07025FE500C9A3AD,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -528,6 +535,7 @@
 				37B2717C069172C900D7FD10,
 				3744A75E06948DCC00D94D1E,
 				3744A75F06948DCC00D94D1E,
+				372688D006FAF7F800E1F893,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -603,6 +611,7 @@
 				376409030642571B003E7644,
 				376409110642573E003E7644,
 				37DE95B806524752006985D3,
+				377318BB07025FE500C9A3AD,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -709,6 +718,7 @@
 				376409000642571B003E7644,
 				3764090E0642573E003E7644,
 				378E4348064A3B4A00628539,
+				377318BC07025FE500C9A3AD,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -770,6 +780,7 @@
 				372A7B09054CABDF002E4C67,
 				372A7B0A054CABDF002E4C67,
 				372A7B0B054CABDF002E4C67,
+				372688D106FAF7F800E1F893,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -824,6 +835,7 @@
 				376409010642571B003E7644,
 				3764090F0642573E003E7644,
 				378E4349064A3B4A00628539,
+				377318BD07025FE500C9A3AD,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -906,6 +918,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		372A7B1A054CABDF002E4C67 = {
+			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = text.plist;
 			path = "Info-CornerClickBG__Upgraded_.plist";
@@ -1121,7 +1134,7 @@
 		3744AB340694B29F00D94D1E = {
 			children = (
 				37DE9483065213BE006985D3,
-				37B012540698BC3500E7D0FF,
+				37B5E225070B4A71007A47E5,
 			);
 			isa = PBXVariantGroup;
 			name = Information.rtf;
@@ -1143,7 +1156,7 @@
 		375CF3E104FAF603000001CF = {
 			children = (
 				3723153404CF7AC3000001CF,
-				371229DF05714D0A00A46218,
+				37B5E224070B4A68007A47E5,
 			);
 			isa = PBXVariantGroup;
 			name = Readme.rtf;
@@ -1173,7 +1186,7 @@
 			sourceTree = "<group>";
 		};
 		375CF3EE04FB2300000001CF = {
-			fileEncoding = 30;
+			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = text.plist.strings;
 			name = English;
@@ -1309,6 +1322,46 @@
 			settings = {
 			};
 		};
+		377318B807025FE500C9A3AD = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = CCStickyWindow.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		377318B907025FE500C9A3AD = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			path = CCStickyWindow.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		377318BA07025FE500C9A3AD = {
+			fileRef = 377318B807025FE500C9A3AD;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		377318BB07025FE500C9A3AD = {
+			fileRef = 377318B907025FE500C9A3AD;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		377318BC07025FE500C9A3AD = {
+			fileRef = 377318B807025FE500C9A3AD;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		377318BD07025FE500C9A3AD = {
+			fileRef = 377318B907025FE500C9A3AD;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		3779428D0547268B00E76D21 = {
 			isa = PBXFileReference;
 			lastKnownFileType = text.plist.strings;
@@ -1382,24 +1435,16 @@
 			sourceTree = "<group>";
 		};
 		379D4CAF0699FD6B00D08BC2 = {
-			fileEncoding = 30;
+			fileEncoding = 4;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = "Info-ClickBox__Upgraded_.plist";
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		37B012540698BC3500E7D0FF = {
-			isa = PBXFileReference;
-			lastKnownFileType = text.rtf;
-			name = French;
-			path = French.lproj/Information.rtf;
 			refType = 4;
 			sourceTree = "<group>";
 		};
 		37B0125C0698BC3C00E7D0FF = {
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			name = French;
 			path = French.lproj/quickFiles.plist;
 			refType = 4;
@@ -1419,7 +1464,7 @@
 		37B2717B069172C900D7FD10 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			name = English;
 			path = English.lproj/quickFiles.plist;
 			refType = 4;
@@ -1431,8 +1476,26 @@
 			settings = {
 			};
 		};
+		37B5E224070B4A68007A47E5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.rtf;
+			name = French;
+			path = French.lproj/Readme.rtf;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		37B5E225070B4A71007A47E5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.rtf;
+			name = French;
+			path = French.lproj/Information.rtf;
+			refType = 4;
+			sourceTree = "<group>";
+		};
 		37C3CB3104CDAD30000001CF = {
 			children = (
+				377318B807025FE500C9A3AD,
+				377318B907025FE500C9A3AD,
 				37C3CB3C04CDAD30000001CF,
 				37C3CB3204CDAD30000001CF,
 				37C3CB3304CDAD30000001CF,
@@ -1684,8 +1747,7 @@
 //F53
 //F54
 		F506C035013D953901CA16C8 = {
-			fallbackIsa = PBXFileReference;
-			isa = PBXFrameworkReference;
+			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = PreferencePanes.framework;
 			path = /System/Library/Frameworks/PreferencePanes.framework;

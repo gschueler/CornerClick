@@ -21,7 +21,6 @@
 "Open URL %@"="Open URL %@";
 "Click"="Click";
 
-
 "%d screens"="%d screens";
 "Right-Click"="Right-Click";
 "Open Readme File"="Open Readme File";
@@ -30,3 +29,6 @@
 "Files"="Files";
 "CornerClick Preferences"="CornerClick Preferences";
 "/Scripts"="/Scripts";
+
+/* added 9/27/04 */
+"Expose" = "Exposé";

@@ -28,4 +28,5 @@
 - (void) setTrackingRectTag:(NSTrackingRectTag) tag;
 - (NSTrackingRectTag) trackingRectTag;
 - (NSArray *) actionsGroups;
+- (NSArray *) actionsGroupsForModifiers:(int) mods;
 @end

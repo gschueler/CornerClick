@@ -47,7 +47,7 @@
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender
 {
     return NSDragOperationNone;
-    NSLog(@"draggingEntered");
+    DEBUG(@"draggingEntered");
     if ((NSDragOperationGeneric & [sender draggingSourceOperationMask])
         == NSDragOperationGeneric)
     {
@@ -69,7 +69,7 @@
 
 - (void)draggingExited:(id <NSDraggingInfo>)sender
 {
-    NSLog(@"draggingExited");
+    DEBUG(@"draggingExited");
     //we aren't particularily interested in this so we will do nothing
     //this is one of the methods that we do not have to implement
     [self setSelected: NO];
@@ -292,6 +292,22 @@
     return [thearr autorelease];
 }
 
+- (NSArray *) actionsGroupsForModifiers:(int) mods
+{
+    int i;
+    NSArray *ags = [self actionsGroups];
+    NSMutableArray *ma = [[[NSMutableArray alloc] init] autorelease];
+    //DEBUG(@"got %d actions groups",[ags count]);
+    for(i=0;i<[ags count];i++){
+        NSArray *group = (NSArray *)[ags objectAtIndex:i];
+        ClickAction *act = (ClickAction *)[group objectAtIndex:0];
+        //DEBUG(@"is action mods (%d) equal to mods (%d)? %@",[act modifiers], mods, ([act modifiers]==mods ? @"YES":@"NO"));
+        if([act modifiers]==mods){
+            [ma addObject:group];
+        }
+    }
+    return ma;
+}
 - (NSArray *) actionsGroups
 {
 	int i;
@@ -326,7 +342,7 @@
 
 - (void)rightMouseDown:(NSEvent *)theEvent
 {
-	if(DEBUG_ON)NSLog(@"Right mouse button in ClickView.m");
+	DEBUG(@"Right mouse button in ClickView.m");
 	[myClicker mouseDownTrigger:theEvent
 						 onView:self
 						  flags:-1
@@ -335,7 +351,7 @@
 }
 - (void)otherMouseDown:(NSEvent *)theEvent
 {
-	if(DEBUG_ON)NSLog(@"Other mouse button in ClickView.m");
+	DEBUG(@"Other mouse button in ClickView.m");
 }
 
 - (BOOL)acceptsFirstMouse

@@ -197,7 +197,7 @@
            
         }else{
             theScreens = [[NSMutableDictionary alloc] initWithCapacity:2];
-            appEnabled=YES;
+            appEnabled=NO;
             toolTipEnabled=YES;
             toolTipDelayed=YES;
         }

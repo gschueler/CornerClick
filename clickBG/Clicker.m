@@ -1,5 +1,4 @@
 #import "Clicker.h"
-#import <Carbon/Carbon.h>
 
 extern double CornerClickBGVersionNumber;
 int selectedMod=-1;
@@ -28,9 +27,7 @@ int selectedMod=-1;
         [appSettings release];
         appSettings=nil;
     }
-    appSettings = [[CornerClickSupport settingsFromUserPreferencesWithClicker: self] retain];
-    //[CornerClickSupport savePreferences:appSettings];
-    //NSLog(@"loaded prefs: %@",appSettings);
+    appSettings = [CornerClickSettings sharedSettingsFromUserPreferencesWithClicker:self];
 
     for(j=0;j<[screens count];j++){
         skey =[[[screens objectAtIndex:j] deviceDescription] objectForKey:@"NSScreenNumber"] ;
@@ -62,7 +59,7 @@ int selectedMod=-1;
             [self clearScreen:key];
         }
     }
-    
+    [hoverView recalcSize];
 }
 
 - (void) clearScreen: (NSNumber *)screenNum
@@ -77,6 +74,17 @@ int selectedMod=-1;
         [screenWindows removeObjectForKey:screenNum];
     }
     
+}
+- (void) reloadScreens
+{
+    int j;
+    NSNumber *skey;
+    NSArray *screens =[NSScreen screens];
+    for(j=0;j<[screens count];j++){
+        skey =[[[screens objectAtIndex:j] deviceDescription] objectForKey:@"NSScreenNumber"] ;
+        
+        [allScreens setObject: [screens objectAtIndex:j] forKey:skey];
+    }
 }
 
 - (NSMutableArray *) screenEntry:(NSNumber *)screenNum
@@ -408,12 +416,17 @@ postNotificationName: @"CornerClickPingBackNotification"
     NSRect prefFrame = [hoverView preferredFrame];
     [hoverView setFrame:prefFrame];
     
-    hoverWin = [[NSWindow alloc] initWithContentRect:prefFrame styleMask:NSBorderlessWindowMask backing:
-                               NSBackingStoreBuffered defer:YES ];
+    hoverWin = [[NSPanel alloc] initWithContentRect:prefFrame
+                                                 styleMask:NSBorderlessWindowMask|NSNonactivatingPanelMask
+                                                   backing:NSBackingStoreBuffered
+                                                     defer:YES ];
     [hoverWin setLevel:NSStatusWindowLevel];
     [hoverWin setAlphaValue:1.0];
     [hoverWin setHasShadow: NO];
     [hoverWin setOpaque:NO];
+    //[hoverWin setSticky:YES];
+    
+    //[hoverWin setExposeSticky:YES];
     
     [hoverWin setContentView: hoverView];
     
@@ -459,10 +472,11 @@ postNotificationName: @"CornerClickPingBackNotification"
 	NSArray *thearr;
 	BubbleActionsList *actsList;
     ClickWindow *window = [self windowForScreen:screenNum atCorner:corner];
-
+    [self reloadScreens];
 	actsList=actionsList;
     NSPoint newPoint;
     NSPoint oldPoint=[self pointForCorner: corner onScreen:screenNum];
+    //NSLog(@"showHover at point: %@", NSStringFromPoint(oldPoint) );
     @synchronized(hoverView){
             
         if(delayTimer!=nil){

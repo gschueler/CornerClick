@@ -2,6 +2,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Carbon/Carbon.h>
+#import "CCStickyWindow.h"
 
 @interface Clicker : NSObject
 {
@@ -21,7 +22,7 @@
     NSTimer *delayTimer;
     NSTimer *fadeTimer;
     NSNumber *lastScreen;
-    NSWindow *hoverWin;
+    NSPanel *hoverWin;
     BubbleView *hoverView;
 	ProcessSerialNumber lastActiveProc;
 	BOOL actionPerformed;
@@ -35,6 +36,7 @@
 - (void) loadFromSettings;
 - (ClickWindow *) windowForScreen:(NSNumber *) screenNum atCorner:(int) corner;
 - (NSMutableArray *) screenEntry:(NSNumber *)screenNum;
+- (void) reloadScreens;
 - (void) clearScreen: (NSNumber *)screenNum;
 - (void) setWindow:(ClickWindow *)window forScreen:(NSNumber *) screenNum atCorner:(int) corner;
 - (BOOL) createClickWindowAtCorner: (int) corner withActionList: (NSArray *) actions onScreen:(NSNumber *) screenNum;

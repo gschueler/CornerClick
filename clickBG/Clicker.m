@@ -1,7 +1,13 @@
 #import "Clicker.h"
 #import <Carbon/Carbon.h>
 
+extern double CornerClickBGVersionNumber;
 int selectedMod=-1;
+@interface Clicker (InternalMethods)
+- (void) actionActivating: (ClickAction *)theAction;
+- (void) doSelectedAction;
+
+@end
 
 @implementation Clicker
 
@@ -37,10 +43,10 @@ int selectedMod=-1;
                 acts!=nil &&
                 [acts count]>0 &&
                 [self createClickWindowAtCorner: i withActionList: acts onScreen:skey] ){
-                if(DEBUG_LEVEL>0)NSLog(@"created window at corner: %d on screen: %@",i,skey);
+                DEBUG(@"created window at corner: %d on screen: %@",i,skey);
 
             }else if([self windowForScreen:skey atCorner:i]!=nil){
-                if(DEBUG_LEVEL>0)NSLog(@"NOT created window at corner: %d on screen: %@",i,skey);
+                DEBUG(@"NOT created window at corner: %d on screen: %@",i,skey);
                 [self setWindow:nil forScreen:skey atCorner:i];
             }
         }
@@ -52,7 +58,7 @@ int selectedMod=-1;
         if([allScreens objectForKey:key]!=nil){
             continue;
         }else{
-            if(DEBUG_LEVEL>0)NSLog(@"clearing screen: %@",key);
+            DEBUG(@"clearing screen: %@",key);
             [self clearScreen:key];
         }
     }
@@ -123,8 +129,8 @@ int selectedMod=-1;
 {
     NSDictionary *loaded=nil;
     //attempt to load the preferences if set from an older version of CornerClick
-    int i=CC_APP_VERSION;
-    for(i=(CC_APP_VERSION-1);i>=0;i--){
+    int i=CornerClickBGVersionNumber;
+    for(i=(CornerClickBGVersionNumber-1);i>=0;i--){
         switch(i){
             case 1: //v0.1
                 loaded=[[NSUserDefaults standardUserDefaults] persistentDomainForName:@"CornerClickPref"];
@@ -177,6 +183,48 @@ int selectedMod=-1;
     return NO;
 }
 
+- (NSPoint) origPointForCorner: (int) corner onScreen:(NSNumber *)screenNum
+{
+    NSRect r=[[allScreens objectForKey:screenNum] frame];
+    switch(corner){
+        case 0:
+            return NSMakePoint(NSMinX(r)-CWSIZE,NSMaxY(r)-CWSIZE);
+            break;
+        case 1:
+            return  NSMakePoint(NSMaxX(r)-CWSIZE,NSMaxY(r)-CWSIZE);
+            break;
+        case 2:
+            return NSMakePoint(NSMinX(r)-CWSIZE,NSMinY(r)-CWSIZE);
+            break;
+        case 3:
+            return  NSMakePoint(NSMaxX(r)-CWSIZE,NSMinY(r)-CWSIZE);
+            break;
+        default:
+            NSLog(@"Bad corner identifier: %d",corner);
+            return NSZeroPoint;
+    }
+}
+- (NSPoint) newPointForCorner: (int) corner onScreen:(NSNumber *)screenNum
+{
+    NSRect r=[[allScreens objectForKey:screenNum] frame];
+    switch(corner){
+        case 0:
+            return NSMakePoint(NSMinX(r),NSMaxY(r)-CWSIZE*2);
+            break;
+        case 1:
+            return  NSMakePoint(NSMaxX(r)-CWSIZE*2,NSMaxY(r)-CWSIZE*2);
+            break;
+        case 2:
+            return NSMakePoint(NSMinX(r),NSMinY(r));
+            break;
+        case 3:
+            return  NSMakePoint(NSMaxX(r)-CWSIZE*2,NSMinY(r));
+            break;
+        default:
+            NSLog(@"Bad corner identifier: %d",corner);
+            return NSZeroPoint;
+    }
+}
 - (NSRect) rectForCorner: (int) corner onScreen:(NSNumber *)screenNum
 {
     NSRect myRect;
@@ -282,6 +330,7 @@ int selectedMod=-1;
     screenWindows = [[NSMutableDictionary dictionaryWithCapacity:2] retain];
     trackCache = [[NSMutableDictionary dictionaryWithCapacity:MAX_CORNERS*[[NSScreen screens] count]] retain];
     lastHoverCorner=-1;
+    isShowingHover=NO;
 /*    [self loadFromPreferences:
         [[NSUserDefaults standardUserDefaults]
       persistentDomainForName:@"CornerClickPref"]];
@@ -323,7 +372,7 @@ int selectedMod=-1;
 postNotificationName: @"CornerClickPingBackNotification"
               object: nil
             userInfo: [NSDictionary dictionaryWithObjects:
-                [NSArray arrayWithObjects: [NSNumber numberWithInt: CC_APP_VERSION], [NSNumber numberWithInt: CC_PATCH_VERSION], nil]
+                [NSArray arrayWithObjects: [NSNumber numberWithInt: CornerClickBGVersionNumber], [NSNumber numberWithInt: CC_PATCH_VERSION], nil]
                                                   forKeys:
                 [NSArray arrayWithObjects: @"CornerClickAppVersion", @"CornerClickPatchVersion",nil]]
   deliverImmediately: YES
@@ -407,7 +456,6 @@ postNotificationName: @"CornerClickPingBackNotification"
 
 {
     int i;
-    ClickAction *theAction;
 	NSArray *thearr;
 	BubbleActionsList *actsList;
     ClickWindow *window = [self windowForScreen:screenNum atCorner:corner];
@@ -415,69 +463,89 @@ postNotificationName: @"CornerClickPingBackNotification"
 	actsList=actionsList;
     NSPoint newPoint;
     NSPoint oldPoint=[self pointForCorner: corner onScreen:screenNum];
-    if(delayTimer!=nil){
-        [delayTimer invalidate];
-        [delayTimer release];
-        delayTimer=nil;
-		//[hoverWin setAlphaValue:0.0];
-    }
-    if(fadeTimer!=nil){
-        [fadeTimer invalidate];
-        [fadeTimer release];
-        fadeTimer=nil;
-		
-		//[hoverWin setAlphaValue:0.0];
-    }
-    if(lastHoverCorner != corner){
-        //theAction = [[window contentView] clickActionForModifierFlags: modifiers];
-      	if(actsList==nil){
-			thearr = [[window contentView] actionsGroupsForModifiers: [Clicker modsForEventFlags: modifiers]];	
-            NSMutableArray *ma = [[[NSMutableArray alloc] init] autorelease];
-            for(i=0;i<[thearr count];i++){
-                NSArray *acts = (NSArray *)[thearr objectAtIndex:i];
-                [ma addObject:[hoverView bubbleAction:acts]];
+    @synchronized(hoverView){
+            
+        if(delayTimer!=nil){
+            [delayTimer invalidate];
+            [delayTimer release];
+            delayTimer=nil;
+            //[hoverWin setAlphaValue:0.0];
+        }
+        if(fadeTimer!=nil){
+            [fadeTimer invalidate];
+            [fadeTimer release];
+            fadeTimer=nil;
+            
+            //[hoverWin setAlphaValue:0.0];
+        }
+        if(lastHoverCorner != corner){
+            //theAction = [[window contentView] clickActionForModifierFlags: modifiers];
+            if(actsList==nil && isShowingHover){
+                return;
             }
-			actsList = [hoverView bubbleActionsList: ma
-                                           selected:-1
-								  andHighlightColor:  [self determineHighlightColor]];
-            [actsList setShowAllModifiers:YES];
-            DEBUG(@"actsList retainCount after factory create: %d",[actsList retainCount]);
-		}
-        if(thearr !=nil){
-            [hoverView setPointCorner: corner];
-            //[hoverView setShowModifiersTitle: showTitle];
-			[hoverView setDrawingObject:actsList];
-			//[hoverView setFadeFromColor:nil];
-			//[hoverView setFadeToColor:nil];
-			NSRect r = [hoverView preferredFrame];
-            switch(corner){
-                case 0:
-                    newPoint = NSMakePoint(oldPoint.x+HWSIZE,oldPoint.y-HWSIZE-r.size.height);
-                    break;
-                case 1:
-                    newPoint = NSMakePoint(oldPoint.x-HWSIZE-r.size.width,oldPoint.y-HWSIZE-r.size.height);
-                    break;
-                case 2:
-                    newPoint = NSMakePoint(oldPoint.x+HWSIZE,oldPoint.y+HWSIZE);
-                    break;
-                case 3:
-                    newPoint = NSMakePoint(oldPoint.x-HWSIZE-r.size.width,oldPoint.y+HWSIZE);
-                    break;
-                default:
-                    return;
-        
+            if(actsList==nil){
+                thearr = [[window contentView] actionsGroupsForModifiers: [Clicker modsForEventFlags: modifiers]];	
+                NSMutableArray *ma = [[[NSMutableArray alloc] init] autorelease];
+                for(i=0;i<[thearr count];i++){
+                    NSArray *acts = (NSArray *)[thearr objectAtIndex:i];
+                    [ma addObject:[hoverView bubbleAction:acts]];
+                }
+                actsList = [hoverView bubbleActionsList: ma
+                                              forCorner: corner
+                                               selected:-1
+                                      andHighlightColor:  [self determineHighlightColor]];
+                [actsList setShowAllModifiers:YES];
+                DEBUG(@"actsList retainCount after factory create: %d",[actsList retainCount]);
+            }else{
+                
+                isShowingHover=YES;
             }
-			[hoverWin setFrame: NSMakeRect(newPoint.x, newPoint.y, r.size.width, r.size.height) display: YES];
+            if(actsList !=nil){
+                NSRect or = [hoverView preferredFrame];
+                [hoverView setPointCorner: corner];
+                //[hoverView setShowModifiersTitle: showTitle];
+                [hoverView setDrawingObject:actsList];
+                //[hoverView setFadeFromColor:nil];
+                //[hoverView setFadeToColor:nil];
+                NSRect r = [hoverView preferredFrame];
+                switch(corner){
+                    case 0:
+                        newPoint = NSMakePoint(oldPoint.x+HWSIZE,oldPoint.y-HWSIZE-r.size.height);
+                        break;
+                    case 1:
+                        newPoint = NSMakePoint(oldPoint.x-HWSIZE-r.size.width,oldPoint.y-HWSIZE-r.size.height);
+                        break;
+                    case 2:
+                        newPoint = NSMakePoint(oldPoint.x+HWSIZE,oldPoint.y+HWSIZE);
+                        break;
+                    case 3:
+                        newPoint = NSMakePoint(oldPoint.x-HWSIZE-r.size.width,oldPoint.y+HWSIZE);
+                        break;
+                    default:
+                        return;
+            
+                }
+                if(!NSEqualRects(or,r)){
+                    DEBUG(@"hoverView was resized");
+                    [hoverView setFrame:r];
+                    [hoverView setNeedsDisplay:YES];
+                }
+                    
+                [hoverWin setFrame: NSMakeRect(newPoint.x, newPoint.y, r.size.width, r.size.height) display: YES];
+                
+                [hoverWin orderWindow:NSWindowBelow relativeTo:[window windowNumber]];
+                lastHoverCorner=-1;
+                if([hoverWin alphaValue] < 1.0)
+                    [hoverWin setAlphaValue: 1.0];
+                if(![hoverWin isVisible]){
+                    //[hoverWin orderBack:self];
+                    //DEBUG(@"HOVER ORDER BACK");
+                }
+                    
 
-            lastHoverCorner=-1;
-			if([hoverWin alphaValue] < 1.0)
-				[hoverWin setAlphaValue: 1.0];
-			if(![hoverWin isVisible])
-				[hoverWin orderBack:self];
-
-            //DEBUG(@"right after show hover");
-        }else{
-            lastHoverCorner=-1;
+            }else{
+                lastHoverCorner=-1;
+            }
         }
     }
 }
@@ -489,7 +557,7 @@ postNotificationName: @"CornerClickPingBackNotification"
         [fadeTimer invalidate];
         [fadeTimer release];
         fadeTimer=nil;
-        //NSLog(@"Faded out");
+        DEBUG(@"HOVER DID FADE");
     }
 }
 -(void) hideHoverFadeOut
@@ -507,7 +575,8 @@ postNotificationName: @"CornerClickPingBackNotification"
     NSInvocation *nsinv = [NSInvocation invocationWithMethodSignature: [self methodSignatureForSelector:@selector(hideHoverDoFadeout)]];
     [nsinv setSelector:@selector(hideHoverDoFadeout)];
     [nsinv setTarget:self];
-
+    
+    DEBUG(@"HOVER DO FADE");
     fadeTimer = [[NSTimer scheduledTimerWithTimeInterval:0.05 invocation:nsinv repeats:YES] retain];
 
 }
@@ -569,8 +638,6 @@ postNotificationName: @"CornerClickPingBackNotification"
 {
     int corn=corner;
     ClickWindow *window;
-	NSPoint mouseLoc;
-	NSEvent *theEvent;
 	BOOL isInside=NO;
 	BOOL title=NO;//<-------
     if( delayTimer!=nil){
@@ -594,10 +661,12 @@ postNotificationName: @"CornerClickPingBackNotification"
     //NSLog(@"retaincount for window: %d",[window retainCount]);
     if(window !=nil ){
 		//[window makeMainWindow];
-		[window makeKeyAndOrderFront:nil];
 		
         if(actionsList!=nil || [[window contentView] clickActionForModifierFlags: modifiers]!=nil){
             [window setAlphaValue: 1.0];
+//            NSPoint np = [self newPointForCorner:corn onScreen:screenNum];
+  //          NSRect fr = [window frame];
+    //        [window setFrame:NSMakeRect(np.x,np.y, fr.size.width, fr.size.height) display:YES];
 
 			
             if([appSettings toolTipEnabled]){
@@ -622,13 +691,58 @@ postNotificationName: @"CornerClickPingBackNotification"
 				
             }
 				
-
+            
+            [window makeKeyAndOrderFront:self];
+            DEBUG(@"MAKE KEY AND ORDER FRONT.  IS KEY: %@, ACTIVE: %@",[NSApp keyWindow]==window ? @"YES":@"NO",
+                  [NSApp isActive]?@"YES":@"NO");
         }else{
-            [window setAlphaValue: 0.1];
+            [window setAlphaValue: 0.2];
+            [window setFrame:[self rectForCorner:corn onScreen:screenNum] display:YES];
             [hoverWin setAlphaValue: 0.0];
+            isShowingHover=NO;
+            [window makeKeyAndOrderFront:nil];
         }
     }
 }
+
+- (void)closeOtherWindows: (int)corner onScreen:(NSNumber *)screenNum
+{
+    id obj;
+    int i;
+    NSEnumerator *en = [screenWindows keyEnumerator];
+    while((obj = [en nextObject])!=nil){
+        NSNumber *key = (NSNumber *)obj;
+        NSArray *ar = (NSArray *)[screenWindows objectForKey:key];
+        for(i=0;i<[ar count];i++){
+            if(![screenNum isEqualTo:key] || i!=corner){
+                id win = [ar objectAtIndex:i];
+                if([win isMemberOfClass:[ClickWindow class]])
+                [(ClickWindow *)win close];
+            }
+            
+        }
+    }
+}
+
+- (void)showOtherWindows: (int)corner onScreen:(NSNumber *)screenNum
+{
+    id obj;
+    int i;
+    NSEnumerator *en = [screenWindows keyEnumerator];
+    while((obj = [en nextObject])!=nil){
+        NSNumber *key = (NSNumber *)obj;
+        NSArray *ar = (NSArray *)[screenWindows objectForKey:key];
+        for(i=0;i<[ar count];i++){
+            if(![screenNum isEqualTo:key] || i!=corner){
+                id win = [ar objectAtIndex:i];
+                if([win isMemberOfClass:[ClickWindow class]])
+                [(ClickWindow *)win orderBack:self];
+            }
+            
+        }
+    }
+}
+
 - (void)mouseEntered:(NSEvent *)theEvent
 {
 
@@ -640,6 +754,10 @@ postNotificationName: @"CornerClickPingBackNotification"
 	lastCornerEntered=corn;
 	lastScreen = screenNum;
 	actionPerformed=NO;
+    isShowingHover=NO;
+    [hoverView setDrawingObject:nil];
+    DEBUG(@"MOUSE ENTER");
+    [self closeOtherWindows: corn onScreen:screenNum];
     [self recalcAndShowHoverWindow: corn onScreen:screenNum modifiers: modifiers];
 }
 
@@ -664,13 +782,13 @@ postNotificationName: @"CornerClickPingBackNotification"
 	}
 	err = SameProcess(&mePsn,&lastActiveProc,(Boolean *) &areSame);
 	if(areSame){
-		NSLog(@"front proc is CCBG proc.");
+		DEBUG(@"front proc is CCBG proc.");
 		GetNextProcess(&lastActiveProc);
 		if( 0 != err){
-			NSLog(@" error after getNextPSN: getNextProcess");
+			DEBUG(@" error after getNextPSN: getNextProcess");
 		}else{
-			err = CopyProcessName(&lastActiveProc,&procName);
-			NSLog(@"Next proc is: %@",procName);
+			err = CopyProcessName(&lastActiveProc,(CFStringRef *)&procName);
+			DEBUG(@"Next proc is: %@",procName);
 		}
 	}
 }
@@ -682,17 +800,16 @@ postNotificationName: @"CornerClickPingBackNotification"
     ProcessSerialNumber psn;
     ProcessSerialNumber paramPsn;
 	BOOL isVis;
-    NSDictionary *procInfo;
 	NSString *procName;
     err =GetFrontProcess(&psn);
     paramPsn.highLongOfPSN=0;
     paramPsn.lowLongOfPSN=0;
     err =GetNextProcess(&paramPsn);
-	NSLog(@"listing procs");
+	DEBUG(@"listing procs");
     while(err==0 ){
-		stat = CopyProcessName(&paramPsn,&procName);
+		stat = CopyProcessName(&paramPsn,(CFStringRef *)&procName);
 		isVis= (BOOL)IsProcessVisible(&paramPsn);
-		NSLog(@"proc: %@, visible? %@", procName, isVis ? @"Yes" : @"No");
+		DEBUG(@"proc: %@, visible? %@", procName, isVis ? @"Yes" : @"No");
         err = GetNextProcess(&paramPsn);
     }
 
@@ -702,7 +819,7 @@ postNotificationName: @"CornerClickPingBackNotification"
 - (void) flagsChanged:(NSEvent *)theEvent
 {
     DEBUG(@"Clicker: flagsChanged");
-        NSLog(@"modifiers changed to: shift %d, ctrl %d, option %d, command %d, fn %d",[theEvent modifierFlags]&NSShiftKeyMask,
+        DEBUG(@"modifiers changed to: shift %d, ctrl %d, option %d, command %d, fn %d",[theEvent modifierFlags]&NSShiftKeyMask,
               [theEvent modifierFlags]&NSControlKeyMask,
               [theEvent modifierFlags]&NSAlternateKeyMask,
               [theEvent modifierFlags]&NSCommandKeyMask,
@@ -756,50 +873,6 @@ postNotificationName: @"CornerClickPingBackNotification"
 }
 
 
-- (void)scrollWheel2: (NSEvent *)theEvent  atCorner: (int)theCorner
-{
-	if(lastCornerEntered==-1 || nil == lastScreen)        
-		return;
-	NSWindow *window= [self windowForScreen:lastScreen atCorner:theCorner];
-	ClickView *view = (ClickView *)[window contentView];
-	NSArray *uMods = [view uniqueModifiersList];
-	int mods = [Clicker modsForEventFlags:[theEvent modifierFlags]];
-	int found,i,y;
-	unsigned int flags;
-	int c = [uMods count];
-	NSLog(@"number of unique mods: %d",[uMods count]);
-	if(selectedMod<0){
-		found=-1;
-		for(i=0;i<[uMods count];i++){
-			NSNumber *num = (NSNumber *)[uMods objectAtIndex:i];
-			if(mods == [num intValue]){
-				found=i;
-				break;
-			}
-		}
-	}else{
-		found=selectedMod;
-	}
-	NSLog(@"found is: %d", found);
-	if(found < 0){
-		found=0;
-	}else{
-		y = (int)ceil([theEvent deltaY]);
-		NSLog(@"y is: %d, found is %d;  uMods is %d;  found+y = %d, %% count = %d", y, found, c, (found + y), ((found +y) % c));
-		NSLog(@"-1 %% 7 = %d", (-1 % 7));
-		found = (found + y)%c;
-		if(found < 0 )
-			found = c+found;
-	}
-	NSLog(@"scrolled to index: %d", found);
-	selectedMod=found;
-	NSNumber *num = (NSNumber *)[uMods objectAtIndex: found];
-	flags = [Clicker eventFlagsForMods: [num intValue]];
-	NSLog(@"the modifiers to use: %d", flags);
-	if(lastCornerEntered!=-1 && nil != lastScreen)        
-		[self recalcAndShowHoverWindow: lastCornerEntered onScreen:lastScreen modifiers: flags doDelay:NO];
-	
-}
 
 - (void)scrollWheel: (NSEvent *)theEvent  atCorner: (int)theCorner
 {
@@ -809,22 +882,26 @@ postNotificationName: @"CornerClickPingBackNotification"
 }
 - (void)scroll: (int)direction  atCorner: (int)theCorner modifiers:(int) modifiers
 {
-	int x,above,below;
+	int x;
 	int mabove,mbelow;
 	mabove=2;
 	mbelow=1;
+    if(delayTimer!=nil){
+        [delayTimer invalidate];
+        [delayTimer release];
+        delayTimer=nil;
+    }
 	if(lastCornerEntered==-1 || nil == lastScreen)        
 		return;
 	NSWindow *window= [self windowForScreen:lastScreen atCorner:theCorner];
 	ClickView *view = (ClickView *)[window contentView];
 	NSArray *uMods = [view actionsGroups];
-	int mods = [Clicker modsForEventFlags:modifiers];
-	int found,i,y;
+	int found,y;
 	unsigned int flags ;
 	int c = [uMods count];
-	DEBUG(@"number of unique mods: %d",c);
+	DEBUG2(@"number of unique mods: %d",c);
 	found=selectedMod;
-	DEBUG(@"found is: %d", found);
+	DEBUG2(@"found is: %d", found);
 	if(found < 0){
 		found=0;
 	}else{
@@ -833,29 +910,42 @@ postNotificationName: @"CornerClickPingBackNotification"
 						  to: found 
 						 mod: c];
 	}
-	DEBUG(@"scrolled to index: %d", found);
+	DEBUG2(@"scrolled to index: %d", found);
 	selectedMod=found;
 	NSMutableArray *bactsArr = [[[NSMutableArray alloc] init] autorelease];
 
 	for(x = 0; x <c; x++){
-		if(DEBUG_ON)NSLog(@"build action: %d",x);
+		DEBUG2(@"build action: %d",x);
 		NSArray *actions = (NSArray *)[uMods objectAtIndex: x];
 		[bactsArr addObject:
 			[hoverView bubbleAction:actions]];
 	}
-	if(DEBUG_ON)NSLog(@"create actions list");
-	BubbleActionsList *bactsList = [hoverView bubbleActionsList:bactsArr
-													   selected: selectedMod
-											  andHighlightColor: [self determineHighlightColor]];
-	if(DEBUG_ON)NSLog(@"the modifiers to use: %d", flags);
-	if(lastCornerEntered!=-1 && nil != lastScreen)        
-		[self recalcAndShowHoverWindow: lastCornerEntered
-							  onScreen:lastScreen 
-							 modifiers:-1
-							   doDelay:NO
-							actionList:bactsList];
-		//[self recalcAndShowHoverWindow: lastCornerEntered onScreen:lastScreen modifiers: flags doDelay:NO];
-
+	DEBUG2(@"create actions list");
+    @synchronized(hoverView){
+            
+        BubbleActionsList *bactsList=[[[hoverView drawingObject] retain] autorelease];
+        if(isShowingHover && bactsList != nil && [bactsList corner]==lastCornerEntered){
+            DEBUG(@"isShowingHover && drawingObject != nil");
+            //bactsList = [hoverView drawingObject];
+            [hoverView newSelectedMod:selectedMod];
+        }else{
+            DEBUG(@"! (isShowingHover && drawingObject != nil)");
+            
+            bactsList= [hoverView bubbleActionsList: bactsArr
+                                          forCorner: lastCornerEntered
+                                           selected: selectedMod
+                                  andHighlightColor: [self determineHighlightColor]];
+        }
+        DEBUG2(@"the modifiers to use: %d", flags);
+        if(lastCornerEntered!=-1 && nil != lastScreen)        
+            [self recalcAndShowHoverWindow: lastCornerEntered
+                                  onScreen:lastScreen 
+                                 modifiers:-1
+                                   doDelay:NO
+                                actionList:bactsList];
+            //[self recalcAndShowHoverWindow: lastCornerEntered onScreen:lastScreen modifiers: flags doDelay:NO];
+        
+    }
 }
 
 + (int) add:(int)a to:(int)b mod:(int)m
@@ -882,6 +972,8 @@ postNotificationName: @"CornerClickPingBackNotification"
         }
     }
 	[hoverWin setAlphaValue: 0];
+    
+    isShowingHover=NO;
 }
 - (void) mouseDownTrigger: (NSEvent *) theEvent onView: (ClickView *)view
 				   flags:(int) flags trigger:(int) trigger
@@ -953,14 +1045,21 @@ postNotificationName: @"CornerClickPingBackNotification"
     ClickWindow *window;
 	window =  [self windowForScreen:num atCorner:corn];
     [window setAlphaValue: 0.1];
+    
+    DEBUG(@"MAKE KEY AND ORDER FRONT.  IS KEY: %@, ACTIVE: %@",[NSApp keyWindow]==window ? @"YES":@"NO",
+          [NSApp isActive]?@"YES":@"NO");
     if([appSettings toolTipEnabled]){
         [self hideHoverFadeOut];
     }
+	[window close];
+    [window orderBack:self];
 	[window resignKeyWindow];
-    [window close];
-	[window orderBack:self];
-	
+    [self showOtherWindows:corn onScreen:num];
+    [NSApp deactivate];
+	DEBUG(@"FADED CORNER: %d",corn);
 	actionPerformed=NO;
+    
+    isShowingHover=NO;
 	
     lastCornerEntered=-1;
 	lastScreen = nil;

@@ -25,6 +25,7 @@
     BubbleView *hoverView;
 	ProcessSerialNumber lastActiveProc;
 	BOOL actionPerformed;
+    BOOL isShowingHover;
 	int lastHoverCorner;
     int lastCornerEntered;
     float hoverAlpha;
@@ -48,6 +49,12 @@
 - (void)recalcAndShowHoverWindow: (int) corner onScreen:(NSNumber *)screenNum modifiers: (unsigned int) modifiers;
 - (void)recalcAndShowHoverWindow: (int) corner onScreen:(NSNumber *)screenNum modifiers: (unsigned int) modifiers
                          doDelay: (BOOL) delay actionList: (BubbleActionsList *)actionsList;
+-(void)showHover: (int) corner 
+        onScreen: (NSNumber *)screenNum
+   withModifiers: (unsigned int) modifiers
+		andTitle: (BOOL)showTitle
+ withActionsList:  (BubbleActionsList *) actionsList;
+
 - (void) mouseExited: (NSEvent *) theEvent;
 - (void) mouseDownTrigger: (NSEvent *) theEvent
 				   onView: (ClickView *)view
@@ -61,6 +68,7 @@
 - (void)scroll: (int)direction  atCorner: (int)theCorner modifiers:(int) modifiers;
 + (void) listProcs;
 - (void) doAction:(int) corner onScreen:(NSNumber *)num withFlags:(int)flags forTrigger:(int) trigger;
+- (void)scrollWheel: (NSEvent *)theEvent  atCorner: (int)theCorner;
 
 +(unsigned int) eventFlagsForMods:(int)mods;
 +(int) modsForEventFlags:(unsigned int) evtFlags;

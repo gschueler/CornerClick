@@ -19,9 +19,10 @@
 	NSSize detSize;
 	NSColor *highlightColor;
 	int selected;
-	int destSelected;
+	int lastSelected;
 	int steps;
 	int curStep;
+    int theCorner;
     BOOL showAllModifiers;
 }
 - (id) initWithAttributes: (NSDictionary *) attrs
@@ -29,20 +30,20 @@
 			   andSpacing: (float) spacing
 			   andActions: (NSArray *) actions
 			 itemSelected: (int) theSelected
-		andHighlightColor:(NSColor *) theColor;
+		andHighlightColor:(NSColor *) theColor
+                forCorner:(int) corner;
 - (int) selectedItem;
 - (int) selectedModifiers;
 - (int) selectedTrigger;
+- (void) updateSelected: (int) selectedMod; 
+- (NSRect) drawingRectForAction: (int)act isSelected: (BOOL) isSelected inRect:(NSRect) rect;
 - (void) setSpacingSize: (float) size;
 - (void) drawInRect:(NSRect) rect;
 - (NSSize) preferredSize;
 - (BOOL) showAllModifiers;
 - (void) setShowAllModifiers: (BOOL)show;
-- (id) initWithAttributes: (NSDictionary *) attrs
-      smallTextAttributes: (NSDictionary *) sattrs
-			   andSpacing: (float) spacing
-			   andActions: (NSArray *) actions;
 
+- (int) corner;
 
 
 @end

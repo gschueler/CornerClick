@@ -40,8 +40,8 @@
     }
     [myActions release];
     myActions = ma;
-	[uniqueModifiers release];
-	uniqueModifiers=nil;
+	[actionsGroups release];
+	actionsGroups=nil;
 }
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender
@@ -166,20 +166,22 @@
 
 - (void)drawRect:(NSRect)rect
 {
-    if(drawed==nil){
-        [self drawBuf:rect];
-    }
+    //if(drawed==nil){
+    //    [self drawBuf:rect];
+    //}
+	//NSLog(@"drawing clickview rect");
     [[NSColor clearColor] set];
     NSRectFill(rect);
-    [drawed compositeToPoint:NSZeroPoint operation:NSCompositeSourceOver];
+	[self drawBuf:rect];
+    //[drawed compositeToPoint:NSZeroPoint operation:NSCompositeSourceOver];
     //[[drawed TIFFRepresentation] writeToFile: [[NSString stringWithFormat:@"~/Desktop/%d.tiff", corner] stringByExpandingTildeInPath] atomically:YES];
 }
 
 - (void) drawBuf: (NSRect) rect
 {
     NSBezierPath *path;
-    drawed = [[NSImage alloc] initWithSize: rect.size];
-    [drawed lockFocus];
+    //drawed = [[NSImage alloc] initWithSize: rect.size];
+    //[drawed lockFocus];
     NSPoint *from,*to;
     NSPoint tl=NSMakePoint(rect.origin.x,rect.origin.y+rect.size.height);
     NSPoint tr=NSMakePoint(rect.origin.x+rect.size.width,rect.origin.y+rect.size.height);
@@ -215,38 +217,38 @@
             to=&bl;
             break;
         default:
-            NSLog(@"unknown corner: %d",corner);
+            NSLog(@"unknown corner!: %d",corner);
             path = [NSBezierPath bezierPathWithRect:rect];
             from=&tl;
             to=&bl;
     }
 
-
-
+	NSColor *theColor;
     if(selected)
-        [[[NSColor whiteColor] colorWithAlphaComponent:0.50] set];
+        theColor = [[NSColor whiteColor] colorWithAlphaComponent:0.50];
     else
-        [[myClicker highlightColor] set];
+        theColor = [[myClicker determineHighlightColor] colorWithAlphaComponent: 0.5];
+	if(nil == theColor){
+		theColor = [[NSColor selectedControlColor] colorWithAlphaComponent:0.5];
+	}
+	[theColor set];
+	//NSLog(@"drawn from determined highlightcolor: %@", [theColor description]);
 
     [path fill];
     
-    [path setLineWidth: 2.0];
-    [[NSColor whiteColor] set];
+   // [path setLineWidth: 2.0];
+    //[[NSColor whiteColor] set];
     //[NSBezierPath strokeLineFromPoint:*from toPoint:*to];
 //    [path stroke];
-    [drawed unlockFocus];
+    //[drawed unlockFocus];
 }
 
-- (void) colorsChanged
-{
-	[drawed release];
-	drawed=nil;
-}
 
 - (void) dealloc
 {
     [drawed release];
     [myActions release];
+	[actionsGroups release];
 }
 - (ClickAction *) clickActionForModifierFlags:(unsigned int) modifiers
 {
@@ -254,14 +256,7 @@
     ClickAction *theAction;
     int flags=0;
     unsigned int evtFlags = modifiers;
-    if(evtFlags & NSShiftKeyMask)
-        flags|=SHIFT_MASK;
-    if(evtFlags & NSAlternateKeyMask)
-        flags|=OPTION_MASK;
-    if(evtFlags & NSCommandKeyMask)
-        flags|=COMMAND_MASK;
-    if(evtFlags & NSControlKeyMask)
-        flags|=CONTROL_MASK;
+	flags = [Clicker modsForEventFlags:evtFlags];
     for(i=0;i<[myActions count]; i++){
         theAction = (ClickAction *)[myActions objectAtIndex:i];
         if([theAction modifiers]==flags){
@@ -297,49 +292,56 @@
     return [thearr autorelease];
 }
 
-- (NSArray *) uniqueModifiersList
+- (NSArray *) actionsGroups
 {
 	int i;
-	if(uniqueModifiers!=nil){
-		return uniqueModifiers;
-	}
-	NSMutableArray *arr = [[NSMutableArray alloc] init];
-	NSCountedSet *cs = [[[NSCountedSet alloc] init] autorelease];
+	if(nil!=actionsGroups)
+		return actionsGroups;
+	NSMutableDictionary *dict = [[[NSMutableDictionary alloc] init] autorelease];
     
 	for(i=0;i<[myActions count]; i++){
         ClickAction *theAction = (ClickAction *)[myActions objectAtIndex:i];
-		NSNumber *num = [NSNumber numberWithInt:[theAction modifiers]];
-		
-		if([cs countForObject:num]==0){
-			if(DEBUG_ON)NSLog(@"found unique mod: %d",[theAction modifiers]);
-			[cs addObject:num];
-			[arr addObject:num];
-		}
-        
+		NSString *key = [NSString stringWithFormat:@"%d,%d",[theAction trigger],[theAction modifiers]];
+		if([dict objectForKey:key]==nil){
+			NSMutableArray *marr = [[[NSMutableArray alloc] initWithObjects:theAction,nil] autorelease];
+			[dict setObject:marr forKey:key];
+		}else{
+			NSMutableArray *marr = [dict objectForKey:key];
+			[marr addObject:theAction];
+		}        
     }
-	uniqueModifiers=arr;
-	return uniqueModifiers;
+	actionsGroups = [[dict allValues] retain];
+	return actionsGroups;
     
 }
 
 - (void)mouseDown:(NSEvent *)theEvent
 {
-    int i;
-    ClickAction *theAction;
-    int flags=0;
-    unsigned int evtFlags = [theEvent modifierFlags];
-    flags = [myClicker mouseDownTrigger:theEvent onView:self];
-    for(i=0;i<[myActions count]; i++){
-        theAction = (ClickAction *)[myActions objectAtIndex:i];
-        if([theAction modifiers]==flags){
-            //NSLog(@"do action %@",[theAction label]);
-			[myClicker actionActivating: theAction];
-            [theAction doAction:theEvent];
-            //return;
-        }
-    }
+	[myClicker mouseDownTrigger:theEvent
+						 onView:self
+						  flags:-1
+						trigger:0
+					   onCorner:corner];
 }
 
+- (void)rightMouseDown:(NSEvent *)theEvent
+{
+	if(DEBUG_ON)NSLog(@"Right mouse button in ClickView.m");
+	[myClicker mouseDownTrigger:theEvent
+						 onView:self
+						  flags:-1
+						trigger:1
+					   onCorner:corner];
+}
+- (void)otherMouseDown:(NSEvent *)theEvent
+{
+	if(DEBUG_ON)NSLog(@"Other mouse button in ClickView.m");
+}
+
+- (BOOL)acceptsFirstMouse
+{
+	return YES;
+}
 
 - (void) setTrackingRectTag:(NSTrackingRectTag) tag
 {

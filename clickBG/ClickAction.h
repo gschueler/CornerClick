@@ -19,8 +19,9 @@
 }
 
 - (void)doAction:(NSEvent*)theEvent;
--(id)initWithType: (int) type andModifiers: (int) modifiers andString: (NSString *)theString forCorner: (int) corner andClicker:(Clicker *) clicker;
+/*-(id)initWithType: (int) type andModifiers: (int) modifiers andString: (NSString *)theString forCorner: (int) corner andClicker:(Clicker *) clicker;
 -(id)initWithType: (int) type andModifiers: (int) modifiers andString: (NSString *)theString forCorner: (int) corner withLabel:(NSString *) label andClicker:(Clicker *) clicker;
+*/
 -(id)initWithType: (int) type andModifiers: (int) modifiers andTrigger: (int) trigger andString: (NSString *)theString
 		forCorner: (int)corner withLabel: (NSString *)label andClicker:(Clicker *) clicker;
 -(void)hideCurrentAction;

@@ -27,6 +27,9 @@
 			   andActions: (NSArray *) actions
 			 itemSelected: (int) theSelected
 		andHighlightColor:(NSColor *) theColor;
+- (int) selectedItem;
+- (int) selectedModifiers;
+- (int) selectedTrigger;
 - (void) setSpacingSize: (float) size;
 - (void) drawInRect:(NSRect) rect;
 - (NSSize) preferredSize;

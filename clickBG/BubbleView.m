@@ -106,6 +106,29 @@
     stringAttrs=dict;
 }
 
++ (NSDictionary *) normalTextAttrs
+{
+	return [NSDictionary dictionaryWithObjects:
+		[NSArray arrayWithObjects: 
+			[NSFont boldSystemFontOfSize: 32.0],
+			[NSColor whiteColor],nil]
+								 forKeys:
+		[NSArray arrayWithObjects: NSFontAttributeName,
+			NSForegroundColorAttributeName, nil]
+		];
+}
+
++ (NSDictionary *) smallTextAttrs
+{
+	return [NSDictionary dictionaryWithObjects:
+		[NSArray arrayWithObjects: 
+			[NSFont boldSystemFontOfSize: 12.0],
+			[NSColor whiteColor],nil]
+									   forKeys:
+		[NSArray arrayWithObjects: NSFontAttributeName,
+			NSForegroundColorAttributeName, nil]
+		];
+}
 
 
 + (NSBezierPath *)roundedRect: (NSRect)rect rounding: (float) theRounding
@@ -326,10 +349,28 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 	mwidth=0;
 	mheight=0;
 	textSize = NSMakeSize(0,0);
-	if(drawingObject!=nil)
+	if(drawingObject!=nil){
 		textSize = [drawingObject preferredSize];
+		if([drawingObject selectedItem] >=0){
+			int mods = [drawingObject selectedModifiers];
+			int trig = [drawingObject selectedTrigger];
+			NSLog(@"calc size for selected modifier: %d, and trigger: %d",mods,trig);
+			NSString *label = [CornerClickSupport labelForModifiers:mods
+														 andTrigger:trig
+														localBundle:[NSBundle bundleForClass:[self class]]];
+			NSSize tSize = [label sizeWithAttributes:[BubbleView smallTextAttrs]];
+			textSize.height+= tSize.height+4;
+			textSize.height+=(roundingSize - insetSize)+4;
+			if(textSize.width < tSize.width+4)
+				textSize.width = tSize.width+8;
+		}
+	}
+		
     textSize.height+=(pointCorner>=0 ? tailLen : 0 );
-    prefFrame= NSMakeRect([self frame].origin.x,[self frame].origin.y,(int)ceil(((roundingSize - insetSize)*2) + textSize.width),(int)ceil(((roundingSize - insetSize)*2)+textSize.height));
+	
+    prefFrame= NSMakeRect([self frame].origin.x,[self frame].origin.y,
+						  (int)ceil(((roundingSize - insetSize)*2) + textSize.width),
+						  (int)ceil(((roundingSize - insetSize)*2)+textSize.height));
 	
 }
 
@@ -398,10 +439,33 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
         //draw the bubble background for the content
         [self drawFadeFrame: NSMakeRect(0,0,rect.size.width,rect.size.height)];
 		
+		//draw the selected modifiers label
+		
+		if([drawingObject selectedItem] >=0){
+			NSString *label = [CornerClickSupport labelForModifiers:[drawingObject selectedModifiers]
+														 andTrigger:[drawingObject selectedTrigger]
+														localBundle:[NSBundle bundleForClass:[self class]]];
+			
+			NSSize tSize = [label sizeWithAttributes:[BubbleView smallTextAttrs]];
+			tempImg = [[NSImage alloc] initWithSize:tSize];
+			[tempImg lockFocus];
+			[label drawAtPoint:NSZeroPoint withAttributes:[BubbleView smallTextAttrs]];
+			[tempImg unlockFocus];
+			
+			NSRect toRect= NSMakeRect(rect.size.width/2 - tSize.width/2, intHeight - tSize.height - 4, tSize.width, tSize.height);
+			NSRect outRect = NSMakeRect(space, intHeight - tSize.height - 8, rect.size.width-(space*2), tSize.height + 8);
+			NSBezierPath *outl = [BubbleView roundedRect:outRect rounding:12];
+			[[[NSColor blackColor] colorWithAlphaComponent:0.5] set];
+			[outl fill];
+			[tempImg drawInRect:toRect fromRect:NSMakeRect(0,0,tSize.width,tSize.height) operation:NSCompositeSourceOver fraction: 1.0];
+			[tempImg release];
+				
+		}
+		
 		NSSize sz = NSMakeSize(0,0);
 		if(drawingObject!=nil)
 			sz = [drawingObject preferredSize];
-		NSRect d= NSMakeRect(space, space + (pointCorner==2||pointCorner==3 ? tailLen : 0), sz.width, sz.height);
+		NSRect d= NSMakeRect(space, space + (pointCorner==2||pointCorner==3 ? tailLen : 0), rect.size.width-(space *2), sz.height);
 		if(drawingObject!=nil)
 			[drawingObject drawInRect:d];
         [textArea unlockFocus];

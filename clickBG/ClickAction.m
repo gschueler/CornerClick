@@ -3,17 +3,18 @@
 
 @implementation ClickAction
 
--(id)initWithType: (int) type andModifiers: (int) modifiers andString: (NSString *)theString forCorner: (int)corner andClicker:(Clicker *) clicker
+/*-(id)initWithType: (int) type andModifiers: (int) modifiers andString: (NSString *)theString forCorner: (int)corner andClicker:(Clicker *) clicker
 {
     return [self initWithType:type andModifiers:  modifiers andString:theString  forCorner: corner withLabel:nil andClicker:clicker];
     
 }
 -(id)initWithType: (int) type andModifiers: (int) modifiers andString: (NSString *)theString forCorner: (int)corner withLabel: (NSString *)label andClicker:(Clicker *) clicker
 {
+	NSLog(@"!!!!!!!!ACCCCKKKK");
 	return [self initWithType:type andModifiers:modifiers andTrigger:0
 					andString:theString forCorner:corner withLabel:label
 				   andClicker:clicker];
-}
+}*/
 
 -(id)initWithType: (int) type andModifiers: (int) modifiers andTrigger: (int) trigger andString: (NSString *)theString
 		forCorner: (int)corner withLabel: (NSString *)label andClicker:(Clicker *) clicker
@@ -67,11 +68,11 @@
             break;
         case ACT_HIDE:
             myLabel=[[NSString stringWithString: LOCALIZE([NSBundle mainBundle],@"Hide Current Application") ] retain];
-			myIcon = [[NSImage imageNamed:@"HideAppIcon"] retain];
+			myIcon = nil;//[[NSImage imageNamed:@"HideAppIcon"] retain];
             break;
         case ACT_HIDO:
             myLabel=[[NSString stringWithString: LOCALIZE([NSBundle mainBundle],@"Hide Other Applications") ] retain];
-			myIcon = [[NSImage imageNamed:@"HideOthersIcon"] retain];
+			myIcon = nil;//[[NSImage imageNamed:@"HideOthersIcon"] retain];
             break;
         case ACT_URL:
             if(label !=nil){
@@ -391,7 +392,13 @@
 
 - (id) copyWithZone: (NSZone *) zone
 {
-    ClickAction *a = [[ClickAction allocWithZone:zone] initWithType: theType andModifiers:  theModifiers andString:[myString copy] forCorner: theCorner withLabel: [trueLabel copy] andClicker:myClicker];
+    ClickAction *a = [[ClickAction allocWithZone:zone] initWithType: theType 
+													   andModifiers:  theModifiers
+														 andTrigger: theTrigger
+														  andString:[myString copy] 
+														  forCorner: theCorner
+														  withLabel: [trueLabel copy]
+														 andClicker:myClicker];
     return a;
 }
 

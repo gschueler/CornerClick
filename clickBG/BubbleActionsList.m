@@ -24,7 +24,11 @@
 		selected = theSelected;
 		attributes = [[NSDictionary alloc] initWithDictionary:attrs];
 		bubbleActions = nil;
-		highlightColor = [theColor copy];
+		if(theColor != nil){
+			highlightColor = [theColor copy];			
+		}else{
+			highlightColor = [[NSColor selectedControlColor] copy];
+		}
 		detSize = NSMakeSize(0,0);
 		if(actions != nil){
 			bubbleActions = [[NSMutableArray alloc] initWithCapacity:[actions count]];
@@ -88,7 +92,39 @@
 }
 
 
+- (int) selectedModifiers
+{
+	if(selected < 0)
+		return -1;
+	BubbleAction *ba = (BubbleAction *)[bubbleActions objectAtIndex: selected];
+	NSArray *actions = [ba actions];
+	if(actions !=nil && [actions count]>0){
+		ClickAction *act = (ClickAction *)[actions objectAtIndex:0];
+		
+		return [act modifiers];
+	}else{
+		return -1;
+	}
+}
+- (int) selectedTrigger
+{
+	if(selected < 0)
+		return -1;
+	BubbleAction *ba = (BubbleAction *)[bubbleActions objectAtIndex: selected];
+	NSArray *actions = [ba actions];
+	if(actions !=nil && [actions count]>0){
+		ClickAction *act = (ClickAction *)[actions objectAtIndex:0];
+		
+		return [act trigger];
+	}else{
+		return -1;
+	}
+}
 
+- (int) selectedItem
+{
+	return selected;
+}
 
 - (NSPoint) originForBubbleAction:(int) ndx
 {
@@ -104,7 +140,7 @@
 - (void) drawInRect:(NSRect) rect
 {
 	int i,ox,oy;
-	float ht=spacingSize/2;;
+	float ht=spacingSize/2;
 	float cur = rect.size.height;
 	
 	for(i=0; i< [bubbleActions count];i++){
@@ -118,7 +154,7 @@
 		}
 		if(i==selected){
 			
-			[self drawSelectedInFrame: NSMakeRect(rect.origin.x-ht,rect.origin.y+cur-ht,detSize.width+spacingSize,sz.height+spacingSize)];
+			[self drawSelectedInFrame: NSMakeRect(rect.origin.x-ht,rect.origin.y+cur-ht,rect.size.width+spacingSize,sz.height+spacingSize)];
 		}
 		NSRect fr = NSMakeRect(rect.origin.x + ox,rect.origin.y+cur + oy,sz.width,sz.height);
 		[ba drawInRect:fr];
@@ -129,8 +165,8 @@
 - (void) drawSelectedInFrame:(NSRect) rect
 {
 	NSBezierPath *nbp = [BubbleView roundedRect:rect rounding:16];
-	[[NSColor clearColor] set];
-	[nbp fill];
+	//[[NSColor clearColor] set];
+	//[nbp fill];
 	[[highlightColor colorWithAlphaComponent:0.50] set];
 	[nbp fill];
 	[[NSColor whiteColor] set];

@@ -59,5 +59,7 @@
 - (void) calcPreferredFrame;
 - (BubbleActionsList *) bubbleActionsList: (NSArray *)actions selected:(int) sel;
 - (BubbleAction *) bubbleAction: (NSArray *)actions;
-+ (NSBezierPath *)roundedRect: (NSRect)rect rounding: (float) theRounding;
++ (NSBezierPath *) roundedRect: (NSRect)rect rounding: (float) theRounding;
++ (NSDictionary *) normalTextAttrs;
++ (NSDictionary *) smallTextAttrs;
 @end

@@ -39,21 +39,12 @@
 }
 
 
-- (void)rightMouseDown:(NSEvent *)theEvent
-{
-	if(DEBUG_ON)NSLog(@"Right mouse button in ClickWindow.m");
-}
-
 - (void)scrollWheel: (NSEvent *)theEvent
 {
-	if(DEBUG_ON)NSLog(@"scroll wheel motion in ClickWindow.m: %@", theEvent);
+	//if(DEBUG_ON)NSLog(@"scroll wheel motion in ClickWindow.m: %@", theEvent);
 	[[NSApp delegate] scrollWheel:theEvent atCorner:corner];
 }
 
-- (BOOL)acceptsFirstMouse:(NSEvent *)theEvent
-{
-	return YES;
-}
 - (void)keyDown:(NSEvent *)theEvent
 {
 	if(DEBUG_ON)NSLog(@"key down event in ClickWindow.m");

@@ -44,15 +44,24 @@
 - (NSString *) labelNameForActionType: (int) type;
 - (void) hideHoverFadeOut;
 - (void) hideHoverDoFadeout;
+- (void)fadeOutCorner:(int)corn onScreen:(NSNumber *)num;
 - (void)recalcAndShowHoverWindow: (int) corner onScreen:(NSNumber *)screenNum modifiers: (unsigned int) modifiers;
 - (void)recalcAndShowHoverWindow: (int) corner onScreen:(NSNumber *)screenNum modifiers: (unsigned int) modifiers
                          doDelay: (BOOL) delay actionList: (BubbleActionsList *)actionsList;
 - (void) mouseExited: (NSEvent *) theEvent;
-- (void) mouseDownTrigger: (NSEvent *) theEvent;
+- (void) mouseDownTrigger: (NSEvent *) theEvent
+				   onView: (ClickView *)view
+					flags:(int) flags 
+				  trigger:(int) trigger
+				 onCorner:(int) corner;
 - (NSColor *) highlightColor;
+- (NSColor *) determineHighlightColor;
 - (ProcessSerialNumber) lastActivePSN;
 - (void) getNextPSN;
+- (void)scroll: (int)direction  atCorner: (int)theCorner modifiers:(int) modifiers;
 + (void) listProcs;
+- (void) doAction:(int) corner onScreen:(NSNumber *)num withFlags:(int)flags forTrigger:(int) trigger;
+
 +(unsigned int) eventFlagsForMods:(int)mods;
 +(int) modsForEventFlags:(unsigned int) evtFlags;
 + (int) add:(int)a to:(int)b mod:(int)m;

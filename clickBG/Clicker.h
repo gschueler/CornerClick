@@ -2,7 +2,6 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Carbon/Carbon.h>
-#import "CCStickyWindow.h"
 
 @interface Clicker : NSObject
 {

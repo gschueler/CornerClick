@@ -92,6 +92,7 @@
         dirty=YES;
         tailLen=30;
         drawHilite=NO;
+        [self setNeedsDisplay:YES];
     }else{
         NSLog(@"couldn't initWithFrame");
     }
@@ -112,6 +113,7 @@
         ] retain];
     [stringAttrs release];
     stringAttrs=dict;
+    [self recalcSize];
 }
 
 - (void)drawRoundedRect: (NSRect)rect rounding: (float) theRounding alpha: (float) alpha color: (NSColor *) color
@@ -171,7 +173,6 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-rounding,high-rounding)
     tempIn = [[NSImage alloc] initWithSize: NSMakeSize(rect.size.width,roundingSize+2)];
     [tempIn lockFocus];
     float ox=0;
-    float oy=0;
     float wide=rect.size.width;
     float high=roundingSize+2;
     
@@ -503,7 +504,6 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 	BOOL aa;
     NSImage *tempImg;
     NSSize tSize;
-    NSRect rect = [self frame];
 	
 	
 	float xoff=0;
@@ -557,9 +557,6 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 
 - (void)drawRect:(NSRect)therect
 {
-    BOOL aa;
-    NSImage *tempImg;
-    NSSize tSize;
     NSRect rect = [self frame];
 	NSPoint inside;
 	float intHeight = rect.size.height-(int)ceil((roundingSize-insetSize)) - (pointCorner==2||pointCorner==3 ? 0:tailLen) ;

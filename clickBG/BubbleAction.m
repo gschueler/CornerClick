@@ -8,6 +8,11 @@
 
 #import "BubbleAction.h"
 
+static NSImage *triImage;
+@interface BubbleAction (InternalMethods)
+- (void)drawAction:(NSString*)label withIcon:(NSImage*)icon atPoint:(NSPoint)inside;
+- (void) calcPreferredSize;
+@end
 
 @implementation BubbleAction
 
@@ -102,7 +107,7 @@
 					y=32;
 			}
 			if(i>0){
-				y+=(int)ceil(spacingSize);
+				y+=spacingSize;
 				x+=16;
 			}
 			if(x>mwidth){
@@ -112,8 +117,8 @@
 				
 		}
 	}
-	textSize.width=mwidth;
-	textSize.height=mheight;
+	textSize.width=ceil(mwidth);
+	textSize.height=ceil(mheight);
 	preferredSize= textSize;
 }
 
@@ -139,13 +144,41 @@
 		if(i>0){
 			curHeight-=spacingSize;
 			ox=16;
+            int wide=10;
+            int high=10;
+            //draw a triangle or something
+            [[BubbleAction triangleImage] compositeToPoint:NSMakePoint(rect.origin.x+ox/2-wide/2, rect.origin.y+curHeight+tF/2-high/2) 
+                                                 operation: NSCompositeSourceOver];
 		}
-		NSPoint inside = NSMakePoint(rect.origin.x+ox, curHeight + rect.origin.y); 
+		NSPoint inside = NSMakePoint(floor(rect.origin.x+ox), floor(curHeight + rect.origin.y)); 
 		[self drawAction:[act label] withIcon:[act icon] atPoint:inside];
 		
 		
 	}
 	
+}
+
++ (void) initialize
+{
+    int wide=10;
+    int high=10;
+    
+    if(triImage == nil){
+        triImage = [[NSImage alloc] initWithSize:NSMakeSize(wide,high)];
+        [triImage lockFocus];
+        NSRect rect = {0,0,wide,high};
+        NSBezierPath *nbp = [[[NSBezierPath alloc] init] autorelease];
+        [nbp moveToPoint:NSMakePoint(rect.origin.x, rect.origin.y)];
+        [nbp lineToPoint:NSMakePoint(rect.origin.x+wide, rect.origin.y+high/2)];
+        [nbp lineToPoint:NSMakePoint(rect.origin.x, rect.origin.y+high)];
+        [nbp closePath];
+        [BubbleView addShadow:nbp depth:1.5];
+        [triImage unlockFocus];
+    }
+}
++ (NSImage *) triangleImage
+{
+    return [[triImage retain] autorelease];
 }
 
 
@@ -205,5 +238,13 @@
 	
 	
 }
+
+- (NSComparisonResult)triggerCompare:(BubbleAction *)anAction
+{
+    ClickAction *selfAct = (ClickAction *)[[self actions] objectAtIndex:0];
+    ClickAction *anAct = (ClickAction *)[[anAction actions] objectAtIndex:0];
+    return [selfAct triggerCompare:anAct];
+}
+
 
 @end

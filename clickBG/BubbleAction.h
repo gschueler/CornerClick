@@ -17,6 +17,8 @@
 	NSSize preferredSize;
 }
 
++ (void) initialize;
++ (NSImage *) triangleImage;
 - (id) initWithStringAttributes: (NSDictionary *) attrs
             smallTextAttributes: (NSDictionary *) sattrs
 					 andSpacing:(float) space;
@@ -30,5 +32,6 @@
 - (void) setActions:(NSArray *)theActions;
 - (NSArray *)actions;
 - (NSString *)modifiersLabel;
+- (NSComparisonResult)triggerCompare:(BubbleAction *)anAction;
 
 @end

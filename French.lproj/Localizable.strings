@@ -1,0 +1,22 @@
+"Main Screen" = "Écran principal";
+"Screen #%d" = "Écran #%d";
+"New CornerClick Version" = "Nouvelle version de CornerClick";
+"An old version of CornerClick was active (version %d.%d.%d). It will be deactivated and version %d.%d.%d will be activated."="Une ancienne version de CornerClick était active (version %d.%d.%d). Elle sera désactivée et la version %d.%d.%d sera activée.";
+
+"Deactivate Failed"="La désactivation a échouée";
+"The CornerClick helper application could not be deactivated."="L'application CornerClick n'a pu être désactivée.";
+"OK"="OK";
+
+"Trying to activate"="Activation en cours";
+"Trying to deactivate"="Désactivation en cours";
+
+"Activate Failed"="L'activation a échouée";
+"The CornerClick helper application could not be launched."="L'application CornerClick n'a pu être lancée.";
+
+"no file chosen"="aucun fichier choisi";
+"no script chosen"="aucun script choisi";
+
+"Hide Current Application"="Masquer l'application courante";
+"Hide Other Applications"="Masquer les autres applications";
+"Open URL %@"="Ouvrir l'URL %@";
+"Click"="Clic";

@@ -22,7 +22,7 @@
 + (CornerClickSettings *) settingsFromUserPreferences;
 + (CornerClickSettings *) settingsFromUserPreferencesWithClicker: (Clicker *) clicker;
 + (NSDictionary *) loadOldVersionPreferences;
-+ (NSString *) labelForModifiers:(int)mods andTrigger: (int) trigger;
++ (NSString *) labelForModifiers:(int)modifiers andTrigger:(int) trigger localBundle:(NSBundle *) bundle;
 + (NSNumber *) numberForScreen:(NSScreen *)screen;
 @end
 

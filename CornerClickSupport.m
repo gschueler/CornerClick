@@ -230,16 +230,21 @@
     NSEnumerator *en;
     NSArray *corners;
     NSMutableArray *actions;
+    NSDictionary *temp=prefs;
     ClickAction *act;
     id key;
 
     if(self = [super init]){
 
-        if(prefs!=nil) {
-            num = [[prefs objectForKey:@"appVersion"] intValue];
-            if(num!=CC_APP_VERSION){
-                return nil;
+        if(temp!=nil) {
+            num = [[temp objectForKey:@"appVersion"] intValue];
+            if(num < CC_MIN_VERSION || num > CC_MAX_VERSION ){
+                NSLog(@"Old version of CornerClick preferences: %d",num);
+                NSLog(@"Dumping old preferences: %@",[prefs description]);
+                temp= nil;
             }
+        }
+        if(temp!=nil){
 			myClicker=clicker;
             appEnabled = [[prefs objectForKey:@"appEnabled"] boolValue];
             toolTipEnabled = [[prefs objectForKey:@"tooltip"] boolValue];
@@ -301,7 +306,7 @@
 
 - (NSColor *) defaultHighlightColor
 {
-	return [[NSColor redColor] colorWithAlphaComponent:0.50] ;
+	return [NSColor redColor];
 }
 - (NSColor *) defaultBubbleColorA
 {
@@ -319,9 +324,6 @@
 
 - (NSArray *) actionsForScreen: (NSNumber *)screenNum andCorner:(int) corner andModifiers: (int) tmodifiers
 {
-    int i,modifiers;
-    ClickAction *click;
-    NSMutableArray *ma;
     NSArray *actionList;
     NSArray *cornerList = [self screenArray:screenNum];
     if(cornerList==nil)

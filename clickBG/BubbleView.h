@@ -18,6 +18,7 @@
     NSImage *textArea;
     NSDictionary *stringAttrs;
     NSDictionary *shadowAttrs;
+    NSDictionary *smallTextAttributes;
 	BubbleActionsList *drawingObject;
 	
 	NSArray *images;
@@ -62,4 +63,20 @@
 + (NSBezierPath *) roundedRect: (NSRect)rect rounding: (float) theRounding;
 + (NSDictionary *) normalTextAttrs;
 + (NSDictionary *) smallTextAttrs;
+
++ (void) drawRoundedBezel: (NSRect) rect 
+                 rounding:(float) theRounding
+                    depth:(float) depth;
++ (void) drawRoundedBezel: (NSRect) rect 
+                 rounding:(float) theRounding
+                    depth:(float) depth
+                  bgColor:(NSColor *)bgcol 
+              shadowColor:(NSColor *)shadow
+               shineColor:(NSColor *)shine;
++ (void) addShadow: (NSBezierPath *)path 
+          rounding:(float) theRounding
+             depth:(float) depth
+           bgColor:(NSColor *)bgcol 
+       shadowColor:(NSColor *)shadow
+        shineColor:(NSColor *)shine;
 @end

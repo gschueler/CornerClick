@@ -55,16 +55,19 @@
                 [NSArray arrayWithObjects: NSFontAttributeName,
                     NSForegroundColorAttributeName, nil]
                 ] retain];
+            smallTextAttributes = [[BubbleView smallTextAttrs] retain];
         textArea = [[NSImage alloc] initWithSize: frame.size];
         if(fromCol!=nil){
             fadeFromColor = [fromCol retain];
         }else{
-            fadeFromColor = [[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha: 0.6] retain];
+            fadeFromColor = [[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha: 0.65] retain];
+            //fadeFromColor = [[NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha: 0.6] retain];
         }
         if(toCol!=nil){
             fadeToColor = [toCol retain];
         }else{
-            fadeToColor = [[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha: 0.2] retain];
+            fadeToColor = [[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha: 0.25] retain];
+            //fadeToColor = [[NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha: 0.2] retain];
         }
         roundingSize= (cornerSize <= 0 ? 22 : cornerSize);
         insetSize = 10;
@@ -86,6 +89,8 @@
 - (void) setDrawingObject: (BubbleActionsList *) o
 {
 	[o retain];
+    DEBUG(@"drawingObject retainCount before release: %d",[drawingObject retainCount]);
+    DEBUG(@"new drawingObject retainCount after retain: %d",[o retainCount]);
 	[drawingObject release];
 	drawingObject = o;
 	dirty=YES;
@@ -122,7 +127,7 @@
 {
 	return [NSDictionary dictionaryWithObjects:
 		[NSArray arrayWithObjects: 
-			[NSFont boldSystemFontOfSize: 12.0],
+			[NSFont systemFontOfSize: 12.0],
 			[NSColor whiteColor],nil]
 									   forKeys:
 		[NSArray arrayWithObjects: NSFontAttributeName,
@@ -130,6 +135,200 @@
 		];
 }
 
++ (void) drawRoundedBezel: (NSRect) rect 
+                 rounding:(float) theRounding
+                    depth:(float) depth
+{
+    
+    [BubbleView drawRoundedBezel: rect
+                        rounding:theRounding
+                           depth:depth
+                         bgColor:[[NSColor blackColor] colorWithAlphaComponent:0.2]
+                     shadowColor:[NSColor blackColor]
+                      shineColor:[NSColor whiteColor]];
+}
++ (void) drawRoundedBezel2: (NSRect) rect 
+                  rounding:(float) theRounding
+                     depth:(float) depth
+                   bgColor:(NSColor *)bgcol 
+               shadowColor:(NSColor *)shadow
+                shineColor:(NSColor *)shine
+{
+    [BubbleView addShadow:[BubbleView roundedRect:rect rounding:theRounding]
+                 rounding:theRounding
+                    depth:depth
+                  bgColor:bgcol
+              shadowColor:shadow
+               shineColor:shine];
+}
+
++ (void) drawRoundedBezel: (NSRect) rect 
+                 rounding:(float) theRounding
+                    depth:(float) depth
+                  bgColor:(NSColor *)bgcol 
+              shadowColor:(NSColor *)shadow
+               shineColor:(NSColor *)shine
+{
+    NSRect t = NSMakeRect(0,0,rect.size.width, rect.size.height);
+    NSBezierPath *p = [BubbleView roundedRect:t rounding:theRounding];
+    NSRect t1 = NSOffsetRect(t,depth,-depth);
+    NSBezierPath *p1 = [BubbleView roundedRect:t1 rounding:theRounding];
+    
+    NSRect t2 = NSOffsetRect(t,-depth,depth);
+    NSBezierPath *p2 = [BubbleView roundedRect:t2 rounding:theRounding];
+    
+    //[[bgcol colorWithAlphaComponent:0.2] set];
+    [bgcol set];
+    [[BubbleView roundedRect:rect rounding:theRounding] fill];
+    
+    NSImage *tempImg = [[[NSImage alloc] initWithSize:rect.size] autorelease];
+    [tempImg lockFocus];
+        [[NSColor clearColor] set];NSRectFill(t);
+    [[NSColor blackColor] set];
+    [p fill];
+    
+    NSImage *xi = [[[NSImage alloc] initWithSize:rect.size] autorelease];
+    [xi lockFocus];
+        [[NSColor clearColor] set];NSRectFill(t);
+    [[NSColor blackColor] set];
+    [p1 fill];
+    [xi unlockFocus];
+    
+    [xi compositeToPoint:NSZeroPoint operation:NSCompositeDestinationOut];//subtract source from dest
+    
+    NSImage *temp2 = [[[NSImage alloc] initWithSize:rect.size] autorelease];
+    [temp2 lockFocus];
+    [[NSColor clearColor] set];
+    NSRectFill(t);
+    [[shadow colorWithAlphaComponent:0.3] set];
+    NSRectFill(t);
+    [temp2 unlockFocus];
+    
+    [temp2 compositeToPoint:NSZeroPoint operation:NSCompositeSourceIn];//fill dest with source
+    
+    [tempImg unlockFocus];
+    [tempImg compositeToPoint:rect.origin operation:NSCompositeSourceOver];
+    
+    
+    [tempImg lockFocus];
+        [[NSColor clearColor] set];NSRectFill(t);
+    [[NSColor blackColor] set];
+    [p fill];
+    
+    [xi lockFocus];
+        [[NSColor clearColor] set];NSRectFill(t);
+    [[NSColor blackColor] set];
+    [p2 fill];
+    [xi unlockFocus];
+    
+    [xi compositeToPoint:NSZeroPoint operation:NSCompositeDestinationOut];//subtract source from dest
+        
+        
+    [temp2 lockFocus];
+        [[NSColor clearColor] set];NSRectFill(t);
+    [[shine colorWithAlphaComponent:0.3] set];
+    NSRectFill(t);
+    [temp2 unlockFocus];
+    
+    [temp2 compositeToPoint:NSZeroPoint operation:NSCompositeSourceIn];
+    [tempImg unlockFocus];
+    [tempImg compositeToPoint:rect.origin operation:NSCompositeSourceOver];
+    
+}
+
++ (void) addShadow: (NSBezierPath *)path 
+                 rounding:(float) theRounding
+                    depth:(float) depth
+                  bgColor:(NSColor *)bgcol 
+              shadowColor:(NSColor *)shadow
+               shineColor:(NSColor *)shine
+{
+    NSRect rect = [ path bounds ];
+    //NSLog(@"shaddow rect bounds: %@",NSStringFromRect(rect));
+    NSRect t = NSMakeRect(0,0,rect.size.width, rect.size.height);
+
+    NSAffineTransform *transform = [NSAffineTransform transform];
+    [transform translateXBy:-1*rect.origin.x yBy:-1*rect.origin.y];
+    
+    
+    NSBezierPath *p = [ [ path copyWithZone:nil ] autorelease];
+    [p transformUsingAffineTransform:transform];
+    
+    transform = [NSAffineTransform transform];
+    [transform translateXBy:depth yBy:-depth];
+    
+
+    NSBezierPath *p1 = [ [ path copyWithZone:nil ] autorelease];
+    [p1 transformUsingAffineTransform:transform];
+    NSRect t1 = NSOffsetRect(t,depth,-depth);
+    //NSLog(@"p1 rect bounds: %@, t1 rect: %@",NSStringFromRect([p1 bounds]), NSStringFromRect(t1));
+    
+    transform = [NSAffineTransform transform];
+    [transform translateXBy:-depth yBy:depth];
+    NSBezierPath *p2 = [ [ path copyWithZone:nil ] autorelease ];
+    [ p2 transformUsingAffineTransform:transform];
+    NSRect t2 = NSOffsetRect(t,-depth,depth);
+    //NSLog(@"p2 rect bounds: %@, t2 rect: %@",NSStringFromRect([p2 bounds]), NSStringFromRect(t2));
+    
+    //NSLog(@"Colors chosen: %@, %@, %@", [bgcol description], [shadow description], [shine description]);
+        
+    //[[bgcol colorWithAlphaComponent:0.2] set];
+    [bgcol set];
+    [path fill]; //draw background
+    
+    NSImage *tempImg = [[[NSImage alloc] initWithSize:rect.size] autorelease];
+    [tempImg lockFocus];
+    [[NSColor clearColor] set];NSRectFill(t);
+    [[NSColor blackColor] set];
+    [p fill];
+    
+    NSImage *xi = [[[NSImage alloc] initWithSize:rect.size] autorelease];
+    [xi lockFocus];
+    [[NSColor clearColor] set];NSRectFill(t);
+    [[NSColor blackColor] set];
+    [p1 fill];
+    [xi unlockFocus];
+    [[xi TIFFRepresentation] writeToFile:@"~/Desktop/test2.tiff" atomically:YES];
+    
+    [xi compositeToPoint:NSZeroPoint operation:NSCompositeDestinationOut];//subtract source from dest
+        
+        NSImage *temp2 = [[[NSImage alloc] initWithSize:rect.size] autorelease]; //shadow color
+        [temp2 lockFocus];
+        [[NSColor clearColor] set]; NSRectFill(t);
+        [[shadow colorWithAlphaComponent:0.3] set];
+        NSRectFill(t);
+        [temp2 unlockFocus];
+        
+        [temp2 compositeToPoint:NSZeroPoint operation:NSCompositeSourceIn];//fill dest with source
+            
+            [tempImg unlockFocus];
+            [tempImg compositeToPoint:rect.origin operation:NSCompositeSourceOver];//draw shadow
+            
+            
+            [tempImg lockFocus];
+            [[NSColor clearColor] set];NSRectFill(t);
+            [[NSColor blackColor] set];
+            [p fill];
+            
+            [xi lockFocus];
+            [[NSColor clearColor] set];NSRectFill(t);
+            [[NSColor blackColor] set];
+            [p2 fill];
+            [xi unlockFocus];
+            
+            [xi compositeToPoint:NSZeroPoint operation:NSCompositeDestinationOut];//subtract source from dest
+                
+                
+                [temp2 lockFocus];
+                [[NSColor clearColor] set];NSRectFill(t);
+                [[shine colorWithAlphaComponent:0.3] set];
+                NSRectFill(t);
+                [temp2 unlockFocus];
+                
+                [temp2 compositeToPoint:NSZeroPoint operation:NSCompositeSourceIn];
+                [tempImg unlockFocus];
+                [tempImg compositeToPoint:rect.origin operation:NSCompositeSourceOver];
+}
 
 + (NSBezierPath *)roundedRect: (NSRect)rect rounding: (float) theRounding
 {
@@ -325,6 +524,14 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
     [tempImg unlockFocus];
     [tempImg compositeToPoint: NSZeroPoint operation:NSCompositeSourceIn];
     [tempImg release];
+    
+    /*[BubbleView drawRoundedBezel:NSMakeRect(ox,oy,wide-ox,high-oy)
+                        rounding:roundingSize 
+                           depth:1.5
+                         bgColor:[NSColor clearColor]
+                     shadowColor:[NSColor whiteColor]
+                      shineColor:[NSColor blackColor]];
+*/
 }
 
 
@@ -447,18 +654,24 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 														localBundle:[NSBundle bundleForClass:[self class]]];
 			
 			NSSize tSize = [label sizeWithAttributes:[BubbleView smallTextAttrs]];
-			tempImg = [[NSImage alloc] initWithSize:tSize];
-			[tempImg lockFocus];
-			[label drawAtPoint:NSZeroPoint withAttributes:[BubbleView smallTextAttrs]];
-			[tempImg unlockFocus];
 			
 			NSRect toRect= NSMakeRect(rect.size.width/2 - tSize.width/2, intHeight - tSize.height - 4, tSize.width, tSize.height);
 			NSRect outRect = NSMakeRect(space, intHeight - tSize.height - 8, rect.size.width-(space*2), tSize.height + 8);
-			NSBezierPath *outl = [BubbleView roundedRect:outRect rounding:12];
-			[[[NSColor blackColor] colorWithAlphaComponent:0.5] set];
-			[outl fill];
-			[tempImg drawInRect:toRect fromRect:NSMakeRect(0,0,tSize.width,tSize.height) operation:NSCompositeSourceOver fraction: 1.0];
-			[tempImg release];
+            [BubbleView drawRoundedBezel:outRect
+                                rounding:12
+                                   depth:1.5];
+			//NSBezierPath *outl = [BubbleView roundedRect:outRect rounding:12];
+	//		tempImg = [[NSImage alloc] initWithSize:tSize];
+	//		[tempImg lockFocus];
+	//		[label drawAtPoint:NSZeroPoint withAttributes:[BubbleView smallTextAttrs]];
+			[label drawAtPoint:toRect.origin withAttributes:[BubbleView smallTextAttrs]];
+			//[tempImg unlockFocus];
+			//[[[NSColor blackColor] colorWithAlphaComponent:0.5] set];
+			//[outl fill];
+//            [tempImg compositeToPoint:toRect.origin operation:NSCompositeSourceOver
+  //                      fraction:1.0];
+			//[tempImg drawInRect:toRect fromRect:NSMakeRect(0,0,tSize.width,tSize.height) operation:NSCompositeSourceOver fraction: 1.0];
+	//		[tempImg release];
 				
 		}
 		
@@ -552,6 +765,7 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
     [textArea release];
     [stringAttrs release];
     [shadowAttrs release];
+    [smallTextAttributes release];
 }
 
 
@@ -560,6 +774,7 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 						andHighlightColor:(NSColor *) theColor
 {
 	return [[[BubbleActionsList alloc] initWithAttributes: stringAttrs
+                                      smallTextAttributes: smallTextAttributes
 											   andSpacing: (roundingSize-insetSize)
 											   andActions: actions
 											 itemSelected: sel
@@ -568,6 +783,7 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 - (BubbleAction *) bubbleAction: (NSArray *)actions
 {
 	return [[[BubbleAction alloc] initWithStringAttributes:stringAttrs
+                                       smallTextAttributes: smallTextAttributes
 												andSpacing:(roundingSize-insetSize) 
 												andActions:actions] autorelease];
 }

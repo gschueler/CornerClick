@@ -11,30 +11,22 @@
 static NSImage *triImage;
 @interface BubbleAction (InternalMethods)
 - (void)drawAction:(NSString*)label withIcon:(NSImage*)icon atPoint:(NSPoint)inside;
-- (void) calcPreferredSize;
 @end
 
 @implementation BubbleAction
 
-- (id) initWithStringAttributes: (NSDictionary *) attrs
-            smallTextAttributes: (NSDictionary *) sattrs
-					 andSpacing:(float) space
+- (id) initWithSpacing:(float) space
 
 {
-    return [self initWithStringAttributes:attrs 
-                      smallTextAttributes:  sattrs
-                               andSpacing:space
+    return [self initWithSpacing:space
 								   andActions:nil];
 }
-- (id) initWithStringAttributes: (NSDictionary *) attrs
-            smallTextAttributes: (NSDictionary *) sattrs
-					 andSpacing:(float) space
+- (id) initWithSpacing:(float) space
 					 andActions:(NSArray *) theActions
 {
     if(self=[super init]){
 		spacingSize=space;
-		stringAttrs = [[NSDictionary alloc] initWithDictionary:attrs];
-        smallTextAttrs = [[NSDictionary alloc] initWithDictionary:sattrs];
+		
 		if(theActions != nil){
 			actions = [[NSArray alloc] initWithArray:theActions];
 			[self calcPreferredSize];
@@ -45,11 +37,8 @@ static NSImage *triImage;
 
 - (void) dealloc
 {
-	[stringAttrs release];
-    [smallTextAttrs release];
 	[actions release];
 }
-
 
 
 - (NSString *)modifiersLabel
@@ -89,6 +78,7 @@ static NSImage *triImage;
 	NSSize textSize=NSMakeSize(0,0);
 	mwidth=0;
 	mheight=0;
+	float iconSize = [[CornerClickSettings sharedSettings] iconSize];
 	if(actions != nil){
 			
 		for(i=0;i<[actions count];i++){
@@ -96,15 +86,15 @@ static NSImage *triImage;
 			y=0;
 			ClickAction* act = (ClickAction*)[actions objectAtIndex:i];
 			if([act label]!=nil){
-				temp = [[act label] sizeWithAttributes:stringAttrs];
-				x = temp.width/2;
-				y = temp.height/2;
+				temp = [[act label] sizeWithAttributes:[BubbleView normalTextAttrs]];
+				x = temp.width; // /2;
+                y = temp.height; ///2;
 			}
 			if([act icon]!=nil){
 				
-				x+=36;
-				if(y<32)
-					y=32;
+				x+=iconSize + 4;
+				if(y<iconSize)
+					y=iconSize;
 			}
 			if(i>0){
 				y+=spacingSize;
@@ -127,18 +117,18 @@ static NSImage *triImage;
 	float tF;
 	int i,ox;
 	float curHeight=rect.size.height;
-	
+	float iconSize = [[CornerClickSettings sharedSettings] iconSize];
 	for(i=0;i<[actions count];i++){
 		ClickAction *act = (ClickAction *)[actions objectAtIndex:i];
 		tF=0;
 		ox=0;
 		if([act label]!=nil){
-			NSSize temp = [[act label] sizeWithAttributes:stringAttrs];
-			tF = temp.height/2;
+			NSSize temp = [[act label] sizeWithAttributes:[BubbleView normalTextAttrs]];
+			tF = temp.height; ///2;
 			
 		}
-		if([act icon] !=nil && tF<32){
-			tF=32;
+		if([act icon] !=nil && tF<iconSize){
+			tF=iconSize;
 		}
 		curHeight = curHeight-tF;
 		if(i>0){
@@ -166,7 +156,7 @@ static NSImage *triImage;
     if(triImage == nil){
         triImage = [[NSImage alloc] initWithSize:NSMakeSize(wide,high)];
         [triImage lockFocus];
-        NSRect rect = {0,0,wide,high};
+        NSRect rect = { {0, 0}, { wide, high } } ;
         NSBezierPath *nbp = [[[NSBezierPath alloc] init] autorelease];
         [nbp moveToPoint:NSMakePoint(rect.origin.x, rect.origin.y)];
         [nbp lineToPoint:NSMakePoint(rect.origin.x+wide, rect.origin.y+high/2)];
@@ -184,56 +174,40 @@ static NSImage *triImage;
 
 - (void)drawAction:(NSString*)label withIcon:(NSImage*)icon atPoint:(NSPoint)inside
 {
-	BOOL aa;
-    NSImage *tempImg;
     NSSize tSize;
-    //NSRect rect = [self frame];
-	
+	float iconSize = [[CornerClickSettings sharedSettings] iconSize];
 	
 	float xoff=0;
 	float yoff=0;
+    float iyoff=0;
 	
 	if(label == nil){
 		tSize=NSMakeSize(0,0);
 	}else{
-		tSize=[label sizeWithAttributes: stringAttrs];
+		tSize=[label sizeWithAttributes: [BubbleView normalTextAttrs]];
 	}
 	//draw an icon if it's set
 	if(icon!=nil){
-		xoff+=36;
-		yoff+=(32 - (tSize.height/2))/2;
-		[icon drawInRect:NSMakeRect(inside.x, inside.y, 32, 32) 
+        if(iconSize > tSize.height){
+            yoff+=(iconSize - tSize.height)/2;
+        }else{
+            iyoff+=(tSize.height - iconSize)/2;
+        }
+		xoff+=iconSize + 4;
+
+		[icon drawInRect:NSMakeRect(inside.x, inside.y + iyoff, iconSize, iconSize) 
 				fromRect:NSMakeRect(0,0,[icon size].width, [icon size].height)
 			   operation:NSCompositeSourceOver
 				fraction:1.0];
-		//[icon compositeToPoint: inside operation:NSCompositeSourceOver];
 	}
 	
 	if(label!=nil){
-		//create a new image, draw double size text, composite at half size on top of bubble
-		
-		tempImg = [[NSImage alloc] initWithSize:tSize];
-		[tempImg lockFocus];
-		
-		[[NSColor clearColor] set];
-		NSRectFill(NSMakeRect(0,0,tSize.width,tSize.height));
-		aa = [[NSGraphicsContext currentContext] shouldAntialias];
+        [[NSGraphicsContext currentContext] saveGraphicsState];
 		[[NSGraphicsContext currentContext] setShouldAntialias: YES];
-		
-		
-		[label drawAtPoint:NSZeroPoint withAttributes: stringAttrs ];
-		
-		[tempImg unlockFocus];
-		
-		[[NSGraphicsContext currentContext] setShouldAntialias: aa];
-		
-		//NSImageRep *brep = [tempImg bestRepresentationForDevice:nil];
-		
-		[tempImg  drawInRect:NSMakeRect(inside.x+xoff, inside.y+yoff, tSize.width/2,tSize.height/2)
-					fromRect:NSMakeRect(0, 0, tSize.width, tSize.height)
-				   operation:NSCompositeSourceOver
-					fraction:1.0];
-		[tempImg release];
+
+		[label drawAtPoint:NSMakePoint(inside.x+xoff, inside.y+yoff) withAttributes: [BubbleView normalTextAttrs] ];
+		[[NSGraphicsContext currentContext] restoreGraphicsState];
+        
 	}
 	
 	

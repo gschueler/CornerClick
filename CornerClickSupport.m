@@ -91,7 +91,7 @@
 {
     //NSLog(@"start DeepMC: %@",[obj class]);
     if(obj==nil){
-        NSLog(@"deepMCoO: nil");
+        DEBUG(@"deepMCoO: nil");
         return nil;
     }
     else if([obj isKindOfClass: [NSString class]])
@@ -474,7 +474,7 @@
             [md setObject:[action labelSetting] forKey:[ClickAction labelNameForActionType:[action type]]];
     [md setObject:[NSNumber numberWithInt:[action modifiers]] forKey:@"modifiers"];
 	[md setObject:[NSNumber numberWithInt:[action trigger]] forKey:@"trigger"];
-	NSLog(@"dict from act, name: %@, trigger: %d", [action string], [action trigger]);
+	//DEBUG(@"dict from act, name: %@, trigger: %d", [action string], [action trigger]);
 
     return [md autorelease];
 }
@@ -496,7 +496,7 @@
 	if([dict objectForKey:@"trigger"]!=nil){
 		trigger = [[dict objectForKey:@"trigger"] intValue];
 	}
-	NSLog(@"load action from dictionary. trigger: %d, object: %@", trigger, [dict objectForKey:@"trigger"]);
+	//DEBUG(@"load action from dictionary. trigger: %d, object: %@", trigger, [dict objectForKey:@"trigger"]);
 
     if([ClickAction validActionType: actionType andString: action]){
             click = [[[ClickAction alloc] initWithType:actionType
@@ -517,7 +517,7 @@
     int i;
     id obj;
     NSString *pad=[@"" stringByPaddingToLength: level withString: @" " startingAtIndex: 0];
-    NSLog(@"%@<%@:%x>(retain:%d) [",pad,[a class],(unsigned)a,[a retainCount]);
+    DEBUG(@"%@<%@:%x>(retain:%d) [",pad,[a class],(unsigned)a,[a retainCount]);
     for(i=0;i<[a count];i++){
         obj = [a objectAtIndex:i];
         NSLog(@"%@%d:",pad,i);

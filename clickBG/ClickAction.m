@@ -32,7 +32,7 @@
     if(myLabel!=nil)
         [myLabel release];
     if(myIcon!=nil){
-        NSLog(@"releasing icon: %@ retain: %d",myIcon,[myIcon retainCount]);
+        if(DEBUG_LEVEL>0)NSLog(@"releasing icon: %@ retain: %d",myIcon,[myIcon retainCount]);
         [myIcon release];
     }
     if(trueLabel!=nil)
@@ -220,8 +220,28 @@
 {
     NSDictionary *err;
     NSAppleEventDescriptor *evt;
+    NSDate *modified;
     if(myScript==nil){
+        scriptLastModified = [[[NSFileManager defaultManager] fileAttributesAtPath:myString traverseLink:YES] fileModificationDate];
+        if(scriptLastModified==nil){
+            NSLog(@"AppleScript Action: No such file:%@",myString);
+            return;
+        }
+        [scriptLastModified retain];
+        //NSLog(@"first modification:  %@",scriptLastModified);
         myScript = [[NSAppleScript alloc] initWithContentsOfURL:[NSURL fileURLWithPath:myString] error:&err];
+    }else{
+        modified = [[[NSFileManager defaultManager] fileAttributesAtPath:myString traverseLink:YES] fileModificationDate];
+        //NSLog(@"check modification:  %@",modified);
+        if(![modified isEqualToDate: scriptLastModified]){
+            //NSLog(@"modification later");
+            [scriptLastModified release];
+            scriptLastModified = [modified retain];
+            //script has been modified
+            [myScript release];
+            myScript = [[NSAppleScript alloc] initWithContentsOfURL:[NSURL fileURLWithPath:myString] error:&err];
+            
+        }
     }
 
     if(myScript==nil){

@@ -825,11 +825,15 @@
     NSScreen *theScreen=[screenNums objectForKey:[allScreens objectAtIndex:chosenScreen]];
     NSEvent *nextEvt;
     NSRect pref,theRect;
+    NSString *grayString;
     if(screenIdWindow==nil){
+        if(chosenScreen==0)
+                grayString=LOCALIZE([self bundle],@"Main Screen");
+            else
+                grayString=[NSString stringWithFormat: LOCALIZE([self bundle],@"Screen #%d") , chosenScreen+1];
+            
         screenIdView = [[GrayView alloc] initWithFrame: NSMakeRect(0,0,10,10)
-                                             andString:
-            chosenScreen==0?(eerepeated>4 ?@"Main Screen Turn On!": LOCALIZE([self bundle],@"Main Screen"))
-                           : [NSString stringWithFormat:LOCALIZE([self bundle],@"Screen #%d"),chosenScreen+1]
+                                             andString: (eerepeated>4 ?[NSString stringWithString:@"Main Screen Turn On!"]: grayString )
                                               andImage: nil
                                               fadeFrom: [NSColor colorWithCalibratedRed:0 green:0 blue:1 alpha:0.25]
                                                 fadeTo: [NSColor colorWithCalibratedRed:0 green:0 blue:0.5 alpha:1]
@@ -850,13 +854,13 @@
         [screenIdView setInsetSize: -5];
         [screenIdView setDrawFont:[NSFont boldSystemFontOfSize:96] color:[NSColor whiteColor]];
     }else{
+        if(chosenScreen==0)
+            grayString=LOCALIZE([self bundle],@"Main Screen");
+        else
+            grayString=[NSString stringWithFormat: LOCALIZE([self bundle],@"Screen #%d") , chosenScreen+1];
         [screenIdWindow setAlphaValue:0];
         [screenIdWindow orderBack:self];
-        [screenIdView setDrawString:
-            chosenScreen==0?(eerepeated>4 ?@"Main Screen Turn On!": LOCALIZE([self bundle],@"Main Screen"))
-                           : [NSString stringWithFormat:LOCALIZE([self bundle],@"Screen #%d"),chosenScreen+1]
-
-            ];
+        [screenIdView setDrawString: (eerepeated>4 ?[NSString stringWithString:@"Main Screen Turn On!"]: grayString ) ];
     }
     pref = [screenIdView preferredFrame];
 

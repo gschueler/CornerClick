@@ -43,6 +43,8 @@
     IBOutlet NSMatrix *cornerMatrix;
     IBOutlet NSPopUpButton *screenIDButton;
     IBOutlet NSTabView *myTabView;
+    IBOutlet NSView *chooseButtonView;
+    IBOutlet NSButton *cycleScreensButton;
     //NSMutableDictionary *tl;
     //NSMutableDictionary *tr;
     //NSMutableDictionary *bl;
@@ -67,8 +69,10 @@
     NSTimer *delayTimer;
     NSArray *ordinalNames;
     CornerClickSettings *appSettings;
+    BOOL chooseButtonIsVisible;
 }
 - (void)doChooseCorner:(int) corner;
+- (IBAction)tableViewAction:(id)sender;
 - (IBAction)chooseNextScreen:(id)sender;
 - (IBAction)screenIDClicked:(id)sender;
 - (IBAction)tlCornerClick:(id)sender;

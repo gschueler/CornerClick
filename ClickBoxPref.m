@@ -21,7 +21,7 @@
 
 
     [[[columns objectAtIndex:2] dataCell] setFont: [NSFont systemFontOfSize:10]];
-    [actionTable setDataSource:self];
+    //[actionTable setDataSource:self];
     [readmeTextView readRTFDFromFile:[[self bundle] pathForResource:@"Readme" ofType:@"rtf"]];
     [readmeTextView setContinuousSpellCheckingEnabled: NO];
     
@@ -205,8 +205,9 @@
     [screenIDButton addItemWithTitle:@"Main Screen"];
     if([allScreens count]>1){
         [screenIDButton setEnabled:YES];
+        [cycleScreensButton setEnabled:YES];
         for(i=1;i<[allScreens count]; i++){
-            NSLog(@"add title for screen %d",(i+1));
+            //NSLog(@"add title for screen %d",(i+1));
             [screenIDButton addItemWithTitle:[NSString stringWithFormat:@"Screen #%d",(i+1)]];
         }
         if(chosenScreen >= [allScreens count] || chosenScreen < 0){
@@ -215,6 +216,7 @@
         }
     }else{
         [screenIDButton setEnabled:NO];
+        [cycleScreensButton setEnabled:NO];
         chosenScreen=0;
     }
     [screenIDButton selectItemAtIndex: chosenScreen];
@@ -271,17 +273,17 @@
 {
     switch(returnCode){
         case NSAlertDefaultReturn:
-            NSLog(@"disabling and enabling");
+            DEBUG(@"disabling and enabling");
             reloadHelperOnHelperDeactivation=YES;
             [self deactivateHelper];
             break;
         case NSAlertAlternateReturn:
             break;
         case NSAlertErrorReturn:
-            NSLog(@"Error running alert sheet");
+            DEBUG(@"Error running alert sheet");
             break;
         default:
-            NSLog(@"Unknown returnCode in alertSheetDidEnd");
+            DEBUG(@"Unknown returnCode in alertSheetDidEnd");
     }
 }
 
@@ -427,6 +429,11 @@
     
 }
 
+- (IBAction)tableViewAction:(id)sender
+{
+    //NSLog(@"table view action: %@",sender);
+}
+
 - (IBAction)appEnable:(id)sender
 {
     //appLaunchIndicator
@@ -505,6 +512,11 @@
                     [chosenFileLabel setStringValue: @"no file chosen"];
                     [fileIconImageView setImage: nil];
                 }
+                if(!chooseButtonIsVisible){
+                    [chooseButtonView addSubview:fileChooseButton];
+                    [fileChooseButton release];
+                    chooseButtonIsVisible=YES;
+                }
                 break;
             case ACT_URL:
                 if(str!=nil){
@@ -516,6 +528,11 @@
                     [urlLabelField setStringValue:label];
                 }else{
                     [urlLabelField setStringValue:@""];
+                }
+                if(chooseButtonIsVisible){
+                    [fileChooseButton retain];
+                    [fileChooseButton removeFromSuperview];
+                    chooseButtonIsVisible=NO;
                 }
                 break;
             case ACT_SCPT:
@@ -531,14 +548,28 @@
                 }else{
                     [scriptLabelField setStringValue: @""];
                 }
+                if(!chooseButtonIsVisible){
+                    [chooseButtonView addSubview:fileChooseButton];
+                    [fileChooseButton release];
+                    chooseButtonIsVisible=YES;
+                }
+                break;
+            default:
+
+                if(chooseButtonIsVisible){
+                    [fileChooseButton retain];
+                    [fileChooseButton removeFromSuperview];
+                    chooseButtonIsVisible=NO;
+                }
                 break;
         }
 
         [self setSubFrameForActionType: [theAction type]];
         
     }else{
-        [fileChooseButton setEnabled:NO];
-        [fileChooseButton setEnabled:NO];
+        [fileChooseButton retain];
+        [fileChooseButton removeFromSuperview];
+        chooseButtonIsVisible=NO;
         [removeActionButton setEnabled:NO];
         [optionKeyCheckBox setEnabled:NO];
         [shiftKeyCheckBox setEnabled:NO];
@@ -585,8 +616,8 @@
             case ACT_SCPT:
                 [currentAction setString:thefile];
                 [currentAction setLabelSetting:nil];
-                [chosenFileLabel setStringValue: thefile];
-                [fileIconImageView setImage: [[NSWorkspace sharedWorkspace] iconForFile: thefile]];
+                [chosenScriptLabel setStringValue: thefile];
+                [scriptIconImageView setImage: [[NSWorkspace sharedWorkspace] iconForFile: thefile]];
                 if([[scriptLabelField stringValue] length] == 0){
                     [scriptLabelField setStringValue: [[thefile lastPathComponent] stringByDeletingPathExtension]];
                 }
@@ -676,7 +707,10 @@
         return;
     }
     [currentAction setType: [sender indexOfSelectedItem] ];
-    [self setSubFrameForActionType: [sender indexOfSelectedItem]];
+    [currentAction setString:nil];
+    [currentAction setLabelSetting:nil];
+    [self refreshWithSettings:currentAction];
+    //[self setSubFrameForActionType: [sender indexOfSelectedItem]];
     [self saveChanges];
     [actionTable reloadData];
 }
@@ -696,8 +730,7 @@
     NSArray *sub = [actionView subviews];
     NSRect oldr = [[NSApp mainWindow] frame];
     NSRect oldt = [myTabView frame];
-    NSLog(@"old window: %@, oldTabView : %@, old actionView : %@",
-          NSStringFromRect(oldr),NSStringFromRect(oldt),NSStringFromRect([actionView frame]));
+    //NSLog(@"old window: %@, oldTabView : %@, old actionView : %@",NSStringFromRect(oldr),NSStringFromRect(oldt),NSStringFromRect([actionView frame]));
     diffh-=[actionView frame].size.height;
     diffy+=[actionView frame].size.height;
     int i;
@@ -739,8 +772,7 @@
     oldr.origin.y+=diffy;
     oldr.size.height+=diffh;
     //[[actionView window] setFrame:oldr display:YES animate:YES];
-    NSLog(@"new window: %@, oldTabView : %@, old actionView : %@",
-          NSStringFromRect(oldr),NSStringFromRect(oldt),NSStringFromRect([actionView frame]));
+    //NSLog(@"new window: %@, oldTabView : %@, old actionView : %@", NSStringFromRect(oldr),NSStringFromRect(oldt),NSStringFromRect([actionView frame]));
 }
 - (void)doChooseCorner:(int) corner
 {

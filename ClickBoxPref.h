@@ -9,11 +9,13 @@
 #import <PreferencePanes/PreferencePanes.h>
 #import <AppKit/NSTableView.h>
 #import "clickBG/ClickAction.h"
+#import "FileActionMenuItem.h"
 
 @interface ClickBoxPref : NSPreferencePane
 {
     IBOutlet NSPopUpButton *actionChoicePopupButton;
     IBOutlet NSTextField *chosenFileLabel;
+    IBOutlet NSTextField *chosenFileTitle;
     IBOutlet NSButton *enabledCheckBox;
     IBOutlet NSButton *fileChooseButton;
     IBOutlet NSPopUpButton *triggerChoicePopupButton;
@@ -43,21 +45,19 @@
     IBOutlet NSTextView *readmeTextView;
     IBOutlet NSMatrix *cornerMatrix;
     IBOutlet NSPopUpButton *screenIDButton;
+    IBOutlet NSTextField *screenCountTextField;
     IBOutlet NSTabView *myTabView;
-    IBOutlet NSView *chooseButtonView;
     IBOutlet NSButton *cycleScreensButton;
     IBOutlet NSColorWell *highlightColorWell;
     IBOutlet NSColorWell *bubbleColorWellA;
     IBOutlet NSColorWell *bubbleColorWellB;
     IBOutlet NSPopUpButton *highlightPopup;
-    //NSMutableDictionary *tl;
-    //NSMutableDictionary *tr;
-    //NSMutableDictionary *bl;
-    //NSMutableDictionary *br;
-    //NSMutableDictionary *currentDict;
-    //NSMutableDictionary *currentActionDict;
-    //NSMutableDictionary *appPrefs;
-    //NSMutableArray *currentActions;
+    IBOutlet NSPopUpButton *quickFilePopup;
+    IBOutlet NSPopUpButton *quickScriptPopup;
+    
+    IBOutlet NSTextField *versionStringField;
+    
+    
     int chosenCorner;
     int chosenAction;
     int chosenScreen;
@@ -65,6 +65,8 @@
     BOOL active;
     BOOL awaitingDisabledHelperNotification;
     BOOL reloadHelperOnHelperDeactivation;
+    BOOL loadedQuickScripts;
+    BOOL loadedQuickFiles;
     ClickAction *currentAction;
     NSTimer *disableTimer;
     NSWindow *screenIdWindow;
@@ -76,6 +78,7 @@
     CornerClickSettings *appSettings;
     BOOL chooseButtonIsVisible;
 }
+- (void) showQuickScriptsPopup;
 - (void)doChooseCorner:(int) corner;
 - (IBAction)tableViewAction:(id)sender;
 - (IBAction)chooseNextScreen:(id)sender;
@@ -106,6 +109,8 @@
 - (IBAction)gotoWebURL:(id)sender;
 - (IBAction)gotoEmailURL:(id)sender;
 - (IBAction)highlightOptionChosen:(id)sender;
+//- (IBAction)loadInformationRTF:(id)sender;
+- (IBAction)loadReadmeRTF:(id)sender;
 
 - (void) deactivateHelper;
 - (void) activateHelper;
@@ -122,11 +127,16 @@
 - (void) checkIfHelperAppRunning;
 - (void) notifyAppOfPreferences:(NSDictionary *) prefs;
 - (void) doChooseScreen: (int) which withPopupWindow: (BOOL) popup;
-
+- (void) setSelectedActionPath: (NSString *) path;
+- (void) setSelectedActionPath: (NSString *) thefile resettingScriptLabel:(BOOL) doReset;
 - (void) setSubFrameForActionType: (int) type;
 - (void)toggleModifier: (int)modifier toState:(BOOL) used;
 - (NSAttributedString *)makeAttributedLink:(NSString *) link forString:(NSString *) string;
+- (void) addActionMenuItems: (NSArray *) list toMenu: (NSMenu *) menu;
 
 + (NSString *)ordinalForNumber: (int) which;
+
+//- (void) _storeList: (id) plist atPath:(NSString *)aPath;
++ (NSArray *) loadPlistArrayFromFile: (NSString *) path;
 
 @end

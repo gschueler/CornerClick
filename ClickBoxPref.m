@@ -7,25 +7,236 @@
 //
 
 #import "ClickBoxPref.h"
+extern double CornerClickVersionNumber;
 
+@interface ClickBoxPref (InternalMethods)
+- (NSArray *) quickScriptsList;
+- (NSArray *) quickFilesList;
+- (void) loadQuickItems;
+@end
 
 @implementation ClickBoxPref
 
 - (void) mainViewDidLoad
-{
-    NSArray *columns;
-    NSImageCell *imgcell;
-    columns = [actionTable tableColumns];
-    imgcell = [[[NSImageCell alloc] initImageCell:nil] autorelease];
-    [[columns objectAtIndex:0] setDataCell: imgcell];
-
-
-    [[[columns objectAtIndex:2] dataCell] setFont: [NSFont systemFontOfSize:10]];
-    //[actionTable setDataSource:self];
-    [readmeTextView readRTFDFromFile:[[self bundle] pathForResource:@"Readme" ofType:@"rtf"]];
+{    
+    [readmeTextView readRTFDFromFile:[[self bundle] pathForResource:@"Information" ofType:@"rtf"]];
     [readmeTextView setContinuousSpellCheckingEnabled: NO];
-    
+    [versionStringField setStringValue: MARKETING_VERSION_STRING ];
+    [self loadQuickItems];
+}
 
+- (void) addActionMenuItems: (NSArray *) list toMenu: (NSMenu *) menu
+{
+    int i;
+    
+    BOOL x=YES;
+    for(i=0;i<[list count];i++){
+        id obj = [list objectAtIndex:i];
+        if([obj isKindOfClass:[NSArray class]]){
+            NSArray *arr = (NSArray *)obj;
+            NSMenu *newMenu = [[[NSMenu alloc] initWithTitle:(NSString *)[arr objectAtIndex:0]] autorelease];
+            [self addActionMenuItems: [arr subarrayWithRange:NSMakeRange(1,[arr count]-1)]
+                              toMenu: newMenu];
+            if([newMenu numberOfItems] > 0){
+                NSMenuItem *subItem = [[[NSMenuItem alloc] initWithTitle:(NSString *)[arr objectAtIndex:0]
+                                                                  action:nil
+                                                           keyEquivalent:@""] autorelease];
+                [menu addItem: subItem];
+                    [menu setSubmenu:newMenu forItem:subItem];
+                x=NO;
+            }
+            continue;
+        }else if([obj isKindOfClass:[NSString class]]){
+            
+        
+            NSString *path = (NSString *)obj;
+            NSString *exp = [path stringByExpandingTildeInPath];
+            BOOL isDir=NO;
+            if([path isEqualToString:@"-"]){
+                if(!x)
+                    [ menu addItem:[NSMenuItem separatorItem]];
+                x=YES;
+            }else if([[NSFileManager defaultManager] fileExistsAtPath:exp isDirectory: &isDir] || isDir){
+                
+                [ menu addItem:[[[FileActionMenuItem alloc] initWithFilePath:exp andClickPref:self] autorelease]];  
+                x=NO;
+            }
+        }
+    }
+    
+}
+
+- (void) loadQuickItems
+{
+    if(!loadedQuickFiles){
+            
+        //quick apps
+        [quickFilePopup removeAllItems];
+        NSMenuItem *scriptItem = [[[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""] autorelease];
+        NSImage *scptIcon = [[[[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kGenericApplicationIcon)] retain] autorelease];
+        [scptIcon setSize:NSMakeSize(16,16)];
+        [scriptItem setImage:scptIcon];
+        [scriptItem setTitle:LOCALIZE([self bundle],@"Files")];
+        [[quickFilePopup menu] addItem:scriptItem];
+
+        //[quickFilePopup addItemWithTitle:LOCALIZE([self bundle],@"Quick...")];
+        DEBUG(@"Bundle path: %@",[[self bundle] bundlePath]);
+        [[quickFilePopup menu] addItem:[[[FileActionMenuItem alloc] initWithFilePath: [[self bundle] bundlePath] 
+                                                                        andClickPref: self
+                                                                            andTitle: LOCALIZE([self bundle], @"CornerClick Preferences")] autorelease]];  
+       
+        NSArray *list = [self quickFilesList];
+        //[self _storeList:list atPath:@"~/Desktop/quickFiles.plist"];
+        [self addActionMenuItems:list toMenu:[quickFilePopup menu]];
+        loadedQuickFiles=YES;
+    }
+}
+/*
+- (void) _storeList: (id) plist atPath:(NSString *)aPath
+{
+    NSString *path = [aPath stringByExpandingTildeInPath];
+    
+    NSData *xmlData;
+    
+    NSString *error;
+    
+    
+    xmlData = [NSPropertyListSerialization dataFromPropertyList:plist
+        
+                                                         format:NSPropertyListXMLFormat_v1_0
+        
+                                               errorDescription:&error];
+    
+    if(xmlData)
+        
+    {
+        
+        NSLog(@"No error creating XML data.");
+        
+        [xmlData writeToFile:path atomically:YES];
+        
+    }
+    
+    else
+        
+    {
+        
+        NSLog(error);
+        
+        [error release];
+        
+    }
+}*/
+
++ (NSArray *) loadPlistArrayFromFile: (NSString *) path
+{
+    NSData *plistData;
+    NSString *error;
+    id plist;
+    plistData = [NSData dataWithContentsOfFile:path];
+    plist = [NSPropertyListSerialization propertyListFromData:plistData
+                                             mutabilityOption:NSPropertyListImmutable
+                                                       format:nil
+                                             errorDescription:&error];
+    
+    if(!plist)
+    {
+        NSLog(error);
+        [error release];
+        return [[[NSArray alloc] init] autorelease];
+    }else if(! [plist isKindOfClass: [NSArray class]]){
+        NSLog(@"quickFiles.plist is not an Array");
+        return [[[NSArray alloc] init] autorelease];
+        
+    }else{
+        return (NSArray *)plist;
+    }
+}
+
+- (void) loadQuickScripts
+{
+    if(!loadedQuickScripts){
+            
+        [quickScriptPopup removeAllItems];
+        NSMenuItem *scriptItem = [[[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""] autorelease];
+        NSImage *scptIcon = [[NSWorkspace sharedWorkspace] iconForFileType:@"scpt"];
+        [scptIcon setSize:NSMakeSize(16,16)];
+        [scriptItem setImage:scptIcon];
+        [scriptItem setTitle:LOCALIZE([self bundle],@"Scripts")];
+        [[quickScriptPopup menu] addItem:scriptItem];
+        
+        //[quickScriptPopup addItemWithTitle:LOCALIZE([self bundle],@"Quick...")];
+        NSArray *list = [self quickScriptsList];
+        [self addActionMenuItems:list toMenu:[quickScriptPopup menu]];
+        /*
+        for(i=0;i<[list count];i++){
+            NSString *path = (NSString *)[list objectAtIndex:i];
+            [[quickScriptPopup menu] addItem:[[[FileActionMenuItem alloc] initWithFilePath:path andClickPref:self] autorelease]];  
+            
+        }*/
+        loadedQuickScripts=YES;
+    }
+}
+
+- (void) showQuickScriptsPopup
+{
+    [self loadQuickScripts];
+    [quickScriptPopup setHidden:NO];
+}
+
+- (void) hideQuickScriptsPopup
+{
+    
+    [quickScriptPopup setHidden:YES];
+}
+
+
+- (NSArray *) quickFilesList
+{
+    return [ClickBoxPref loadPlistArrayFromFile:
+        [[NSBundle bundleForClass:[self class]] pathForResource:@"quickFiles"
+                                                         ofType:@"plist"]];
+   
+}
+
+
+- (NSArray *) quickScriptsList
+{
+    NSString *file;
+    BOOL isDir;
+    NSMutableArray *marr = [[[NSMutableArray alloc] init] autorelease];
+    NSArray *arrs = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+    int i;
+    for(i=0;i<[arrs count];i++){
+        NSString *tempDir = [[[[arrs objectAtIndex:i] stringByAppendingString:LOCALIZE([self bundle],@"/Scripts")] retain] autorelease];
+        //NSLog(@"looking in dir for scripts: %@",tempDir);
+        isDir=NO;
+        if([[NSFileManager defaultManager] fileExistsAtPath:tempDir isDirectory:&isDir] && isDir){
+            
+            NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager]        
+                enumeratorAtPath:tempDir];
+            
+            while (file = [enumerator nextObject]) {
+                OSType hfsType = [[enumerator fileAttributes] fileHFSTypeCode];
+                //NSLog(@"file has osType: %@",[[NSNumber numberWithUnsignedInt:hfsType] description]);
+                if ([[file pathExtension] isEqualToString:@"scpt"] || hfsType == 'osas'){
+                    [marr addObject:[NSString stringWithFormat:@"%@/%@",tempDir,file]];
+                   //NSLog(@"Added script with path: %@",[NSString stringWithFormat:@"%@/%@",tempDir,file]);
+                }
+                    
+            }
+        }
+    }
+    return marr;
+}
+/*- (IBAction)loadInformationRTF:(id)sender
+{   
+    [[NSWorkspace sharedWorkspace] openFile:[[self bundle] pathForResource:@"Information" ofType:@"rtf"]];
+}*/
+- (IBAction)loadReadmeRTF:(id)sender
+{
+    
+    [[NSWorkspace sharedWorkspace] openFile:[[self bundle] pathForResource:@"Readme" ofType:@"rtf"]];
 }
 - (void) didSelect
 {
@@ -70,6 +281,7 @@
     [delayTooltipCheckBox setState:[appSettings toolTipDelayed]?1:0];
     [delayTooltipCheckBox setEnabled: [appSettings toolTipEnabled]];
     [appEnabledCheckBox setState: [appSettings appEnabled]];
+    [highlightColorWell setEnabled:YES];
 	if([appSettings highlightColor]!=nil){
 		[highlightColorWell setColor:[appSettings highlightColor]];
 	}else{
@@ -85,6 +297,7 @@
 
 	//[[NSColorPanel sharedColorPanel] setShowsAlpha:YES];
 	
+    [[NSColorPanel sharedColorPanel] setTarget:nil];
     [self checkScreens];
     
 
@@ -111,6 +324,8 @@
 - (void) didUnselect
 {
     //[self saveChanges];
+    [highlightColorWell setEnabled:NO];
+    [[NSColorPanel sharedColorPanel] setTarget:nil];
 }
 
 - (NSAttributedString *)makeAttributedLink:(NSString *) link forString:(NSString *) string
@@ -146,6 +361,8 @@
     [screenIDButton removeAllItems];
     [screenIDButton addItemWithTitle:LOCALIZE([self bundle],@"Main Screen")];
     if([allScreens count]>1){
+        [screenCountTextField setStringValue:[NSString stringWithFormat:LOCALIZE([self bundle],@"%d screens"), [allScreens count]]];
+        [screenCountTextField setHidden:NO];
         [screenIDButton setEnabled:YES];
         [cycleScreensButton setEnabled:YES];
         for(i=1;i<[allScreens count]; i++){
@@ -157,6 +374,7 @@
             [screenIDButton selectItemAtIndex: 0];
         }
     }else{
+        [screenCountTextField setHidden:YES];
         [screenIDButton setEnabled:NO];
         [cycleScreensButton setEnabled:NO];
         chosenScreen=0;
@@ -218,11 +436,13 @@
 {
     switch(returnCode){
         case NSAlertDefaultReturn:
-            DEBUG(@"disabling and enabling");
-            reloadHelperOnHelperDeactivation=YES;
-            [self deactivateHelper];
+            //DEBUG(@"disabling and enabling");
+            //reloadHelperOnHelperDeactivation=YES;
+            //[self deactivateHelper];
             break;
         case NSAlertAlternateReturn:
+            DEBUG(@"Open readme file");
+            [self loadReadmeRTF:self];
             break;
         case NSAlertErrorReturn:
             DEBUG(@"Error running alert sheet");
@@ -235,22 +455,24 @@
 - (void) helperAppIsRunning: (NSNotification *) notice
 {
     NSNumber *num = [[notice userInfo] objectForKey:@"CornerClickAppVersion"];
-    NSNumber *pat = [[notice userInfo] objectForKey:@"CornerClickPatchVersion"];
+    //NSNumber *pat = [[notice userInfo] objectForKey:@"CornerClickPatchVersion"];
     int vers = [num intValue];
-    int patch = (pat==nil?0:[pat intValue]);
-    int maj = (int)((vers/1000));
+    //int patch = (pat==nil?0:[pat intValue]);
     int min= vers%1000;
-    int cmaj =(int)((CC_APP_VERSION/1000));
-    int cmin= CC_APP_VERSION % 1000;
-    int cpatch= CC_PATCH_VERSION;
+    int maj = (int)(((vers-min)/1000));
+    
+    int cmin= ((int) CornerClickVersionNumber ) % 1000;
+    int cmaj =(int)(((CornerClickVersionNumber - cmin)/1000));
+
     active=YES;
-    if(vers != CC_APP_VERSION || (vers==CC_APP_VERSION && patch!=cpatch)){
+    if(vers != CornerClickVersionNumber ){
         reloadHelperOnHelperDeactivation=YES;
         [self deactivateHelper];
         NSBeginAlertSheet(LOCALIZE([self bundle],@"New CornerClick Version"),
                           LOCALIZE([self bundle],@"OK"),
-                          nil,nil, [NSApp mainWindow], self, NULL, NULL, NULL,
-                          LOCALIZE([self bundle],@"An old version of CornerClick was active (version %d.%d.%d). It will be deactivated and version %d.%d.%d will be activated."),maj,min,patch,cmaj,cmin,cpatch);
+                          LOCALIZE([self bundle],@"Open Readme File"),
+                          nil, [NSApp mainWindow], self, @selector(alertSheetDidEnd:returnCode:contextInfo:), NULL, NULL,
+                          LOCALIZE([self bundle],@"An old version of CornerClick was active (version %d.%d). It will be deactivated and version %d.%d will be activated."),maj,min,cmaj,cmin);
 
     }
     [appLaunchIndicator stopAnimation:self];
@@ -457,21 +679,27 @@
         switch([theAction type]){
             case ACT_FILE:
                 if(str!=nil){
-                    if([str hasSuffix:@".app"]){
-                        [chosenFileLabel setStringValue: [[str lastPathComponent] stringByDeletingPathExtension]];
+                    if([str isEqualToString:[[self bundle] bundlePath]]){
+                        [chosenFileTitle setStringValue: LOCALIZE([self bundle],@"CornerClick Preferences")];
+                    }else if([str hasSuffix:@".app"]){
+                        [chosenFileTitle setStringValue: [[str lastPathComponent] stringByDeletingPathExtension]];
                     }else{
-                        [chosenFileLabel setStringValue: str];
+                        [chosenFileTitle setStringValue: [str lastPathComponent]];
                     }
+                    [chosenFileLabel setStringValue: str];
                     [fileIconImageView setImage: [[NSWorkspace sharedWorkspace] iconForFile: str]];
                 }else{
-                    [chosenFileLabel setStringValue: LOCALIZE([self bundle],@"no file chosen")];
+                    [chosenFileTitle setStringValue: LOCALIZE([self bundle],@"no file chosen")];
+                    [chosenFileLabel setStringValue: @""];
                     [fileIconImageView setImage: nil];
                 }
-                if(!chooseButtonIsVisible){
-                    [chooseButtonView addSubview:fileChooseButton];
-                    [fileChooseButton release];
-                    chooseButtonIsVisible=YES;
-                }
+                DEBUG(@"set choose button hidden: no");
+                [fileChooseButton setHidden:NO];
+                [quickFilePopup setHidden:NO];
+                [actionChoicePopupButton setNextKeyView: quickFilePopup];
+                [fileChooseButton setNextKeyView: screenIDButton];
+                [self hideQuickScriptsPopup];
+                 
                 break;
             case ACT_URL:
                 if(str!=nil){
@@ -484,11 +712,10 @@
                 }else{
                     [urlLabelField setStringValue:@""];
                 }
-                if(chooseButtonIsVisible){
-                    [fileChooseButton retain];
-                    [fileChooseButton removeFromSuperview];
-                    chooseButtonIsVisible=NO;
-                }
+                [fileChooseButton setHidden:YES];
+                [quickFilePopup setHidden:YES];
+                [actionChoicePopupButton setNextKeyView: urlTextField];
+                [self hideQuickScriptsPopup];
                 break;
             case ACT_SCPT:
                 if(str!=nil){
@@ -503,28 +730,27 @@
                 }else{
                     [scriptLabelField setStringValue: @""];
                 }
-                if(!chooseButtonIsVisible){
-                    [chooseButtonView addSubview:fileChooseButton];
-                    [fileChooseButton release];
-                    chooseButtonIsVisible=YES;
-                }
+                [fileChooseButton setHidden:NO];
+                [quickFilePopup setHidden:YES];
+                [actionChoicePopupButton setNextKeyView: quickScriptPopup];
+                [fileChooseButton setNextKeyView: urlLabelField];
+                [self showQuickScriptsPopup];
                 break;
             default:
-
-                if(chooseButtonIsVisible){
-                    [fileChooseButton retain];
-                    [fileChooseButton removeFromSuperview];
-                    chooseButtonIsVisible=NO;
-                }
+                
+                [fileChooseButton setHidden:YES];
+                [quickFilePopup setHidden:YES];
+                [actionChoicePopupButton setNextKeyView: screenIDButton];
+                [self hideQuickScriptsPopup];
                 break;
         }
 
         [self setSubFrameForActionType: [theAction type]];
         
     }else{
-        [fileChooseButton retain];
-        [fileChooseButton removeFromSuperview];
-        chooseButtonIsVisible=NO;
+        [fileChooseButton setHidden:YES];
+        [quickFilePopup setHidden:YES];
+        [self hideQuickScriptsPopup];
         [removeActionButton setEnabled:NO];
         [optionKeyCheckBox setEnabled:NO];
         [shiftKeyCheckBox setEnabled:NO];
@@ -540,6 +766,7 @@
         [triggerChoicePopupButton setEnabled:NO];
         [self setSubFrameForActionType: -1];
         [chosenFileLabel setStringValue:@""];
+        [chosenFileTitle setStringValue:@""];
         [fileIconImageView setImage:nil];
         [urlTextField setStringValue:@""];
         [urlLabelField setStringValue:@""];
@@ -557,35 +784,50 @@
     [sheet orderOut: self];
     if(returnCode==NSOKButton){
         thefile = [[[sheet filenames] objectAtIndex:0] retain];
-        switch([currentAction type]){
-            case ACT_FILE:
-                [currentAction setString:thefile];
-                [currentAction setLabelSetting:thefile];
-
-                if([thefile hasSuffix:@".app"]){
-                    [chosenFileLabel setStringValue: [[thefile lastPathComponent] stringByDeletingPathExtension]];
-                }else{
-                    [chosenFileLabel setStringValue: thefile];
-                }
-
-                    [fileIconImageView setImage: [[NSWorkspace sharedWorkspace] iconForFile: thefile]];
-                break;
-            case ACT_SCPT:
-                [currentAction setString:thefile];
-                [currentAction setLabelSetting:nil];
-                [chosenScriptLabel setStringValue: thefile];
-                [scriptIconImageView setImage: [[NSWorkspace sharedWorkspace] iconForFile: thefile]];
-                if([[scriptLabelField stringValue] length] == 0){
-                    [scriptLabelField setStringValue: [[thefile lastPathComponent] stringByDeletingPathExtension]];
-                }
-                    [scriptLabelField selectText:self];
-                break;
-
-        }
-        [self saveChanges];
-        [actionTable reloadData];
-        [thefile release];
+        [self setSelectedActionPath: thefile];
     }
+}
+- (void) setSelectedActionPath: (NSString *) thefile
+{
+    [self setSelectedActionPath:thefile resettingScriptLabel:NO];
+}
+
+- (void) setSelectedActionPath: (NSString *) thefile resettingScriptLabel:(BOOL) doReset
+{
+    
+    switch([currentAction type]){
+        case ACT_FILE:
+            [currentAction setString:thefile];
+            [currentAction setLabelSetting:nil];
+
+            if([thefile isEqualToString:[[self bundle] bundlePath]]){
+                [chosenFileTitle setStringValue: LOCALIZE([self bundle],@"CornerClick Preferences")];
+                [currentAction setLabelSetting: LOCALIZE([self bundle],@"CornerClick Preferences")];
+            }else if([thefile hasSuffix:@".app"]){
+                [chosenFileTitle setStringValue: [[thefile lastPathComponent] stringByDeletingPathExtension]];
+            }else{
+                [chosenFileTitle setStringValue: [thefile lastPathComponent]];
+            }
+                [chosenFileLabel setStringValue: thefile];
+
+            [fileIconImageView setImage: [[NSWorkspace sharedWorkspace] iconForFile: thefile]];
+            break;
+        case ACT_SCPT:
+            [currentAction setString:thefile];
+            [currentAction setLabelSetting:nil];
+            [chosenScriptLabel setStringValue: thefile];
+            [scriptIconImageView setImage: [[NSWorkspace sharedWorkspace] iconForFile: thefile]];
+            if(doReset || [[scriptLabelField stringValue] length] == 0){
+                [scriptLabelField setStringValue: [[thefile lastPathComponent] stringByDeletingPathExtension]];
+            }
+            [scriptLabelField selectText:self];
+            break;
+
+    }
+    [self saveChanges];
+    [actionTable reloadData];
+    [thefile release];
+
 }
 
 - (void) urlEntered: (id) sender
@@ -701,10 +943,12 @@
     //NSRect frame = [actionView frame];
     switch(type){
         case ACT_SCPT:
+            [self showQuickScriptsPopup];
             [actionView addSubview: chooseScriptView];
             diffh+=[chooseScriptView frame].size.height;
             diffy-=[chooseScriptView frame].size.height;
-            [actionView setFrameSize: [chooseScriptView frame].size];
+            //[actionView setFrameSize: [chooseScriptView frame].size];
+            [chooseScriptView setFrameSize:[actionView frame].size];
             //[actionView setFrameOrigin: NSMakePoint([actionView frame].origin.x,[actionView frame].origin.y+diffy)];
             
             break;
@@ -712,14 +956,16 @@
             [actionView addSubview: chooseFileView];
             diffh+=[chooseFileView frame].size.height;
             diffy-=[chooseFileView frame].size.height;
-            [actionView setFrameSize: [chooseFileView frame].size];
+            //[actionView setFrameSize: [chooseFileView frame].size];
+            [chooseFileView setFrameSize:[actionView frame].size];
             //[actionView setFrameOrigin: NSMakePoint([actionView frame].origin.x,[actionView frame].origin.y+diffy)];
             break;
         case ACT_URL:
             [actionView addSubview: chooseURLView];
             diffh+=[chooseURLView frame].size.height;
             diffy-=[chooseURLView frame].size.height;
-            [actionView setFrameSize: [chooseURLView frame].size];
+            //[actionView setFrameSize: [chooseURLView frame].size];
+            [chooseURLView setFrameSize:[actionView frame].size];
             //[actionView setFrameOrigin: NSMakePoint([actionView frame].origin.x,[actionView frame].origin.y+diffy)];
             break;
         default:
@@ -790,10 +1036,39 @@
 {
     //NSLog(@"Choose file button");
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    NSString *dir, *file;
+    NSArray *types=nil;
+    dir=file=nil;
     [openPanel setAllowsMultipleSelection: NO];
-    [openPanel setCanChooseDirectories: YES];
-    [openPanel setCanChooseFiles: YES];
-    [openPanel beginSheetForDirectory: nil file: nil types: nil modalForWindow:[NSApp mainWindow] modalDelegate:self didEndSelector:@selector(openSheetDidEnd:returnCode:contextInfo:) contextInfo: nil];
+    if([currentAction type] == ACT_FILE){
+        [openPanel setCanChooseDirectories: YES];
+        [openPanel setCanChooseFiles: YES];
+        NSLog(@"choose file chosen");        
+    }else if([currentAction type] == ACT_SCPT){
+        [openPanel setCanChooseDirectories: NO];
+        [openPanel setCanChooseFiles: YES];
+        types=[NSArray arrayWithObject:@"scpt"];
+        NSLog(@"choose script chosen");
+        if([currentAction string]==nil){
+            
+            NSArray *arrs = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+            NSString *scptdir = (NSString *)[arrs objectAtIndex:0] ;
+            dir = scptdir ;
+            file = LOCALIZE([self bundle], @"/Scripts");
+        }
+    }
+    if([currentAction string]!=nil){
+        
+        dir = [[currentAction string] stringByDeletingLastPathComponent];
+        file = [[currentAction string] lastPathComponent];
+    }
+    [openPanel beginSheetForDirectory: dir 
+                                 file: file
+                                types: types
+                       modalForWindow:[NSApp mainWindow]
+                        modalDelegate:self
+                       didEndSelector:@selector(openSheetDidEnd:returnCode:contextInfo:) 
+                          contextInfo: nil];
     //int result = [openPanel runModalForDirectory: nil file: nil types: nil];
     //[self openSheetDidEnd:openPanel returnCode: result contextInfo:nil];
 }
@@ -854,6 +1129,8 @@
                                            pointCorner: -1];
 		
         [screenIdView setDrawHilite:hilite];
+        [screenIdView setInsetSize: -5];
+        [screenIdView setDrawFont:[NSFont boldSystemFontOfSize:96] color:[NSColor whiteColor]];
         pref = [screenIdView preferredFrame];
         [screenIdView setFrame:pref];
         screenIdWindow = [[NSWindow alloc] initWithContentRect:pref 
@@ -862,13 +1139,11 @@
 														 defer:YES
 														screen:theScreen ];
         [screenIdWindow setLevel:NSStatusWindowLevel];
-        [screenIdWindow setAlphaValue:1.0];
+        [screenIdWindow setAlphaValue:0.0];
         [screenIdWindow setHasShadow: NO];
         [screenIdWindow setOpaque:NO];
 		
         [screenIdWindow setContentView: screenIdView];
-        [screenIdView setInsetSize: -5];
-        [screenIdView setDrawFont:[NSFont boldSystemFontOfSize:96] color:[NSColor whiteColor]];
     }else{
         [screenIdWindow setAlphaValue:0];
         [screenIdWindow orderBack:self];
@@ -877,6 +1152,7 @@
 		[screenIdView setFadeToColor:colorB];
     }
     pref = [screenIdView preferredFrame];
+    [screenIdView setFrame:pref];
 	
     theRect = NSIntegralRect(NSMakeRect([theScreen frame].origin.x + (([theScreen frame].size.width/2) - (pref.size.width/2)),
                                         [theScreen frame].origin.y + (([theScreen frame].size.height/2) - (pref.size.height/2)),
@@ -915,8 +1191,6 @@
 - (void)displayScreenIdentification
 {
     NSScreen *theScreen=[screenNums objectForKey:[allScreens objectAtIndex:chosenScreen]];
-    NSEvent *nextEvt;
-    NSRect pref,theRect;
     NSString *grayString;
 
         if(chosenScreen==0)
@@ -984,15 +1258,25 @@
 	trigger = [theAction trigger];
     //NSLog(@"objectValueForTableColumn called: currentAcctions : %@",currentActions);
     if([[aTableColumn identifier] isEqualToString: @"icon"]){
+        NSImage *tblIcon;
         switch(type){
             case ACT_SCPT:
             case ACT_FILE:
-                if([theAction string]!=nil)
-                    return [[NSWorkspace sharedWorkspace] iconForFile:[theAction string]];
+                if([theAction string]!=nil){
+                    tblIcon= [[NSWorkspace sharedWorkspace] iconForFile:[theAction string]];
+                    [tblIcon setScalesWhenResized:YES];
+                    [tblIcon setSize:NSMakeSize(16,16)];
+                    return tblIcon;
+                }
+                    
                 else
                     return nil;
                 break;
-            case ACT_URL: return [[[NSImage alloc] initWithContentsOfFile: [[self bundle] pathForResource:@"BookmarkPreferences" ofType:@"tiff"]] autorelease];
+            case ACT_URL: 
+                tblIcon=  [[[NSImage alloc] initWithContentsOfFile: [[self bundle] pathForResource:@"BookmarkPreferences" ofType:@"tiff"]] autorelease];
+                [tblIcon setScalesWhenResized:YES];
+                [tblIcon setSize:NSMakeSize(16,16)];
+                return tblIcon;
 			case ACT_HIDE:
 //				return [[[NSImage alloc] initWithContentsOfFile: [[self bundle] pathForImageResource:@"HideAppIcon" ]] autorelease];
 			case ACT_HIDO:
@@ -1004,6 +1288,8 @@
         switch(type){
             case ACT_SCPT:
             case ACT_FILE:
+                if([theAction labelSetting] !=nil)
+                    return [theAction labelSetting];
                 return [theAction label];
             case ACT_HIDE: return LOCALIZE([self bundle],@"Hide Current Application");
             case ACT_HIDO: return LOCALIZE([self bundle],@"Hide Other Applications");
@@ -1170,7 +1456,7 @@
     [actionTable reloadData];
 
     [actionTable selectRow:[appSettings countActionsForScreen:[allScreens objectAtIndex:chosenScreen] andCorner:chosenCorner]-1 byExtendingSelection:NO];
-        
+    [actionTable scrollRowToVisible:[actionTable selectedRow]];
     //[self refreshWithSettings:newAct];
   
 }

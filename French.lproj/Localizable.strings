@@ -1,5 +1,5 @@
 "Main Screen" = "Écran principal";
-"Screen #%d" = "Écran #%d";
+"Screen #%d" = "Écran n°%d";
 "New CornerClick Version" = "Nouvelle version de CornerClick";
 "An old version of CornerClick was active (version %d.%d). It will be deactivated and version %d.%d will be activated."="Une ancienne version de CornerClick était active (version %d.%d). Elle sera désactivée et la version %d.%d sera activée.";
 

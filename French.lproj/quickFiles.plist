@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>/Applications/System Preferences.app</string>
+	<string>-</string>
+	<array>
+		<string>Folders</string>
+		<string>/</string>
+		<string>-</string>
+		<string>~/</string>
+		<string>~/Desktop</string>
+		<string>~/Documents</string>
+		<string>~/Music</string>
+		<string>~/Movies</string>
+		<string>~/Pictures</string>
+		<string>~/Library</string>
+		<string>~/Sites</string>
+		<string>~/Public</string>
+	</array>
+	<array>
+		<string>Apple</string>
+		<string>/Applications/iTunes.app</string>
+		<string>/Applications/iPhoto.app</string>
+		<string>/Applications/iMovie.app</string>
+		<string>/Applications/iDVD.app</string>
+		<string>/Applications/GarageBand.app</string>
+		<string>-</string>
+		<string>/Applications/TextEdit.app</string>
+		<string>/Applications/Preview.app</string>
+		<string>-</string>
+		<string>/Applications/iCal.app</string>
+		<string>/Applications/Address Book.app</string>
+		<string>/Applications/Calculator.app</string>
+		<string>/Applications/iSync.app</string>
+		<string>/Applications/Backup.app</string>
+		<string>/Applications/DVD Player.app</string>
+		<string>-</string>
+		<string>/System/Library/CoreServices/Finder.app</string>
+		<string>/Applications/Utilities/Activity Monitor.app</string>
+		<string>/Applications/Sherlock.app</string>
+		<string>-</string>
+		<string>/Applications/Utilities/Terminal.app</string>
+		<string>/Applications/Utilities/Console.app</string>
+		<string>/Applications/Utilities/X11.app</string>
+		<string>/Applications/Utilities/Disk Utility.app</string>
+		<string>/Applications/Utilities/AirPort Admin Utility.app</string>
+		<string>/Applications/Utilities/Keychain Access.app</string>
+	</array>
+	<array>
+		<string>Internet</string>
+		<string>/Applications/Internet Connect.app</string>
+		<string>-</string>
+		<string>/Applications/iChat.app</string>
+		<string>/Applications/Mail.app</string>
+		<string>/Applications/Safari.app</string>
+		<string>/Applications/FireFox.app</string>
+		<string>/Applications/Camino.app</string>
+		<string>/Applications/Internet Explorer.app</string>
+		<string>/Applications/Fire.app</string>
+		<string>/Applications/Adium.app</string>
+		<string>/Applications/ecto.app</string>
+		<string>/Applications/Colloquy.app</string>
+	</array>
+	<array>
+		<string>The OmniGroup</string>
+		<string>/Applications/OmniGraffle.app</string>
+		<string>/Applications/OmniGraffle Professional.app</string>
+		<string>/Applications/OmniOutliner.app</string>
+		<string>/Applications/OmniDictionary.app</string>
+		<string>/Applications/OmniObjectMeter.app</string>
+		<string>/Applications/OmniWeb.app</string>
+	</array>
+	<array>
+		<string>Microsoft</string>
+		<string>/Applications/Microsoft Office X/Microsoft PowerPoint</string>
+		<string>/Applications/Microsoft Office X/Microsoft Excel</string>
+		<string>/Applications/Microsoft Office X/Microsoft Entourage</string>
+		<string>/Applications/Microsoft Office X/MSN Messenger</string>
+		<string>/Applications/Microsoft Office X/Microsoft Word</string>
+	</array>
+	<array>
+		<string>Developer</string>
+		<string>/Developer/Applications/Xcode.app</string>
+		<string>/Developer/Applications/Interface Builder.app</string>
+		<string>/Developer/Applications/Utilities/Icon Composer.app</string>
+		<string>/Developer/Applications/Performance Tools/MallocDebug.app</string>
+		<string>/Developer/Applications/Performance Tools/ObjectAlloc.app</string>
+		<string>/Developer/Applications/Performance Tools/Quartz Debug.app</string>
+	</array>
+	<array>
+		<string>Misc</string>
+		<string>/Applications/Quicksilver.app</string>
+		<string>/Applications/Konfabulator.app</string>
+		<string>/Applications/FireFix.app</string>
+		<string>/Applications/Utilities/Stuffit Expander.app</string>
+	</array>
+</array>
+</plist>

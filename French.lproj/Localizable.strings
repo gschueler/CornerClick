@@ -1,17 +1,17 @@
-"Main Screen" = "Écran principal";
-"Screen #%d" = "Écran #%d";
+"Main Screen" = "√âcran principal";
+"Screen #%d" = "√âcran #%d";
 "New CornerClick Version" = "Nouvelle version de CornerClick";
-"An old version of CornerClick was active (version %d.%d.%d). It will be deactivated and version %d.%d.%d will be activated."="Une ancienne version de CornerClick était active (version %d.%d.%d). Elle sera désactivée et la version %d.%d.%d sera activée.";
+"An old version of CornerClick was active (version %d.%d). It will be deactivated and version %d.%d will be activated."="Une ancienne version de CornerClick ¬é√©tait active (version %d.%d). Elle sera d¬é√©sactiv¬é√©e et la version %d.%d sera activ¬é√©e.";
 
-"Deactivate Failed"="La désactivation a échouée";
-"The CornerClick helper application could not be deactivated."="L'application CornerClick n'a pu être désactivée.";
+"Deactivate Failed"="La d√©sactivation a √©chou√©e";
+"The CornerClick helper application could not be deactivated."="L'application CornerClick n'a pu √™tre d√©sactiv√©e.";
 "OK"="OK";
 
 "Trying to activate"="Activation en cours";
-"Trying to deactivate"="Désactivation en cours";
+"Trying to deactivate"="D√©sactivation en cours";
 
-"Activate Failed"="L'activation a échouée";
-"The CornerClick helper application could not be launched."="L'application CornerClick n'a pu être lancée.";
+"Activate Failed"="L'activation a √©chou√©e";
+"The CornerClick helper application could not be launched."="L'application CornerClick n'a pu √™tre lanc√©e.";
 
 "no file chosen"="aucun fichier choisi";
 "no script chosen"="aucun script choisi";
@@ -20,3 +20,12 @@
 "Hide Other Applications"="Masquer les autres applications";
 "Open URL %@"="Ouvrir l'URL %@";
 "Click"="Clic";
+
+"%d screens"="%d √©crans";
+"Right-Click"="Clic-droit";
+"Open Readme File"="Ouvrir le fichier lisez-moi";
+"Quick..."="Rapide‚Ä¶";
+"Scripts"="Scripts";
+"Files"="Fichiers";
+"CornerClick Preferences"="Pr√©f√©rences de CornerClick";
+"/Scripts"="/Scripts";

@@ -3,7 +3,7 @@
 \f3\fnil\fcharset77 LucidaGrande;\f4\fswiss\fcharset77 Helvetica-Oblique;}
 {\colortbl;\red255\green255\blue255;\red50\green62\blue255;\red127\green127\blue127;\red0\green0\blue255;
 \red255\green0\blue6;}
-\vieww11060\viewh10800\viewkind0
+\vieww12260\viewh13540\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
 
 \f0\fs48 \cf2 CornerClick 0.1
@@ -11,7 +11,7 @@
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
 
 \f2\b0\fs24 \cf3 \'a9 2003 Greg Schueler\
-\cf0  email:\cf3  \cf4 \ul greg-cc@vario.us\cf0 \ulnone   website:  \cf4 \ul http://greg.vario.us\cf0 \ulnone \
+\cf0  email:\cf3  \cf4 \ul greg-cornerclick@vario.us\cf0 \ulnone   website:  \cf4 \ul http://greg.vario.us/cornerclick/\cf0 \ulnone \
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
 \cf0 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
@@ -21,17 +21,13 @@
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
 \cf0 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-\cf0 CornerClick allows you to assign actions to each corner of your screen in Mac OS X 10.2 (Jaguar).  Think of it as a 
-\f1\b useful
-\f2\b0  Dock with four buttons which will never move and which will always do exactly what you want. Oh yeah, the other benefit is that 
-\f1\b you will never miss
-\f2\b0  when you try to click the corner of the screen.\
+\cf0 CornerClick allows you to assign actions to each corner of your screen in Mac OS X 10.2 (Jaguar).  Your screen corners can act like four buttons which will never move. 
+\f1\b You will never miss
+\f2\b0  when you try to click the corner of the screen.  \
 \
-Ever find it hard to pick out that app you want to use in the Dock?  This is because the Dock is badly designed from a user interface point of view.  If you're like myself, you have tons of icons in the Dock, since you might want to launch them at any time.  This means that either your icons are really tiny, or you have magnification turned on.  Every time you want to launch something new, or just get back to Safari, you have to put on your 
-\f1\b Dock goggles
-\f2\b0  and hunt for the right icon.\
+The Dock is badly designed from a user interface point of view.  If you have a lot of icons in your dock, either your icons are really tiny or you have magnification turned on.  Every time you want to launch something new, or just get back to Safari, you have to put on your Dock goggles and hunt for the right icon. The icon you want is never in the right place, or it tries to dodge your mouse when you have magnification turned on.\
 \
-Well, I got tired of that, and for a while I hoped somebody else would come up with a solution.  Eventually I gave in and forced myself to learn Objective C and Cocoa so that I could make it myself.\
+I got tired of that, and for a while I hoped somebody else would come up with a solution.  Eventually I gave in learned Objective C and Cocoa so that I could make it myself.\
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
 
@@ -46,7 +42,9 @@ If you like, a popup window will display what action is going to be performed wh
 \f1\b How do I use it?
 \f2\b0 \
 \
-You can define multiple actions for each corner of the screen.  Each action has a set of modifiers (shift 
+
+\f1\b CornerClick 0.1
+\f2\b0  is a Preference Pane.  In the preference pane you can define multiple actions for each corner of the screen.  Each action has a set of modifiers (shift 
 \f3 \U8679 \uc0 \u8679 
 \f2 , command 
 \f3 \U8984 \uc0 \u8984 
@@ -100,7 +98,9 @@ There are four types of actions at the moment:\
 
 \f2\b0 \cf0 Well you can make 
 \f1\b combos
-\f2\b0  of actions by defining multiple actions for a corner, where all of them have the same exact set of modifiers.  For example, add an
+\f2\b0  of actions by defining multiple actions for a corner, where all of them have the same exact set of modifiers.  \
+\
+For example, add an
 \f1\b  Open File...
 \f2\b0  action that opens the Finder (/System/Library/CoreServices/Finder) with a certain set of modifier keys (or none at all).  Then add another 
 \f1\b Hide Other Applications
@@ -146,11 +146,19 @@ I will probably release the source as well, since I'm a fan of open source.\
 
 \f2\b0 Sure, but please suggest anything that I haven't thought of.\
 \
+Planned features:\
+\
+\'a5\'ca
+\f1\b Deal with multiple monitors
+\f2\b0 \
+\'a5 Make screen edges hot as well\
+\'a5 List all actions that will be performed (combos) in the popup\
+\'a5 Change the popup dynamically if the modifiers change while the cursor is hovering over the corner\
+\'a5\'caBe able to execute AppleScripts without having to save them as applications (just load and run them...I think it should be easy to do.)\
+\
 These are all possible future features, though they aren't guaranteed to be added: \
 \
-\'a5 Make screen edges hot as well\
 \'a5\'caMake per-application configurations (this would be useful if actions could be any menu command from the application, for example.  Don't know how to do that with Cocoa yet, though.)\
-\'a5\'caBe able to execute AppleScripts without having to save them as applications (just load and run them...I think it should be easy to do.)\
 \'a5 Execute shell commands without opening terminal (i.e. in the background)\
 \'a5 Make it modular so that people can define custom actions...?  Perhaps AppleScript support would be good enough...\
 \

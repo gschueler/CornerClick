@@ -96,6 +96,20 @@
 	}
 }
 
+- (ClickAction *) selectedClickAction
+{
+    if(selected < 0)
+		return nil;
+	BubbleAction *ba = (BubbleAction *)[bubbleActions objectAtIndex: selected];
+	NSArray *actions = [ba actions];
+	if(actions !=nil && [actions count]>0){
+		ClickAction *act = (ClickAction *)[actions objectAtIndex:0];
+		
+		return [[act retain] autorelease];
+	}else{
+		return nil;
+	}
+}
 
 - (int) selectedModifiers
 {
@@ -126,6 +140,20 @@
 	}
 }
 
+- (BOOL) selectedHoverTriggerDelayed
+{
+	if(selected < 0)
+		return NO;
+	BubbleAction *ba = (BubbleAction *)[bubbleActions objectAtIndex: selected];
+	NSArray *actions = [ba actions];
+	if(actions !=nil && [actions count]>0){
+		ClickAction *act = (ClickAction *)[actions objectAtIndex:0];
+		
+		return [act trigger] == TRIGGER_HOVER && [act hoverTriggerDelayed];
+	}else{
+		return NO;
+	}
+}
 - (int) selectedItem
 {
 	return selected;

@@ -155,8 +155,23 @@
     return md;
 }
 
-
++(NSString *) labelForClickAction: (ClickAction *) clickAction localBundle: (NSBundle *) bundle
+{
+    return [CornerClickSupport labelForModifiers: [clickAction modifiers]
+                                      andTrigger:[clickAction trigger]
+                                    triggerDelay:[clickAction hoverTriggerDelayed]
+                                     localBundle: bundle];
+        
+}
 +(NSString *) labelForModifiers:(int)modifiers andTrigger:(int) trigger localBundle:(NSBundle *) bundle
+{
+    return [CornerClickSupport labelForModifiers:modifiers 
+                                      andTrigger:trigger
+                                    triggerDelay:NO 
+                                     localBundle:bundle];
+}
+
++(NSString *) labelForModifiers:(int)modifiers andTrigger:(int) trigger triggerDelay:(BOOL) trigDelay localBundle:(NSBundle *) bundle
 {
 	NSString *theFile = @"";
 	if(modifiers & SHIFT_MASK){
@@ -193,10 +208,17 @@
 		}
 	}
 	NSString *clickName;
-	if(trigger == 0){
+	if(trigger == TRIGGER_CLICK){
 		clickName=@"Click";
-	}else if(trigger == 1){
+	}else if(trigger == TRIGGER_RCLCK){
 		clickName=@"Right-Click";
+    }else if(trigger == TRIGGER_HOVER){
+        if(trigDelay){
+            clickName=@"Hover 2 secs";
+        }else{
+            clickName=@"Hover";            
+        }
+
 	}else{
 		clickName=@"???";
 		
@@ -520,7 +542,7 @@ static CornerClickSettings* _CCsharedSettings;
             if(nil != [prefs objectForKey:@"textSize"]){
                 textSize = [[CornerClickSupport numberFromSomething:[prefs objectForKey:@"textSize"]] floatValue];   
             }else{
-                textSize=32.0;
+                textSize=16.0;
             }
             if(nil != [prefs objectForKey:@"iconSize"]){
                 iconSize = [[CornerClickSupport numberFromSomething:[prefs objectForKey:@"iconSize"]] floatValue];
@@ -569,7 +591,7 @@ static CornerClickSettings* _CCsharedSettings;
 			highlightColor = [[CornerClickSettings defaultHighlightColor] retain];
 			bubbleColorA = [[CornerClickSettings defaultBubbleColorA] retain];
 			bubbleColorB = [[CornerClickSettings defaultBubbleColorB] retain];
-            textSize=32.0;
+            textSize=16.0;
             iconSize=32;
         }
         
@@ -779,6 +801,9 @@ static CornerClickSettings* _CCsharedSettings;
             [md setObject:[action labelSetting] forKey:[ClickAction labelNameForActionType:[action type]]];
     [md setObject:[NSNumber numberWithInt:[action modifiers]] forKey:@"modifiers"];
 	[md setObject:[NSNumber numberWithInt:[action trigger]] forKey:@"trigger"];
+    if([action trigger]==TRIGGER_HOVER){
+        [md setObject:[NSNumber numberWithBool:[action hoverTriggerDelayed]] forKey:@"triggerDelayed"];
+    }
 	//DEBUG(@"dict from act, name: %@, trigger: %d", [action string], [action trigger]);
 
     return [md autorelease];
@@ -793,6 +818,7 @@ static CornerClickSettings* _CCsharedSettings;
     int actionType,modifiers,trigger;
     NSString *action,*label;
     ClickAction *click=nil;
+    BOOL trigDelay=NO;
     actionType =[[CornerClickSupport numberFromSomething:[dict objectForKey:@"action"]] intValue];
     action = [dict objectForKey:[ClickAction stringNameForActionType:actionType]];
     label = [dict objectForKey:[ClickAction labelNameForActionType:actionType]];
@@ -801,12 +827,18 @@ static CornerClickSettings* _CCsharedSettings;
 	if([dict objectForKey:@"trigger"]!=nil){
 		trigger = [[CornerClickSupport numberFromSomething:[dict objectForKey:@"trigger"]] intValue];
 	}
+    if(trigger == TRIGGER_HOVER){
+        if([dict objectForKey:@"triggerDelayed"]!=nil){
+            trigDelay = [[CornerClickSupport numberFromSomething:[dict objectForKey:@"triggerDelayed"]] boolValue];            
+        }
+    }
 	//DEBUG(@"load action from dictionary. trigger: %d, object: %@", trigger, [dict objectForKey:@"trigger"]);
 
     if([ClickAction validActionType: actionType andString: action]){
             click = [[[ClickAction alloc] initWithType:actionType
 										  andModifiers:modifiers
 											andTrigger:trigger
+                                             isDelayed: trigDelay
                                      andString:action
                                      forCorner: corner
                                      withLabel:label

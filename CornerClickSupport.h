@@ -21,7 +21,10 @@
 + (NSDictionary *) appPrefs;
 + (void) savePreferences: (CornerClickSettings *) settings;
 + (NSDictionary *) loadOldVersionPreferences;
+
++ (NSString *) labelForClickAction: (ClickAction *) clickAction localBundle: (NSBundle *) bundle;
 + (NSString *) labelForModifiers:(int)modifiers andTrigger:(int) trigger localBundle:(NSBundle *) bundle;
++ (NSString *) labelForModifiers:(int)modifiers andTrigger:(int) trigger triggerDelay:(BOOL) trigDelay localBundle:(NSBundle *) bundle;
 + (NSNumber *) numberForScreen:(NSScreen *)screen;
 + (int) modifiersForExposeAction: (int) action;
 + (int) keyCodeForExposeAction: (int) action;

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BubbleAction.h"
-
+#import "ClickAction.h"
 
 @interface BubbleActionsList : NSObject 
 {
@@ -31,6 +31,8 @@
 - (int) selectedItem;
 - (int) selectedModifiers;
 - (int) selectedTrigger;
+- (BOOL) selectedHoverTriggerDelayed;
+- (ClickAction *) selectedClickAction;
 - (void) updateSelected: (int) selectedMod; 
 - (NSRect) drawingRectForAction: (int)act isSelected: (BOOL) isSelected inRect:(NSRect) rect;
 

@@ -12,19 +12,24 @@
 @implementation BubbleAction
 
 - (id) initWithStringAttributes: (NSDictionary *) attrs
+            smallTextAttributes: (NSDictionary *) sattrs
 					 andSpacing:(float) space
 
 {
-		return [self initWithStringAttributes:attrs andSpacing:space
+    return [self initWithStringAttributes:attrs 
+                      smallTextAttributes:  sattrs
+                               andSpacing:space
 								   andActions:nil];
 }
 - (id) initWithStringAttributes: (NSDictionary *) attrs
+            smallTextAttributes: (NSDictionary *) sattrs
 					 andSpacing:(float) space
 					 andActions:(NSArray *) theActions
 {
     if(self=[super init]){
 		spacingSize=space;
 		stringAttrs = [[NSDictionary alloc] initWithDictionary:attrs];
+        smallTextAttrs = [[NSDictionary alloc] initWithDictionary:sattrs];
 		if(theActions != nil){
 			actions = [[NSArray alloc] initWithArray:theActions];
 			[self calcPreferredSize];
@@ -36,9 +41,19 @@
 - (void) dealloc
 {
 	[stringAttrs release];
+    [smallTextAttrs release];
 	[actions release];
 }
 
+
+
+- (NSString *)modifiersLabel
+{
+    ClickAction *act = [actions objectAtIndex:0];
+    return [CornerClickSupport labelForModifiers:[act modifiers]
+                                      andTrigger:[act trigger]
+                                     localBundle:[NSBundle bundleForClass:[self class]]];
+}
 
 - (void) setActions:(NSArray *)theActions
 {

@@ -39,7 +39,7 @@
 
 -(void)setIconAndLabelUserProvided: (NSString *) label;
 - (void) runAppleScriptAction;
-
+- (BOOL) isValid;
 
 //static
 + (void) logAppleScriptError:(NSDictionary *) err atStep:(NSString *)step;

@@ -332,7 +332,11 @@
 
 + (NSMutableDictionary *) dictionaryFromAction:(ClickAction *) action
 {
-    NSMutableDictionary *md = [[NSMutableDictionary alloc] initWithCapacity:4];
+    NSMutableDictionary *md;
+    if(![action isValid]){
+        return nil;
+    }
+    md  = [[NSMutableDictionary alloc] initWithCapacity:4];
     [md setObject:[NSNumber numberWithInt:[action type]] forKey:@"action"];
     if([ClickAction stringNameForActionType:[action type]] !=nil)
         [md setObject:[action string] forKey:[ClickAction stringNameForActionType:[action type]]];
@@ -416,7 +420,7 @@
     id key;
     NSDictionary *act;
     NSEnumerator *en;
-    NSMutableArray *actions,*corners;
+    NSMutableArray *actions,*corners,*newacts;
     NSMutableDictionary *md = [NSMutableDictionary dictionaryWithCapacity:5];
     NSMutableDictionary *sc = [CornerClickSupport deepMutableCopyOfObject:theScreens] ;
     //NSLog(@"deep mutable copy: %@",sc);
@@ -432,11 +436,16 @@
             actions = [[corners objectAtIndex: i] objectForKey:@"actionList"];
             if(actions==nil || [actions count]==0)
                 continue;
+            newacts = [[[NSMutableArray alloc] initWithCapacity:[actions count]] autorelease];
             for(j=0;j<[actions count];j++){
                 act = [CornerClickSettings dictionaryFromAction:[actions objectAtIndex:j]];
                 //[[actions objectAtIndex:j] retain];
-                [actions replaceObjectAtIndex:j withObject:act];
+                //[actions replaceObjectAtIndex:j withObject:act];
+                if(act!=nil){
+                    [newacts addObject:act];
+                }
             }
+            [[corners objectAtIndex:i] setObject: newacts forKey:@"actionList"];
         }
     }
     

@@ -709,9 +709,12 @@
     [currentAction setType: [sender indexOfSelectedItem] ];
     [currentAction setString:nil];
     [currentAction setLabelSetting:nil];
+    //DEBUG(@"before refresh settings");
     [self refreshWithSettings:currentAction];
+    //DEBUG(@"after refresh settings");
     //[self setSubFrameForActionType: [sender indexOfSelectedItem]];
     [self saveChanges];
+    //DEBUG(@"reload data");
     [actionTable reloadData];
 }
 
@@ -1137,7 +1140,9 @@
 - (IBAction)addActionButtonClicked:(id)sender
 {
     //NSLog(@"selection changed to: %d",[actionTable selectedRow]);
-    ClickAction *newAct = [[[ClickAction alloc] initWithType: 0 andModifiers: 0 andString: [NSString stringWithString:@""] forCorner: chosenCorner withLabel:[NSString stringWithString:@""] andClicker:nil] autorelease];
+
+    ClickAction *newAct = [[[ClickAction alloc] initWithType: 0 andModifiers: 0 andString: nil forCorner: chosenCorner withLabel:nil andClicker:nil] autorelease];
+
     [appSettings addAction: newAct forScreen:[allScreens objectAtIndex:chosenScreen] andCorner:chosenCorner];
     [actionTable reloadData];
 

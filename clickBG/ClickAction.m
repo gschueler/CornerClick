@@ -61,8 +61,9 @@
         case ACT_URL:
             if(label !=nil){
                 myLabel = [label copy];
-            }
-            else if([myString length]> 30){
+            }else if(myString==nil){
+                myLabel=nil;
+            }else if([myString length]> 30){
                 myLabel=[[NSString stringWithFormat:@"%@É",[myString substringToIndex:30]] retain];
             }else{
                 myLabel=[[NSString stringWithString:myString] retain];
@@ -293,6 +294,11 @@
         }
         err = GetNextProcess(&paramPsn);
     }
+}
+
+- (BOOL) isValid
+{
+    return [ClickAction validActionType: theType andString:myString];
 }
 
 

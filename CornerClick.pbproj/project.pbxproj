@@ -1,0 +1,768 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 38;
+	objects = {
+		06F27B2EFFEEEFEF11CA0E56 = {
+			isa = PBXBundleReference;
+			path = CornerClick.prefPane;
+			refType = 3;
+		};
+		06F27B30FFEEEFEF11CA0E56 = {
+			buildRules = (
+			);
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				OPTIMIZATION_CFLAGS = "-O0";
+			};
+			isa = PBXBuildStyle;
+			name = Development;
+		};
+		06F27B31FFEEEFEF11CA0E56 = {
+			buildRules = (
+			);
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			isa = PBXBuildStyle;
+			name = Deployment;
+		};
+//060
+//061
+//062
+//063
+//064
+//080
+//081
+//082
+//083
+//084
+		089C1669FE841209C02AAC07 = {
+			buildStyles = (
+				06F27B30FFEEEFEF11CA0E56,
+				06F27B31FFEEEFEF11CA0E56,
+			);
+			hasScannedForEncodings = 1;
+			isa = PBXProject;
+			mainGroup = 089C166AFE841209C02AAC07;
+			projectDirPath = "";
+			targets = (
+				089C1673FE841209C02AAC07,
+				37C3CB2D04CDABD2000001CF,
+			);
+		};
+		089C166AFE841209C02AAC07 = {
+			children = (
+				08FB77AFFE84173DC02AAC07,
+				32DBCFA10370C40200C91783,
+				089C167CFE841241C02AAC07,
+				089C1671FE841209C02AAC07,
+				19C28FB8FE9D52D311CA2CBB,
+			);
+			isa = PBXGroup;
+			name = ClickBox;
+			refType = 4;
+		};
+		089C1671FE841209C02AAC07 = {
+			children = (
+				1058C7ACFEA557BF11CA2CBB,
+				1058C7AEFEA557BF11CA2CBB,
+			);
+			isa = PBXGroup;
+			name = "Frameworks and Libraries";
+			refType = 4;
+		};
+		089C1672FE841209C02AAC07 = {
+			isa = PBXFrameworkReference;
+			name = Foundation.framework;
+			path = /System/Library/Frameworks/Foundation.framework;
+			refType = 0;
+		};
+		089C1673FE841209C02AAC07 = {
+			buildPhases = (
+				089C1674FE841209C02AAC07,
+				089C1675FE841209C02AAC07,
+				089C1676FE841209C02AAC07,
+				089C1677FE841209C02AAC07,
+				089C1679FE841209C02AAC07,
+			);
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "";
+				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "-bundle -twolevel_namespace";
+				OTHER_REZFLAGS = "";
+				PRECOMPILE_PREFIX_HEADER = YES;
+				PREFIX_HEADER = ClickBox_Prefix.h;
+				PRODUCT_NAME = CornerClick;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
+				WRAPPER_EXTENSION = prefPane;
+			};
+			dependencies = (
+				37C3CB8404CDB53D000001CF,
+			);
+			isa = PBXBundleTarget;
+			name = ClickBox;
+			productInstallPath = "$(HOME)/Library/PreferencePanes";
+			productName = ClickBox;
+			productReference = 06F27B2EFFEEEFEF11CA0E56;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>CornerClick</string>
+	<key>CFBundleIconFile</key>
+	<string></string>
+	<key>CFBundleIdentifier</key>
+	<string>CornerClickPref</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>CornerClick</string>
+	<key>CFBundlePackageType</key>
+	<string>BNDL</string>
+	<key>CFBundleSignature</key>
+	<string>GR8g</string>
+	<key>CFBundleVersion</key>
+	<string>0.0.1d1</string>
+	<key>NSMainNibFile</key>
+	<string>ClickBoxPref</string>
+	<key>NSPrefPaneIconFile</key>
+	<string>ClickBoxPref.tiff</string>
+	<key>NSPrincipalClass</key>
+	<string>ClickBoxPref</string>
+</dict>
+</plist>
+";
+		};
+		089C1674FE841209C02AAC07 = {
+			buildActionMask = 2147483647;
+			files = (
+				32DBCFA30370C41700C91783,
+				F506C03E013D9D7901CA16C8,
+			);
+			isa = PBXHeadersBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		089C1675FE841209C02AAC07 = {
+			buildActionMask = 2147483647;
+			files = (
+				089C1680FE841241C02AAC07,
+				F506C041013D9D8001CA16C8,
+				F506C044013D9D8C01CA16C8,
+				37C3CB7A04CDB35E000001CF,
+			);
+			isa = PBXResourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		089C1676FE841209C02AAC07 = {
+			buildActionMask = 2147483647;
+			files = (
+				F506C03F013D9D7901CA16C8,
+			);
+			isa = PBXSourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		089C1677FE841209C02AAC07 = {
+			buildActionMask = 2147483647;
+			files = (
+				1058C7AFFEA557BF11CA2CBB,
+				F506C036013D953901CA16C8,
+			);
+			isa = PBXFrameworksBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		089C1679FE841209C02AAC07 = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			isa = PBXRezBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		089C167CFE841241C02AAC07 = {
+			children = (
+				F506C040013D9D8001CA16C8,
+				089C167DFE841241C02AAC07,
+				F506C042013D9D8C01CA16C8,
+			);
+			isa = PBXGroup;
+			name = Resources;
+			refType = 4;
+		};
+		089C167DFE841241C02AAC07 = {
+			children = (
+				089C167EFE841241C02AAC07,
+			);
+			isa = PBXVariantGroup;
+			name = InfoPlist.strings;
+			refType = 4;
+		};
+		089C167EFE841241C02AAC07 = {
+			fileEncoding = 10;
+			isa = PBXFileReference;
+			name = English;
+			path = English.lproj/InfoPlist.strings;
+			refType = 4;
+		};
+		089C167FFE841241C02AAC07 = {
+			isa = PBXFrameworkReference;
+			name = AppKit.framework;
+			path = /System/Library/Frameworks/AppKit.framework;
+			refType = 0;
+		};
+		089C1680FE841241C02AAC07 = {
+			fileRef = 089C167DFE841241C02AAC07;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		08FB77AFFE84173DC02AAC07 = {
+			children = (
+				F506C03C013D9D7901CA16C8,
+				F506C03D013D9D7901CA16C8,
+				37C3CB3104CDAD30000001CF,
+			);
+			isa = PBXGroup;
+			name = Classes;
+			refType = 4;
+		};
+//080
+//081
+//082
+//083
+//084
+//100
+//101
+//102
+//103
+//104
+		1058C7ACFEA557BF11CA2CBB = {
+			children = (
+				1058C7ADFEA557BF11CA2CBB,
+				F506C035013D953901CA16C8,
+			);
+			isa = PBXGroup;
+			name = "Linked Frameworks";
+			refType = 4;
+		};
+		1058C7ADFEA557BF11CA2CBB = {
+			isa = PBXFrameworkReference;
+			name = Cocoa.framework;
+			path = /System/Library/Frameworks/Cocoa.framework;
+			refType = 0;
+		};
+		1058C7AEFEA557BF11CA2CBB = {
+			children = (
+				089C1672FE841209C02AAC07,
+				089C167FFE841241C02AAC07,
+			);
+			isa = PBXGroup;
+			name = "Other Frameworks";
+			refType = 4;
+		};
+		1058C7AFFEA557BF11CA2CBB = {
+			fileRef = 1058C7ADFEA557BF11CA2CBB;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+//100
+//101
+//102
+//103
+//104
+//190
+//191
+//192
+//193
+//194
+		19C28FB8FE9D52D311CA2CBB = {
+			children = (
+				37C3CB2E04CDABD2000001CF,
+				06F27B2EFFEEEFEF11CA0E56,
+			);
+			isa = PBXGroup;
+			name = Products;
+			refType = 4;
+		};
+//190
+//191
+//192
+//193
+//194
+//320
+//321
+//322
+//323
+//324
+		32DBCFA10370C40200C91783 = {
+			children = (
+				37C3CB3D04CDAD30000001CF,
+				32DBCFA20370C41700C91783,
+			);
+			isa = PBXGroup;
+			name = "Other Sources";
+			path = "";
+			refType = 4;
+		};
+		32DBCFA20370C41700C91783 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = ClickBox_Prefix.h;
+			refType = 4;
+		};
+		32DBCFA30370C41700C91783 = {
+			fileRef = 32DBCFA20370C41700C91783;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+//320
+//321
+//322
+//323
+//324
+//370
+//371
+//372
+//373
+//374
+		37C3CB2804CDABD2000001CF = {
+			buildActionMask = 2147483647;
+			files = (
+				37C3CB3E04CDAD30000001CF,
+				37C3CB4004CDAD30000001CF,
+				37C3CB4204CDAD30000001CF,
+				37C3CB4404CDAD30000001CF,
+				37C3CB4604CDAD30000001CF,
+				37C3CB4904CDAD30000001CF,
+			);
+			isa = PBXHeadersBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37C3CB2904CDABD2000001CF = {
+			buildActionMask = 2147483647;
+			files = (
+				37C3CB5D04CDADFF000001CF,
+				37C3CB5E04CDADFF000001CF,
+			);
+			isa = PBXResourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37C3CB2A04CDABD2000001CF = {
+			buildActionMask = 2147483647;
+			files = (
+				37C3CB3F04CDAD30000001CF,
+				37C3CB4104CDAD30000001CF,
+				37C3CB4304CDAD30000001CF,
+				37C3CB4504CDAD30000001CF,
+				37C3CB4704CDAD30000001CF,
+				37C3CB4804CDAD30000001CF,
+			);
+			isa = PBXSourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37C3CB2B04CDABD2000001CF = {
+			buildActionMask = 2147483647;
+			files = (
+				37C3CB5704CDADB5000001CF,
+			);
+			isa = PBXFrameworksBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37C3CB2C04CDABD2000001CF = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			isa = PBXRezBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37C3CB2D04CDABD2000001CF = {
+			buildPhases = (
+				37C3CB2804CDABD2000001CF,
+				37C3CB2904CDABD2000001CF,
+				37C3CB2A04CDABD2000001CF,
+				37C3CB2B04CDABD2000001CF,
+				37C3CB2C04CDABD2000001CF,
+			);
+			buildSettings = {
+				OPTIMIZATION_CFLAGS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRECOMPILE_PREFIX_HEADER = YES;
+				PREFIX_HEADER = clickBG/CornerClickBG_Prefix.h;
+				PRODUCT_NAME = CornerClickBG;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
+				WRAPPER_EXTENSION = app;
+			};
+			dependencies = (
+			);
+			isa = PBXApplicationTarget;
+			name = CornerClickBG;
+			productInstallPath = "$(USER_APPS_DIR)";
+			productName = CornerClickBG;
+			productReference = 37C3CB2E04CDABD2000001CF;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>CornerClickBG</string>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
+	<key>CFBundleIconFile</key>
+	<string></string>
+	<key>CFBundleIdentifier</key>
+	<string></string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string></string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string></string>
+	<key>CFBundleSignature</key>
+	<string>GR8g</string>
+	<key>CFBundleVersion</key>
+	<string>0.1</string>
+	<key>LSBackgroundOnly</key>
+	<string>1</string>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+</dict>
+</plist>
+";
+		};
+		37C3CB2E04CDABD2000001CF = {
+			isa = PBXApplicationReference;
+			path = CornerClickBG.app;
+			refType = 3;
+		};
+		37C3CB3104CDAD30000001CF = {
+			children = (
+				37C3CB3204CDAD30000001CF,
+				37C3CB3304CDAD30000001CF,
+				37C3CB3404CDAD30000001CF,
+				37C3CB3504CDAD30000001CF,
+				37C3CB3604CDAD30000001CF,
+				37C3CB3704CDAD30000001CF,
+				37C3CB3804CDAD30000001CF,
+				37C3CB3904CDAD30000001CF,
+				37C3CB3A04CDAD30000001CF,
+				37C3CB3B04CDAD30000001CF,
+				37C3CB3C04CDAD30000001CF,
+				37C3CB5804CDADFF000001CF,
+			);
+			isa = PBXGroup;
+			path = clickBG;
+			refType = 4;
+		};
+		37C3CB3204CDAD30000001CF = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = ClickAction.h;
+			refType = 4;
+		};
+		37C3CB3304CDAD30000001CF = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = ClickAction.m;
+			refType = 4;
+		};
+		37C3CB3404CDAD30000001CF = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = Clicker.h;
+			refType = 4;
+		};
+		37C3CB3504CDAD30000001CF = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = Clicker.m;
+			refType = 4;
+		};
+		37C3CB3604CDAD30000001CF = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = ClickView.h;
+			refType = 4;
+		};
+		37C3CB3704CDAD30000001CF = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = ClickView.m;
+			refType = 4;
+		};
+		37C3CB3804CDAD30000001CF = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = ClickWindow.h;
+			refType = 4;
+		};
+		37C3CB3904CDAD30000001CF = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = ClickWindow.m;
+			refType = 4;
+		};
+		37C3CB3A04CDAD30000001CF = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = GrayView.h;
+			refType = 4;
+		};
+		37C3CB3B04CDAD30000001CF = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = GrayView.m;
+			refType = 4;
+		};
+		37C3CB3C04CDAD30000001CF = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = main.m;
+			refType = 4;
+		};
+		37C3CB3D04CDAD30000001CF = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = CornerClickBG_Prefix.h;
+			path = clickBG/CornerClickBG_Prefix.h;
+			refType = 4;
+		};
+		37C3CB3E04CDAD30000001CF = {
+			fileRef = 37C3CB3204CDAD30000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37C3CB3F04CDAD30000001CF = {
+			fileRef = 37C3CB3304CDAD30000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37C3CB4004CDAD30000001CF = {
+			fileRef = 37C3CB3404CDAD30000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37C3CB4104CDAD30000001CF = {
+			fileRef = 37C3CB3504CDAD30000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37C3CB4204CDAD30000001CF = {
+			fileRef = 37C3CB3604CDAD30000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37C3CB4304CDAD30000001CF = {
+			fileRef = 37C3CB3704CDAD30000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37C3CB4404CDAD30000001CF = {
+			fileRef = 37C3CB3804CDAD30000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37C3CB4504CDAD30000001CF = {
+			fileRef = 37C3CB3904CDAD30000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37C3CB4604CDAD30000001CF = {
+			fileRef = 37C3CB3A04CDAD30000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37C3CB4704CDAD30000001CF = {
+			fileRef = 37C3CB3B04CDAD30000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37C3CB4804CDAD30000001CF = {
+			fileRef = 37C3CB3C04CDAD30000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37C3CB4904CDAD30000001CF = {
+			fileRef = 37C3CB3D04CDAD30000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37C3CB5704CDADB5000001CF = {
+			fileRef = 1058C7ADFEA557BF11CA2CBB;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37C3CB5804CDADFF000001CF = {
+			children = (
+				37C3CB5904CDADFF000001CF,
+				37C3CB5B04CDADFF000001CF,
+			);
+			isa = PBXGroup;
+			path = English.lproj;
+			refType = 4;
+		};
+		37C3CB5904CDADFF000001CF = {
+			children = (
+				37C3CB5A04CDADFF000001CF,
+			);
+			isa = PBXVariantGroup;
+			name = InfoPlist.strings;
+			path = "";
+			refType = 4;
+		};
+		37C3CB5A04CDADFF000001CF = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = English;
+			path = InfoPlist.strings;
+			refType = 4;
+		};
+		37C3CB5B04CDADFF000001CF = {
+			children = (
+				37C3CB5C04CDADFF000001CF,
+			);
+			isa = PBXVariantGroup;
+			name = MainMenu.nib;
+			path = "";
+			refType = 4;
+		};
+		37C3CB5C04CDADFF000001CF = {
+			isa = PBXFileReference;
+			name = English;
+			path = MainMenu.nib;
+			refType = 4;
+		};
+		37C3CB5D04CDADFF000001CF = {
+			fileRef = 37C3CB5904CDADFF000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37C3CB5E04CDADFF000001CF = {
+			fileRef = 37C3CB5B04CDADFF000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37C3CB7A04CDB35E000001CF = {
+			fileRef = 37C3CB2E04CDABD2000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37C3CB8404CDB53D000001CF = {
+			isa = PBXTargetDependency;
+			target = 37C3CB2D04CDABD2000001CF;
+		};
+//370
+//371
+//372
+//373
+//374
+//F50
+//F51
+//F52
+//F53
+//F54
+		F506C035013D953901CA16C8 = {
+			isa = PBXFrameworkReference;
+			name = PreferencePanes.framework;
+			path = /System/Library/Frameworks/PreferencePanes.framework;
+			refType = 0;
+		};
+		F506C036013D953901CA16C8 = {
+			fileRef = F506C035013D953901CA16C8;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F506C03C013D9D7901CA16C8 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = ClickBoxPref.h;
+			refType = 4;
+		};
+		F506C03D013D9D7901CA16C8 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = ClickBoxPref.m;
+			refType = 4;
+		};
+		F506C03E013D9D7901CA16C8 = {
+			fileRef = F506C03C013D9D7901CA16C8;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F506C03F013D9D7901CA16C8 = {
+			fileRef = F506C03D013D9D7901CA16C8;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F506C040013D9D8001CA16C8 = {
+			isa = PBXFileReference;
+			path = ClickBoxPref.tiff;
+			refType = 4;
+		};
+		F506C041013D9D8001CA16C8 = {
+			fileRef = F506C040013D9D8001CA16C8;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F506C042013D9D8C01CA16C8 = {
+			children = (
+				F506C043013D9D8C01CA16C8,
+			);
+			isa = PBXVariantGroup;
+			name = ClickBoxPref.nib;
+			path = "";
+			refType = 4;
+		};
+		F506C043013D9D8C01CA16C8 = {
+			isa = PBXFileReference;
+			name = English;
+			path = English.lproj/ClickBoxPref.nib;
+			refType = 4;
+		};
+		F506C044013D9D8C01CA16C8 = {
+			fileRef = F506C042013D9D8C01CA16C8;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+	};
+	rootObject = 089C1669FE841209C02AAC07;
+}

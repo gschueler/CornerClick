@@ -315,7 +315,10 @@
     [[NSDistributedNotificationCenter defaultCenter]
 postNotificationName: @"CornerClickPingBackNotification"
               object: nil
-            userInfo: [NSDictionary dictionaryWithObject: [NSNumber numberWithInt: CC_APP_VERSION] forKey: @"CornerClickAppVersion"]
+            userInfo: [NSDictionary dictionaryWithObjects:
+                [NSArray arrayWithObjects: [NSNumber numberWithInt: CC_APP_VERSION], [NSNumber numberWithInt: CC_PATCH_VERSION], nil]
+                                                  forKeys:
+                [NSArray arrayWithObjects: @"CornerClickAppVersion", @"CornerClickPatchVersion",nil]]
   deliverImmediately: YES
         ];
 }

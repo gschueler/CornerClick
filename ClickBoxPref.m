@@ -230,7 +230,10 @@
     //NSLog(@"send ping to app");
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName: @"CornerClickPingAppNotification"
                                                                    object: nil
-                                                                 userInfo: [NSDictionary dictionaryWithObject: [NSNumber numberWithInt: CC_APP_VERSION] forKey: @"CornerClickAppVersion"]
+                                                                 userInfo: [NSDictionary dictionaryWithObjects:
+                                                                     [NSArray arrayWithObjects: [NSNumber numberWithInt: CC_APP_VERSION], [NSNumber numberWithInt: CC_PATCH_VERSION], nil]
+                                                                                        forKeys:
+                                                                     [NSArray arrayWithObjects: @"CornerClickAppVersion", @"CornerClickPatchVersion",nil]]
                                                        deliverImmediately: YES];
 }
 
@@ -290,17 +293,20 @@
 - (void) helperAppIsRunning: (NSNotification *) notice
 {
     NSNumber *num = [[notice userInfo] objectForKey:@"CornerClickAppVersion"];
+    NSNumber *pat = [[notice userInfo] objectForKey:@"CornerClickPatchVersion"];
     int vers = [num intValue];
+    int patch = (pat==nil?0:[pat intValue]);
     int maj = (int)((vers/1000));
     int min= vers%1000;
     int cmaj =(int)((CC_APP_VERSION/1000));
     int cmin= CC_APP_VERSION % 1000;
+    int cpatch= CC_PATCH_VERSION;
     active=YES;
-    if(vers != CC_APP_VERSION){
+    if(vers != CC_APP_VERSION || (vers==CC_APP_VERSION && patch!=cpatch)){
         //[appLaunchErrorLabel setStringValue: [NSString stringWithFormat: @"Old version %d.%d is active. Disable and re-enable CornerClick to activate this version.", maj,min]];
         reloadHelperOnHelperDeactivation=YES;
         [self deactivateHelper];
-        NSBeginAlertSheet(@"New CornerClick Version", @"OK", nil,nil, [NSApp mainWindow], self, NULL, NULL, NULL, @"An old version of CornerClick was active (version %d.%d). It will be deactivated and version %d.%d will be activated.",maj,min,cmaj,cmin);
+        NSBeginAlertSheet(@"New CornerClick Version", @"OK", nil,nil, [NSApp mainWindow], self, NULL, NULL, NULL, @"An old version of CornerClick was active (version %d.%d.%d). It will be deactivated and version %d.%d.%d will be activated.",maj,min,patch,cmaj,cmin,cpatch);
 //        NSBeginAlertSheet([NSString stringWithFormat:@"Old Version Active: %d.%d",maj,min], @"Yes", @"No",nil, [NSApp mainWindow], self, @selector(alertSheetDidEnd:returnCode:contextInfo:), NULL, NULL, @"The old version that is running may not work correctly with new features.  Do you want to deactivate the old version and activate the newer version %d.%d?",cmaj,cmin);
         
         //TODO automaticcally enable the new version?

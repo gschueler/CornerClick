@@ -1,0 +1,22 @@
+"Main Screen" = "Main Screen";
+"Screen #%d" = "Screen #%d";
+"New CornerClick Version" = "New CornerClick Version";
+"An old version of CornerClick was active (version %d.%d.%d). It will be deactivated and version %d.%d.%d will be activated."="An old version of CornerClick was active (version %d.%d.%d). It will be deactivated and version %d.%d.%d will be activated.";
+
+"Deactivate Failed"="Deactivate Failed";
+"The CornerClick helper application could not be deactivated."="The CornerClick helper application could not be deactivated.";
+"OK"="OK";
+
+"Trying to activate"="Trying to activate";
+"Trying to deactivate"="Trying to deactivate";
+
+"Activate Failed"="Activate Failed";
+"The CornerClick helper application could not be launched."="The CornerClick helper application could not be launched.";
+
+"no file chosen"="no file chosen";
+"no script chosen"="no script chosen";
+
+"Hide Current Application"="Hide Current Application";
+"Hide Other Applications"="Hide Other Applications";
+"Open URL %@"="Open URL %@";
+"Click"="Click";

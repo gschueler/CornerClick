@@ -12,12 +12,15 @@
 {
     if(self=[super init]){
         myIcon=nil;
+        trueLabel=nil;
+        myLabel=nil;
         theCorner=corner;
         theType=type;
         theModifiers=modifiers;
         myClicker=clicker;
         if(theString != nil){
-            myString = [[NSString stringWithString:theString] retain];
+            //myString = [[NSString stringWithString:theString] retain];
+            myString = [theString copy];
         }
         [self setIconAndLabelUserProvided:label];
     }
@@ -26,8 +29,19 @@
 
 -(void)setIconAndLabelUserProvided: (NSString *) label
 {
-    [myLabel release];
-    [myIcon release];
+    if(myLabel!=nil)
+        [myLabel release];
+    if(myIcon!=nil){
+        NSLog(@"releasing icon: %@ retain: %d",myIcon,[myIcon retainCount]);
+        [myIcon release];
+    }
+    if(trueLabel!=nil)
+        [trueLabel release];
+    myLabel=nil;
+    trueLabel=nil;
+    myIcon=nil;
+    if(label!=nil)
+        trueLabel = [label copy];
     switch(theType){
         case 0:
             if([[myString lastPathComponent] hasSuffix:@".app"]){
@@ -46,7 +60,7 @@
             break;
         case 3:
             if(label !=nil){
-                myLabel = [label retain];
+                myLabel = [label copy];
             }
             else if([myString length]> 30){
                 myLabel=[[NSString stringWithFormat:@"%@É",[myString substringToIndex:30]] retain];
@@ -59,7 +73,17 @@
             myLabel=[[NSString stringWithString:@"?!@#"] retain];
 
     }
-    
+    //DEBUG(@"setIcon return");
+}
+
+- (NSString *) labelSetting
+{
+    return trueLabel;
+}
+
+- (void) setLabelSetting: (NSString *) label
+{
+    [self setIconAndLabelUserProvided:label];
 }
 
 -(int)type
@@ -77,29 +101,31 @@
 }
 -(NSString *)string
 {
-    return [[myString copy] autorelease];
+    return myString;
 }
 -(NSString *)label
 {
-    return [[myLabel copy] autorelease];
+    return myLabel;
 }
 -(NSImage *)icon
 {
-    return [[myIcon copy] autorelease];
+    return myIcon;
 }
 
 
 -(void) setString: (NSString *) string
 {
-    [string retain];
     [myString release];
-    myString=string;
+    myString=nil;
+    if(string!=nil)
+        myString=[string copy];
 }
 -(void) setLabel: (NSString *) label
 {
-    [label retain];
     [myLabel release];
-    myLabel=label;
+    myLabel=nil;
+    if(label!=nil)
+        myLabel=[label copy];
 }
 -(void) setIcon: (NSImage *) icon
 {
@@ -125,6 +151,7 @@
     [myString release];
     [myLabel release];
     [myIcon release];
+    [trueLabel release];
 }
 - (void)doAction:(NSEvent*)theEvent
 {
@@ -178,5 +205,47 @@
     }
 }
 
+
++ (NSString *) stringNameForActionType: (int) type
+{
+    switch(type){
+        case 0: return @"chosenFilePath";
+        case 3: return @"chosenURL";
+        default: return nil;
+    }
+}
+
++ (NSString *) labelNameForActionType: (int) type
+{
+    switch(type){
+        case 3: return @"urlDesc";
+        default: return nil;
+    }
+}
+
++ (BOOL) validActionType: (int) type andString: (NSString *) action
+{
+    switch(type){
+        case 0:
+            if(action !=nil)
+                return YES;
+            break;
+        case 1: return YES;
+        case 2: return YES;
+        case 3:
+            if(action !=nil && [action length]>0)
+                return YES;
+            break;
+        default:
+            return NO;
+    }
+    return NO;
+}
+
+- (id) copyWithZone: (NSZone *) zone
+{
+    ClickAction *a = [[ClickAction allocWithZone:zone] initWithType: theType andModifiers:  theModifiers andString:[myString copy] forCorner: theCorner withLabel: [trueLabel copy] andClicker:myClicker];
+    return a;
+}
 
 @end

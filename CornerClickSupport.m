@@ -13,14 +13,21 @@
 
 + (void) savePreferences: (CornerClickSettings *) settings;
 {
+    NSDictionary *tdict;
+    //NSString *s=nil;
+    //NSData *data;
     [[NSUserDefaults standardUserDefaults]
         removePersistentDomainForName:CC_PREF_BUNDLE_ID_STR];
 
+    tdict=[[settings asDictionary] retain];
 
-    [[NSUserDefaults standardUserDefaults] setPersistentDomain:[settings asDictionary]
+    //NSLog(@"prop list: %d %@",[data length],[data description]);
+    //NSLog(@"saving settings, retaincount: %d",[tdict retainCount]);
+    [[NSUserDefaults standardUserDefaults] setPersistentDomain:tdict
                                                        forName:CC_PREF_BUNDLE_ID_STR];
 
     [[NSUserDefaults standardUserDefaults] synchronize];
+    [tdict release];
     
 }
 
@@ -32,9 +39,6 @@
       persistentDomainForName:CC_PREF_BUNDLE_ID_STR];
     if(prefs==nil){
         prefs = [CornerClickSupport loadOldVersionPreferences];
-    }
-    if(prefs==nil){
-        return nil;
     }
     //NSLog(@"loaded prefs: %@",prefs);
     return [[[CornerClickSettings alloc] initWithUserPreferences: prefs] autorelease];
@@ -59,7 +63,7 @@
                        forKey: @"screens"];
                 ma = [[[NSMutableArray alloc] initWithCapacity: 4] autorelease];
                 [[md objectForKey:@"screens"] setObject: ma
-                                                 forKey: [[[NSScreen mainScreen] deviceDescription] objectForKey:@"NSScreenNumber"]];
+                                                 forKey: [NSString stringWithFormat:@"%d",[[[[NSScreen mainScreen] deviceDescription] objectForKey:@"NSScreenNumber"] intValue]]];
                 [ma addObject:[loaded objectForKey:@"tl"]];
                 [ma addObject:[loaded objectForKey:@"tr"]];
                 [ma addObject:[loaded objectForKey:@"bl"]];
@@ -81,40 +85,67 @@
 
 + (id) deepMutableCopyOfObject: (id) obj
 {
-    if(obj==nil)
+    //NSLog(@"start DeepMC: %@",[obj class]);
+    if(obj==nil){
+        NSLog(@"deepMCoO: nil");
         return nil;
-    else if([obj isKindOfClass:[NSDictionary class]])
-        return [CornerClickSupport deepMutableCopyOfDictionary:obj];
-    else if([obj isKindOfClass:[NSArray class]])
-        return [CornerClickSupport deepMutableCopyOfArray:obj];
-    else if([obj conformsToProtocol:@protocol(NSMutableCopying)] &&
-            [obj respondsToSelector:@selector(mutableCopyWithZone:)])
-        return [obj mutableCopy];
-    else if([obj conformsToProtocol:@protocol(NSCopying)] &&
-            [obj respondsToSelector:@selector(copyWithZone:)])
+    }
+    else if([obj isKindOfClass: [NSString class]])
         return [obj copy];
-    else
+    else if([obj isKindOfClass:[NSDictionary class]]){
+        NSMutableDictionary *x = [CornerClickSupport deepMutableCopyOfDictionary:obj];
+        //NSLog(@"deepMCoO retd dict retain: %d",[x retainCount]);
+        return x;
+    }
+    else if([obj isKindOfClass:[NSArray class]]){
+        NSMutableArray *x = [CornerClickSupport deepMutableCopyOfArray:obj];
+        //NSLog(@"deepMCoO retd array retain: %d",[x retainCount]);
+        return x;
+    }
+    else if([obj conformsToProtocol:@protocol(NSMutableCopying)] &&
+            [obj respondsToSelector:@selector(mutableCopyWithZone:)]){
+        //NSLog(@"deepMC of NSMutableCopying: %@",[obj class]);
+        return [obj mutableCopy];
+    }
+    else if([obj conformsToProtocol:@protocol(NSCopying)] &&
+            [obj respondsToSelector:@selector(copyWithZone:)]){
+        //NSLog(@"deepMC of NSCopying: %@",[obj class]);
+        return [obj copy];
+        
+    }
+    else{
+        //NSLog(@"deepMCoO: same ref: %@",[obj class]);
         return obj;
+    }
 }
 + (NSMutableArray *) deepMutableCopyOfArray:(NSArray *) arr
 {
+    //DEBUG(@"deepMC of Arr");
     int i;
+    id obj;
     NSMutableArray *md = [[NSMutableArray alloc] initWithCapacity:[arr count]];
     for(i=0;i<[arr count];i++){
-        [md addObject:[[CornerClickSupport deepMutableCopyOfObject: [arr objectAtIndex: i]] autorelease]];
+        obj = [[CornerClickSupport deepMutableCopyOfObject: [arr objectAtIndex: i]] autorelease];
+        //NSLog(@"deepMCoA add obj retain:%d",[obj retainCount]);
+        [md addObject:obj];
     }
+    //NSLog(@"deepMCoA return retain:%d",[md retainCount]);
     return md;
 }
 
 + (NSMutableDictionary *) deepMutableCopyOfDictionary:(NSDictionary *) dict
 {
-    id key;
+    //DEBUG(@"deepMC of Dict");
+    id key,obj;
     NSEnumerator *enumd=[dict keyEnumerator];
     NSMutableDictionary *md = [[NSMutableDictionary alloc] initWithCapacity:[dict count]];
     while(key = [enumd nextObject]){
-        [md setObject:[[CornerClickSupport deepMutableCopyOfObject: [dict objectForKey:key]] autorelease]
+        obj = [[CornerClickSupport deepMutableCopyOfObject: [dict objectForKey:key]] autorelease];
+        //NSLog(@"deepMCoD add obj retain:%d",[obj retainCount]);
+        [md setObject:obj
                forKey: key];
     }
+    //NSLog(@"deepMCoD return retain:%d",[md retainCount]);
     return md;
 }
 
@@ -130,6 +161,12 @@
 - (id) initWithUserPreferences: (NSDictionary *) prefs
 {
     int num=-1;
+    int i,j;
+    NSEnumerator *en;
+    NSArray *corners;
+    NSMutableArray *actions;
+    ClickAction *act;
+    id key;
 
     if(self = [super init]){
 
@@ -143,6 +180,20 @@
             toolTipDelayed = [[prefs objectForKey:@"tooltipDelayed"] boolValue];
 
             theScreens=[CornerClickSupport deepMutableCopyOfObject: [prefs objectForKey:@"screens"]];
+            en=[theScreens keyEnumerator];
+            while(key = [en nextObject]){
+                corners = (NSArray *)[theScreens objectForKey:key];
+                for(i=0;i<[corners count];i++){
+                    actions = [[corners objectAtIndex: i] objectForKey:@"actionList"];
+                    if(actions==nil || [actions count]==0)
+                        continue;
+                    for(j=0;j<[actions count];j++){
+                        act = [CornerClickSettings actionFromDictionary:[actions objectAtIndex:j] withCorner: i];
+                        [actions replaceObjectAtIndex:j withObject:act];
+                    }
+                }
+            }
+            //NSLog(@"initWithUserPreferences finished: theScreens: %@",theScreens);
            
         }else{
             theScreens = [[NSMutableDictionary alloc] initWithCapacity:2];
@@ -166,7 +217,7 @@
     ClickAction *click;
     NSMutableArray *ma;
     NSArray *actionList;
-    NSArray *cornerList = [theScreens objectForKey:screenNum];
+    NSArray *cornerList = [self screenArray:screenNum];
     if(cornerList==nil)
         return nil;
     if(corner >= [cornerList count])
@@ -174,6 +225,11 @@
     actionList = [[cornerList objectAtIndex: corner] objectForKey:@"actionList"];
     if(actionList==nil)
         return nil;
+    return [NSArray arrayWithArray:actionList];
+
+    //cruft 
+    ma = [CornerClickSupport deepMutableCopyOfObject: actionList];
+    
     ma = [[NSMutableArray alloc] initWithCapacity:[actionList count]];
 
     for(i=0;i<[actionList count];i++){
@@ -188,9 +244,16 @@
     [ma autorelease];
     return ma;
 }
+- (ClickAction *) actionAtIndex: (int) index forScreen:(NSNumber *)screenNum andCorner:(int) corner
+{
+    return [[[[self screenArray:screenNum] objectAtIndex: corner] objectForKey:@"actionList"] objectAtIndex:index];
+    
+//    return [CornerClickSettings actionFromDictionary: [[[[self screenArray:screenNum] objectAtIndex: corner] objectForKey:@"actionList"] objectAtIndex:index] withCorner:corner];
+}
 - (void) addAction: (ClickAction *) action forScreen: (NSNumber *)screenNum andCorner:(int) corner
 {
-    [[[[theScreens objectForKey:screenNum] objectAtIndex: corner] objectForKey:@"actionList"] addObject:[CornerClickSettings dictionaryFromAction:action]];
+    [[[[self screenArray:screenNum] objectAtIndex: corner] objectForKey:@"actionList"] addObject:action];
+//    [[[[self screenArray:screenNum] objectAtIndex: corner] objectForKey:@"actionList"] addObject:[CornerClickSettings dictionaryFromAction:action]];
 
 }
 - (void) removeActionAtIndex: (int) index forScreen: (NSNumber *)screenNum andCorner:(int) corner
@@ -202,7 +265,8 @@
 - (void) replaceActionAtIndex: (int) index withAction: (ClickAction *) action forScreen: (NSNumber *)screenNum andCorner:(int)corner
 {
     [[[[self screenArray:screenNum] objectAtIndex: corner] objectForKey:@"actionList"] replaceObjectAtIndex:index
-                                                                                                        withObject:[CornerClickSettings dictionaryFromAction:action]];
+                                                                                                 withObject:action];
+//    [[[[self screenArray:screenNum] objectAtIndex: corner] objectForKey:@"actionList"] replaceObjectAtIndex:index                                                                                                        withObject:[CornerClickSettings dictionaryFromAction:action]];
 
 }
 
@@ -249,7 +313,7 @@
 - (NSMutableArray *) screenArray:(NSNumber *) screenNum
 {
     NSMutableDictionary *tdict;
-    NSMutableArray *scr= [theScreens objectForKey:screenNum];
+    NSMutableArray *scr= [theScreens objectForKey:[NSString stringWithFormat:@"%d",[screenNum intValue]]];
     if(scr==nil){
         scr = [NSMutableArray arrayWithCapacity:4];
         tdict = [NSMutableDictionary dictionaryWithCapacity:4];
@@ -259,6 +323,7 @@
         [scr addObject:[CornerClickSupport deepMutableCopyOfObject:tdict]];
         [scr addObject:[CornerClickSupport deepMutableCopyOfObject:tdict]];
         [scr addObject:[CornerClickSupport deepMutableCopyOfObject:tdict]];
+        [theScreens setObject: scr forKey:[NSString stringWithFormat:@"%d",[screenNum intValue]]];
         //TODO add more empty dictionaries for edges
     }
     return scr;
@@ -272,7 +337,8 @@
     if([ClickAction stringNameForActionType:[action type]] !=nil)
         [md setObject:[action string] forKey:[ClickAction stringNameForActionType:[action type]]];
     if([ClickAction labelNameForActionType:[action type]] !=nil)
-        [md setObject:[action label] forKey:[ClickAction labelNameForActionType:[action type]]];
+        if([action labelSetting]!=nil)
+            [md setObject:[action labelSetting] forKey:[ClickAction labelNameForActionType:[action type]]];
     [md setObject:[NSNumber numberWithInt:[action modifiers]] forKey:@"modifiers"];
     return [md autorelease];
 }
@@ -295,18 +361,92 @@
                                      withLabel:label
                                     andClicker:self]
                 autorelease];
+    }else{
+        NSLog(@"invalid action from actionFromDictionary:%@",dict);
     }
     return click;
+}
+- (void) blahArray:(NSArray *)a level:(int) level
+{
+    int i;
+    id obj;
+    NSString *pad=[@"" stringByPaddingToLength: level withString: @" " startingAtIndex: 0];
+    NSLog(@"%@<%@:%x>(retain:%d) [",pad,[a class],(unsigned)a,[a retainCount]);
+    for(i=0;i<[a count];i++){
+        obj = [a objectAtIndex:i];
+        NSLog(@"%@%d:",pad,i);
+        if([obj isKindOfClass:[NSDictionary class]]){
+            [self blahDict:obj level:(level+1)];
+        }else if([obj isKindOfClass:[NSArray class]]){
+            [self blahArray:obj level:(level+1)];
+        }else{
+            NSLog(@" %@<%@:%x>(retain:%d):%@",pad,[obj class],(unsigned)obj,[obj retainCount],obj);
+        }
+    }
+    NSLog(@"%@]",pad);
+}
+
+- (void) blahDict:(NSDictionary *)a level:(int) level
+{
+    NSEnumerator *en =[a keyEnumerator];
+    id key,obj;
+    NSString *pad=[@"" stringByPaddingToLength: level withString: @" " startingAtIndex: 0];
+    NSLog(@"%@<%@:%x>(retain:%d) {",pad,[a class],(unsigned)a,[a retainCount]);
+    while(key =[en nextObject]){
+        obj = [a objectForKey:key];
+        NSLog(@"%@%@<%@> = ",pad,key,[key class]);
+        if([obj isKindOfClass:[NSDictionary class]]){
+            [self blahDict:obj level:(level+1)];
+        }else if([obj isKindOfClass:[NSArray class]]){
+            [self blahArray:obj level:(level+1)];
+        }else{
+            NSLog(@" %@<%@:%x>(retain:%d):%@",pad,[obj class],(unsigned)obj,[obj retainCount],obj);
+        }
+    }
+    NSLog(@"%@}",pad);
+}
+- (NSString *) description
+{
+    return [[self asDictionary] description];
 }
 
 - (NSDictionary *) asDictionary
 {
-    NSMutableDictionary *md = [[NSMutableDictionary alloc] initWithCapacity:5];
-    [md setObject: [CornerClickSupport deepMutableCopyOfObject:theScreens] forKey:@"screens"];
+    int i,j;
+    id key;
+    NSDictionary *act;
+    NSEnumerator *en;
+    NSMutableArray *actions,*corners;
+    NSMutableDictionary *md = [NSMutableDictionary dictionaryWithCapacity:5];
+    NSMutableDictionary *sc = [CornerClickSupport deepMutableCopyOfObject:theScreens] ;
+    //NSLog(@"deep mutable copy: %@",sc);
+    //NSMutableDictionary *sc = [CornerClickSupport deepMutableCopyOfObject:theScreens] ;
+    //NSDictionary *pk = [NSDictionary dictionaryWithObject:@"test" forKey:@"blah"] ;
+    //NSArray *pk = [NSArray arrayWithObjects: @"test",@"blah",[NSDictionary dictionaryWithObject:@"ink" forKey:@"fart"],nil];
+    //NSMutableDictionary *pk = [[NSMutableDictionary dictionaryWithObject:[NSArray arrayWithObjects:@"barf",@"cool",nil] forKey:[NSNumber numberWithInt:4]]retain] ;
+    //NSMutableDictionary *sc = [CornerClickSupport deepMutableCopyOfObject:pk];
+    en=[sc keyEnumerator];
+    while(key = [en nextObject]){
+        corners = (NSMutableArray *)[sc objectForKey:key];
+        for(i=0;i<[corners count];i++){
+            actions = [[corners objectAtIndex: i] objectForKey:@"actionList"];
+            if(actions==nil || [actions count]==0)
+                continue;
+            for(j=0;j<[actions count];j++){
+                act = [CornerClickSettings dictionaryFromAction:[actions objectAtIndex:j]];
+                //[[actions objectAtIndex:j] retain];
+                [actions replaceObjectAtIndex:j withObject:act];
+            }
+        }
+    }
+    
+    [md setObject: sc forKey:@"screens"];
     [md setObject: [NSNumber numberWithInt: CC_APP_VERSION] forKey:@"appVersion"];
     [md setObject: [NSNumber numberWithBool: appEnabled] forKey:@"appEnabled"];
     [md setObject: [NSNumber numberWithBool: toolTipEnabled] forKey:@"tooltip"];
     [md setObject: [NSNumber numberWithBool: toolTipDelayed] forKey:@"tooltipDelayed"];
-    return [md autorelease];
+    [sc release];
+    
+    return md;
 }
 @end

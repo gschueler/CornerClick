@@ -37,20 +37,39 @@
     IBOutlet NSButton *commandKeyCheckBox;
     IBOutlet NSButton *controlKeyCheckBox;
     IBOutlet NSTextView *readmeTextView;
-    NSMutableDictionary *tl;
-    NSMutableDictionary *tr;
-    NSMutableDictionary *bl;
-    NSMutableDictionary *br;
-    NSMutableDictionary *currentDict;
-    NSMutableDictionary *currentActionDict;
-    NSMutableDictionary *appPrefs;
-    NSMutableArray *currentActions;
+    IBOutlet NSMatrix *cornerMatrix;
+    IBOutlet NSPopUpButton *screenIDButton;
+    //NSMutableDictionary *tl;
+    //NSMutableDictionary *tr;
+    //NSMutableDictionary *bl;
+    //NSMutableDictionary *br;
+    //NSMutableDictionary *currentDict;
+    //NSMutableDictionary *currentActionDict;
+    //NSMutableDictionary *appPrefs;
+    //NSMutableArray *currentActions;
     int chosenCorner;
     int chosenAction;
+    int chosenScreen;
+    int eerepeated;
     BOOL active;
+    BOOL awaitingDisabledHelperNotification;
+    BOOL reloadHelperOnHelperDeactivation;
     ClickAction *currentAction;
     NSTimer *disableTimer;
+    NSWindow *screenIdWindow;
+    GrayView *screenIdView;
+    NSMutableDictionary *screenNums;
+    NSMutableArray *allScreens;
+    NSTimer *delayTimer;
+    NSArray *ordinalNames;
+    CornerClickSettings *appSettings;
 }
+- (void)doChooseCorner:(int) corner;
+- (IBAction)screenIDClicked:(id)sender;
+- (IBAction)tlCornerClick:(id)sender;
+- (IBAction)trCornerClick:(id)sender;
+- (IBAction)blCornerClick:(id)sender;
+- (IBAction)brCornerClick:(id)sender;
 - (IBAction)actionChosen:(id)sender;
 - (IBAction)cornerChosen:(id)sender;
 - (IBAction)enableChosen:(id)sender;
@@ -66,18 +85,26 @@
 - (IBAction)shiftKeyCheckBoxClicked:(id)sender;
 - (IBAction)commandKeyCheckBoxClicked:(id)sender;
 - (IBAction)controlKeyCheckBoxClicked:(id)sender;
+
+- (void) deactivateHelper;
+- (void) activateHelper;
 - (void) mainViewDidLoad;
 - (void) didUnselect;
 - (void) saveChanges;
 - (void) saveChangesFromNotification:(NSNotification *)aNotification;
-
-- (void) refreshWithSettings:(NSDictionary *)settings;
-- (void) refreshWithCornerSettings: (NSDictionary *) settings;
+- (void) syncCurrentAction;
+- (void) checkScreens;
+- (void) displayScreenIdentification;
+- (void) fadeScreenIdentification;
+- (void) refreshWithSettings:(ClickAction *)settings;
+- (void) refreshWithCornerSettings;
 - (void) checkIfHelperAppRunning;
 - (void) notifyAppOfPreferences:(NSDictionary *) prefs;
-- (NSDictionary *) makePrefs;
+
 - (void) setSubFrameForActionType: (int) type;
 - (void)toggleModifier: (int)modifier toState:(BOOL) used;
 - (NSAttributedString *)makeAttributedLink:(NSString *) link forString:(NSString *) string;
+
++ (NSString *)ordinalForNumber: (int) which;
 
 @end

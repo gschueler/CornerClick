@@ -1,5 +1,6 @@
 
-#define CC_PREF_BUNDLE_ID_STR @"us.vario.greg.CornerClick"
+#import "CornerClickSupport.h"
+#define CC_PREF_BUNDLE_ID_STR [NSString stringWithString:@"us.vario.greg.CornerClick"]
 
 #define SHIFT_MASK 1
 #define OPTION_MASK 2

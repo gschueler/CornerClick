@@ -11,8 +11,14 @@
 
 - (id)initWithFrame:(NSRect)frameRect actions:(NSArray *)actions corner:(int) theCorner;
 {
+    int c;
+    NSMutableArray *ma;
     if(self = [super initWithFrame:frameRect]){
-        myActions = [actions retain];
+        ma = [[NSMutableArray arrayWithCapacity:[actions count]] retain];
+        for(c=0;c<[actions count];c++){
+            [ma addObject:[[[actions objectAtIndex:c] copy] autorelease]];
+        }
+        myActions = ma;
         //myAction=[anAction retain];
         drawed=nil;
         corner=theCorner;
@@ -29,9 +35,15 @@
 
 - (void) setClickActions: (NSArray *) actions
 {
-    [actions retain];
+    NSMutableArray *ma;
+    int c;
+
+    ma = [[NSMutableArray arrayWithCapacity:[actions count]] retain];
+    for(c=0;c<[actions count];c++){
+        [ma addObject:[[[actions objectAtIndex:c] copy] autorelease]];
+    }
     [myActions release];
-    myActions=actions;
+    myActions = ma;
 }
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender
@@ -99,11 +111,13 @@
         if( [desiredType isEqualToString:NSURLPboardType]){
 //            id test = [paste propertyListForType:@"NSURLPboardType"];
             url = [NSURL URLFromPasteboard:paste];
+            /*
             if(url!=nil){
                 temp = [[ClickAction alloc] initWithType:3 andModifiers: 0 andString:[url absoluteString] forCorner:[myAction corner] andClicker:[NSApp delegate]];
                 [myAction release];
                 myAction=temp;
             }
+             */
         }else
         if ([desiredType isEqualToString:NSFilenamesPboardType])
         {
@@ -115,10 +129,10 @@
             NSString *path = [fileArray objectAtIndex:0];
             //assume that we can ignore all but the first path in the list
             NSLog(@"got new path: %@",path);
-            temp = [[ClickAction alloc] initWithType:0 andModifiers: 0 andString:path forCorner:[myAction corner] andClicker:[NSApp delegate]];
+            //temp = [[ClickAction alloc] initWithType:0 andModifiers: 0 andString:path forCorner:[myAction corner] andClicker:[NSApp delegate]];
                 //-(id)initWithType: (int) type andString: (NSString *)theString forCorner: (int) corner withLabel:(NSString *) label;
-            [myAction release];
-            myAction = temp;
+            //[myAction release];
+            //myAction = temp;
         }
         else
         {
@@ -160,6 +174,7 @@
     [[NSColor clearColor] set];
     NSRectFill(rect);
     [drawed compositeToPoint:NSZeroPoint operation:NSCompositeSourceOver];
+    //[[drawed TIFFRepresentation] writeToFile: [[NSString stringWithFormat:@"~/Desktop/%d.tiff", corner] stringByExpandingTildeInPath] atomically:YES];
 }
 
 - (void) drawBuf: (NSRect) rect
@@ -213,7 +228,7 @@
     if(selected)
         [[[NSColor whiteColor] colorWithAlphaComponent:0.50] set];
     else
-        [[[NSColor blackColor] colorWithAlphaComponent:0.50] set];
+        [[[NSColor redColor] colorWithAlphaComponent:0.50] set];
 
     [path fill];
     
@@ -227,7 +242,6 @@
 - (void) dealloc
 {
     [drawed release];
-    [myAction release];
     [myActions release];
 }
 - (ClickAction *) clickActionForModifierFlags:(unsigned int) modifiers
@@ -278,5 +292,15 @@
     }
 }
 
+
+
+- (void) setTrackingRectTag:(NSTrackingRectTag) tag
+{
+    trackTag=tag;
+}
+- (NSTrackingRectTag) trackingRectTag
+{
+    return trackTag;
+}
 
 @end

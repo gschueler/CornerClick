@@ -90,6 +90,7 @@
         pointCorner=pCorner;
         dirty=YES;
         tailLen=30;
+        drawHilite=NO;
     }else{
         NSLog(@"couldn't initWithFrame");
     }
@@ -97,6 +98,19 @@
     //[layoutManagert release];
 
     return self;
+}
+
+- (void) setDrawFont:(NSFont *) font color:(NSColor *) color
+{
+
+    NSDictionary *dict = [[NSDictionary dictionaryWithObjects:
+        [NSArray arrayWithObjects: font,color,nil]
+                                               forKeys:
+        [NSArray arrayWithObjects: NSFontAttributeName,
+            NSForegroundColorAttributeName, nil]
+        ] retain];
+    [stringAttrs release];
+    stringAttrs=dict;
 }
 
 - (void)drawRoundedRect: (NSRect)rect rounding: (float) theRounding alpha: (float) alpha color: (NSColor *) color
@@ -149,6 +163,54 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-rounding,high-rounding)
     [fadePath release];
 }
 
+- (void)doDrawHilite: (NSRect) rect
+{
+    NSBezierPath *fadePath;
+    NSImage *tempImg,*tempIn;
+    tempIn = [[NSImage alloc] initWithSize: NSMakeSize(rect.size.width,roundingSize+2)];
+    [tempIn lockFocus];
+    float ox=0;
+    float oy=0;
+    float wide=rect.size.width;
+    float high=roundingSize+2;
+    
+    fadePath = [[NSBezierPath bezierPath] retain];
+    [fadePath moveToPoint: NSMakePoint(roundingSize,high)];
+
+    [fadePath appendBezierPathWithArcWithCenter: NSMakePoint(roundingSize,high-roundingSize)
+                                         radius: roundingSize
+                                     startAngle: 90.0
+                                       endAngle: 180.0];
+    [fadePath lineToPoint: NSMakePoint(ox,high-roundingSize-2)];
+
+    [fadePath appendBezierPathWithArcWithCenter: NSMakePoint(wide-roundingSize,high-roundingSize)
+                                         radius: roundingSize
+                                     startAngle: 45.00
+                                       endAngle: 90.00];
+    [fadePath closePath];
+
+    [fadePath setLineWidth: 1];
+
+    [[NSColor blackColor] set];
+    [fadePath fill];
+    [fadePath release];
+    tempImg = [[NSImage alloc] initWithSize:rect.size];
+    [tempImg lockFocus];
+    [self drawGradient: NSMakeRect(0,0,rect.size.width,roundingSize+2)
+             fromColor: [[NSColor whiteColor] colorWithAlphaComponent: 0.2]
+               toColor: [[NSColor whiteColor] colorWithAlphaComponent: 0.0]
+             direction: -1
+        ];
+    [tempImg unlockFocus];
+    [tempImg compositeToPoint: NSZeroPoint operation:NSCompositeSourceIn];
+    [tempImg release];
+    [[NSColor redColor] set];
+    //[fadePath stroke];
+    [tempIn unlockFocus];
+    [tempIn compositeToPoint: NSMakePoint(rect.origin.x,rect.origin.y+rect.size.height-roundingSize-2) operation:NSCompositeSourceOver];
+    [tempIn release];
+}
+
 
 - (void)drawFadeFrame: (NSRect)rect
 {
@@ -161,11 +223,14 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-rounding,high-rounding)
     float high;
     if(pointCorner==2 || pointCorner==3){
         oy+=tailLen;
-        high = rect.origin.y+rect.size.height;
+        high = NSMaxY(rect);
     }
-    else{
-        taily=oy+rect.size.height;
+    else if(pointCorner==0 || pointCorner==1){
+        taily=NSMaxY(rect);
         high = taily-tailLen;
+    }else{
+        taily=NSMaxY(rect);
+        high = NSMaxY(rect);
     }
 
     fadePath = [[NSBezierPath bezierPath] retain];
@@ -301,17 +366,27 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
         if(textSize.height<32)
             textSize.height=32;
     }
-    textSize.height+=tailLen;
+    textSize.height+=(pointCorner>=0 ? tailLen : 0 );
     return NSMakeRect([self frame].origin.x,[self frame].origin.y,(int)ceil(((roundingSize - insetSize)*2) + textSize.width),(int)ceil(((roundingSize - insetSize)*2)+textSize.height));
 
 }
 
+- (void) drawGradient2: (NSRect) therect fromColor:(NSColor *) fromCol toColor:(NSColor *) toCol
+            direction: (int) dir
+{
+    //CGContext *ctx;
 
-- (void) drawGradient: (NSRect) therect fromColor:(NSColor *) from toColor:(NSColor *) to
+
+    //ctx = CGBitmapCreateContext(
+}
+
+- (void) drawGradient: (NSRect) therect fromColor:(NSColor *) fromCol toColor:(NSColor *) toCol
             direction: (int) dir
 {
     int i=0;
-    NSColor *tcol;
+    NSColor *tcol,*from,*to;
+    from = [fromCol colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+    to = [toCol colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
     float dR = ([from redComponent] - [to redComponent])/therect.size.height;
     float dG = ([from greenComponent] - [to greenComponent])/therect.size.height;
     float dB = ([from blueComponent] - [to blueComponent])/therect.size.height;
@@ -392,7 +467,11 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
                             operation:NSCompositeSourceOver
                              fraction:1.0];
         [tempImg release];
-        
+
+        if(drawHilite){
+            [self doDrawHilite:NSMakeRect(rect.origin.x,rect.origin.y+(pointCorner==2||pointCorner==3 ? tailLen : 0),
+                                          rect.size.width,rect.size.height-(pointCorner>=0? tailLen : 0))];
+        }
         [textArea unlockFocus];
         dirty=NO;
     }
@@ -410,22 +489,44 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 
 - (void) setFadeFromColor: (NSColor *) color
 {
-    [color retain];
+    NSColor *temp = [color colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+    [temp retain];
     //NSLog(@"fadeColor retainCount before release: %d",[fadeColor retainCount]);
     [fadeFromColor release];
-    fadeFromColor = color;
+    fadeFromColor = temp;
 }
 
 - (void) setFadeToColor: (NSColor *) color
 {
-    [color retain];
+    NSColor *temp = [color colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+    [temp retain];
     //NSLog(@"fadeColor retainCount before release: %d",[fadeColor retainCount]);
     [fadeToColor release];
-    fadeToColor = color;
+    fadeToColor = temp;
 }
 - (void) setPointCorner: (int) pCorner
 {
     pointCorner=pCorner;
+}
+
+- (void)setDrawHilite:(BOOL)draw
+{
+    drawHilite=draw;
+}
+- (BOOL)drawHilite
+{
+    return drawHilite;
+}
+
+- (void) setInsetSize:(float) size
+{
+    insetSize=size;
+    [self recalcSize];
+    [self display];
+}
+- (float) insetSize
+{
+    return insetSize;
 }
 
 - (void) fadeOut

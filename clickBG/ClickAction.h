@@ -3,7 +3,7 @@
 #import <Cocoa/Cocoa.h>
 @class Clicker;
 
-@interface ClickAction : NSObject
+@interface ClickAction : NSObject <NSCopying>
 {
     NSString* myString;
     int theType;
@@ -11,6 +11,7 @@
     int theModifiers;
     NSImage *myIcon;
     NSString *myLabel;
+    NSString *trueLabel;
     Clicker *myClicker;
 }
 
@@ -25,6 +26,8 @@
 -(NSString *)string;
 -(NSString *)label;
 -(NSImage *)icon;
+- (NSString *) labelSetting;
+- (void) setLabelSetting:(NSString *) label;
 -(void) setString: (NSString *) string;
 -(void) setLabel: (NSString *) label;
 -(void) setIcon: (NSImage *) icon;
@@ -33,4 +36,12 @@
 -(void) setModifiers: (int) modifiers;
 
 -(void)setIconAndLabelUserProvided: (NSString *) label;
+
+
+//static
++ (NSString *) stringNameForActionType: (int) type;
++ (NSString *) labelNameForActionType: (int) type;
++ (BOOL) validActionType: (int) type andString: (NSString *) action;
+
+
 @end

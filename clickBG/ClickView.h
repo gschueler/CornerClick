@@ -5,9 +5,9 @@
 
 @interface ClickView : NSView
 {
-    ClickAction *myAction;
     NSArray *myActions;
     NSImage *drawed;
+    NSTrackingRectTag trackTag;
     BOOL selected;
     int corner;
 }
@@ -23,4 +23,6 @@
 - (NSArray *) clickActions;
 - (void) setClickActions: (NSArray *) actions;
 - (ClickAction *) clickActionForModifierFlags: (unsigned int)modifiers;
+- (void) setTrackingRectTag:(NSTrackingRectTag) tag;
+- (NSTrackingRectTag) trackingRectTag;
 @end

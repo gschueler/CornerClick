@@ -5,11 +5,12 @@
 #ifdef __OBJC__
 #import <Foundation/Foundation.h>
 #import <AppKit/AppKit.h>
+#import "clickBG/GrayView.h"
 
-#define CB_APP_VERSION 1
+#import "common_prefix.h"
 
-#define SHIFT_MASK 1
-#define OPTION_MASK 2
-#define COMMAND_MASK 4
-#define CONTROL_MASK 8
+#if DEBUG_LEVEL > 0
+#define CC_APP_VERSION 2
+#endif
+
 #endif

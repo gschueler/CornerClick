@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ClickAction.h"
 
 @class CornerClickSettings;
-@class ClickAction;
 
 @interface CornerClickSupport : NSObject {
 
@@ -33,6 +33,7 @@
 - (id) initWithUserPreferences: (NSDictionary *) settings;
 - (NSArray *) actionsForScreen: (NSNumber *)screenNum andCorner:(int) corner;
 - (NSArray *) actionsForScreen: (NSNumber *)screenNum andCorner:(int) corner andModifiers: (int) modifiers;
+- (ClickAction *) actionAtIndex: (int) index forScreen:(NSNumber *)screenNum andCorner:(int) corner;
 - (void) addAction: (ClickAction *) action forScreen: (NSNumber *)screenNum andCorner:(int) corner;
 - (void) removeActionAtIndex: (int) index forScreen: (NSNumber *)screenNum andCorner:(int) corner;
 - (void) replaceActionAtIndex: (int) index withAction: (ClickAction *) action forScreen: (NSNumber *)screenNum andCorner: (int)corner;
@@ -47,7 +48,8 @@
 - (void) setToolTipEnabled: (BOOL) enabled;
 - (BOOL) toolTipDelayed;
 - (void) setToolTipDelayed: (BOOL) delayed;
-
+- (void) blahArray:(NSArray *)a level:(int) level;
+- (void) blahDict:(NSDictionary *)a level:(int) level;
 
 - (NSMutableArray *) screenArray:(NSNumber *)screenNum;
 

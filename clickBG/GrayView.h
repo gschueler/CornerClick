@@ -23,6 +23,7 @@
     int pointCorner;
     BOOL dirty;
     int tailLen;
+    BOOL drawHilite;
 }
 
 - (id) initWithFrame: (NSRect) frame andString: (NSString *)msg andImage: (NSImage *) img;
@@ -38,6 +39,11 @@
             direction: (int) dir;
 - (void) setDrawString: (NSString *) drawString;
 - (void) setIcon: (NSImage *) icon;
+- (void) setDrawFont:(NSFont *) font color:(NSColor *) color;
+- (void) setDrawHilite:(BOOL)draw;
+- (BOOL) drawHilite;
+- (void) setInsetSize:(float) size;
+- (float) insetSize;
 - (void) recalcSize;
 - (NSRect) preferredFrame;
 

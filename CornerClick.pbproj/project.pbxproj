@@ -51,10 +51,12 @@
 			targets = (
 				089C1673FE841209C02AAC07,
 				37C3CB2D04CDABD2000001CF,
+				371AAD8504DC3CBA000001CF,
 			);
 		};
 		089C166AFE841209C02AAC07 = {
 			children = (
+				371AAD7F04DC3CA2000001CF,
 				08FB77AFFE84173DC02AAC07,
 				32DBCFA10370C40200C91783,
 				089C167CFE841241C02AAC07,
@@ -149,6 +151,9 @@
 				32DBCFA30370C41700C91783,
 				F506C03E013D9D7901CA16C8,
 				372314A204CF3755000001CF,
+				371AAD7D04DC2775000001CF,
+				371E964F04E1C4C1000001CF,
+				371E965404E1CAA9000001CF,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -163,6 +168,10 @@
 				372314A604CF37DA000001CF,
 				3723153504CF7AC3000001CF,
 				3723153A04CF806C000001CF,
+				37940C6D04DB0A4F000001CF,
+				37940C6E04DB0A4F000001CF,
+				37940C6F04DB0A4F000001CF,
+				37940C7004DB0A4F000001CF,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -172,6 +181,8 @@
 			files = (
 				F506C03F013D9D7901CA16C8,
 				372314A304CF3756000001CF,
+				371AAD7E04DC2776000001CF,
+				371E965504E1CAA9000001CF,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,6 +205,10 @@
 		};
 		089C167CFE841241C02AAC07 = {
 			children = (
+				37940C6904DB0A4E000001CF,
+				37940C6A04DB0A4E000001CF,
+				37940C6B04DB0A4E000001CF,
+				37940C6C04DB0A4F000001CF,
 				3723153904CF806C000001CF,
 				3723153404CF7AC3000001CF,
 				F506C040013D9D8001CA16C8,
@@ -237,6 +252,8 @@
 				F506C03C013D9D7901CA16C8,
 				F506C03D013D9D7901CA16C8,
 				37C3CB3104CDAD30000001CF,
+				371E965004E1CAA9000001CF,
+				371E965104E1CAA9000001CF,
 			);
 			isa = PBXGroup;
 			name = Classes;
@@ -296,6 +313,7 @@
 			children = (
 				37C3CB2E04CDABD2000001CF,
 				06F27B2EFFEEEFEF11CA0E56,
+				371AAD8604DC3CBA000001CF,
 			);
 			isa = PBXGroup;
 			name = Products;
@@ -313,6 +331,7 @@
 //324
 		32DBCFA10370C40200C91783 = {
 			children = (
+				371E964D04E1C4C1000001CF,
 				37C3CB3D04CDAD30000001CF,
 				32DBCFA20370C41700C91783,
 			);
@@ -343,6 +362,305 @@
 //372
 //373
 //374
+		371AAD7D04DC2775000001CF = {
+			fileRef = 37C3CB3A04CDAD30000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		371AAD7E04DC2776000001CF = {
+			fileRef = 37C3CB3B04CDAD30000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		371AAD7F04DC3CA2000001CF = {
+			children = (
+				371AADA204DC3F45000001CF,
+				371AAD9804DC3E9E000001CF,
+				371AAD9904DC3E9E000001CF,
+				371AAD9304DC3D3F000001CF,
+				371AADA504DC426C000001CF,
+			);
+			isa = PBXGroup;
+			name = testVis;
+			path = "";
+			refType = 4;
+		};
+		371AAD8004DC3CBA000001CF = {
+			buildActionMask = 2147483647;
+			files = (
+				371AADA304DC3F45000001CF,
+				371AADA004DC3F23000001CF,
+				371AAD9A04DC3E9E000001CF,
+			);
+			isa = PBXHeadersBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		371AAD8104DC3CBA000001CF = {
+			buildActionMask = 2147483647;
+			files = (
+				371AAD9704DC3E6C000001CF,
+			);
+			isa = PBXResourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		371AAD8204DC3CBA000001CF = {
+			buildActionMask = 2147483647;
+			files = (
+				371AAD9B04DC3E9E000001CF,
+				371AADA104DC3F24000001CF,
+				371AADA604DC426C000001CF,
+			);
+			isa = PBXSourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		371AAD8304DC3CBA000001CF = {
+			buildActionMask = 2147483647;
+			files = (
+				371AAD8A04DC3D29000001CF,
+				371AADA404DC41CB000001CF,
+				371AAD8E04DC3D2E000001CF,
+			);
+			isa = PBXFrameworksBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		371AAD8404DC3CBA000001CF = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			isa = PBXRezBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		371AAD8504DC3CBA000001CF = {
+			buildPhases = (
+				371AAD8004DC3CBA000001CF,
+				371AAD8104DC3CBA000001CF,
+				371AAD8204DC3CBA000001CF,
+				371AAD8304DC3CBA000001CF,
+				371AAD8404DC3CBA000001CF,
+			);
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PREFIX_HEADER = TestVis/TestVis_Prefix.h;
+				PRODUCT_NAME = TestVis;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
+				WRAPPER_EXTENSION = app;
+			};
+			dependencies = (
+			);
+			isa = PBXApplicationTarget;
+			name = TestVis;
+			productInstallPath = "$(USER_APPS_DIR)";
+			productName = TestVis;
+			productReference = 371AAD8604DC3CBA000001CF;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>TestVis</string>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
+	<key>CFBundleIconFile</key>
+	<string></string>
+	<key>CFBundleIdentifier</key>
+	<string>TestVis</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>TestVis</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string></string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>0.0.1d1</string>
+	<key>NSMainNibFile</key>
+	<string>TestVis.nib</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+</dict>
+</plist>
+";
+		};
+		371AAD8604DC3CBA000001CF = {
+			isa = PBXApplicationReference;
+			path = TestVis.app;
+			refType = 3;
+		};
+		371AAD8A04DC3D29000001CF = {
+			fileRef = 1058C7ADFEA557BF11CA2CBB;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		371AAD8E04DC3D2E000001CF = {
+			fileRef = 089C167FFE841241C02AAC07;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		371AAD9304DC3D3F000001CF = {
+			children = (
+				371AAD9504DC3E6C000001CF,
+			);
+			isa = PBXGroup;
+			name = Resources;
+			refType = 4;
+		};
+		371AAD9504DC3E6C000001CF = {
+			children = (
+				371AAD9604DC3E6C000001CF,
+			);
+			isa = PBXVariantGroup;
+			name = TestVis.nib;
+			path = "";
+			refType = 4;
+		};
+		371AAD9604DC3E6C000001CF = {
+			isa = PBXFileReference;
+			name = English;
+			path = TestVis/English.lproj/TestVis.nib;
+			refType = 4;
+		};
+		371AAD9704DC3E6C000001CF = {
+			fileRef = 371AAD9504DC3E6C000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		371AAD9804DC3E9E000001CF = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = VisControl.h;
+			path = TestVis/VisControl.h;
+			refType = 4;
+		};
+		371AAD9904DC3E9E000001CF = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = VisControl.m;
+			path = TestVis/VisControl.m;
+			refType = 4;
+		};
+		371AAD9A04DC3E9E000001CF = {
+			fileRef = 371AAD9804DC3E9E000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		371AAD9B04DC3E9E000001CF = {
+			fileRef = 371AAD9904DC3E9E000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		371AADA004DC3F23000001CF = {
+			fileRef = 37C3CB3A04CDAD30000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		371AADA104DC3F24000001CF = {
+			fileRef = 37C3CB3B04CDAD30000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		371AADA204DC3F45000001CF = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			name = TestVis_Prefix.h;
+			path = TestVis/TestVis_Prefix.h;
+			refType = 4;
+		};
+		371AADA304DC3F45000001CF = {
+			fileRef = 371AADA204DC3F45000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		371AADA404DC41CB000001CF = {
+			fileRef = 089C1672FE841209C02AAC07;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		371AADA504DC426C000001CF = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			name = main.m;
+			path = TestVis/main.m;
+			refType = 4;
+		};
+		371AADA604DC426C000001CF = {
+			fileRef = 371AADA504DC426C000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		371E964D04E1C4C1000001CF = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = common_prefix.h;
+			refType = 2;
+		};
+		371E964E04E1C4C1000001CF = {
+			fileRef = 371E964D04E1C4C1000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		371E964F04E1C4C1000001CF = {
+			fileRef = 371E964D04E1C4C1000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		371E965004E1CAA9000001CF = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = CornerClickSupport.h;
+			refType = 4;
+		};
+		371E965104E1CAA9000001CF = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = CornerClickSupport.m;
+			refType = 4;
+		};
+		371E965204E1CAA9000001CF = {
+			fileRef = 371E965004E1CAA9000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		371E965304E1CAA9000001CF = {
+			fileRef = 371E965104E1CAA9000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		371E965404E1CAA9000001CF = {
+			fileRef = 371E965004E1CAA9000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		371E965504E1CAA9000001CF = {
+			fileRef = 371E965104E1CAA9000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		372314A204CF3755000001CF = {
 			fileRef = 37C3CB3204CDAD30000001CF;
 			isa = PBXBuildFile;
@@ -410,6 +728,50 @@
 			settings = {
 			};
 		};
+		37940C6904DB0A4E000001CF = {
+			isa = PBXFileReference;
+			path = 2.tiff;
+			refType = 4;
+		};
+		37940C6A04DB0A4E000001CF = {
+			isa = PBXFileReference;
+			path = 0.tiff;
+			refType = 4;
+		};
+		37940C6B04DB0A4E000001CF = {
+			isa = PBXFileReference;
+			path = 1.tiff;
+			refType = 4;
+		};
+		37940C6C04DB0A4F000001CF = {
+			isa = PBXFileReference;
+			path = 3.tiff;
+			refType = 4;
+		};
+		37940C6D04DB0A4F000001CF = {
+			fileRef = 37940C6904DB0A4E000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37940C6E04DB0A4F000001CF = {
+			fileRef = 37940C6A04DB0A4E000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37940C6F04DB0A4F000001CF = {
+			fileRef = 37940C6B04DB0A4E000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37940C7004DB0A4F000001CF = {
+			fileRef = 37940C6C04DB0A4F000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		37C3CB2804CDABD2000001CF = {
 			buildActionMask = 2147483647;
 			files = (
@@ -419,6 +781,8 @@
 				37C3CB4404CDAD30000001CF,
 				37C3CB4604CDAD30000001CF,
 				37C3CB4904CDAD30000001CF,
+				371E964E04E1C4C1000001CF,
+				371E965204E1CAA9000001CF,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,6 +806,7 @@
 				37C3CB4504CDAD30000001CF,
 				37C3CB4704CDAD30000001CF,
 				37C3CB4804CDAD30000001CF,
+				371E965304E1CAA9000001CF,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;

@@ -42,7 +42,7 @@
 - (void)scrollWheel: (NSEvent *)theEvent
 {
 	//if(DEBUG_ON)NSLog(@"scroll wheel motion in ClickWindow.m: %@", theEvent);
-	[[NSApp delegate] scrollWheel:theEvent atCorner:corner];
+	[(Clicker *)[NSApp delegate] scrollWheel:theEvent atCorner:corner];
 }
 
 - (void)keyDown:(NSEvent *)theEvent

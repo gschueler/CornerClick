@@ -10,17 +10,16 @@
 
 @interface BubbleActionsList (InternalMethods)
 
-- (void) calcPreferredSize;
 - (void) drawSelectedInFrame:(NSRect) rect;
 - (void) drawSelectedInFrame:(NSRect) rect isLast: (BOOL) last;
+
+- (void) drawSelectedOverlayInFrame:(NSRect) rect isLast: (BOOL) last;
 - (void) setSpacings;
 @end
 
 @implementation BubbleActionsList
 
-- (id) initWithAttributes: (NSDictionary *) attrs
-      smallTextAttributes: (NSDictionary *) sattrs
-			   andSpacing: (float) spacing
+- (id) initWithSpacing: (float) spacing
 			   andActions: (NSArray *) actions
 			 itemSelected: (int) theSelected
 		andHighlightColor:(NSColor *) theColor
@@ -33,8 +32,6 @@
 		spacingSize=spacing;
 		selected = theSelected;
         lastSelected=-1;
-		attributes = [[NSDictionary alloc] initWithDictionary:attrs];
-		smallTextAttributes = [[NSDictionary alloc] initWithDictionary:sattrs];
 		bubbleActions = nil;
         showAllModifiers=NO;
 		if(theColor != nil){
@@ -172,12 +169,20 @@
 }
 - (void) calcPreferredSize
 {
+    [self calcPreferredSize:NO];
+}
+- (void) calcPreferredSize:(BOOL) recalc
+{
 	int i;
 	NSSize sz = NSMakeSize(0,0);
     
     if(showAllModifiers && [bubbleActions count]>1){
         for(i=0; i<[bubbleActions count];i++){
             BubbleAction *ba = (BubbleAction *)[bubbleActions objectAtIndex:i];
+            if(recalc){
+                [ba calcPreferredSize];
+            }
+                
             NSSize actSz = [ba preferredSize];
             sz.height= sz.height > actSz.height ? sz.height : actSz.height;
             sz.width+=actSz.width;
@@ -189,6 +194,10 @@
         
         for(i=0; i<[bubbleActions count];i++){
             BubbleAction *ba = (BubbleAction *)[bubbleActions objectAtIndex:i];
+            if(recalc){
+                [ba calcPreferredSize];
+            }
+                
             NSSize actSz = [ba preferredSize];
             sz.height+=actSz.height;
             if(i>0){
@@ -252,13 +261,13 @@
                 //[BubbleView drawRoundedBezel:NSMakeRect(curx + rect.origin.x, rect.origin.y + cur - ht, ht, rect.size.height + spacingSize) rounding: 1 depth:1.5];
                 curx+=spacingSize + ht;
             }
-            
+            NSRect selRect;
             if(i==selected){
-                
-                [self drawSelectedInFrame: NSMakeRect(rect.origin.x + curx - ht,
-                                                      rect.origin.y + cur  - ht,
-                                                      sz.width + spacingSize,
-                                                      rect.size.height + spacingSize) ];
+                selRect=NSMakeRect(rect.origin.x + curx - ht,
+                                   rect.origin.y + cur  - ht,
+                                   sz.width + spacingSize,
+                                   rect.size.height + spacingSize);
+                [self drawSelectedInFrame:  selRect];
             }
             NSRect fr = NSMakeRect(rect.origin.x + curx + ox,
                                    rect.origin.y + cur  + oy,
@@ -356,6 +365,13 @@
                     }
                 }
                 
+                if(i==selected){
+                    
+                    [self drawSelectedOverlayInFrame: selRect
+                                            isLast:NO];
+                    
+                }
+                
             }
             
             curx+=sz.width;
@@ -371,10 +387,14 @@
                 cur-=spacingSize;
             }
             cur = cur - sz.height;
+            NSRect selRect;
             if(i==selected ){
-                NSRect selRect = NSMakeRect(rect.origin.x-ht,rect.origin.y+cur-ht,rect.size.width+spacingSize,sz.height+spacingSize);
-                if(NSIntersectsRect(rect,selRect))
+                selRect = NSMakeRect(rect.origin.x-ht,rect.origin.y+cur-ht,rect.size.width+spacingSize,sz.height+spacingSize);
+                if(NSIntersectsRect(rect,selRect)){
+                    
+                
                     [self drawSelectedInFrame: selRect isLast:(i==[bubbleActions count]-1)];
+                }
             }
             NSRect fr = NSMakeRect(rect.origin.x + ox,rect.origin.y+cur + oy,sz.width,sz.height);
             if(NSIntersectsRect(rect,fr)){
@@ -384,12 +404,39 @@
                     
                 }
             }
-                
+            
+            if(i==selected ){
+                if(NSIntersectsRect(rect,selRect)){
+                    [self drawSelectedOverlayInFrame: selRect isLast:(i==[bubbleActions count]-1)];
+                }
+            }
             
         }
     }
 }
 
+- (void) drawSelectedOverlayInFrame:(NSRect) rect isLast: (BOOL) last
+{
+    
+    int round=10;
+    int line=3;
+    NSBezierPath *nbp;
+    if(last){
+        nbp= [BubbleView roundedRect:rect
+                     roundingTopLeft:round - line
+                    roundingTopRight:round - line
+                  roundingBottomLeft:22 - line
+                 roundingBottomRight:22 - line
+            ];
+    }else{
+        nbp= [BubbleView roundedRect:rect rounding:round];
+    }
+    [[NSGraphicsContext currentContext] saveGraphicsState];
+    [nbp setClip];
+//    [BubbleView addGlass:rect];
+    [[NSGraphicsContext currentContext] restoreGraphicsState];
+    
+}
 - (void) drawSelectedInFrame:(NSRect) rect
 {
     [self drawSelectedInFrame:rect isLast: NO];
@@ -397,38 +444,42 @@
 
 - (void) drawSelectedInFrame:(NSRect) rect isLast: (BOOL) last
 {
-    int style=0;
+    int style=1;
     int round=10;
     int line=3;
+
     if(highlightColor == [NSColor blackColor]){
-        
+        line=1;
         NSBezierPath *nbp;
         if(last){
             nbp= [BubbleView roundedRect:rect
                          roundingTopLeft:round - line
-                        roundingTopRight:round - line
-                      roundingBottomLeft:22 - line
-                     roundingBottomRight:22 - line
+                        roundingTopRight:round - line 
+                      roundingBottomLeft:22  - line
+                     roundingBottomRight:22  - line
                 ];
         }else{
-            nbp= [BubbleView roundedRect:rect rounding:round];
+            nbp= [BubbleView roundedRect:rect rounding:round - line];
         }
-        /*
-        [[[NSColor blackColor] colorWithAlphaComponent:0.4] set];
-        [nbp fill];
-        [[NSColor whiteColor] set];
-        [nbp setLineJoinStyle:NSRoundLineJoinStyle];
-        [nbp setLineWidth:3];
-        [nbp stroke];
         
-        NSBezierPath *nt = [BubbleView roundedRect:NSInsetRect(rect, -1.5,-1.5) rounding:16];
-        [nt appendBezierPath: [BubbleView roundedRect:NSInsetRect(rect, 1.5,1.5) rounding:16]];
+        if(style==0){
+                        [BubbleView addShadow:nbp
+                            depth:1.5];
         
-        [nt setWindingRule:NSEvenOddWindingRule];
-        */
-        [BubbleView addShadow:nbp
-                        depth:1.5];
-
+        }else{
+            [[[NSColor whiteColor] colorWithAlphaComponent:0.2] set];
+            [nbp fill];
+            [[[NSColor whiteColor] colorWithAlphaComponent:0.8] set];
+            [nbp setLineWidth:line];
+            [nbp stroke];
+            [[NSGraphicsContext currentContext] saveGraphicsState];
+            [nbp addClip];
+            [BubbleView addGlass:rect
+                       withColor:[NSColor whiteColor]
+                    withRounding: round - line];
+            [[NSGraphicsContext currentContext] restoreGraphicsState];
+            
+        }
     }else if(style==0){
         
         NSBezierPath *nbp;
@@ -449,6 +500,66 @@
         [nbp setLineJoinStyle:NSRoundLineJoinStyle];
         [nbp setLineWidth:line];
         [nbp stroke];
+               [[NSColor blackColor] set];
+        
+        [nbp setLineWidth: 1];
+        //[nbp stroke];
+    }else if(style==1){
+        
+        NSBezierPath *nbp;
+        if(last){
+            nbp= [BubbleView roundedRect:rect
+                         roundingTopLeft:round - line
+                        roundingTopRight:round - line
+                      roundingBottomLeft:22 - line
+                     roundingBottomRight:22 - line
+                ];
+        }else{
+            nbp= [BubbleView roundedRect:rect rounding:round];
+        }
+        
+        [[highlightColor colorWithAlphaComponent:0.7] set];
+        [nbp fill];
+        [[NSGraphicsContext currentContext] saveGraphicsState];
+        [nbp addClip];
+        [BubbleView addGlass:rect
+                   withColor:[NSColor whiteColor]
+                withRounding: round - line];
+        [[NSGraphicsContext currentContext] restoreGraphicsState];
+        [[NSColor whiteColor] set];
+        [nbp setLineJoinStyle:NSRoundLineJoinStyle];
+        [nbp stroke];
+    }else if(style==2){
+        
+        NSBezierPath *nbp;
+        if(last){
+            nbp= [BubbleView roundedRect:rect
+                         roundingTopLeft:round - line
+                        roundingTopRight:round - line
+                      roundingBottomLeft:22 - line
+                     roundingBottomRight:22 - line
+                ];
+        }else{
+            nbp= [BubbleView roundedRect:rect rounding:round];
+        }
+        
+        //[[ highlightColor colorWithAlphaComponent:0.5] set];
+        [[NSGraphicsContext currentContext] saveGraphicsState];
+        //[nbp fill];
+        [nbp setClip];
+        [BubbleView drawGradient:rect
+                       fromColor:[ highlightColor colorWithAlphaComponent:0.7]
+                         toColor:[ highlightColor colorWithAlphaComponent:0.3]
+                       fromPoint: rect.origin
+                         toPoint: NSMakePoint(NSMaxX(rect),NSMinY(rect))
+            ];
+        [[NSGraphicsContext currentContext] restoreGraphicsState];
+        
+        [[NSColor whiteColor] set];
+        [nbp setLineJoinStyle:NSRoundLineJoinStyle];
+        [nbp setLineWidth:line];
+        [nbp stroke];
+        
         
         [[NSColor blackColor] set];
         [nbp setLineWidth: 1];
@@ -478,9 +589,7 @@
 - (void)dealloc
 {
 	[highlightColor release];
-	[attributes release];
 	[bubbleActions release];
-    [smallTextAttributes dealloc];
 }
 
 @end

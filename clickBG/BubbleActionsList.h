@@ -14,8 +14,6 @@
 {
 	NSMutableArray *bubbleActions;
 	float spacingSize;
-	NSDictionary *attributes;
-	NSDictionary *smallTextAttributes;
 	NSSize detSize;
 	NSColor *highlightColor;
 	int selected;
@@ -25,9 +23,7 @@
     int theCorner;
     BOOL showAllModifiers;
 }
-- (id) initWithAttributes: (NSDictionary *) attrs
-      smallTextAttributes: (NSDictionary *) sattrs
-			   andSpacing: (float) spacing
+- (id) initWithSpacing: (float) spacing
 			   andActions: (NSArray *) actions
 			 itemSelected: (int) theSelected
 		andHighlightColor:(NSColor *) theColor
@@ -37,8 +33,12 @@
 - (int) selectedTrigger;
 - (void) updateSelected: (int) selectedMod; 
 - (NSRect) drawingRectForAction: (int)act isSelected: (BOOL) isSelected inRect:(NSRect) rect;
+
 - (void) setSpacingSize: (float) size;
 - (void) drawInRect:(NSRect) rect;
+
+- (void) calcPreferredSize;
+- (void) calcPreferredSize:(BOOL) recalc;
 - (NSSize) preferredSize;
 - (BOOL) showAllModifiers;
 - (void) setShowAllModifiers: (BOOL)show;

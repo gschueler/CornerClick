@@ -57,11 +57,11 @@
             }
             break;
         case ACT_HIDE:
-            myLabel=[[NSString stringWithString:LOCALIZE([NSApp bundle],@"Hide Current Application")] retain];
+            myLabel=[[NSString stringWithString: LOCALIZE([NSBundle mainBundle],@"Hide Current Application") ] retain];
 
             break;
         case ACT_HIDO:
-            myLabel=[[NSString stringWithString:LOCALIZE([NSApp bundle],@"Hide Other Applications")] retain];
+            myLabel=[[NSString stringWithString: LOCALIZE([NSBundle mainBundle],@"Hide Other Applications") ] retain];
             break;
         case ACT_URL:
             if(label !=nil){

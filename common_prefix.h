@@ -25,7 +25,9 @@
 #define ACT_SCPT 4
 
 #define DEBUG_LEVEL 0
-#define DEBUG(x)	if(DEBUG_LEVEL>0)NSLog((x))
+//#define DEBUG(x)	if(DEBUG_LEVEL>0)NSLog((x))
+//#define DEBUGLOG    if(!DEBUG_LEVEL) {} else NSLog
+#define DEBUG(...)  if(DEBUG_LEVEL>0)NSLog(__VA_ARGS__)
 #define DEBUG_ON ( DEBUG_LEVEL > 0 ? YES : NO )
 
 #define CC_APP_VERSION 2

@@ -34,10 +34,10 @@
                 acts!=nil &&
                 [acts count]>0 &&
                 [self createClickWindowAtCorner: i withActionList: acts onScreen:skey] ){
-                NSLog(@"created window at corner: %d on screen: %@",i,skey);
+                if(DEBUG_LEVEL>0)NSLog(@"created window at corner: %d on screen: %@",i,skey);
 
             }else if([self windowForScreen:skey atCorner:i]!=nil){
-                NSLog(@"NOT created window at corner: %d on screen: %@",i,skey);
+                if(DEBUG_LEVEL>0)NSLog(@"NOT created window at corner: %d on screen: %@",i,skey);
                 [self setWindow:nil forScreen:skey atCorner:i];
             }
         }
@@ -49,7 +49,7 @@
         if([allScreens objectForKey:key]!=nil){
             continue;
         }else{
-            NSLog(@"clearing screen: %@",key);
+            if(DEBUG_LEVEL>0)NSLog(@"clearing screen: %@",key);
             [self clearScreen:key];
         }
     }
@@ -193,7 +193,7 @@
             break;
         default:
             NSLog(@"Bad corner identifier: %d",corner);
-            return;
+            return NSZeroRect;
     }
     return myRect;
 }
@@ -385,6 +385,7 @@ postNotificationName: @"CornerClickPingBackNotification"
         if(theAction !=nil){
             [hoverView setPointCorner: corner];
             [hoverView setDrawString: [theAction label]];
+            //DEBUG(@"right after setDrawString");
             [hoverView setIcon: [theAction icon]];
         
             switch(corner){
@@ -408,8 +409,9 @@ postNotificationName: @"CornerClickPingBackNotification"
 
             lastHoverCorner=-1;
             [hoverWin setAlphaValue: 1.0];
-            
+
             [hoverWin orderBack:self];
+            //DEBUG(@"right after show hover");
         }else{
             lastHoverCorner=-1;
         }
@@ -502,7 +504,6 @@ postNotificationName: @"CornerClickPingBackNotification"
 {
 
     unsigned int modifiers=[theEvent modifierFlags];
-    //NSLog(@"mouseenter: %@",[theEvent userData]);
     NSArray *t = (NSArray *)[theEvent userData];
     int corn=[[t objectAtIndex:0] intValue];
     NSNumber *screenNum=[t objectAtIndex:1];
@@ -513,7 +514,7 @@ postNotificationName: @"CornerClickPingBackNotification"
 
 - (void) flagsChanged:(NSEvent *)theEvent
 {
-    NSLog(@"Clicker: flagsChanged");
+    DEBUG(@"Clicker: flagsChanged");
 //    if(lastCornerEntered!=-1)        [self recalcAndShowHoverWindow: lastCornerEntered modifiers: [theEvent modifierFlags] doDelay:NO];
 }
 - (void)applicationDidHide:(NSNotification *)aNotification
@@ -522,7 +523,7 @@ postNotificationName: @"CornerClickPingBackNotification"
 }
 - (void) mouseDown:(NSEvent *)theEvent
 {
-    NSLog(@"mouseDown in clicker.m");
+    DEBUG(@"mouseDown in clicker.m");
 }
 
 - (void)mouseExited:(NSEvent *)theEvent

@@ -29,3 +29,15 @@
 "Files"="Fichiers";
 "CornerClick Preferences"="Préférences de CornerClick";
 "/Scripts"="/Scripts";
+
+/* added 9/27/04 */
+"Expose" = "Exposé";
+"All Windows" = "Toutes les fenêtres";
+"Application" = "Application";
+"Application Windows" = "Fenêtres de l'application";
+"Desktop" = "Bureau";
+
+/* added 12/14/04 */
+
+"Hover 2 secs" = "Hover 2 secs";
+"Hover" = "Hover";

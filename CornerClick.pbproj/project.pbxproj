@@ -121,10 +121,10 @@
 	<string>English</string>
 	<key>CFBundleExecutable</key>
 	<string>CornerClick</string>
-	<key>CFBundleIconFile</key>
-	<string>Pref</string>
+	<key>CFBundleGetInfoString</key>
+	<string>0.2, © 2003 Greg Schueler</string>
 	<key>CFBundleIdentifier</key>
-	<string>CornerClickPref</string>
+	<string>us.vario.greg.CornerClick</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -132,13 +132,13 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleSignature</key>
-	<string>GR8g</string>
+	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.0.1d1</string>
+	<string>0.2</string>
 	<key>NSMainNibFile</key>
 	<string>ClickBoxPref</string>
 	<key>NSPrefPaneIconFile</key>
-	<string>ClickBoxPref.tiff</string>
+	<string>CornerClickIcon.tiff</string>
 	<key>NSPrincipalClass</key>
 	<string>ClickBoxPref</string>
 </dict>
@@ -162,7 +162,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				089C1680FE841241C02AAC07,
-				F506C041013D9D8001CA16C8,
 				F506C044013D9D8C01CA16C8,
 				37C3CB7A04CDB35E000001CF,
 				372314A604CF37DA000001CF,
@@ -172,6 +171,7 @@
 				37940C6E04DB0A4F000001CF,
 				37940C6F04DB0A4F000001CF,
 				37940C7004DB0A4F000001CF,
+				37ED565B04ECC83A000001CF,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,6 +205,8 @@
 		};
 		089C167CFE841241C02AAC07 = {
 			children = (
+				37ED565C04ECD433000001CF,
+				37ED565904ECC83A000001CF,
 				37940C6904DB0A4E000001CF,
 				37940C6A04DB0A4E000001CF,
 				37940C6B04DB0A4E000001CF,
@@ -793,6 +795,7 @@
 				37C3CB5D04CDADFF000001CF,
 				37C3CB5E04CDADFF000001CF,
 				37C3CBC804CE7BEA000001CF,
+				37ED565D04ECD433000001CF,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -863,11 +866,11 @@
 	<key>CFBundleExecutable</key>
 	<string>CornerClickBG</string>
 	<key>CFBundleGetInfoString</key>
-	<string></string>
+	<string>0.2, © 2003 Greg Schueler</string>
 	<key>CFBundleIconFile</key>
-	<string></string>
+	<string>CornerClick.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string></string>
+	<string>us.vario.greg.CornerClick</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -877,9 +880,9 @@
 	<key>CFBundleShortVersionString</key>
 	<string></string>
 	<key>CFBundleSignature</key>
-	<string>GR8g</string>
+	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.1</string>
+	<string>0.2</string>
 	<key>LSBackgroundOnly</key>
 	<string>1</string>
 	<key>NSMainNibFile</key>
@@ -1149,6 +1152,29 @@
 			settings = {
 			};
 		};
+		37ED565904ECC83A000001CF = {
+			isa = PBXFileReference;
+			path = CornerClickIcon.tiff;
+			refType = 4;
+		};
+		37ED565B04ECC83A000001CF = {
+			fileRef = 37ED565904ECC83A000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37ED565C04ECD433000001CF = {
+			isa = PBXFileReference;
+			name = CornerClick.icns;
+			path = "extra stuff/CornerClick.icns";
+			refType = 4;
+		};
+		37ED565D04ECD433000001CF = {
+			fileRef = 37ED565C04ECD433000001CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 //370
 //371
 //372
@@ -1199,12 +1225,6 @@
 			isa = PBXFileReference;
 			path = ClickBoxPref.tiff;
 			refType = 4;
-		};
-		F506C041013D9D8001CA16C8 = {
-			fileRef = F506C040013D9D8001CA16C8;
-			isa = PBXBuildFile;
-			settings = {
-			};
 		};
 		F506C042013D9D8C01CA16C8 = {
 			children = (

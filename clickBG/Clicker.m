@@ -406,6 +406,7 @@ postNotificationName: @"CornerClickPingBackNotification"
  withActionsList:  (BubbleActionsList *) actionsList
 
 {
+    int i;
     ClickAction *theAction;
 	NSArray *thearr;
 	BubbleActionsList *actsList;
@@ -429,15 +430,20 @@ postNotificationName: @"CornerClickPingBackNotification"
     }
     if(lastHoverCorner != corner){
         //theAction = [[window contentView] clickActionForModifierFlags: modifiers];
-		if(actsList==nil){
-			thearr = [[window contentView] clickActionsForModifierFlags: modifiers];	
-			actsList = [hoverView bubbleActionsList:
-				[NSArray arrayWithObject:[hoverView bubbleAction: thearr]]
-											 selected:-1
+      	if(actsList==nil){
+			thearr = [[window contentView] actionsGroupsForModifiers: [Clicker modsForEventFlags: modifiers]];	
+            NSMutableArray *ma = [[[NSMutableArray alloc] init] autorelease];
+            for(i=0;i<[thearr count];i++){
+                NSArray *acts = (NSArray *)[thearr objectAtIndex:i];
+                [ma addObject:[hoverView bubbleAction:acts]];
+            }
+			actsList = [hoverView bubbleActionsList: ma
+                                           selected:-1
 								  andHighlightColor:  [self determineHighlightColor]];
+            [actsList setShowAllModifiers:YES];
+            DEBUG(@"actsList retainCount after factory create: %d",[actsList retainCount]);
 		}
         if(thearr !=nil){
-			if(DEBUG_ON)NSLog(@"displaying in showHover");
             [hoverView setPointCorner: corner];
             //[hoverView setShowModifiersTitle: showTitle];
 			[hoverView setDrawingObject:actsList];

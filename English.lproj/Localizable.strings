@@ -32,3 +32,12 @@
 
 /* added 9/27/04 */
 "Expose" = "Exposé";
+"All Windows" = "All Windows";
+"Application Windows" = "Application Windows";
+"Application" = "Application";
+"Desktop" = "Desktop";
+
+/* added 12/14/04 */
+
+"Hover 2 secs" = "Hover 2 secs";
+"Hover" = "Hover";

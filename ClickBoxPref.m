@@ -1511,6 +1511,7 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
     //NSLog(@"selection changed to: %d",[actionTable selectedRow]);
     if(sel>=0){
 
+        [actionTable deselectAll:self];
         [appSettings removeActionAtIndex: sel forScreen:[allScreens objectAtIndex:chosenScreen]
                                andCorner:chosenCorner];
         

@@ -238,12 +238,13 @@
 {
     NSDictionary *def = [[NSUserDefaults standardUserDefaults] persistentDomainForName:@"com.apple.symbolichotkeys"];
     NSDictionary *keys = (NSDictionary *)[def objectForKey:@"AppleSymbolicHotKeys"];
-    NSString* special[3] = {
+    NSString* special[4] = {
         @"32",
         @"33",
-        @"36"
+        @"36",
+        @"62" //dashboard action
     };
-    if(action < 0 || action > 2 ){
+    if(action < 0 || action > 3 ){
         NSLog(@"ERROR: not a valid expose action to look for: %d",action);
         return -1;
     }
@@ -282,12 +283,13 @@
 {
     NSDictionary *def = [[NSUserDefaults standardUserDefaults] persistentDomainForName:@"com.apple.symbolichotkeys"];
     NSDictionary *keys = (NSDictionary *)[def objectForKey:@"AppleSymbolicHotKeys"];
-    NSString* special[3] = {
+    NSString* special[4] = {
         @"32",
         @"33",
-        @"36"
+        @"36",
+        @"62" //dashboard action
     };
-    if(action < 0 || action > 2 ){
+    if(action < 0 || action > 3 ){
         NSLog(@"ERROR: not a valid expose action to look for: %d",action);
         return -1;
     }

@@ -1345,7 +1345,13 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
             case ACT_EALL:
             case ACT_EAPP:
             case ACT_EDES:
-                return [NSImage imageNamed:@"WindowVous" ];
+            case ACT_DASH:
+                tblIcon=  [[[NSImage alloc] initWithContentsOfFile: [[self bundle] pathForResource:@"WindowVous" ofType:@"tif"]] autorelease];
+                [tblIcon setScalesWhenResized:YES];
+                [tblIcon setSize:NSMakeSize(16,16)];
+                return tblIcon;
+                
+//                return [NSImage imageNamed:@"WindowVous" ];
 
 			default: return nil;
         }
@@ -1380,6 +1386,7 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
                 LOCALIZE([self bundle],@"Expose"),
                 LOCALIZE([self bundle],@"Desktop")]
                 ;
+            case ACT_DASH: return LOCALIZE([self bundle],@"Dashboard");
             default: return @"???";
         }
     }else if([[aTableColumn identifier] isEqualToString: @"modifiers"]){

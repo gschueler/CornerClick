@@ -6,7 +6,7 @@
 #define EMAIL_URL @"mailto:greg-cornerclick@vario.us"
 
 
-#define MARKETING_VERSION_STRING @"0.6"
+#define MARKETING_VERSION_STRING @"0.7"
 
 #define SHIFT_MASK (1<<0)
 #define OPTION_MASK (1<<1)
@@ -33,6 +33,7 @@
 #define ACT_EALL 5
 #define ACT_EAPP 6
 #define ACT_EDES 7
+#define ACT_DASH 8
 
 #define DEBUG_LEVEL 0
 #define DEBUG2(...)  if(DEBUG_LEVEL>3)NSLog(__VA_ARGS__)
@@ -45,10 +46,10 @@
     #define WRITE_BUBBLES
 #endif
 
-#define CC_APP_VERSION 0006
+#define CC_APP_VERSION 0007
 #define CC_PATCH_VERSION 0
 
 #define CC_MIN_VERSION 0002
-#define CC_MAX_VERSION 0006
+#define CC_MAX_VERSION 0007
 
 #define LOCALIZE(x,y)	[x localizedStringForKey:y value:nil table:nil]

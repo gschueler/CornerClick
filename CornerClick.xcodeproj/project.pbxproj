@@ -1,0 +1,1185 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		372688D006FAF7F800E1F893 /* WindowVous.tif in Resources */ = {isa = PBXBuildFile; fileRef = 372688CF06FAF7F800E1F893 /* WindowVous.tif */; };
+		372688D106FAF7F800E1F893 /* WindowVous.tif in Resources */ = {isa = PBXBuildFile; fileRef = 372688CF06FAF7F800E1F893 /* WindowVous.tif */; };
+		372A7AD6054CABCD002E4C67 /* ClickBox_Prefix.h in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCFA20370C41700C91783 /* ClickBox_Prefix.h */; };
+		372A7AD7054CABCD002E4C67 /* ClickBoxPref.h in Headers */ = {isa = PBXBuildFile; fileRef = F506C03C013D9D7901CA16C8 /* ClickBoxPref.h */; };
+		372A7AD8054CABCD002E4C67 /* ClickAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C3CB3204CDAD30000001CF /* ClickAction.h */; };
+		372A7AD9054CABCD002E4C67 /* GrayView.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C3CB3A04CDAD30000001CF /* GrayView.h */; };
+		372A7ADA054CABCD002E4C67 /* common_prefix.h in Headers */ = {isa = PBXBuildFile; fileRef = 371E964D04E1C4C1000001CF /* common_prefix.h */; };
+		372A7ADB054CABCD002E4C67 /* CornerClickSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 371E965004E1CAA9000001CF /* CornerClickSupport.h */; };
+		372A7ADE054CABCD002E4C67 /* ClickBoxPref.nib in Resources */ = {isa = PBXBuildFile; fileRef = F506C042013D9D8C01CA16C8 /* ClickBoxPref.nib */; };
+		372A7AE0054CABCD002E4C67 /* Readme.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 375CF3E104FAF603000001CF /* Readme.rtf */; };
+		372A7AE1054CABCD002E4C67 /* Logo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3723153904CF806C000001CF /* Logo.tiff */; };
+		372A7AE2054CABCD002E4C67 /* 2.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 37940C6904DB0A4E000001CF /* 2.tiff */; };
+		372A7AE3054CABCD002E4C67 /* 0.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 37940C6A04DB0A4E000001CF /* 0.tiff */; };
+		372A7AE4054CABCD002E4C67 /* 1.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 37940C6B04DB0A4E000001CF /* 1.tiff */; };
+		372A7AE5054CABCD002E4C67 /* 3.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 37940C6C04DB0A4F000001CF /* 3.tiff */; };
+		372A7AE6054CABCD002E4C67 /* CornerClickIcon.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 37ED565904ECC83A000001CF /* CornerClickIcon.tiff */; };
+		372A7AE7054CABCD002E4C67 /* BookmarkPreferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 375CF3E604FAF6B9000001CF /* BookmarkPreferences.tiff */; };
+		372A7AE8054CABCD002E4C67 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 375CF3ED04FB2300000001CF /* Localizable.strings */; };
+		372A7AEA054CABCD002E4C67 /* ClickBoxPref.m in Sources */ = {isa = PBXBuildFile; fileRef = F506C03D013D9D7901CA16C8 /* ClickBoxPref.m */; };
+		372A7AEB054CABCD002E4C67 /* ClickAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3CB3304CDAD30000001CF /* ClickAction.m */; };
+		372A7AEC054CABCD002E4C67 /* GrayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3CB3B04CDAD30000001CF /* GrayView.m */; };
+		372A7AED054CABCD002E4C67 /* CornerClickSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E965104E1CAA9000001CF /* CornerClickSupport.m */; };
+		372A7AEF054CABCD002E4C67 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+		372A7AF0054CABCD002E4C67 /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F506C035013D953901CA16C8 /* PreferencePanes.framework */; };
+		372A7AFD054CABDF002E4C67 /* ClickAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C3CB3204CDAD30000001CF /* ClickAction.h */; };
+		372A7AFE054CABDF002E4C67 /* Clicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C3CB3404CDAD30000001CF /* Clicker.h */; };
+		372A7AFF054CABDF002E4C67 /* ClickView.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C3CB3604CDAD30000001CF /* ClickView.h */; };
+		372A7B00054CABDF002E4C67 /* ClickWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C3CB3804CDAD30000001CF /* ClickWindow.h */; };
+		372A7B01054CABDF002E4C67 /* GrayView.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C3CB3A04CDAD30000001CF /* GrayView.h */; };
+		372A7B02054CABDF002E4C67 /* CornerClickBG_Prefix.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C3CB3D04CDAD30000001CF /* CornerClickBG_Prefix.h */; };
+		372A7B03054CABDF002E4C67 /* common_prefix.h in Headers */ = {isa = PBXBuildFile; fileRef = 371E964D04E1C4C1000001CF /* common_prefix.h */; };
+		372A7B04054CABDF002E4C67 /* CornerClickSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 371E965004E1CAA9000001CF /* CornerClickSupport.h */; };
+		372A7B06054CABDF002E4C67 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37C3CB5904CDADFF000001CF /* InfoPlist.strings */; };
+		372A7B07054CABDF002E4C67 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 37C3CB5B04CDADFF000001CF /* MainMenu.nib */; };
+		372A7B08054CABDF002E4C67 /* BookmarkPreferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 37C3CBC604CE7BEA000001CF /* BookmarkPreferences.tiff */; };
+		372A7B09054CABDF002E4C67 /* CornerClick.icns in Resources */ = {isa = PBXBuildFile; fileRef = 37ED565C04ECD433000001CF /* CornerClick.icns */; };
+		372A7B0A054CABDF002E4C67 /* BookmarkPreferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 375CF3E604FAF6B9000001CF /* BookmarkPreferences.tiff */; };
+		372A7B0B054CABDF002E4C67 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 375CF3ED04FB2300000001CF /* Localizable.strings */; };
+		372A7B0D054CABDF002E4C67 /* ClickAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3CB3304CDAD30000001CF /* ClickAction.m */; };
+		372A7B0E054CABDF002E4C67 /* Clicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3CB3504CDAD30000001CF /* Clicker.m */; };
+		372A7B0F054CABDF002E4C67 /* ClickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3CB3704CDAD30000001CF /* ClickView.m */; };
+		372A7B10054CABDF002E4C67 /* ClickWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3CB3904CDAD30000001CF /* ClickWindow.m */; };
+		372A7B11054CABDF002E4C67 /* GrayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3CB3B04CDAD30000001CF /* GrayView.m */; };
+		372A7B12054CABDF002E4C67 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3CB3C04CDAD30000001CF /* main.m */; };
+		372A7B13054CABDF002E4C67 /* CornerClickSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 371E965104E1CAA9000001CF /* CornerClickSupport.m */; };
+		372A7B15054CABDF002E4C67 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+		372A7B16054CABDF002E4C67 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089C167FFE841241C02AAC07 /* AppKit.framework */; };
+		372A7B17054CABDF002E4C67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089C1672FE841209C02AAC07 /* Foundation.framework */; };
+		372A7B21054CABEA002E4C67 /* TestVis_Prefix.h in Headers */ = {isa = PBXBuildFile; fileRef = 371AADA204DC3F45000001CF /* TestVis_Prefix.h */; };
+		372A7B22054CABEA002E4C67 /* GrayView.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C3CB3A04CDAD30000001CF /* GrayView.h */; };
+		372A7B23054CABEA002E4C67 /* VisControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 371AAD9804DC3E9E000001CF /* VisControl.h */; };
+		372A7B25054CABEA002E4C67 /* TestVis.nib in Resources */ = {isa = PBXBuildFile; fileRef = 371AAD9504DC3E6C000001CF /* TestVis.nib */; };
+		372A7B27054CABEA002E4C67 /* VisControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 371AAD9904DC3E9E000001CF /* VisControl.m */; };
+		372A7B28054CABEA002E4C67 /* GrayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3CB3B04CDAD30000001CF /* GrayView.m */; };
+		372A7B29054CABEA002E4C67 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 371AADA504DC426C000001CF /* main.m */; };
+		372A7B2B054CABEA002E4C67 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+		372A7B2C054CABEA002E4C67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089C1672FE841209C02AAC07 /* Foundation.framework */; };
+		372A7B2D054CABEA002E4C67 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089C167FFE841241C02AAC07 /* AppKit.framework */; };
+		3744A75E06948DCC00D94D1E /* AddAction.png in Resources */ = {isa = PBXBuildFile; fileRef = 3744A75C06948DCC00D94D1E /* AddAction.png */; };
+		3744A75F06948DCC00D94D1E /* RemoveAction.png in Resources */ = {isa = PBXBuildFile; fileRef = 3744A75D06948DCC00D94D1E /* RemoveAction.png */; };
+		3744AB350694B29F00D94D1E /* Information.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 3744AB340694B29F00D94D1E /* Information.rtf */; };
+		375934070640D987003D651A /* CornerClickBG.app in Resources */ = {isa = PBXBuildFile; fileRef = 372A7B1B054CABDF002E4C67 /* CornerClickBG.app */; };
+		3764089F06425346003E7644 /* BubbleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3764089D06425346003E7644 /* BubbleView.h */; };
+		376408A006425346003E7644 /* BubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3764089E06425346003E7644 /* BubbleView.m */; };
+		376408A106425346003E7644 /* BubbleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3764089D06425346003E7644 /* BubbleView.h */; };
+		376408A206425346003E7644 /* BubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3764089E06425346003E7644 /* BubbleView.m */; };
+		376409000642571B003E7644 /* BubbleActionsList.h in Headers */ = {isa = PBXBuildFile; fileRef = 376408FE0642571B003E7644 /* BubbleActionsList.h */; };
+		376409010642571B003E7644 /* BubbleActionsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 376408FF0642571B003E7644 /* BubbleActionsList.m */; };
+		376409020642571B003E7644 /* BubbleActionsList.h in Headers */ = {isa = PBXBuildFile; fileRef = 376408FE0642571B003E7644 /* BubbleActionsList.h */; };
+		376409030642571B003E7644 /* BubbleActionsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 376408FF0642571B003E7644 /* BubbleActionsList.m */; };
+		3764090E0642573E003E7644 /* BubbleAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 3764090C0642573E003E7644 /* BubbleAction.h */; };
+		3764090F0642573E003E7644 /* BubbleAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3764090D0642573E003E7644 /* BubbleAction.m */; };
+		376409100642573E003E7644 /* BubbleAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 3764090C0642573E003E7644 /* BubbleAction.h */; };
+		376409110642573E003E7644 /* BubbleAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3764090D0642573E003E7644 /* BubbleAction.m */; };
+		377318BA07025FE500C9A3AD /* CCStickyWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 377318B807025FE500C9A3AD /* CCStickyWindow.h */; };
+		377318BB07025FE500C9A3AD /* CCStickyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 377318B907025FE500C9A3AD /* CCStickyWindow.m */; };
+		377318BC07025FE500C9A3AD /* CCStickyWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 377318B807025FE500C9A3AD /* CCStickyWindow.h */; };
+		377318BD07025FE500C9A3AD /* CCStickyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 377318B907025FE500C9A3AD /* CCStickyWindow.m */; };
+		378E4348064A3B4A00628539 /* ClickApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 378E4346064A3B4A00628539 /* ClickApp.h */; };
+		378E4349064A3B4A00628539 /* ClickApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 378E4347064A3B4A00628539 /* ClickApp.m */; };
+		37B2717C069172C900D7FD10 /* quickFiles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37B2717A069172C900D7FD10 /* quickFiles.plist */; };
+		37DE95B706524752006985D3 /* FileActionMenuItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 37DE95B506524752006985D3 /* FileActionMenuItem.h */; };
+		37DE95B806524752006985D3 /* FileActionMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DE95B606524752006985D3 /* FileActionMenuItem.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		06F27B30FFEEEFEF11CA0E56 /* Development */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 7;
+				DEPLOYMENT_LOCATION = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OPTIMIZATION_CFLAGS = "-O0";
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		06F27B31FFEEEFEF11CA0E56 /* Deployment */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 7;
+				DEPLOYMENT_LOCATION = NO;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+		372A7B35054CAC02002E4C67 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 372A7AFB054CABDF002E4C67;
+			remoteInfo = "CornerClickBG (Upgraded)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		32DBCFA20370C41700C91783 /* ClickBox_Prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickBox_Prefix.h; sourceTree = "<group>"; };
+		370FC31B07E1FDE000D12904 /* zh_TW */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = zh_TW; path = zh_TW.lproj/Localizable.strings; sourceTree = "<group>"; };
+		370FC31C07E1FDF000D12904 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = zh_TW; path = zh_TW.lproj/Readme.rtf; sourceTree = "<group>"; };
+		370FC31D07E1FDFE00D12904 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = zh_TW; path = zh_TW.lproj/ClickBoxPref.nib; sourceTree = "<group>"; };
+		370FC31E07E1FE0900D12904 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = zh_TW; path = zh_TW.lproj/Information.rtf; sourceTree = "<group>"; };
+		370FC32907E1FE3E00D12904 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = zh_TW; path = zh_TW.lproj/quickFiles.plist; sourceTree = "<group>"; };
+		371229E205714D2900A46218 /* French */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = French; path = French.lproj/ClickBoxPref.nib; sourceTree = "<group>"; };
+		371229E305714E0A00A46218 /* French */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/Localizable.strings; sourceTree = "<group>"; };
+		371AAD9604DC3E6C000001CF /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = TestVis/English.lproj/TestVis.nib; sourceTree = "<group>"; };
+		371AAD9804DC3E9E000001CF /* VisControl.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = VisControl.h; path = TestVis/VisControl.h; sourceTree = "<group>"; };
+		371AAD9904DC3E9E000001CF /* VisControl.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = VisControl.m; path = TestVis/VisControl.m; sourceTree = "<group>"; };
+		371AADA204DC3F45000001CF /* TestVis_Prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestVis_Prefix.h; path = TestVis/TestVis_Prefix.h; sourceTree = "<group>"; };
+		371AADA504DC426C000001CF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = TestVis/main.m; sourceTree = "<group>"; };
+		371E964D04E1C4C1000001CF /* common_prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common_prefix.h; sourceTree = SOURCE_ROOT; };
+		371E965004E1CAA9000001CF /* CornerClickSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CornerClickSupport.h; sourceTree = "<group>"; };
+		371E965104E1CAA9000001CF /* CornerClickSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CornerClickSupport.m; sourceTree = "<group>"; };
+		3723153404CF7AC3000001CF /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Readme.rtf; sourceTree = "<group>"; };
+		3723153904CF806C000001CF /* Logo.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Logo.tiff; sourceTree = "<group>"; };
+		372688CF06FAF7F800E1F893 /* WindowVous.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = WindowVous.tif; sourceTree = "<group>"; };
+		372A7B1A054CABDF002E4C67 /* Info-CornerClickBG__Upgraded_.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = "Info-CornerClickBG__Upgraded_.plist"; sourceTree = "<group>"; };
+		372A7B1B054CABDF002E4C67 /* CornerClickBG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CornerClickBG.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		372A7B30054CABEA002E4C67 /* Info-TestVis__Upgraded_.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info-TestVis__Upgraded_.plist"; sourceTree = "<group>"; };
+		372A7B31054CABEA002E4C67 /* TestVis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestVis.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3744A75C06948DCC00D94D1E /* AddAction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddAction.png; sourceTree = "<group>"; };
+		3744A75D06948DCC00D94D1E /* RemoveAction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RemoveAction.png; sourceTree = "<group>"; };
+		3744AA600694AED700D94D1E /* CornerClick.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CornerClick.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
+		375CF3E604FAF6B9000001CF /* BookmarkPreferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = BookmarkPreferences.tiff; sourceTree = "<group>"; };
+		375CF3EE04FB2300000001CF /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		375CF3F104FBAC0B000001CF /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3764089D06425346003E7644 /* BubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleView.h; sourceTree = "<group>"; };
+		3764089E06425346003E7644 /* BubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleView.m; sourceTree = "<group>"; };
+		376408FE0642571B003E7644 /* BubbleActionsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleActionsList.h; sourceTree = "<group>"; };
+		376408FF0642571B003E7644 /* BubbleActionsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleActionsList.m; sourceTree = "<group>"; };
+		3764090C0642573E003E7644 /* BubbleAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleAction.h; sourceTree = "<group>"; };
+		3764090D0642573E003E7644 /* BubbleAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleAction.m; sourceTree = "<group>"; };
+		377318B807025FE500C9A3AD /* CCStickyWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCStickyWindow.h; sourceTree = "<group>"; };
+		377318B907025FE500C9A3AD /* CCStickyWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCStickyWindow.m; sourceTree = "<group>"; };
+		3779428D0547268B00E76D21 /* Spanish */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Spanish; path = Spanish.lproj/Localizable.strings; sourceTree = "<group>"; };
+		378E4346064A3B4A00628539 /* ClickApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickApp.h; sourceTree = "<group>"; };
+		378E4347064A3B4A00628539 /* ClickApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickApp.m; sourceTree = "<group>"; };
+		37940C6904DB0A4E000001CF /* 2.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = 2.tiff; sourceTree = "<group>"; };
+		37940C6A04DB0A4E000001CF /* 0.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = 0.tiff; sourceTree = "<group>"; };
+		37940C6B04DB0A4E000001CF /* 1.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = 1.tiff; sourceTree = "<group>"; };
+		37940C6C04DB0A4F000001CF /* 3.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = 3.tiff; sourceTree = "<group>"; };
+		3798ADF3064FFB9900E6DD8A /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = German; path = German.lproj/Localizable.strings; sourceTree = "<group>"; };
+		379D4CAF0699FD6B00D08BC2 /* Info-ClickBox__Upgraded_.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Info-ClickBox__Upgraded_.plist"; sourceTree = "<group>"; };
+		37ADFD34094BB56900DAAA98 /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Spanish; path = Spanish.lproj/ClickBoxPref.nib; sourceTree = "<group>"; };
+		37ADFD3D094BB59600DAAA98 /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Spanish; path = Spanish.lproj/Readme.rtf; sourceTree = "<group>"; };
+		37ADFD40094BB5A400DAAA98 /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Spanish; path = Spanish.lproj/Information.rtf; sourceTree = "<group>"; };
+		37B0125C0698BC3C00E7D0FF /* French */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = French; path = French.lproj/quickFiles.plist; sourceTree = "<group>"; };
+		37B2717B069172C900D7FD10 /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = English; path = English.lproj/quickFiles.plist; sourceTree = "<group>"; };
+		37B5E224070B4A68007A47E5 /* French */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = French; path = French.lproj/Readme.rtf; sourceTree = "<group>"; };
+		37B5E225070B4A71007A47E5 /* French */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = French; path = French.lproj/Information.rtf; sourceTree = "<group>"; };
+		37C3CB3204CDAD30000001CF /* ClickAction.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ClickAction.h; sourceTree = "<group>"; };
+		37C3CB3304CDAD30000001CF /* ClickAction.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = ClickAction.m; sourceTree = "<group>"; };
+		37C3CB3404CDAD30000001CF /* Clicker.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Clicker.h; sourceTree = "<group>"; };
+		37C3CB3504CDAD30000001CF /* Clicker.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Clicker.m; sourceTree = "<group>"; };
+		37C3CB3604CDAD30000001CF /* ClickView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ClickView.h; sourceTree = "<group>"; };
+		37C3CB3704CDAD30000001CF /* ClickView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = ClickView.m; sourceTree = "<group>"; };
+		37C3CB3804CDAD30000001CF /* ClickWindow.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ClickWindow.h; sourceTree = "<group>"; };
+		37C3CB3904CDAD30000001CF /* ClickWindow.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = ClickWindow.m; sourceTree = "<group>"; };
+		37C3CB3A04CDAD30000001CF /* GrayView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GrayView.h; sourceTree = "<group>"; };
+		37C3CB3B04CDAD30000001CF /* GrayView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GrayView.m; sourceTree = "<group>"; };
+		37C3CB3C04CDAD30000001CF /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		37C3CB3D04CDAD30000001CF /* CornerClickBG_Prefix.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CornerClickBG_Prefix.h; path = clickBG/CornerClickBG_Prefix.h; sourceTree = "<group>"; };
+		37C3CB5A04CDADFF000001CF /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = English; path = InfoPlist.strings; sourceTree = "<group>"; };
+		37C3CB5C04CDADFF000001CF /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = MainMenu.nib; sourceTree = "<group>"; };
+		37C3CBC704CE7BEA000001CF /* English */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = English; path = BookmarkPreferences.tiff; sourceTree = "<group>"; };
+		37DE9483065213BE006985D3 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Information.rtf; sourceTree = "<group>"; };
+		37DE95B506524752006985D3 /* FileActionMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = FileActionMenuItem.h; sourceTree = "<group>"; };
+		37DE95B606524752006985D3 /* FileActionMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = FileActionMenuItem.m; sourceTree = "<group>"; };
+		37ED565904ECC83A000001CF /* CornerClickIcon.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = CornerClickIcon.tiff; sourceTree = "<group>"; };
+		37ED565C04ECD433000001CF /* CornerClick.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CornerClick.icns; path = "extra stuff/CornerClick.icns"; sourceTree = "<group>"; };
+		F506C035013D953901CA16C8 /* PreferencePanes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreferencePanes.framework; path = /System/Library/Frameworks/PreferencePanes.framework; sourceTree = "<absolute>"; };
+		F506C03C013D9D7901CA16C8 /* ClickBoxPref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickBoxPref.h; sourceTree = "<group>"; };
+		F506C03D013D9D7901CA16C8 /* ClickBoxPref.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickBoxPref.m; sourceTree = "<group>"; };
+		F506C040013D9D8001CA16C8 /* ClickBoxPref.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = ClickBoxPref.tiff; sourceTree = "<group>"; };
+		F506C043013D9D8C01CA16C8 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/ClickBoxPref.nib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		372A7AEE054CABCD002E4C67 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				372A7AEF054CABCD002E4C67 /* Cocoa.framework in Frameworks */,
+				372A7AF0054CABCD002E4C67 /* PreferencePanes.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		372A7B14054CABDF002E4C67 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				372A7B15054CABDF002E4C67 /* Cocoa.framework in Frameworks */,
+				372A7B16054CABDF002E4C67 /* AppKit.framework in Frameworks */,
+				372A7B17054CABDF002E4C67 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		372A7B2A054CABEA002E4C67 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				372A7B2B054CABEA002E4C67 /* Cocoa.framework in Frameworks */,
+				372A7B2C054CABEA002E4C67 /* Foundation.framework in Frameworks */,
+				372A7B2D054CABEA002E4C67 /* AppKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		089C166AFE841209C02AAC07 /* ClickBox */ = {
+			isa = PBXGroup;
+			children = (
+				371AAD7F04DC3CA2000001CF /* testVis */,
+				08FB77AFFE84173DC02AAC07 /* Classes */,
+				32DBCFA10370C40200C91783 /* Other Sources */,
+				089C167CFE841241C02AAC07 /* Resources */,
+				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
+				19C28FB8FE9D52D311CA2CBB /* Products */,
+				372A7B1A054CABDF002E4C67 /* Info-CornerClickBG__Upgraded_.plist */,
+				379D4CAF0699FD6B00D08BC2 /* Info-ClickBox__Upgraded_.plist */,
+				372A7B30054CABEA002E4C67 /* Info-TestVis__Upgraded_.plist */,
+			);
+			name = ClickBox;
+			sourceTree = "<group>";
+		};
+		089C1671FE841209C02AAC07 /* Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */,
+				1058C7AEFEA557BF11CA2CBB /* Other Frameworks */,
+			);
+			name = "Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		089C167CFE841241C02AAC07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3744AB340694B29F00D94D1E /* Information.rtf */,
+				37B2717A069172C900D7FD10 /* quickFiles.plist */,
+				375CF3ED04FB2300000001CF /* Localizable.strings */,
+				375CF3E104FAF603000001CF /* Readme.rtf */,
+				F506C042013D9D8C01CA16C8 /* ClickBoxPref.nib */,
+				37ED565C04ECD433000001CF /* CornerClick.icns */,
+				37ED565904ECC83A000001CF /* CornerClickIcon.tiff */,
+				37940C6904DB0A4E000001CF /* 2.tiff */,
+				37940C6A04DB0A4E000001CF /* 0.tiff */,
+				372688CF06FAF7F800E1F893 /* WindowVous.tif */,
+				375CF3E604FAF6B9000001CF /* BookmarkPreferences.tiff */,
+				3744A75C06948DCC00D94D1E /* AddAction.png */,
+				3744A75D06948DCC00D94D1E /* RemoveAction.png */,
+				37940C6B04DB0A4E000001CF /* 1.tiff */,
+				37940C6C04DB0A4F000001CF /* 3.tiff */,
+				3723153904CF806C000001CF /* Logo.tiff */,
+				F506C040013D9D8001CA16C8 /* ClickBoxPref.tiff */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		08FB77AFFE84173DC02AAC07 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F506C03C013D9D7901CA16C8 /* ClickBoxPref.h */,
+				F506C03D013D9D7901CA16C8 /* ClickBoxPref.m */,
+				37DE95B506524752006985D3 /* FileActionMenuItem.h */,
+				37DE95B606524752006985D3 /* FileActionMenuItem.m */,
+				37C3CB3104CDAD30000001CF /* clickBG */,
+				371E965004E1CAA9000001CF /* CornerClickSupport.h */,
+				371E965104E1CAA9000001CF /* CornerClickSupport.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */,
+				F506C035013D953901CA16C8 /* PreferencePanes.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7AEFEA557BF11CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				089C1672FE841209C02AAC07 /* Foundation.framework */,
+				089C167FFE841241C02AAC07 /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FB8FE9D52D311CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				372A7B1B054CABDF002E4C67 /* CornerClickBG.app */,
+				372A7B31054CABEA002E4C67 /* TestVis.app */,
+				3744AA600694AED700D94D1E /* CornerClick.prefPane */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		32DBCFA10370C40200C91783 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				371E964D04E1C4C1000001CF /* common_prefix.h */,
+				37C3CB3D04CDAD30000001CF /* CornerClickBG_Prefix.h */,
+				32DBCFA20370C41700C91783 /* ClickBox_Prefix.h */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		371AAD7F04DC3CA2000001CF /* testVis */ = {
+			isa = PBXGroup;
+			children = (
+				371AADA204DC3F45000001CF /* TestVis_Prefix.h */,
+				371AAD9804DC3E9E000001CF /* VisControl.h */,
+				371AAD9904DC3E9E000001CF /* VisControl.m */,
+				371AAD9304DC3D3F000001CF /* Resources */,
+				371AADA504DC426C000001CF /* main.m */,
+			);
+			name = testVis;
+			sourceTree = "<group>";
+		};
+		371AAD9304DC3D3F000001CF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				371AAD9504DC3E6C000001CF /* TestVis.nib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		37C3CB3104CDAD30000001CF /* clickBG */ = {
+			isa = PBXGroup;
+			children = (
+				377318B807025FE500C9A3AD /* CCStickyWindow.h */,
+				377318B907025FE500C9A3AD /* CCStickyWindow.m */,
+				37C3CB3C04CDAD30000001CF /* main.m */,
+				37C3CB3204CDAD30000001CF /* ClickAction.h */,
+				37C3CB3304CDAD30000001CF /* ClickAction.m */,
+				37C3CB3404CDAD30000001CF /* Clicker.h */,
+				37C3CB3504CDAD30000001CF /* Clicker.m */,
+				37C3CB3604CDAD30000001CF /* ClickView.h */,
+				37C3CB3704CDAD30000001CF /* ClickView.m */,
+				37C3CB3804CDAD30000001CF /* ClickWindow.h */,
+				37C3CB3904CDAD30000001CF /* ClickWindow.m */,
+				37C3CB3A04CDAD30000001CF /* GrayView.h */,
+				37C3CB3B04CDAD30000001CF /* GrayView.m */,
+				3764089D06425346003E7644 /* BubbleView.h */,
+				3764089E06425346003E7644 /* BubbleView.m */,
+				37C3CB5804CDADFF000001CF /* English.lproj */,
+				376408FE0642571B003E7644 /* BubbleActionsList.h */,
+				376408FF0642571B003E7644 /* BubbleActionsList.m */,
+				3764090C0642573E003E7644 /* BubbleAction.h */,
+				3764090D0642573E003E7644 /* BubbleAction.m */,
+				378E4346064A3B4A00628539 /* ClickApp.h */,
+				378E4347064A3B4A00628539 /* ClickApp.m */,
+			);
+			path = clickBG;
+			sourceTree = "<group>";
+		};
+		37C3CB5804CDADFF000001CF /* English.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				37C3CBC604CE7BEA000001CF /* BookmarkPreferences.tiff */,
+				37C3CB5904CDADFF000001CF /* InfoPlist.strings */,
+				37C3CB5B04CDADFF000001CF /* MainMenu.nib */,
+			);
+			path = English.lproj;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		372A7AD5054CABCD002E4C67 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				372A7AD6054CABCD002E4C67 /* ClickBox_Prefix.h in Headers */,
+				372A7AD7054CABCD002E4C67 /* ClickBoxPref.h in Headers */,
+				372A7AD8054CABCD002E4C67 /* ClickAction.h in Headers */,
+				372A7AD9054CABCD002E4C67 /* GrayView.h in Headers */,
+				372A7ADA054CABCD002E4C67 /* common_prefix.h in Headers */,
+				372A7ADB054CABCD002E4C67 /* CornerClickSupport.h in Headers */,
+				376408A106425346003E7644 /* BubbleView.h in Headers */,
+				376409020642571B003E7644 /* BubbleActionsList.h in Headers */,
+				376409100642573E003E7644 /* BubbleAction.h in Headers */,
+				37DE95B706524752006985D3 /* FileActionMenuItem.h in Headers */,
+				377318BA07025FE500C9A3AD /* CCStickyWindow.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		372A7AFC054CABDF002E4C67 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				372A7AFD054CABDF002E4C67 /* ClickAction.h in Headers */,
+				372A7AFE054CABDF002E4C67 /* Clicker.h in Headers */,
+				372A7AFF054CABDF002E4C67 /* ClickView.h in Headers */,
+				372A7B00054CABDF002E4C67 /* ClickWindow.h in Headers */,
+				372A7B01054CABDF002E4C67 /* GrayView.h in Headers */,
+				372A7B02054CABDF002E4C67 /* CornerClickBG_Prefix.h in Headers */,
+				372A7B03054CABDF002E4C67 /* common_prefix.h in Headers */,
+				372A7B04054CABDF002E4C67 /* CornerClickSupport.h in Headers */,
+				3764089F06425346003E7644 /* BubbleView.h in Headers */,
+				376409000642571B003E7644 /* BubbleActionsList.h in Headers */,
+				3764090E0642573E003E7644 /* BubbleAction.h in Headers */,
+				378E4348064A3B4A00628539 /* ClickApp.h in Headers */,
+				377318BC07025FE500C9A3AD /* CCStickyWindow.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		372A7B20054CABEA002E4C67 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				372A7B21054CABEA002E4C67 /* TestVis_Prefix.h in Headers */,
+				372A7B22054CABEA002E4C67 /* GrayView.h in Headers */,
+				372A7B23054CABEA002E4C67 /* VisControl.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		372A7AD3054CABCD002E4C67 /* PrefPane */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 37B983AF09428A4400C3AD30 /* Build configuration list for PBXNativeTarget "PrefPane" */;
+			buildPhases = (
+				372A7AD5054CABCD002E4C67 /* Headers */,
+				372A7ADC054CABCD002E4C67 /* Resources */,
+				372A7AE9054CABCD002E4C67 /* Sources */,
+				372A7AEE054CABCD002E4C67 /* Frameworks */,
+				372A7AF1054CABCD002E4C67 /* Rez */,
+				371229FA0571567500A46218 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			buildSettings = {
+				COPYING_PRESERVES_HFS_DATA = YES;
+				CURRENT_PROJECT_VERSION = 7;
+				DEPLOYMENT_LOCATION = NO;
+				DYLIB_CURRENT_VERSION = 7;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ClickBox_Prefix.h;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "Info-ClickBox__Upgraded_.plist";
+				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-bundle",
+					"-twolevel_namespace",
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = CornerClick;
+				SECTORDER_FLAGS = "";
+				VERSIONING_SYSTEM = "apple-generic";
+				WARNING_CFLAGS = "-Wmost";
+				WRAPPER_EXTENSION = prefPane;
+			};
+			dependencies = (
+				372A7B36054CAC02002E4C67 /* PBXTargetDependency */,
+			);
+			name = PrefPane;
+			productInstallPath = "$(HOME)/Library/PreferencePanes";
+			productName = ClickBox;
+			productReference = 3744AA600694AED700D94D1E /* CornerClick.prefPane */;
+			productType = "com.apple.product-type.bundle";
+		};
+		372A7AFB054CABDF002E4C67 /* CornerClickBG */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 37B983AB09428A4400C3AD30 /* Build configuration list for PBXNativeTarget "CornerClickBG" */;
+			buildPhases = (
+				372A7AFC054CABDF002E4C67 /* Headers */,
+				372A7B05054CABDF002E4C67 /* Resources */,
+				372A7B0C054CABDF002E4C67 /* Sources */,
+				372A7B14054CABDF002E4C67 /* Frameworks */,
+				372A7B18054CABDF002E4C67 /* Rez */,
+			);
+			buildRules = (
+			);
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 7;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = clickBG/CornerClickBG_Prefix.h;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "Info-CornerClickBG__Upgraded_.plist";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = CornerClickBG;
+				SECTORDER_FLAGS = "";
+				VERSIONING_SYSTEM = "apple-generic";
+				WARNING_CFLAGS = "-Wmost";
+				WRAPPER_EXTENSION = app;
+			};
+			dependencies = (
+			);
+			name = CornerClickBG;
+			productInstallPath = "$(USER_APPS_DIR)";
+			productName = CornerClickBG;
+			productReference = 372A7B1B054CABDF002E4C67 /* CornerClickBG.app */;
+			productType = "com.apple.product-type.application";
+		};
+		372A7B1F054CABEA002E4C67 /* TestVis (Upgraded) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 37B983B309428A4400C3AD30 /* Build configuration list for PBXNativeTarget "TestVis (Upgraded)" */;
+			buildPhases = (
+				372A7B20054CABEA002E4C67 /* Headers */,
+				372A7B24054CABEA002E4C67 /* Resources */,
+				372A7B26054CABEA002E4C67 /* Sources */,
+				372A7B2A054CABEA002E4C67 /* Frameworks */,
+				372A7B2E054CABEA002E4C67 /* Rez */,
+			);
+			buildRules = (
+			);
+			buildSettings = {
+				GCC_PREFIX_HEADER = TestVis/TestVis_Prefix.h;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "Info-TestVis__Upgraded_.plist";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = TestVis;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wmost";
+				WRAPPER_EXTENSION = app;
+			};
+			dependencies = (
+			);
+			name = "TestVis (Upgraded)";
+			productInstallPath = "$(USER_APPS_DIR)";
+			productName = TestVis;
+			productReference = 372A7B31054CABEA002E4C67 /* TestVis.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		089C1669FE841209C02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 37B983B709428A4400C3AD30 /* Build configuration list for PBXProject "CornerClick" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				06F27B30FFEEEFEF11CA0E56 /* Development */,
+				06F27B31FFEEEFEF11CA0E56 /* Deployment */,
+			);
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				Spanish,
+				zh_TW,
+			);
+			mainGroup = 089C166AFE841209C02AAC07 /* ClickBox */;
+			projectDirPath = "";
+			targets = (
+				372A7AD3054CABCD002E4C67 /* PrefPane */,
+				372A7AFB054CABDF002E4C67 /* CornerClickBG */,
+				372A7B1F054CABEA002E4C67 /* TestVis (Upgraded) */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		372A7ADC054CABCD002E4C67 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				375934070640D987003D651A /* CornerClickBG.app in Resources */,
+				372A7ADE054CABCD002E4C67 /* ClickBoxPref.nib in Resources */,
+				372A7AE0054CABCD002E4C67 /* Readme.rtf in Resources */,
+				372A7AE1054CABCD002E4C67 /* Logo.tiff in Resources */,
+				372A7AE2054CABCD002E4C67 /* 2.tiff in Resources */,
+				372A7AE3054CABCD002E4C67 /* 0.tiff in Resources */,
+				372A7AE4054CABCD002E4C67 /* 1.tiff in Resources */,
+				372A7AE5054CABCD002E4C67 /* 3.tiff in Resources */,
+				372A7AE6054CABCD002E4C67 /* CornerClickIcon.tiff in Resources */,
+				372A7AE7054CABCD002E4C67 /* BookmarkPreferences.tiff in Resources */,
+				372A7AE8054CABCD002E4C67 /* Localizable.strings in Resources */,
+				3744AB350694B29F00D94D1E /* Information.rtf in Resources */,
+				37B2717C069172C900D7FD10 /* quickFiles.plist in Resources */,
+				3744A75E06948DCC00D94D1E /* AddAction.png in Resources */,
+				3744A75F06948DCC00D94D1E /* RemoveAction.png in Resources */,
+				372688D006FAF7F800E1F893 /* WindowVous.tif in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		372A7B05054CABDF002E4C67 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				372A7B06054CABDF002E4C67 /* InfoPlist.strings in Resources */,
+				372A7B07054CABDF002E4C67 /* MainMenu.nib in Resources */,
+				372A7B08054CABDF002E4C67 /* BookmarkPreferences.tiff in Resources */,
+				372A7B09054CABDF002E4C67 /* CornerClick.icns in Resources */,
+				372A7B0A054CABDF002E4C67 /* BookmarkPreferences.tiff in Resources */,
+				372A7B0B054CABDF002E4C67 /* Localizable.strings in Resources */,
+				372688D106FAF7F800E1F893 /* WindowVous.tif in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		372A7B24054CABEA002E4C67 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				372A7B25054CABEA002E4C67 /* TestVis.nib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXRezBuildPhase section */
+		372A7AF1054CABCD002E4C67 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		372A7B18054CABDF002E4C67 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		372A7B2E054CABEA002E4C67 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXRezBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		371229FA0571567500A46218 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+				CornerClick.prefPane,
+			);
+			outputPaths = (
+				production/CornerClick.dmg,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\nif [ -z \"$DO_FULL_DEPLOY\" ] ; then \n    exit 0\nfi\n\nPATH=$PATH:/Developer/Tools\nCP=CpMac\nMOUNTED=$BUILD_DIR/mounted\nmkdir production || echo \"production dir already exists\"\n$CP TemplateDmg.dmg production/CornerClick.dmg\nif [ -d \"/Volumes/Corner Click\" ] ; then\n    echo osascript -e \"Tell Application \\\"Finder\\\" to eject POSIX path \\\"/Volumes/Corner Click\\\"\"\nfi\nhdiutil attach production/CornerClick.dmg -mountpoint \"$MOUNTED\" \n\n$CP -r $BUILD_DIR/$FULL_PRODUCT_NAME \"$MOUNTED/$FULL_PRODUCT_NAME\"\n$CP English.lproj/Readme.rtf \"$MOUNTED/Readme - English.rtf\"\n#$CP Japanese.lproj/Readme.rtf \"$MOUNTED/Readme - Japanese - 日本語.rtf\"\n#$CP Spanish.lproj/Readme.rtf \"$MOUNTED/Readme - Spanish - Español.rtf\"\n#$CP French.lproj/Readme.rtf \"$MOUNTED/Readme - French - Français.rtf\"\n\n#hdiutil unmount \"$MOUNTED\"\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		372A7AE9054CABCD002E4C67 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				372A7AEA054CABCD002E4C67 /* ClickBoxPref.m in Sources */,
+				372A7AEB054CABCD002E4C67 /* ClickAction.m in Sources */,
+				372A7AEC054CABCD002E4C67 /* GrayView.m in Sources */,
+				372A7AED054CABCD002E4C67 /* CornerClickSupport.m in Sources */,
+				376408A206425346003E7644 /* BubbleView.m in Sources */,
+				376409030642571B003E7644 /* BubbleActionsList.m in Sources */,
+				376409110642573E003E7644 /* BubbleAction.m in Sources */,
+				37DE95B806524752006985D3 /* FileActionMenuItem.m in Sources */,
+				377318BB07025FE500C9A3AD /* CCStickyWindow.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		372A7B0C054CABDF002E4C67 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				372A7B0D054CABDF002E4C67 /* ClickAction.m in Sources */,
+				372A7B0E054CABDF002E4C67 /* Clicker.m in Sources */,
+				372A7B0F054CABDF002E4C67 /* ClickView.m in Sources */,
+				372A7B10054CABDF002E4C67 /* ClickWindow.m in Sources */,
+				372A7B11054CABDF002E4C67 /* GrayView.m in Sources */,
+				372A7B12054CABDF002E4C67 /* main.m in Sources */,
+				372A7B13054CABDF002E4C67 /* CornerClickSupport.m in Sources */,
+				376408A006425346003E7644 /* BubbleView.m in Sources */,
+				376409010642571B003E7644 /* BubbleActionsList.m in Sources */,
+				3764090F0642573E003E7644 /* BubbleAction.m in Sources */,
+				378E4349064A3B4A00628539 /* ClickApp.m in Sources */,
+				377318BD07025FE500C9A3AD /* CCStickyWindow.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		372A7B26054CABEA002E4C67 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				372A7B27054CABEA002E4C67 /* VisControl.m in Sources */,
+				372A7B28054CABEA002E4C67 /* GrayView.m in Sources */,
+				372A7B29054CABEA002E4C67 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		372A7B36054CAC02002E4C67 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 372A7AFB054CABDF002E4C67 /* CornerClickBG */;
+			targetProxy = 372A7B35054CAC02002E4C67 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		371AAD9504DC3E6C000001CF /* TestVis.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				371AAD9604DC3E6C000001CF /* English */,
+			);
+			name = TestVis.nib;
+			sourceTree = "<group>";
+		};
+		3744AB340694B29F00D94D1E /* Information.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				37DE9483065213BE006985D3 /* English */,
+				37B5E225070B4A71007A47E5 /* French */,
+				370FC31E07E1FE0900D12904 /* zh_TW */,
+				37ADFD40094BB5A400DAAA98 /* Spanish */,
+			);
+			name = Information.rtf;
+			sourceTree = "<group>";
+		};
+		375CF3E104FAF603000001CF /* Readme.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3723153404CF7AC3000001CF /* English */,
+				37B5E224070B4A68007A47E5 /* French */,
+				370FC31C07E1FDF000D12904 /* zh_TW */,
+				37ADFD3D094BB59600DAAA98 /* Spanish */,
+			);
+			name = Readme.rtf;
+			sourceTree = "<group>";
+		};
+		375CF3ED04FB2300000001CF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				375CF3EE04FB2300000001CF /* English */,
+				375CF3F104FBAC0B000001CF /* Japanese */,
+				3779428D0547268B00E76D21 /* Spanish */,
+				371229E305714E0A00A46218 /* French */,
+				3798ADF3064FFB9900E6DD8A /* German */,
+				370FC31B07E1FDE000D12904 /* zh_TW */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		37B2717A069172C900D7FD10 /* quickFiles.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				37B2717B069172C900D7FD10 /* English */,
+				37B0125C0698BC3C00E7D0FF /* French */,
+				370FC32907E1FE3E00D12904 /* zh_TW */,
+			);
+			name = quickFiles.plist;
+			sourceTree = "<group>";
+		};
+		37C3CB5904CDADFF000001CF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				37C3CB5A04CDADFF000001CF /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		37C3CB5B04CDADFF000001CF /* MainMenu.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				37C3CB5C04CDADFF000001CF /* English */,
+			);
+			name = MainMenu.nib;
+			sourceTree = "<group>";
+		};
+		37C3CBC604CE7BEA000001CF /* BookmarkPreferences.tiff */ = {
+			isa = PBXVariantGroup;
+			children = (
+				37C3CBC704CE7BEA000001CF /* English */,
+			);
+			name = BookmarkPreferences.tiff;
+			sourceTree = "<group>";
+		};
+		F506C042013D9D8C01CA16C8 /* ClickBoxPref.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F506C043013D9D8C01CA16C8 /* English */,
+				371229E205714D2900A46218 /* French */,
+				370FC31D07E1FDFE00D12904 /* zh_TW */,
+				37ADFD34094BB56900DAAA98 /* Spanish */,
+			);
+			name = ClickBoxPref.nib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		37B983AC09428A4400C3AD30 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 7;
+				DEPLOYMENT_LOCATION = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = clickBG/CornerClickBG_Prefix.h;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "Info-CornerClickBG__Upgraded_.plist";
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = CornerClickBG;
+				SECTORDER_FLAGS = "";
+				VERSIONING_SYSTEM = "apple-generic";
+				WARNING_CFLAGS = "-Wmost";
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		37B983AD09428A4400C3AD30 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 7;
+				DEPLOYMENT_LOCATION = NO;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = clickBG/CornerClickBG_Prefix.h;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "Info-CornerClickBG__Upgraded_.plist";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = CornerClickBG;
+				SECTORDER_FLAGS = "";
+				VERSIONING_SYSTEM = "apple-generic";
+				WARNING_CFLAGS = "-Wmost";
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		37B983AE09428A4400C3AD30 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 7;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = clickBG/CornerClickBG_Prefix.h;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "Info-CornerClickBG__Upgraded_.plist";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = CornerClickBG;
+				SECTORDER_FLAGS = "";
+				VERSIONING_SYSTEM = "apple-generic";
+				WARNING_CFLAGS = "-Wmost";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Default;
+		};
+		37B983B009428A4400C3AD30 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPYING_PRESERVES_HFS_DATA = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 7;
+				DEPLOYMENT_LOCATION = NO;
+				DYLIB_CURRENT_VERSION = 7;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ClickBox_Prefix.h;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "Info-ClickBox__Upgraded_.plist";
+				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				LIBRARY_SEARCH_PATHS = "";
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-bundle",
+					"-twolevel_namespace",
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = CornerClick;
+				SECTORDER_FLAGS = "";
+				VERSIONING_SYSTEM = "apple-generic";
+				WARNING_CFLAGS = "-Wmost";
+				WRAPPER_EXTENSION = prefPane;
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		37B983B109428A4400C3AD30 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPYING_PRESERVES_HFS_DATA = YES;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 7;
+				DEPLOYMENT_LOCATION = NO;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DYLIB_CURRENT_VERSION = 7;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ClickBox_Prefix.h;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "Info-ClickBox__Upgraded_.plist";
+				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-bundle",
+					"-twolevel_namespace",
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = CornerClick;
+				SECTORDER_FLAGS = "";
+				VERSIONING_SYSTEM = "apple-generic";
+				WARNING_CFLAGS = "-Wmost";
+				WRAPPER_EXTENSION = prefPane;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		37B983B209428A4400C3AD30 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPYING_PRESERVES_HFS_DATA = YES;
+				CURRENT_PROJECT_VERSION = 7;
+				DEPLOYMENT_LOCATION = NO;
+				DYLIB_CURRENT_VERSION = 7;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ClickBox_Prefix.h;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "Info-ClickBox__Upgraded_.plist";
+				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-bundle",
+					"-twolevel_namespace",
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = CornerClick;
+				SECTORDER_FLAGS = "";
+				VERSIONING_SYSTEM = "apple-generic";
+				WARNING_CFLAGS = "-Wmost";
+				WRAPPER_EXTENSION = prefPane;
+			};
+			name = Default;
+		};
+		37B983B409428A4400C3AD30 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 7;
+				DEPLOYMENT_LOCATION = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = TestVis/TestVis_Prefix.h;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "Info-TestVis__Upgraded_.plist";
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = TestVis;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wmost";
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		37B983B509428A4400C3AD30 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 7;
+				DEPLOYMENT_LOCATION = NO;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREFIX_HEADER = TestVis/TestVis_Prefix.h;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "Info-TestVis__Upgraded_.plist";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = TestVis;
+				SECTORDER_FLAGS = "";
+				VERSIONING_SYSTEM = "apple-generic";
+				WARNING_CFLAGS = "-Wmost";
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		37B983B609428A4400C3AD30 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREFIX_HEADER = TestVis/TestVis_Prefix.h;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "Info-TestVis__Upgraded_.plist";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = TestVis;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wmost";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Default;
+		};
+		37B983B809428A4400C3AD30 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				SDKROOT = /Developer/SDKs/MacOSX10.3.9.sdk;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Development;
+		};
+		37B983B909428A4400C3AD30 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				GCC_VERSION_i386 = 4.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
+				SDKROOT = /Developer/SDKs/MacOSX10.3.9.sdk;
+				SDKROOT_i386 = /Developer/SDKs/MacOSX10.4u.sdk;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Deployment;
+		};
+		37B983BA09428A4400C3AD30 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				SDKROOT = /Developer/SDKs/MacOSX10.3.9.sdk;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		37B983AB09428A4400C3AD30 /* Build configuration list for PBXNativeTarget "CornerClickBG" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37B983AC09428A4400C3AD30 /* Development */,
+				37B983AD09428A4400C3AD30 /* Deployment */,
+				37B983AE09428A4400C3AD30 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		37B983AF09428A4400C3AD30 /* Build configuration list for PBXNativeTarget "PrefPane" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37B983B009428A4400C3AD30 /* Development */,
+				37B983B109428A4400C3AD30 /* Deployment */,
+				37B983B209428A4400C3AD30 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		37B983B309428A4400C3AD30 /* Build configuration list for PBXNativeTarget "TestVis (Upgraded)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37B983B409428A4400C3AD30 /* Development */,
+				37B983B509428A4400C3AD30 /* Deployment */,
+				37B983B609428A4400C3AD30 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		37B983B709428A4400C3AD30 /* Build configuration list for PBXProject "CornerClick" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37B983B809428A4400C3AD30 /* Development */,
+				37B983B909428A4400C3AD30 /* Deployment */,
+				37B983BA09428A4400C3AD30 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 089C1669FE841209C02AAC07 /* Project object */;
+}

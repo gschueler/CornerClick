@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>CornerClick</string>
 	<key>CFBundleGetInfoString</key>
-	<string>0.6, © 2003-2004 Greg Schueler</string>
+	<string>0.7, © 2003-2005 Greg Schueler</string>
 	<key>CFBundleIconFile</key>
 	<string>CornerClickIcon.tiff</string>
 	<key>CFBundleIdentifier</key>
@@ -19,11 +19,11 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.6</string>
+	<string>0.7</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.6</string>
+	<string>0.7</string>
 	<key>NSMainNibFile</key>
 	<string>ClickBoxPref</string>
 	<key>NSPrefPaneIconFile</key>

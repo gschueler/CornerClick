@@ -1,10 +1,11 @@
 #!/usr/bin/perl
 
-#
-# usage: mergestrings.pl a.strings b.strings out.strings
-# takes the origin strings list of a and creates out using the any translated versions found in b, and 
-# including any untranslated strings from a.
-#
+=head1 WHAT
+
+usage: mergestrings.pl a.strings b.strings out.strings
+takes the origin strings list of a and creates out using the any translated versions found in b, and  including any untranslated strings from a.
+
+=cut
 
 
 use Encode qw(encode decode);
@@ -36,6 +37,7 @@ while(<A>){
 close(A) || die $!;
 
 open(B,"<:encoding($encb)",$fileb) || die $!;
+warn "opened $fileb\n";
 
 my @transorder;
 my @unsure;

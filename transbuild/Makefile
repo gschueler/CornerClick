@@ -1,14 +1,21 @@
 NIBNAME=ClickBoxPref
 NIB=${NIBNAME}.nib
 ORIG=English
-LANG=French
+TLANG=French
 
-French/${NIB}:
+#makenib creates a new File.nib based on File.strings in the language dir
+French/${NIB}: ../French.lproj/${NIBNAME}.strings
 	perl makenib.pl French
 
-strings: ../${ORIG}.lproj/${NIB} ../${LANG}.lproj/${NIBNAME}.strings
+Spanish/${NIB}: ../Spanish.lproj/${NIBNAME}.strings
+	perl makenib.pl Spanish
+
+
+#create TLANG_newtrans.string based on base English nib and any available translated strings under TLANG.lproj/nib.strings
+
+strings: ../${ORIG}.lproj/${NIB} ../${TLANG}.lproj/${NIBNAME}.strings
 	nibtool -L ../${ORIG}.lproj/${NIB} > ${ORIG}.strings
-	cp ../${LANG}.lproj/${NIBNAME}.strings ${LANG}_trans.strings
-	perl mergestrings.pl ${ORIG}.strings ${LANG}_trans.strings ${LANG}_newtrans.strings
+	cp ../${TLANG}.lproj/${NIBNAME}.strings ${TLANG}_trans.strings
+	perl mergestrings.pl ${ORIG}.strings ${TLANG}_trans.strings ${TLANG}_newtrans.strings
 	
 	

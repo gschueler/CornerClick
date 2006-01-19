@@ -127,6 +127,10 @@
                 LOCALIZE([NSBundle mainBundle],@"Desktop")] retain];
 			myIcon = [[NSImage imageNamed:@"WindowVous"] retain];
             break;
+        case ACT_DASH:
+            myLabel=[[NSString stringWithString: LOCALIZE([NSBundle mainBundle],@"Dashboard")] retain];
+			myIcon = [[NSImage imageNamed:@"WindowVous"] retain];
+            break;
         default:
             myLabel=[[NSString stringWithString:@"?!@#"] retain];
 
@@ -250,6 +254,9 @@
         case 7:
             [ClickAction exposeDesktopAction];
             break;
+        case 8:
+            [ClickAction dashboardAction];
+            break;
         default:
             break;
     }
@@ -277,6 +284,15 @@
                                       withModifiers: 
         [CornerClickSupport modifiersForExposeAction:2]];}
 
++ (void) dashboardAction
+{
+    
+    [CornerClickSupport generateKeystrokeForKeyCode:
+        [CornerClickSupport keyCodeForExposeAction:3] 
+                                      withModifiers: 
+        [CornerClickSupport modifiersForExposeAction:3]];
+    
+}
 
 - (void) toggleAppAction
 {
@@ -501,6 +517,7 @@
         case ACT_EALL:
         case ACT_EAPP:
         case ACT_EDES:
+        case ACT_DASH:
                 return YES;
         default:
             return NO;

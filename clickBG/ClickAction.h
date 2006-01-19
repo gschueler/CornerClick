@@ -61,5 +61,6 @@
 + (void) exposeAllWindowsAction;
 + (void) exposeApplicationWindowsAction;
 + (void) exposeDesktopAction;
++ (void) dashboardAction;
 
 @end

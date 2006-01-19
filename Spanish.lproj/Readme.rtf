@@ -1,306 +1,408 @@
-{\rtf1\mac\ansicpg10000\cocoartf102
-{\fonttbl\f0\fnil\fcharset77 Verdana;\f1\fswiss\fcharset77 Helvetica-Bold;\f2\fswiss\fcharset77 Helvetica;
-\f3\fswiss\fcharset77 Helvetica-Oblique;\f4\fnil\fcharset77 LucidaGrande;}
-{\colortbl;\red255\green255\blue255;\red50\green62\blue255;\red127\green127\blue127;\red0\green0\blue255;
-\red255\green0\blue0;\red255\green0\blue6;}
-\vieww11020\viewh14680\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+{\rtf1\mac\ansicpg10000\cocoartf824\cocoasubrtf230
+{\fonttbl\f0\fnil\fcharset77 Verdana-Bold;\f1\fnil\fcharset77 Verdana;\f2\fswiss\fcharset77 Helvetica;
+\f3\fswiss\fcharset77 Helvetica-Oblique;\f4\fswiss\fcharset77 Helvetica-Bold;\f5\fswiss\fcharset77 Helvetica-BoldOblique;
+\f6\fnil\fcharset77 LucidaGrande;}
+{\colortbl;\red255\green255\blue255;\red0\green4\blue255;\red50\green62\blue255;\red127\green127\blue127;
+\red0\green0\blue255;\red9\green8\blue255;\red255\green0\blue0;}
+\vieww10440\viewh14040\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\qc
 
-\f0\fs48 \cf2 CornerClick 0.2.1
-\f1\b \cf0 \
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\f0\b\fs48 \cf2 CornerClick
+\f1\b0  \cf3 0.7
+\fs24 \cf2 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\qc
 
-\f2\b0\fs24 \cf3 \'a9 2003 Greg Schueler\
-\cf0  email:\cf3  \cf4 \ul \ulc4 greg-cornerclick@vario.us\cf0 \ulnone   website:  \cf4 \ul \ulc4 http://greg.vario.us/cornerclick/\cf0 \ulnone \
+\f2 \cf4 \'a9 2003-2005 Greg Schueler\
+\
+\pard\tqr\tx4320\tx4500\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf0  	email:\cf4 	\cf5 \ul \ulc5 greg-cornerclick@vario.us\cf0 \ulnone   \
+	web:	\cf5 \ul http://greg.vario.us/cornerclick/\
+\cf0 \ulnone 	\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\qr
+
+\f3\i \cf4 Archivo L\'8eeme - 12/5/05
+\f2\i0 \cf0 \
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
 \cf0 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
 
-\f1\b \cf0 What's new?\
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-
-\f2\b0 \cf0 Several new features have been added, and other slight improvements have been made.
-\f1\b \
-\
-	1. Multiple Monitor Support\
-
-\f2\b0 \
-Any attached screen can now have clickable corners.  Depending on your screen arrangement, some corners will probably not be useful with CornerClick, so you may just want to disable them.\
-\
-Also, CornerClick now acts correctly if the screen resolution changes.\
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-
-\f1\b \cf0 	2. Run AppleScript Action\
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-
-\f2\b0 \cf0 Another action has been added, called 
-\f1\b Run AppleScript...
-\f2\b0 , which allows you to run an AppleScript when a corner is clicked.  The script file is loaded and compiled by CornerClick, so the script can be run numerous times very quickly (as opposed to saving the script as a compiled application and having that load and run each time you click). CornerClick reloads and recompiles the script if it has been modified.\
-\
-I've included a couple scripts to get you going, including "Next Track in iTunes", "iTunes Play Pause". These scripts should be copied to your hard drive and then selected as a script to be run in the CornerClick PreferencePane. \
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-
-\f3\i \cf0 (Note:\cf5  \cf0 Please don't ask me for help with AppleScript problems that aren't related to CornerClick.)
-\f2\i0 \
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-
-\f1\b \cf0 	3. Other stuff\
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-
-\f2\b0 \cf0 The PreferencePane has been revamped.\
-\
-CornerClick has a new icon.  Thanks to those who submitted icons to me :)\
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-
-\f1\b \cf0 Version 0.2.1
-\f2\b0  fixes a bug which could accidentally delete all your CornerClick settings, and a few other minor bugs, and fixes some UI issues in the preference pane and helper app.
-\f1\b \
-\
-How do I upgrade from version 0.1?\
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-
-\f2\b0 \cf0 Please read the file 
-\f1\b Upgrading.rtf
-\f2\b0  included on the disk image.
-\f1\b \
-\
-What is it?
-\f2\b0 \
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
-\cf0 \
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-\cf0 CornerClick allows you to assign actions to each corner of your screen in Mac OS X 10.2 (Jaguar).  Your screen corners can act like four buttons which will never move. 
-\f1\b You will never miss
-\f2\b0  when you try to click the corner of the screen.  \
-\
-The Dock is badly designed from a user interface point of view.  If you have a lot of icons in your dock, either your icons are really tiny or you have magnification turned on.  Every time you want to launch something new, or just get back to Safari, you have to put on your Dock goggles and hunt for the right icon. The icon you want is never in the right place, or it tries to dodge your mouse when you have magnification turned on.\
-\
-I got tired of that, and for a while I hoped somebody else would come up with a solution.  Eventually I gave in learned Objective C and Cocoa so that I could make it myself.\
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-
-\f1\b \cf0 How does it work?
-\f2\b0 \
-\
-Tiny, nearly invisible windows hide in the corners of your screen.  When you click on them an action is performed.  The neat thing is that clicking in the exact corner of the screen is really easy to do, since you can just whip the mouse over there instantly.  You get to define what actions they perform, and you can have each corner do as many things as you want by holding down different modifier keys.\
-\
-If you like, a popup window will display what action is going to be performed when you point at any corner of the screen.\
-\
-
-\f1\b How do I use it?
-\f2\b0 \
-\
-
-\f1\b CornerClick 0.2
-\f2\b0  is a Preference Pane.  In the preference pane you can define multiple actions for each corner of the screen.  Each action has a set of modifiers (shift 
-\f4 \uc0\u8679 
-\f2 , command 
-\f4 \uc0\u8984 
-\f2 , option 
-\f4 \uc0\u8997 
-\f2 , or control 
-\f4 \uc0\u8963 
-\f2 ) which you can specify for the action.  All of the modifiers you add to an action have to be held down when you click the corner for the action to be invoked.\
-\
-
-\f1\b What actions can be performed?
-\f2\b0 \
-\
-There are five types of actions:\
-\
-
-\f1\b 1. Open File...\
+\f4\b \cf0 Qu\'8e hay de nuevo?\
 \
 	
-\f2\b0 This action opens any file you choose.  If you pick an application, that application will launch if it's not running, and will come to the foreground if it is.  You can pick any type of folder or file as well.  
-\f1\b \
+\f3\i\b0 \cf6 versi\'97n 
+\f5\b  
+\f3\b0 0.7\cf0 :\
 \
-2. Hide Current Application\
+
+\f4\i0\b 	Dashboard\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-1440\ql\qnatural
+
+\f2\b0 \cf0 		Dashboard ahora puede ser activado como Expos\'8e.\
 \
 	
-\f2\b0 This hides the current application.
-\f1\b \
+\f4\b Solucionado el problema que bloqueaba las Preferencias del Sistema\
 \
-3. Hide Other Applications\
-\
+		
+\f2\b0 Este error fue \strike introducido\strike0\striked0  revelado con Mac OS X 10.4.  Lamento no haberlo podido solucionar hasta ahora!
+\f3\i \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
 
-\f2\b0 \cf0 	This hides all of the other running applications.\
+\f4\i0\b \cf0 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
 
-\f1\b \cf0 \
-4. Open URL...\
+\f2\b0 \cf0 	
+\f3\i \cf6 versi\'97n 
+\f5\b  
+\f3\b0 0.6\cf0 :\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f4\i0\b \cf0 \
+	Mantener \
 	\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-1440\ql\qnatural
+\cf0 		
+\f2\b0 Las Aciones pueden ser lanzadas manteniendo el puntero del mouse en la esquina, con las teclas modificadoras correctas (no requiere hacer click). Adem\'87s, una 
+\f4\b espera
+\f2\b0  
+\f4\b opcional de 2 segundos
+\f2\b0  puede ser requerida antes de lanzar la Acci\'97n. usted puede combinar una Acci\'97n normal de 
+\f3\i click
+\f2\i0  con una Acci\'97n de 
+\f3\i Espera
+\f2\i0 , as\'92 usted puede hacer click para lanzar una Acci\'97n o esperar cerca de 2 segundos para realizar una acci\'97n diferente.
+\f4\b \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf0 \
+	
+\f3\i\b0 \cf6 versi\'97n
+\f2\i0  
+\f3\i 0.5\cf0 :\
+
+\f4\i0\b \
+	Acciones Expos\'8e\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-1440\ql\qnatural
+\cf0 \
+		
+\f2\b0 Usted ahora puede asignar una acci\'97n Expos\'8e a cualquier esquina de su pantalla, con cualquier modificador y un lanzador. Solo asegures\'8e de configurar el comando apropiado de Expos\'8e  para ser accionado por medio de una de las teclas de Funci\'97n, en el panel de preferencias de Expos\'8e.  \
+\
+	
+\f4\b Texto y tama\'96o de icono Ajustable \
+\
+		 
+\f2\b0 El tama\'96o del texto y del icono de las ventanas est\'87ticas es ahora ajustable.\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
 
-\f2\b0 \cf0 	This opens a URL of your choice.  You can also pick a display label for the URL, so that it looks better in the popup window.\
-\
+\f4\b \cf0 \
+Qu\'8e es esto?
+\f2\b0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\ql\qnatural
+\cf0 CornerClick le permite asignar aciones a cada una de las esquinas de su pantalla en  Mac OS X 10.3 (Panther). Las cuatro esquinas de la pantalla pueden actuar como botones que nunca se mover\'87n. 
+\f4\b Usted Nunca Fallar\'87
+\f2\b0  Cuanto intente hacer click en la esquina de la pantalla.  \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi720\ql\qnatural
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\ql\qnatural
+\cf0 El Dock esta mal dise\'96ado desde el punto de vista de la interfaz de usuario. Si usted tiene muchos iconos en su Dock, o los iconos son muy peque\'96os o tiene activo el aumento.  Cada ves que usted quiere abrir algo nuevo, o simplemente quiere regresar a Safari, usted tendr\'87 que buscar en su Dock y cazar el icono correcto. El icono que usted quiere nunca esta en el lugar indicado, o cuando tiene activa la ampliaci\'97n \'8el tratar\'87 de esquivar su mouse.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf0 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
 
-\f1\b \cf0 5. Run AppleScript...\
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-
-\f2\b0 \cf0 	This runs an AppleScript (in any format) when you click the corner.  The AppleScript is loaded and compiled by CornerClick so that it can be run quickly when the corner is clicked.\
-\
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-
-\f1\b \cf0 Help! My AppleScript Action isn't working!
+\f4\b \cf0 C\'97mo funciona?
 \f2\b0 \
 \
-If there is an error during loading, compiling, or running of  selected AppleScript, CornerClick will print out a message on the Console describing the error. (Open 
-\f1\b /Applications/Utilities/Console.app
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\ql\qnatural
+\cf0 Peque\'96as ventanas casi invisibles, escondidas en las esquinas de su pantalla. Cuando usted hace click en ellas una acci\'97n es realizada. La forma de hacer click sobre la esquina correcta de su pantalla es algo muy f\'87cil de realizar, comenzando porque usted puede poner el mouse all\'92 instant\'87neamente. Usted llega a definir que 
+\f4\b aciones
+\f2\b0  realizan, y puede tener en cada esquina tantas cosas como quiera simplemente sosteniendo diferentes teclas 
+\f4\b modificadoras
+\f2\b0 .\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi720\ql\qnatural
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\ql\qnatural
+\cf0 Si usted quiere, cuando el cursor del mouse llegue a la esquina de la pantalla, una ventana aparecer\'87 con la acci\'97n que se realizara.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f4\b \cf0 C\'97mo lo Uso?
+\f2\b0 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\ql\qnatural
+
+\f4\b \cf0 CornerClick 
+\f2\b0 es un panel de preferencias. En el panel de preferencias usted puede definir m\'9cltiples  
+\f4\b aciones
+\f2\b0  para cada esquina de la pantalla. Cada acci\'97n tiene un posible set de 
+\f4\b modificadores
+\f2\b0 : shift 
+\f6 \uc0\u8679 
+\f2 , comando 
+\f6 \uc0\u8984 
+\f2 , opci\'97n 
+\f6 \uc0\u8997 
+\f2 ,  control 
+\f6 \uc0\u8963 , 
+\f2 o
+\f6  Fn
+\f2 .  (El modificador 
+\f6 Fn
+\f2  es solo viene en  PowerBooks o iBooks.) Todos los modificadores que usted le a\'96ade a una acci\'97n tienen que mantenerse cuando usted hace click en la esquina para invocar la acci\'97n.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f4\b \cf0 Instalaci\'97n:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\ql\qnatural
+
+\f2\b0 \cf0 Usando Panther (Mac OS X 10.3), haga doble-click en el archivo CornerClick.prefPane desde la imagen de  disco de la instalaci\'97n. Escoja donde instalar el panel de preferencias. Si usted esta actualizando una versi\'97n anterior de CornerClick, debe seleccionar '
+\f3\i si'
+\f2\i0  cuando se le pregunte que si desea reemplazar la versi\'97n anterior.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf0 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f4\b \cf0 Qu\'8e acciones pueden ejecutarse?
+\f2\b0 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\ql\qnatural
+\cf0 Hay varios tipos de acciones:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi720\ql\qnatural
+
+\f4\b \cf0 1. Abrir un Archivo\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-720\ql\qnatural
+\cf0 	
+\f2\b0 Esta acci\'97n abre cualquier archivo que usted escoja. Si usted escoge una aplicaci\'97n, esa aplicaci\'97n ser\'87 lanzada si no esta abierta, y aparecer\'87 en frente si ya lo est\'87.  Tambi\'8en puede escoger tanto una carpeta como un archivo.  
+\f4\b \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi720\ql\qnatural
+\cf0 \
+2. Ocultar Aplicaci\'97n Actual\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-720\ql\qnatural
+\cf0 	
+\f2\b0 Esta oculta la aplicaci\'97n actual.
+\f4\b \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi720\ql\qnatural
+\cf0 \
+3. Ocultar Otras Aplicaciones\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-720\ql\qnatural
+
+\f2\b0 \cf0 	Esto ocultara todas las dem\'87s aplicaciones abiertas.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi720\ql\qnatural
+
+\f4\b \cf0 \
+4. Abrir URL\
+	\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-720\ql\qnatural
+
+\f2\b0 \cf0 	Abre la URL que escogi\'97. Adem\'87s puede elegir la etiqueta que aparecer\'87 en la ventana flotante para que se vea mejor que la direcci\'97n.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi720\ql\qnatural
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi720\ql\qnatural
+
+\f4\b \cf0 5. Correr AppleScript\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-720\ql\qnatural
+
+\f2\b0 \cf0 	Esta acci\'97n corre un AppleScript cuando usted hace click en la esquina. el AppleScript es le\'92do y compilado por  CornerClick as\'92 puede funcionar r\'87pidamente si se hace click varias veces.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f4\b \cf0 	6. Aciones de Expos\'8e (Todas las Ventanas, Ventanas  de la Aplicaci\'97n, o Escritorio)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-1440\ql\qnatural
+\cf0 \
+		
+\f2\b0 Realiza la acci\'97n de Expos\'8e escogida. Solo asegures\'8e de configurar el comando apropiado de Expos\'8e  para ser accionado por medio de una de las teclas de Funci\'97n, en el panel de preferencias. CornerClick funciona enviando esa tecla de funci\'97n al sistema.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f4\b \cf0 	7. Dashboard\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-1440\ql\qnatural
+\cf0 \
+		
+\f2\b0 Realiza la acci\'97n del Dashboard.  (la acci\'97n Expos\'8e avisa sobre las teclas de funci\'97n que tambi\'8en realizan la acci\'97n de Dashboard.)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f4\b \cf0 \'c1Ayuda! \'c1Mi acci\'97n AppleScript no est\'87 funcionando!
+\f2\b0 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\ql\qnatural
+\cf0 Si hay alg\'9cn error durante la carga, compilada, o corriendo el AppleScript seleccionado,  CornerClick escribir\'87 un mensaje en la Consola describiendo el error. (Abra  
+\f4\b /Aplicaciones/Utilidades/Consola.app 
 \f2\b0 )\
-\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi720\ql\qnatural
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\ql\qnatural
+\cf7 Por favor no me pregunte por problemas con AppleScript, eso no esta relacionado con CornerClick. \cf0  \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi720\ql\qnatural
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\ql\qnatural
+\cf0 Hay muchas ayudas disponibles en internet. Buena suerte\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-\cf5 Please don't ask me for help with AppleScript problems that aren't related to CornerClick. \cf0  \
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f4\b \cf0 \'c0Que mas puedo hacer?\
 \
-My response to your email will be: "Unsubscribe".  \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\ql\qnatural
+
+\f2\b0 \cf0 Bueno, usted puede hacer 
+\f4\b combos
+\f2\b0  de las acciones definiendo m\'9cltiples acciones para una esquina, donde todas ellas tienen exactamente el mismo set de teclas modificadoras. \
 \
-There are many resources available on the internet.  Good luck.\
+Por ejemplo, adicione una acci\'97n 
+\f4\b Abrir Archivo
+\f2\b0  que active el Finder (
+\f3\i /Sistema/Librer\'92a/CoreServices/Finder.app
+\f2\i0 ) con un determinado set de teclas modificadoras (o ninguna). Luego adicione otra acci\'97n 
+\f4\b Ocultar Otras Aplicaciones
+\f2\b0  con el mismo conjunto de modificadores. Cuando usted hace click en la esquina con esas teclas modificadoras ambas acciones ser\'87n realizadas y usted terminar\'87 con el desorden en su pantalla y mostrar\'87 el Escritorio. (El orden en que usted cree sus acciones, es el orden en que ser\'87n realizadas.) \
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
 
-\f1\b \cf0 What else can it do?\
+\f4\b \cf0 \'c0Cuanto es el costo por esto?\
 \
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\ql\qnatural
 
-\f2\b0 \cf0 Well you can make 
-\f1\b combos
-\f2\b0  of actions by defining multiple actions for a corner, where all of them have the same exact set of modifiers.  \
-\
-For example, add an
-\f1\b  Open File...
-\f2\b0  action that opens the Finder (/System/Library/CoreServices/Finder) with a certain set of modifier keys (or none at all).  Then add another 
-\f1\b Hide Other Applications
-\f2\b0  action with the same exact modifier keys.  When you click in the corner with those modifier keys, both actions will be performed, and you'll end up clearing all the clutter on your screen and revealing the Desktop.  (The order you create the actions in is the order they are performed in.)\
-\
+\f2\b0 \cf0 Es gratis. \cf5 Pero aceptar\'8e cualquier 'iTunes gift certificates' que usted pueda comprar para mi.\cf0 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-
-\f1\b \cf0 Is this for me?\
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-
-\f2\b0 \cf0 Yes, if you're a "power user".  It's worth a try even if you're not.\
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-
-\f1\b \cf0 Won't Panther (OS X 10.3) do this?\
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-
-\f2\b0 \cf0 I don't think so.  I know you can use the corners of the screen to launch Expos\'8e, but I don't know how customizable that is (I don't have the developer preview of Panther).\
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-
-\f1\b \cf0 How much does this cost?\
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-
-\f2\b0 \cf6 $80. \
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-\cf0 Just kidding! It's free.\
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-\cf4 But if you make software for sale and you like 
-\f1\b CornerClick
-\f2\b0 , I would love to receive a free license for your software (just email me).\cf0 \
-\
-I will probably release the source as well, since I'm a fan of open source.\
-\
+\cf0 \
 \pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6720\tx7680\tx8640\tx9600\tx10560\tx11520\tx12480\tx13440\tx14400\tx15360\tx16320\tx17280\tx18240\tx19200\tx20160\tx21120\tx22080\tx23040\tx24000\tx24960\tx25920\tx26880\tx27840\tx28800\tx29760\tx30720\tx31680\tx32640\tx33600\tx34560\tx35520\tx36480\tx37440\tx38400\tx39360\tx40320\tx41280\tx42240\tx43200\tx44160\tx45120\tx46080\tx47040\tx48000\tx48960\tx49920\tx50880\tx51840\tx52800\tx53760\tx54720\tx55680\tx56640\tx57600\tx58560\tx59520\tx60480\tx61440\tx62400\tx63360\tx64320\tx65280\tx66240\tx67200\tx68160\tx69120\tx70080\tx71040\tx72000\tx72960\tx73920\tx74880\tx75840\tx76800\tx77760\tx78720\tx79680\tx80640\tx81600\tx82560\tx83520\tx84480\tx85440\tx86400\tx87360\tx88320\tx89280\tx90240\tx91200\tx92160\tx93120\tx94080\tx95040\tx96000\ql\qnatural
 
-\f1\b \cf0 Any other features planned?\
+\f4\b \cf0 \'c0Alguna otra caracter\'92stica planeada?\
 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi720\ql\qnatural
 
-\f2\b0 Sure, but please suggest anything that I haven't thought of.\
-\
-Planned features:\
-\
-\'a5 Make screen edges hot as well\
-\'a5 List all actions that will be performed (combos) in the popup\
-\
-These are all possible future features, though they aren't guaranteed to be added: \
-\
-\'a5\'caMake per-application configurations (this would be useful if actions could be any menu command from the application, for example.  Don't know how to do that with Cocoa yet, though.)\
-\'a5 Execute shell commands without opening terminal (i.e. in the background)\
-\'a5 Change the popup dynamically if the modifiers change while the cursor is hovering over the corner (probably not going to happen, since it appears harder than I thought)\
-\
+\f2\b0 \cf0 Seguro, pero por favor has cualquier sugerencia que no se me haya ocurrido.\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6720\tx7680\tx8640\tx9600\tx10560\tx11520\tx12480\tx13440\tx14400\tx15360\tx16320\tx17280\tx18240\tx19200\tx20160\tx21120\tx22080\tx23040\tx24000\tx24960\tx25920\tx26880\tx27840\tx28800\tx29760\tx30720\tx31680\tx32640\tx33600\tx34560\tx35520\tx36480\tx37440\tx38400\tx39360\tx40320\tx41280\tx42240\tx43200\tx44160\tx45120\tx46080\tx47040\tx48000\tx48960\tx49920\tx50880\tx51840\tx52800\tx53760\tx54720\tx55680\tx56640\tx57600\tx58560\tx59520\tx60480\tx61440\tx62400\tx63360\tx64320\tx65280\tx66240\tx67200\tx68160\tx69120\tx70080\tx71040\tx72000\tx72960\tx73920\tx74880\tx75840\tx76800\tx77760\tx78720\tx79680\tx80640\tx81600\tx82560\tx83520\tx84480\tx85440\tx86400\tx87360\tx88320\tx89280\tx90240\tx91200\tx92160\tx93120\tx94080\tx95040\tx96000\ql\qnatural
+\cf0 \
+\pard\tx1920\tx2880\tx3840\tx4800\tx5760\tx6720\tx7680\tx8640\tx9600\tx10560\tx11520\tx12480\tx13440\tx14400\tx15360\tx16320\tx17280\tx18240\tx19200\tx20160\tx21120\tx22080\tx23040\tx24000\tx24960\tx25920\tx26880\tx27840\tx28800\tx29760\tx30720\tx31680\tx32640\tx33600\tx34560\tx35520\tx36480\tx37440\tx38400\tx39360\tx40320\tx41280\tx42240\tx43200\tx44160\tx45120\tx46080\tx47040\tx48000\tx48960\tx49920\tx50880\tx51840\tx52800\tx53760\tx54720\tx55680\tx56640\tx57600\tx58560\tx59520\tx60480\tx61440\tx62400\tx63360\tx64320\tx65280\tx66240\tx67200\tx68160\tx69120\tx70080\tx71040\tx72000\tx72960\tx73920\tx74880\tx75840\tx76800\tx77760\tx78720\tx79680\tx80640\tx81600\tx82560\tx83520\tx84480\tx85440\tx86400\tx87360\tx88320\tx89280\tx90240\tx91200\tx92160\tx93120\tx94080\tx95040\tx96000\fi720\ql\qnatural
+\cf0 Algunas ideas: \
+\pard\tx1920\tx2880\tx3840\tx4800\tx5760\tx6720\tx7680\tx8640\tx9600\tx10560\tx11520\tx12480\tx13440\tx14400\tx15360\tx16320\tx17280\tx18240\tx19200\tx20160\tx21120\tx22080\tx23040\tx24000\tx24960\tx25920\tx26880\tx27840\tx28800\tx29760\tx30720\tx31680\tx32640\tx33600\tx34560\tx35520\tx36480\tx37440\tx38400\tx39360\tx40320\tx41280\tx42240\tx43200\tx44160\tx45120\tx46080\tx47040\tx48000\tx48960\tx49920\tx50880\tx51840\tx52800\tx53760\tx54720\tx55680\tx56640\tx57600\tx58560\tx59520\tx60480\tx61440\tx62400\tx63360\tx64320\tx65280\tx66240\tx67200\tx68160\tx69120\tx70080\tx71040\tx72000\tx72960\tx73920\tx74880\tx75840\tx76800\tx77760\tx78720\tx79680\tx80640\tx81600\tx82560\tx83520\tx84480\tx85440\tx86400\tx87360\tx88320\tx89280\tx90240\tx91200\tx92160\tx93120\tx94080\tx95040\tx96000\li1440\ql\qnatural
+\cf0 \
+\'a5  Gestos originados en la esquina\
+\'a5\strike   "Mantener" i.e. Activar cuando se acerca el mouse a la esquina (como Expos\'8e). \strike0\striked0 (adicionado en 0.6)\
+\'a5 \'caHacer configuraciones por aplicaci\'97n (por ejemplo, esto ser\'92a \'9ctil para un men\'9c de comandos de una aplicaci\'97n. No se como hacer esto con Cocoa todav\'92a.)\
+\strike \'a5  Acciones para activaci\'97n directa de Expos\'8e \strike0\striked0 (adicionado en 0.5)\
+\'a5  Acciones para el env\'92o de cualquier combinaci\'97n de teclas (probablemente \'9ctil con configuraciones por aplicaci\'97n).\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6720\tx7680\tx8640\tx9600\tx10560\tx11520\tx12480\tx13440\tx14400\tx15360\tx16320\tx17280\tx18240\tx19200\tx20160\tx21120\tx22080\tx23040\tx24000\tx24960\tx25920\tx26880\tx27840\tx28800\tx29760\tx30720\tx31680\tx32640\tx33600\tx34560\tx35520\tx36480\tx37440\tx38400\tx39360\tx40320\tx41280\tx42240\tx43200\tx44160\tx45120\tx46080\tx47040\tx48000\tx48960\tx49920\tx50880\tx51840\tx52800\tx53760\tx54720\tx55680\tx56640\tx57600\tx58560\tx59520\tx60480\tx61440\tx62400\tx63360\tx64320\tx65280\tx66240\tx67200\tx68160\tx69120\tx70080\tx71040\tx72000\tx72960\tx73920\tx74880\tx75840\tx76800\tx77760\tx78720\tx79680\tx80640\tx81600\tx82560\tx83520\tx84480\tx85440\tx86400\tx87360\tx88320\tx89280\tx90240\tx91200\tx92160\tx93120\tx94080\tx95040\tx96000\ql\qnatural
+\cf0 \
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6720\tx7680\tx8640\tx9600\tx10560\tx11520\tx12480\tx13440\tx14400\tx15360\tx16320\tx17280\tx18240\tx19200\tx20160\tx21120\tx22080\tx23040\tx24000\tx24960\tx25920\tx26880\tx27840\tx28800\tx29760\tx30720\tx31680\tx32640\tx33600\tx34560\tx35520\tx36480\tx37440\tx38400\tx39360\tx40320\tx41280\tx42240\tx43200\tx44160\tx45120\tx46080\tx47040\tx48000\tx48960\tx49920\tx50880\tx51840\tx52800\tx53760\tx54720\tx55680\tx56640\tx57600\tx58560\tx59520\tx60480\tx61440\tx62400\tx63360\tx64320\tx65280\tx66240\tx67200\tx68160\tx69120\tx70080\tx71040\tx72000\tx72960\tx73920\tx74880\tx75840\tx76800\tx77760\tx78720\tx79680\tx80640\tx81600\tx82560\tx83520\tx84480\tx85440\tx86400\tx87360\tx88320\tx89280\tx90240\tx91200\tx92160\tx93120\tx94080\tx95040\tx96000\ql\qnatural
 
-\f1\b Does this software have a warranty?\
+\f4\b \cf0 \'c0Este software tiene garant\'92a?\
 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\ql\qnatural
 
-\f2\b0 Not at all.  It may or may not work as expected, and it may or may not break your computer and cause you financial damage and/or ruin.  I am not responsible for any damages that you may suffer because of this software.\
-\
+\f2\b0 \cf0 Ninguna. Puede no funcionar como se espera y puede o no bloquear su computador causando un da\'96a financiero y/o llevarlo a la ruina. Yo no soy responsable por alg\'9cn da\'96o que usted pueda sufrir por causa de este software.\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6720\tx7680\tx8640\tx9600\tx10560\tx11520\tx12480\tx13440\tx14400\tx15360\tx16320\tx17280\tx18240\tx19200\tx20160\tx21120\tx22080\tx23040\tx24000\tx24960\tx25920\tx26880\tx27840\tx28800\tx29760\tx30720\tx31680\tx32640\tx33600\tx34560\tx35520\tx36480\tx37440\tx38400\tx39360\tx40320\tx41280\tx42240\tx43200\tx44160\tx45120\tx46080\tx47040\tx48000\tx48960\tx49920\tx50880\tx51840\tx52800\tx53760\tx54720\tx55680\tx56640\tx57600\tx58560\tx59520\tx60480\tx61440\tx62400\tx63360\tx64320\tx65280\tx66240\tx67200\tx68160\tx69120\tx70080\tx71040\tx72000\tx72960\tx73920\tx74880\tx75840\tx76800\tx77760\tx78720\tx79680\tx80640\tx81600\tx82560\tx83520\tx84480\tx85440\tx86400\tx87360\tx88320\tx89280\tx90240\tx91200\tx92160\tx93120\tx94080\tx95040\tx96000\ql\qnatural
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
 
-\f1\b Financial ruin?!\
-\
+\f4\b \cf0 \'c1\'c0Ruina financiera?!\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6720\tx7680\tx8640\tx9600\tx10560\tx11520\tx12480\tx13440\tx14400\tx15360\tx16320\tx17280\tx18240\tx19200\tx20160\tx21120\tx22080\tx23040\tx24000\tx24960\tx25920\tx26880\tx27840\tx28800\tx29760\tx30720\tx31680\tx32640\tx33600\tx34560\tx35520\tx36480\tx37440\tx38400\tx39360\tx40320\tx41280\tx42240\tx43200\tx44160\tx45120\tx46080\tx47040\tx48000\tx48960\tx49920\tx50880\tx51840\tx52800\tx53760\tx54720\tx55680\tx56640\tx57600\tx58560\tx59520\tx60480\tx61440\tx62400\tx63360\tx64320\tx65280\tx66240\tx67200\tx68160\tx69120\tx70080\tx71040\tx72000\tx72960\tx73920\tx74880\tx75840\tx76800\tx77760\tx78720\tx79680\tx80640\tx81600\tx82560\tx83520\tx84480\tx85440\tx86400\tx87360\tx88320\tx89280\tx90240\tx91200\tx92160\tx93120\tx94080\tx95040\tx96000\ql\qnatural
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\ql\qnatural
 
-\f2\b0 Probably not.  Probably your productivity will improve and you will become wealthy and famous.\
+\f2\b0 \cf0 Probablemente no. Probablemente su productividad mejorar\'87 y ser\'87 rico y famoso.\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
 \cf0 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
 
-\f1\b \cf0 Did you really learn Objective C and Cocoa just to make this?\
+\f4\b \cf0 No es tarde para esto:\
 \
+	Broken Social Scene - Broken Social Scene\
+	
+\f2\b0 http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewAlbum?id=81005773
+\f4\b \
+	\
+	My Morning Jacket - Z\
+	
+\f2\b0 http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewAlbum?id=81382832\
+\
+	
+\f4\b Animal Collective - Feels\
+	
+\f2\b0 http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewAlbum?id=81566357\
+\
+	
+\f4\b CocoRosie - Noah's Ark\
+	
+\f2\b0 http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewAlbum?id=78365229\
+
+\f4\b \
+\
+Historial de Versiones\
+\
+\'a5 0.7 - 
+\f2\b0 liberaci\'97n 12/5/05\
+	Adici\'97n de acci\'97n Dashboard.\
+	Solucionado el error que bloqueaba las Preferencias del Sistema.\
+
+\f4\b \
+\'a5 0.6 
+\f2\b0 - liberaci\'97n 12/14/04\
+	Adici\'97n del lanzador  "Mantener", permite que la acci\'97n sea lanzada cuando el mouse 	llega a la esquina.\
+	Mantener tiene ademas un retraso opcional de 2 segundos.\
+
+\f4\b \
+\'a5 0.5 
+\f2\b0 - liberaci\'97n 9/29/04\
+	acci\'97n Expos\'8e adicionada\
+	ventana emergente con tama\'96o de fuente e icono ajustable \
+	mejora de la apariencia, usando quartz para el dibujado \
+	arrancar usando referencia en el panel de preferencias
+\f4\b \
+\
+\'a5 0.4 
+\f2\b0 - liberaci\'97n 7/5/04\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\ql\qnatural
+
+\f4\b \cf0 	
+\f2\b0 lanzadera
+\f4\b  
+\f2\b0 click Derecho\
+	modificador tecla Fn\
+	Ventanas emergentes din\'87micas\
+	Ventanas emergentes mejoradas\
+	Selecci\'97n de acci\'97n con el teclado y con la rueda del rat\'97n\
+	Color de realce personalizado\
+	Panel de preferencias mejoradas\
+	Varios errores corregidos\
+	
+\f4\b \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-
-\f2\b0 \cf0 Well I tried learning them a while ago, but I wasn't getting paid for it, plus Apple's documentation sucked, so I kind of just gave up on it.  I use Java and perl a lot, and so Objective C's memory management was a little weird at first.  Also I was spoiled on the Javadoc for the JDK APIs.  \
-\
-I kept getting more annoyed with the Dock and wondering why nobody had made anything like CornerClick.  Finally I decided that I wasn't going to wait for Apple to improve things, so I dove into it.  It became a bit larger than I had expected.\
-\
+\cf0 \'a5 0.2.1 
+\f2\b0 - liberaci\'97n 8/18/03\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\ql\qnatural
+\cf0 	Correcci\'97n del error que pod\'92a accidentalmente borrar todas las preferencias de CornerClick, y de otros errores menores.\
+	Correcci\'97n de elementos UI en el panel de preferencias y en la aplicaci\'97n de ayuda.\
+	
+\f4\b \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf0 \'a5 0.2 - 
+\f2\b0 liberaci\'97n 8/18/03
+\f4\b \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\ql\qnatural
 
-\f1\b \cf0 What'd you learn about Obj-C/Cocoa along the way?\
+\f2\b0 \cf0 	Soporte para M\'9cltiple Monitor a\'96adido. \
+	Tipo de acci\'97n "Lanzar AppleScript..." a\'96adido\
+	Panel de Preferencias redise\'96ado
+\f4\b \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-
-\f2\b0 \cf0 \
-Understand the memory management stuff.  Coming from Java this takes some getting used to.\
-\
-Read the documentation carefully for the classes you're using.  (E.G. NSWindow's -close method also 
-\f3\i releases
-\f2\i0  the instance.)\
-\
-Don't rely on Apple's documentation to tell you how to do things.  Check out http://cocoa.mamasam.com for mailing-list archives, and http://www.cocoadevcentral.com for helpful tutorials.\
-\
-Perl has nice built in language support for the most useful data structures; compare " \{\}" vs "new java.util.Hashtable()" vs "[[NSMutableDictionary alloc] initWithCapacity:4]".  The "[object message]" syntax is really ugly, I think.  It really clutters the source code up.\
-\
-Is this a bug?: NSFileWrapper crashes your app if you call [[NSFileWrapper alloc] initWithPath:path] where "path" is the path to a mounted DVD disk.\
-\
-Programming is fun! (Sometimes you forget this when you work for somebody else.)\
-\
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-
-\f1\b \cf0 Version History\
-\'a5 0.2.1 
-\f2\b0 - release 8/18/03\
-	Fixes a bug which could accidentally delete all your CornerClick settings, and a few other minor bugs\
-	Fixes some UI issues in the preference pane and helper app\
-
-\f1\b \
-\'a5 0.2 - 
-\f2\b0 released 8/18/03
-\f1\b \
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
-
-\f2\b0 \cf0 	Multiple Monitor Support added\
-	"Run AppleScript..." Action type added\
-	PreferencePane UI revamped
-\f1\b \
-\
+\cf0 \
 \'a5 0.1 - 
-\f2\b0 released 7/28/03
-\f1\b \
+\f2\b0 liberaci\'97n 7/28/03
+\f4\b \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
 
-\f2\b0 	initial release}
+\f2\b0 \cf0 	liberaci\'97n inicial}

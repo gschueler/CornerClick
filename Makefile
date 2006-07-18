@@ -1,4 +1,4 @@
-VERS=0.7
+VERS=0.8
 CP=/Developer/Tools/CpMac
 DMGSRC=dmg-source
 EXPORT=export
@@ -15,6 +15,7 @@ dist:
 	${CP} zh_TW.lproj/Readme.rtf "${CCEXP}/Readme (zh_TW).rtf"
 	${CP} Spanish.lproj/Readme.rtf "${CCEXP}/Readme (Es).rtf"
 	${CP} Spanish.lproj/Uninstall.rtf "${CCEXP}/Uninstall/Espanol.rtf"
+	${CP} German.lproj/Deinstallieren.rtf  "${CCEXP}/Uninstall/German.rtf"
 	-rm -r "${CCEXP}/CornerClick.prefPane"
 	${CP} -r "build/Deployment/CornerClick.prefPane"  "${CCEXP}/"
 	cd "${EXPORT}" && tar cjf "CornerClick-${VERS}.tar.bz2" "CornerClick-${VERS}"

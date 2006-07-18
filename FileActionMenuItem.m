@@ -30,6 +30,7 @@
 - (void) dealloc
 {
     [filePath release];
+    [super dealloc];
 }
 
 @end

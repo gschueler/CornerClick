@@ -181,7 +181,7 @@ static NSDictionary *normalTextAttrs;
     [textShad setShadowBlurRadius:1];
     float tsize = [[CornerClickSettings sharedSettings] textSize];
     float mesize;
-    if(tsize < 12) tsize=mesize;
+    if(tsize < 12) mesize=tsize;
     else mesize = tsize - 4;
 	return [NSDictionary dictionaryWithObjects:
 		[NSArray arrayWithObjects: 
@@ -1068,6 +1068,7 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
     [fadeToColor release];
     [fadedFrame release];
     [shadowAttrs release];
+    [super dealloc];
 }
 
 

@@ -1350,6 +1350,12 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
                 [tblIcon setScalesWhenResized:YES];
                 [tblIcon setSize:NSMakeSize(16,16)];
                 return tblIcon;
+            case ACT_SCRE:
+                
+                tblIcon= [[NSWorkspace sharedWorkspace] iconForFile:@"/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app"];
+                [tblIcon setScalesWhenResized:YES];
+                [tblIcon setSize:NSMakeSize(16,16)];
+                return tblIcon;
                 
 //                return [NSImage imageNamed:@"WindowVous" ];
 
@@ -1387,6 +1393,7 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
                 LOCALIZE([self bundle],@"Desktop")]
                 ;
             case ACT_DASH: return LOCALIZE([self bundle],@"Dashboard");
+            case ACT_SCRE: return LOCALIZE([self bundle],@"ScreenSaver");
             default: return @"???";
         }
     }else if([[aTableColumn identifier] isEqualToString: @"modifiers"]){

@@ -306,7 +306,7 @@ int selectedMod=-1;
                                                        corner: corner];
         [window setOpaque:NO];
         [window setHasShadow:NO];
-        [window setLevel: NSStatusWindowLevel];
+        [window setLevel: NSPopUpMenuWindowLevel];
         [window setAlphaValue: 0.1];
 
 

@@ -131,6 +131,10 @@
             myLabel=[[NSString stringWithString: LOCALIZE([NSBundle mainBundle],@"Dashboard")] retain];
 			myIcon = [[NSImage imageNamed:@"WindowVous"] retain];
             break;
+        case ACT_SCRE:
+            myLabel=[[NSString stringWithString: LOCALIZE([NSBundle mainBundle],@"ScreenSaver")] retain];
+            myIcon = [[[NSWorkspace sharedWorkspace] iconForFile: @"/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app"] retain];
+            break;
         default:
             myLabel=[[NSString stringWithString:@"?!@#"] retain];
 
@@ -224,38 +228,42 @@
     [trueLabel release];
     [myScript release];
     [scriptLastModified release];
+    [super dealloc];
     
 }
 - (void)doAction:(NSEvent*)theEvent
 {
     //NSLog(@"Do Action: %d %s",theType,[myString UTF8String]);
     switch(theType){
-        case 0:
+        case ACT_FILE:
             [[NSWorkspace sharedWorkspace] openFile:myString];
             break;
-        case 1 : 
+        case ACT_HIDE : 
             [self hideCurrentAction];
             break;
-        case 2 :
+        case ACT_HIDO :
             [self hideOthersAction];
             break;
-        case 3:
+        case ACT_URL:
             [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:myString]];
             break;
-        case 4:
+        case ACT_SCPT:
             [self runAppleScriptAction];
             break;
-        case 5:
+        case ACT_EALL:
             [ClickAction exposeAllWindowsAction];
             break;
-        case 6:
+        case ACT_EAPP:
             [ClickAction exposeApplicationWindowsAction];
             break;
-        case 7:
+        case ACT_EDES:
             [ClickAction exposeDesktopAction];
             break;
-        case 8:
+        case ACT_DASH:
             [ClickAction dashboardAction];
+            break;
+        case ACT_SCRE:
+            [ClickAction screensaverAction];
             break;
         default:
             break;
@@ -292,6 +300,11 @@
                                       withModifiers: 
         [CornerClickSupport modifiersForExposeAction:3]];
     
+}
+
++ (void) screensaverAction
+{
+    [[NSWorkspace sharedWorkspace] openFile:@"/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app"];
 }
 
 - (void) toggleAppAction
@@ -469,6 +482,7 @@
 }
 
 
+
 - (NSComparisonResult)triggerCompare:(ClickAction *)anAction
 {
     int t = [anAction trigger];
@@ -518,6 +532,7 @@
         case ACT_EAPP:
         case ACT_EDES:
         case ACT_DASH:
+        case ACT_SCRE:
                 return YES;
         default:
             return NO;

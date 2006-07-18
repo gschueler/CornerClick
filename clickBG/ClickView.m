@@ -250,6 +250,7 @@
     [drawed release];
     [myActions release];
 	[actionsGroups release];
+    [super dealloc];
 }
 - (ClickAction *) clickActionForModifierFlags:(unsigned int) modifiers
 {

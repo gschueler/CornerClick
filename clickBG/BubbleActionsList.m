@@ -618,6 +618,7 @@
 {
 	[highlightColor release];
 	[bubbleActions release];
+    [super dealloc];
 }
 
 @end

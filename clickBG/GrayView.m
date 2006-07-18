@@ -778,6 +778,7 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
     [myString release];
     [stringAttrs release];
     [shadowAttrs release];
+    [super dealloc];
 }
 
 @end

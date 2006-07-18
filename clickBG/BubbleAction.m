@@ -38,6 +38,7 @@ static NSImage *triImage;
 - (void) dealloc
 {
 	[actions release];
+    [super dealloc];
 }
 
 

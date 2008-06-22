@@ -551,6 +551,11 @@ static CornerClickSettings* _CCsharedSettings;
             }else{
                 iconSize=32.0;   
             }
+            if(nil != [prefs objectForKey:@"hoverDelayTime"]){
+                delayTime = [[CornerClickSupport numberFromSomething:[prefs objectForKey:@"hoverDelayTime"]] floatValue];
+            }else{
+                delayTime=2;   
+            }
 
 			NSArray *colors = [prefs objectForKey:@"colors"];
 		   if(nil!=colors && [colors count]>0 && nil!=[colors objectAtIndex:0]){
@@ -595,6 +600,7 @@ static CornerClickSettings* _CCsharedSettings;
 			bubbleColorB = [[CornerClickSettings defaultBubbleColorB] retain];
             textSize=16.0;
             iconSize=32;
+            delayTime=2.0;
         }
         
     }
@@ -766,6 +772,14 @@ static CornerClickSettings* _CCsharedSettings;
 - (void) setTextSize:(float)size
 {
     textSize=size;
+}
+- (float) delayTime
+{
+    return delayTime;
+}
+- (void) setDelayTime:(float)delay
+{
+    delayTime=delay;
 }
 
 - (NSMutableArray *) screenArray:(NSNumber *) screenNum

@@ -45,6 +45,7 @@
 	NSColor *bubbleColorB;
     float iconSize;
     float textSize;
+    float delayTime;
 }
 + (CornerClickSettings *) sharedSettingsFromUserPreferencesWithClicker: (Clicker *) clicker;
 + (CornerClickSettings *) sharedSettingsFromUserPreferences;
@@ -83,6 +84,8 @@
 + (NSColor *) defaultBubbleColorB;
 - (float) iconSize;
 - (float) textSize;
+- (float) delayTime;
+- (void) setDelayTime:(float)delay;
 - (void) setToolTipDelayed: (BOOL) delayed;
 - (void) blahArray:(NSArray *)a level:(int) level;
 - (void) blahDict:(NSDictionary *)a level:(int) level;

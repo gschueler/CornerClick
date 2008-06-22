@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 44;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -92,39 +92,6 @@
 		37DE95B806524752006985D3 /* FileActionMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DE95B606524752006985D3 /* FileActionMenuItem.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXBuildStyle section */
-		06F27B30FFEEEFEF11CA0E56 /* Development */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 7;
-				DEPLOYMENT_LOCATION = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				OPTIMIZATION_CFLAGS = "-O0";
-				ZERO_LINK = YES;
-			};
-			name = Development;
-		};
-		06F27B31FFEEEFEF11CA0E56 /* Deployment */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 7;
-				DEPLOYMENT_LOCATION = NO;
-				DEPLOYMENT_POSTPROCESSING = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				ZERO_LINK = NO;
-			};
-			name = Deployment;
-		};
-/* End PBXBuildStyle section */
-
 /* Begin PBXContainerItemProxy section */
 		372A7B35054CAC02002E4C67 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -185,6 +152,10 @@
 		37940C6C04DB0A4F000001CF /* 3.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = 3.tiff; sourceTree = "<group>"; };
 		3798ADF3064FFB9900E6DD8A /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = German; path = German.lproj/Localizable.strings; sourceTree = "<group>"; };
 		379D4CAF0699FD6B00D08BC2 /* Info-ClickBox__Upgraded_.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Info-ClickBox__Upgraded_.plist"; sourceTree = "<group>"; };
+		379EA69B0A636B2F0049F59C /* German */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = German; path = German.lproj/Information.rtf; sourceTree = "<group>"; };
+		379EA69E0A636B3E0049F59C /* German */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = German; path = German.lproj/quickFiles.plist; sourceTree = "<group>"; };
+		379EA6A10A636B4D0049F59C /* German */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = German; path = German.lproj/Readme.rtf; sourceTree = "<group>"; };
+		379EA6A40A636B540049F59C /* German */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = German; path = German.lproj/ClickBoxPref.nib; sourceTree = "<group>"; };
 		37ADFD34094BB56900DAAA98 /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Spanish; path = Spanish.lproj/ClickBoxPref.nib; sourceTree = "<group>"; };
 		37ADFD3D094BB59600DAAA98 /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Spanish; path = Spanish.lproj/Readme.rtf; sourceTree = "<group>"; };
 		37ADFD40094BB5A400DAAA98 /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Spanish; path = Spanish.lproj/Information.rtf; sourceTree = "<group>"; };
@@ -479,33 +450,6 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				COPYING_PRESERVES_HFS_DATA = YES;
-				CURRENT_PROJECT_VERSION = 7;
-				DEPLOYMENT_LOCATION = NO;
-				DYLIB_CURRENT_VERSION = 7;
-				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ClickBox_Prefix.h;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "Info-ClickBox__Upgraded_.plist";
-				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-bundle",
-					"-twolevel_namespace",
-				);
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = CornerClick;
-				SECTORDER_FLAGS = "";
-				VERSIONING_SYSTEM = "apple-generic";
-				WARNING_CFLAGS = "-Wmost";
-				WRAPPER_EXTENSION = prefPane;
-			};
 			dependencies = (
 				372A7B36054CAC02002E4C67 /* PBXTargetDependency */,
 			);
@@ -527,22 +471,6 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 7;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = clickBG/CornerClickBG_Prefix.h;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "Info-CornerClickBG__Upgraded_.plist";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = CornerClickBG;
-				SECTORDER_FLAGS = "";
-				VERSIONING_SYSTEM = "apple-generic";
-				WARNING_CFLAGS = "-Wmost";
-				WRAPPER_EXTENSION = app;
-			};
 			dependencies = (
 			);
 			name = CornerClickBG;
@@ -563,19 +491,6 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				GCC_PREFIX_HEADER = TestVis/TestVis_Prefix.h;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "Info-TestVis__Upgraded_.plist";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = TestVis;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wmost";
-				WRAPPER_EXTENSION = app;
-			};
 			dependencies = (
 			);
 			name = "TestVis (Upgraded)";
@@ -590,12 +505,7 @@
 		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 37B983B709428A4400C3AD30 /* Build configuration list for PBXProject "CornerClick" */;
-			buildSettings = {
-			};
-			buildStyles = (
-				06F27B30FFEEEFEF11CA0E56 /* Development */,
-				06F27B31FFEEEFEF11CA0E56 /* Deployment */,
-			);
+			compatibilityVersion = "Xcode 3.0";
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -607,6 +517,7 @@
 			);
 			mainGroup = 089C166AFE841209C02AAC07 /* ClickBox */;
 			projectDirPath = "";
+			projectRoot = "";
 			targets = (
 				372A7AD3054CABCD002E4C67 /* PrefPane */,
 				372A7AFB054CABDF002E4C67 /* CornerClickBG */,
@@ -777,6 +688,7 @@
 				37B5E225070B4A71007A47E5 /* French */,
 				370FC31E07E1FE0900D12904 /* zh_TW */,
 				37ADFD40094BB5A400DAAA98 /* Spanish */,
+				379EA69B0A636B2F0049F59C /* German */,
 			);
 			name = Information.rtf;
 			sourceTree = "<group>";
@@ -788,6 +700,7 @@
 				37B5E224070B4A68007A47E5 /* French */,
 				370FC31C07E1FDF000D12904 /* zh_TW */,
 				37ADFD3D094BB59600DAAA98 /* Spanish */,
+				379EA6A10A636B4D0049F59C /* German */,
 			);
 			name = Readme.rtf;
 			sourceTree = "<group>";
@@ -811,6 +724,7 @@
 				37B2717B069172C900D7FD10 /* English */,
 				37B0125C0698BC3C00E7D0FF /* French */,
 				370FC32907E1FE3E00D12904 /* zh_TW */,
+				379EA69E0A636B3E0049F59C /* German */,
 			);
 			name = quickFiles.plist;
 			sourceTree = "<group>";
@@ -846,6 +760,7 @@
 				371229E205714D2900A46218 /* French */,
 				370FC31D07E1FDFE00D12904 /* zh_TW */,
 				37ADFD34094BB56900DAAA98 /* Spanish */,
+				379EA6A40A636B540049F59C /* German */,
 			);
 			name = ClickBoxPref.nib;
 			sourceTree = "<group>";
@@ -857,7 +772,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 0.8.2;
 				DEPLOYMENT_LOCATION = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -886,7 +801,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 0.8.2;
 				DEPLOYMENT_LOCATION = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -911,7 +826,7 @@
 		37B983AE09428A4400C3AD30 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 0.8.2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = clickBG/CornerClickBG_Prefix.h;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
@@ -933,9 +848,9 @@
 			buildSettings = {
 				COPYING_PRESERVES_HFS_DATA = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 0.8.2;
 				DEPLOYMENT_LOCATION = NO;
-				DYLIB_CURRENT_VERSION = 7;
+				DYLIB_CURRENT_VERSION = 0.8.2;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -971,10 +886,10 @@
 			buildSettings = {
 				COPYING_PRESERVES_HFS_DATA = YES;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 0.8.2;
 				DEPLOYMENT_LOCATION = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
-				DYLIB_CURRENT_VERSION = 7;
+				DYLIB_CURRENT_VERSION = 0.8.2;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -1006,9 +921,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPYING_PRESERVES_HFS_DATA = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 0.8.2;
 				DEPLOYMENT_LOCATION = NO;
-				DYLIB_CURRENT_VERSION = 7;
+				DYLIB_CURRENT_VERSION = 0.8.2;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1037,7 +952,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 0.8.2;
 				DEPLOYMENT_LOCATION = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -1064,7 +979,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 0.8.2;
 				DEPLOYMENT_LOCATION = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -1105,8 +1020,8 @@
 		37B983B809428A4400C3AD30 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.3;
-				SDKROOT = /Developer/SDKs/MacOSX10.3.9.sdk;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Development;
@@ -1118,11 +1033,8 @@
 					ppc,
 					i386,
 				);
-				GCC_VERSION_i386 = 4.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.3;
-				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
-				SDKROOT = /Developer/SDKs/MacOSX10.3.9.sdk;
-				SDKROOT_i386 = /Developer/SDKs/MacOSX10.4u.sdk;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Deployment;
@@ -1130,8 +1042,8 @@
 		37B983BA09428A4400C3AD30 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.3;
-				SDKROOT = /Developer/SDKs/MacOSX10.3.9.sdk;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Default;

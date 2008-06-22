@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
@@ -7,9 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>CornerClick</string>
 	<key>CFBundleGetInfoString</key>
-	<string>0.8, © 2003-2006 Greg Schueler</string>
-	<key>CFBundleIconFile</key>
-	<string>CornerClickIcon.tiff</string>
+	<string>0.8.2, © 2003-2008 Greg Schueler</string>
 	<key>CFBundleIdentifier</key>
 	<string>us.vario.greg.CornerClick</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -19,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.8</string>
+	<string>0.8.2</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.8</string>
+	<string>0.8.2</string>
 	<key>NSMainNibFile</key>
 	<string>ClickBoxPref</string>
 	<key>NSPrefPaneIconFile</key>

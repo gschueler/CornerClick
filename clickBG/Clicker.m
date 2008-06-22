@@ -308,6 +308,7 @@ int selectedMod=-1;
         [window setHasShadow:NO];
         [window setLevel: NSPopUpMenuWindowLevel];
         [window setAlphaValue: 0.1];
+        [window setCollectionBehavior:NSWindowCollectionBehaviorCanJoinAllSpaces];
 
 
         ClickView *tlView = [[[ClickView alloc]initWithFrame:[window frame]
@@ -424,6 +425,7 @@ postNotificationName: @"CornerClickPingBackNotification"
     [hoverWin setAlphaValue:1.0];
     [hoverWin setHasShadow: NO];
     [hoverWin setOpaque:NO];
+    [hoverWin setCollectionBehavior:NSWindowCollectionBehaviorCanJoinAllSpaces];
     //[hoverWin setSticky:YES];
     
     //[hoverWin setExposeSticky:YES];
@@ -806,7 +808,7 @@ postNotificationName: @"CornerClickPingBackNotification"
         [nsinv setArgument: &screenNum atIndex:3];
         [nsinv setArgument: &modifiers atIndex:4];
         [nsinv setArgument: &forceDelay atIndex:5];
-        hoverTriggerTimer = [[NSTimer scheduledTimerWithTimeInterval:2 invocation:nsinv repeats:NO] retain];
+        hoverTriggerTimer = [[NSTimer scheduledTimerWithTimeInterval:(double)[appSettings delayTime] invocation:nsinv repeats:NO] retain];
     }
     
     return triggered;

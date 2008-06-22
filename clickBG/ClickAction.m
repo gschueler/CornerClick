@@ -85,7 +85,7 @@
             }else if(myString==nil){
                 myLabel=nil;
             }else if([myString length]> 30){
-                myLabel=[[NSString stringWithFormat:@"%@É",[myString substringToIndex:30]] retain];
+                myLabel=[[NSString stringWithFormat:@"%@...",[myString substringToIndex:30]] retain];
             }else{
                 myLabel=[[NSString stringWithString:myString] retain];
             }

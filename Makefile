@@ -1,4 +1,4 @@
-VERS=0.8
+VERS=0.8.1
 CP=/Developer/Tools/CpMac
 DMGSRC=dmg-source
 EXPORT=export
@@ -36,7 +36,7 @@ dmg:
 	hdiutil create "build/CornerClick-rw.dmg" -srcdir ${DMGSRC} -ov -attach -format UDRW -volname "CornerClick ${VERS}"
 
 publish:
-	scp "${EXPORT}/CornerClick-${VERS}.tar.bz2" mojo.vario.us:greg.vario.us/cornerclick/
+	scp "${EXPORT}/CornerClick-${VERS}.tar.bz2" snoop.mekka-tech.com:greg.vario.us/cornerclick/
 
 publish2:
 	scp "build/CornerClick ${VERS}.dmg" mojo.vario.us:greg.vario.us/cornerclick/

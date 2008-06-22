@@ -81,10 +81,6 @@
 		3764090F0642573E003E7644 /* BubbleAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3764090D0642573E003E7644 /* BubbleAction.m */; };
 		376409100642573E003E7644 /* BubbleAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 3764090C0642573E003E7644 /* BubbleAction.h */; };
 		376409110642573E003E7644 /* BubbleAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3764090D0642573E003E7644 /* BubbleAction.m */; };
-		377318BA07025FE500C9A3AD /* CCStickyWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 377318B807025FE500C9A3AD /* CCStickyWindow.h */; };
-		377318BB07025FE500C9A3AD /* CCStickyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 377318B907025FE500C9A3AD /* CCStickyWindow.m */; };
-		377318BC07025FE500C9A3AD /* CCStickyWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 377318B807025FE500C9A3AD /* CCStickyWindow.h */; };
-		377318BD07025FE500C9A3AD /* CCStickyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 377318B907025FE500C9A3AD /* CCStickyWindow.m */; };
 		378E4348064A3B4A00628539 /* ClickApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 378E4346064A3B4A00628539 /* ClickApp.h */; };
 		378E4349064A3B4A00628539 /* ClickApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 378E4347064A3B4A00628539 /* ClickApp.m */; };
 		37B2717C069172C900D7FD10 /* quickFiles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37B2717A069172C900D7FD10 /* quickFiles.plist */; };
@@ -141,8 +137,6 @@
 		376408FF0642571B003E7644 /* BubbleActionsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleActionsList.m; sourceTree = "<group>"; };
 		3764090C0642573E003E7644 /* BubbleAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleAction.h; sourceTree = "<group>"; };
 		3764090D0642573E003E7644 /* BubbleAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleAction.m; sourceTree = "<group>"; };
-		377318B807025FE500C9A3AD /* CCStickyWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCStickyWindow.h; sourceTree = "<group>"; };
-		377318B907025FE500C9A3AD /* CCStickyWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCStickyWindow.m; sourceTree = "<group>"; };
 		3779428D0547268B00E76D21 /* Spanish */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Spanish; path = Spanish.lproj/Localizable.strings; sourceTree = "<group>"; };
 		378E4346064A3B4A00628539 /* ClickApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickApp.h; sourceTree = "<group>"; };
 		378E4347064A3B4A00628539 /* ClickApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickApp.m; sourceTree = "<group>"; };
@@ -347,8 +341,6 @@
 		37C3CB3104CDAD30000001CF /* clickBG */ = {
 			isa = PBXGroup;
 			children = (
-				377318B807025FE500C9A3AD /* CCStickyWindow.h */,
-				377318B907025FE500C9A3AD /* CCStickyWindow.m */,
 				37C3CB3C04CDAD30000001CF /* main.m */,
 				37C3CB3204CDAD30000001CF /* ClickAction.h */,
 				37C3CB3304CDAD30000001CF /* ClickAction.m */,
@@ -400,7 +392,6 @@
 				376409020642571B003E7644 /* BubbleActionsList.h in Headers */,
 				376409100642573E003E7644 /* BubbleAction.h in Headers */,
 				37DE95B706524752006985D3 /* FileActionMenuItem.h in Headers */,
-				377318BA07025FE500C9A3AD /* CCStickyWindow.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,7 +411,6 @@
 				376409000642571B003E7644 /* BubbleActionsList.h in Headers */,
 				3764090E0642573E003E7644 /* BubbleAction.h in Headers */,
 				378E4348064A3B4A00628539 /* ClickApp.h in Headers */,
-				377318BC07025FE500C9A3AD /* CCStickyWindow.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,7 +619,6 @@
 				376409030642571B003E7644 /* BubbleActionsList.m in Sources */,
 				376409110642573E003E7644 /* BubbleAction.m in Sources */,
 				37DE95B806524752006985D3 /* FileActionMenuItem.m in Sources */,
-				377318BB07025FE500C9A3AD /* CCStickyWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,7 +637,6 @@
 				376409010642571B003E7644 /* BubbleActionsList.m in Sources */,
 				3764090F0642573E003E7644 /* BubbleAction.m in Sources */,
 				378E4349064A3B4A00628539 /* ClickApp.m in Sources */,
-				377318BD07025FE500C9A3AD /* CCStickyWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,17 @@
+{
+    IBClasses = (
+        {CLASS = ClickAction; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = ClickApp; LANGUAGE = ObjC; SUPERCLASS = NSApplication; }, 
+        {CLASS = ClickView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {
+            ACTIONS = {myAction = id; }; 
+            CLASS = ClickWindow; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {myOutlet = ClickView; }; 
+            SUPERCLASS = NSWindow; 
+        }, 
+        {CLASS = Clicker; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }
+    ); 
+    IBVersion = 1; 
+}

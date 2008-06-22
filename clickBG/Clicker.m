@@ -381,9 +381,9 @@ int selectedMod=-1;
 postNotificationName: @"CornerClickPingBackNotification"
               object: nil
             userInfo: [NSDictionary dictionaryWithObjects:
-                [NSArray arrayWithObjects: [NSNumber numberWithInt: CornerClickBGVersionNumber], [NSNumber numberWithInt: CC_PATCH_VERSION], nil]
+                [NSArray arrayWithObjects: [NSNumber numberWithDouble: CornerClickBGVersionNumber],[NSNumber numberWithInt: CC_APP_VERSION],[NSNumber numberWithInt: CC_APP_MIN_VERSION], [NSNumber numberWithInt: CC_PATCH_VERSION], nil]
                                                   forKeys:
-                [NSArray arrayWithObjects: @"CornerClickAppVersion", @"CornerClickPatchVersion",nil]]
+                [NSArray arrayWithObjects: @"CornerClickAppVersionDouble", @"CornerClickAppVersion",@"CornerClickAppMinVersion", @"CornerClickPatchVersion",nil]]
   deliverImmediately: YES
         ];
 }

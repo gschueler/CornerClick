@@ -945,7 +945,8 @@ static CornerClickSettings* _CCsharedSettings;
     }
     
     [md setObject: sc forKey:@"screens"];
-    [md setObject: [NSNumber numberWithInt: CC_APP_VERSION] forKey:@"appVersion"];
+    [md setObject: [NSNumber numberWithInt: CC_APP_MIN_VERSION] forKey:@"appVersion"];
+    [md setObject: [NSNumber numberWithInt: CC_APP_VERSION] forKey:@"appMajVersion"];
     [md setObject: [NSNumber numberWithBool: appEnabled] forKey:@"appEnabled"];
     [md setObject: [NSNumber numberWithBool: toolTipEnabled] forKey:@"tooltip"];
     [md setObject: [NSNumber numberWithBool: toolTipDelayed] forKey:@"tooltipDelayed"];

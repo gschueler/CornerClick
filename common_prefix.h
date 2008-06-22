@@ -6,7 +6,7 @@
 #define EMAIL_URL @"mailto:greg-cornerclick@vario.us"
 
 
-#define MARKETING_VERSION_STRING @"0.8.1"
+#define MARKETING_VERSION_STRING @"0.8.2"
 
 #define SHIFT_MASK (1<<0)
 #define OPTION_MASK (1<<1)
@@ -47,8 +47,9 @@
     #define WRITE_BUBBLES
 #endif
 
-#define CC_APP_VERSION 8
-#define CC_PATCH_VERSION 1
+#define CC_APP_VERSION 0
+#define CC_APP_MIN_VERSION 8
+#define CC_PATCH_VERSION 2
 
 #define CC_MIN_VERSION 2
 #define CC_MAX_VERSION 8

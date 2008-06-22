@@ -457,9 +457,9 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName: @"CornerClickPingAppNotification"
                                                                    object: nil
                                                                  userInfo: [NSDictionary dictionaryWithObjects:
-                                                                     [NSArray arrayWithObjects: [NSNumber numberWithInt: CC_APP_VERSION], [NSNumber numberWithInt: CC_PATCH_VERSION], nil]
-                                                                                        forKeys:
-                                                                     [NSArray arrayWithObjects: @"CornerClickAppVersion", @"CornerClickPatchVersion",nil]]
+                                                                            [NSArray arrayWithObjects: [NSNumber numberWithDouble: CornerClickVersionNumber],[NSNumber numberWithInt: CC_APP_VERSION],[NSNumber numberWithInt: CC_APP_MIN_VERSION], [NSNumber numberWithInt: CC_PATCH_VERSION], nil]
+                                                                                                       forKeys:
+                                                                            [NSArray arrayWithObjects: @"CornerClickAppVersionDouble", @"CornerClickAppVersion",@"CornerClickAppMinVersion", @"CornerClickPatchVersion",nil]]
                                                        deliverImmediately: YES];
 }
 
@@ -520,25 +520,32 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
 
 - (void) helperAppIsRunning: (NSNotification *) notice
 {
-    NSNumber *num = [[notice userInfo] objectForKey:@"CornerClickAppVersion"];
-    //NSNumber *pat = [[notice userInfo] objectForKey:@"CornerClickPatchVersion"];
-    int vers = [num intValue];
-    //int patch = (pat==nil?0:[pat intValue]);
-    int min= vers%1000;
-    int maj = (int)(((vers-min)/1000));
+    NSNumber *majnum = [[notice userInfo] objectForKey:@"CornerClickAppVersion"];
+    NSNumber *minnum = [[notice userInfo] objectForKey:@"CornerClickAppMinVersion"];
+    NSNumber *patnum = [[notice userInfo] objectForKey:@"CornerClickPatchVersion"];
+    NSNumber *numf = [[notice userInfo] objectForKey:@"CornerClickAppVersionDouble"];
+    int maj = [majnum intValue];
+    int min = (nil==minnum?0:[minnum intValue]);
+    int pat = (nil==patnum?0:[patnum intValue]);
+    int vers = maj*1000 + min*100 + pat;
     
-    int cmin= ((int) CornerClickVersionNumber ) % 1000;
-    int cmaj =(int)(((CornerClickVersionNumber - cmin)/1000));
+    int cpat= (int) ( CC_PATCH_VERSION );
+    int cmin= (int) ( CC_APP_MIN_VERSION );
+    int cmaj =(int)(CC_APP_VERSION);
+    int cvers = cmaj *1000 + cmin*100 + cpat;
 
     active=YES;
-    if(vers != CornerClickVersionNumber ){
+    if(nil==numf || [numf doubleValue] != CornerClickVersionNumber || vers!=cvers ){
         reloadHelperOnHelperDeactivation=YES;
         [self deactivateHelper];
-        NSBeginAlertSheet(LOCALIZE([self bundle],@"New CornerClick Version"),
-                          LOCALIZE([self bundle],@"OK"),
-                          LOCALIZE([self bundle],@"Open Readme File"),
-                          nil, [NSApp mainWindow], self, @selector(alertSheetDidEnd:returnCode:contextInfo:), NULL, NULL,
-                          LOCALIZE([self bundle],@"An old version of CornerClick was active (version %d.%d). It will be deactivated and version %d.%d will be activated."),maj,min,cmaj,cmin);
+        if(nil!=numf && vers >0 && cvers > 0){
+            NSBeginAlertSheet(LOCALIZE([self bundle],@"New CornerClick Version"),
+                              LOCALIZE([self bundle],@"OK"),
+                              LOCALIZE([self bundle],@"Open Readme File"),
+                              nil, [NSApp mainWindow], self, @selector(alertSheetDidEnd:returnCode:contextInfo:), NULL, NULL,
+                              LOCALIZE([self bundle],@"An old version of CornerClick was active (version %d.%d.%d). It will be deactivated and version %d.%d.%d will be activated."),maj,min,pat,cmaj,cmin,cpat);
+                
+        }
 
     }
     [appLaunchIndicator stopAnimation:self];

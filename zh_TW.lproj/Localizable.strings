@@ -1,0 +1,47 @@
+"Main Screen" = "主要螢幕";
+"Screen #%d" = "螢幕 #%d";
+"New CornerClick Version" = "新的 CornerClick 版本";
+"An old version of CornerClick was active (version %d.%d). It will be deactivated and version %d.%d will be activated."="較舊版本的 CornerClick 在執行中 (版本 %d.%d)。它將會被停用，且將會啟用版本 %d.%d。";
+
+"Deactivate Failed"="停用失敗";
+"The CornerClick helper application could not be deactivated."="這個 CornerClick 輔助應用程式無法停用。";
+"OK"="好";
+
+"Trying to activate"="正在嘗試啟動";
+"Trying to deactivate"="正在嘗試停用";
+
+"Activate Failed"="啟動失敗";
+"The CornerClick helper application could not be launched."="這個 CornerClick 輔助應用程式無法啟動。";
+
+"no file chosen"="沒有選擇檔案";
+"no script chosen"="沒有選擇工序指令";
+
+"Hide Current Application"="隱藏目前的應用程式";
+"Hide Other Applications"="隱藏其他的應用程式";
+"Open URL %@"="打開網址 %@";
+"Click"="按一下";
+
+"%d screens"="%d 螢幕";
+"Right-Click"="右鍵按一下";
+"Open Readme File"="打開讀我檔案";
+"Quick..."="快速...";
+"Scripts"="工序指令";
+"Files"="檔案";
+"CornerClick Preferences"="CornerClick 偏好設定";
+"/Scripts"="/Scripts";
+
+/* added 9/27/04 */
+"Expose" = "Exposé";
+"All Windows" = "所有視窗";
+"Application Windows" = "應用程式視窗";
+"Application" = "應用程式";
+"Desktop" = "桌面";
+
+/* added 12/14/04 */
+
+"Hover 2 secs" = "暫留 2 秒";
+"Hover" = "暫留";
+
+/* added 12/3/05 */
+
+"Dashboard" = "Dashboard";

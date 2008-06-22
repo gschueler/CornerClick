@@ -1,0 +1,129 @@
+{
+    IBClasses = (
+        {CLASS = ActionTableDataSource; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                actionChosen = id; 
+                addActionButtonClicked = id; 
+                appEnable = id; 
+                blCornerClick = id; 
+                brCornerClick = id; 
+                bubbleColorWellAChosen = id; 
+                bubbleColorWellBChosen = id; 
+                checkVersionUpdate = id; 
+                chooseNextScreen = id; 
+                commandKeyCheckBoxClicked = id; 
+                controlKeyCheckBoxClicked = id; 
+                cornerChosen = id; 
+                enableChosen = id; 
+                fileChooseClicked = id; 
+                functionKeyCheckBoxClicked = id; 
+                gotoEmailURL = id; 
+                gotoWebURL = id; 
+                highlightColorWellChosen = id; 
+                highlightOptionChosen = id; 
+                loadReadmeRTF = id; 
+                openExposePrefPane = id; 
+                optionKeyCheckBoxClicked = id; 
+                removeActionButtonClicked = id; 
+                screenIDClicked = id; 
+                shiftKeyCheckBoxClicked = id; 
+                tableViewAction = id; 
+                tlCornerClick = id; 
+                trCornerClick = id; 
+                triggerChosen = id; 
+                urlEntered = id; 
+            }; 
+            CLASS = ClickBoxPref; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                actionChoicePopupButton = NSPopUpButton; 
+                actionTable = NSTableView; 
+                actionView = NSView; 
+                addActionButton = NSButton; 
+                appEnabledCheckBox = NSButton; 
+                appLaunchErrorLabel = NSTextField; 
+                appLaunchIndicator = NSProgressIndicator; 
+                bubbleColorWellA = NSColorWell; 
+                bubbleColorWellB = NSColorWell; 
+                chooseFileView = NSView; 
+                chooseScriptView = NSView; 
+                chooseURLView = NSView; 
+                chosenFileLabel = NSTextField; 
+                chosenFileTitle = NSTextField; 
+                chosenScriptLabel = NSTextField; 
+                commandKeyCheckBox = NSButton; 
+                controlKeyCheckBox = NSButton; 
+                cornerMatrix = NSMatrix; 
+                cycleScreensButton = NSButton; 
+                delayTooltipCheckBox = NSButton; 
+                enabledCheckBox = NSButton; 
+                exposeNoteView = NSView; 
+                fileChooseButton = NSButton; 
+                fileIconImageView = NSImageView; 
+                functionKeyCheckBox = NSButton; 
+                highlightColorWell = NSColorWell; 
+                highlightPopup = NSPopUpButton; 
+                hoverTriggerDelayedCheckbox = NSButton; 
+                myObjectController = NSObjectController; 
+                myTabView = NSTabView; 
+                optionKeyCheckBox = NSButton; 
+                quickFilePopup = NSPopUpButton; 
+                quickScriptPopup = NSPopUpButton; 
+                readmeTextView = NSTextView; 
+                removeActionButton = NSButton; 
+                screenCountTextField = NSTextField; 
+                screenIDButton = NSPopUpButton; 
+                scriptIconImageView = NSImageView; 
+                scriptLabelField = NSTextField; 
+                shiftKeyCheckBox = NSButton; 
+                showTooltipCheckBox = NSButton; 
+                triggerChoicePopupButton = NSPopUpButton; 
+                urlLabelField = NSTextField; 
+                urlTextField = NSTextField; 
+                versionStringField = NSTextField; 
+            }; 
+            SUPERCLASS = NSPreferencePane; 
+        }, 
+        {
+            ACTIONS = {
+                actionChosen = id; 
+                cornerChosen = id; 
+                enableChosen = id; 
+                fileChooseClicked = id; 
+                triggerChosen = id; 
+            }; 
+            CLASS = ClickBoxPrefController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                actionChoicePopupButton = NSPopUpButton; 
+                chosenFileLabel = NSTextField; 
+                cornerChoicePopupButton = NSPopUpButton; 
+                enabledCheckBox = NSButton; 
+                fileChooseButton = NSButton; 
+                triggerChoicePopupButton = NSPopUpButton; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = CornerChoiceButton; LANGUAGE = ObjC; SUPERCLASS = NSButton; }, 
+        {
+            ACTIONS = {doAction = id; }; 
+            CLASS = FileActionMenuItem; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSMenuItem; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = NSPreferencePane; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                "_firstKeyView" = id; 
+                "_initialKeyView" = id; 
+                "_lastKeyView" = id; 
+                "_window" = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

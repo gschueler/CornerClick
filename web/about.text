@@ -155,15 +155,11 @@ Not at all.  It may or may not work as expected, and it may or may not break you
 
 Probably not.  Probably your productivity will improve and you will become wealthy and famous.
 
-### I Won't be Late For This
-
-* [Sonic Youth - Rather Ripped](http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewAlbum?id=158300748&s=143441)
-* [Why? - Elephant Eyelash](http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewAlbum?id=79296128&s=143441)
-* [Danielson - Ships](http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewAlbum?id=160643688&s=143441)
-* [lala!!](http://lala.com/frontend/action/karma?userToken=40281@10553)
-* [Mog!](http://mog.com/gschueler)
 
 ### Version History
+* 0.8.2 - release 8/4/2009
+	* Fixed the "version 0.0" bug
+
 * 0.8.1 - release 11/22/07
 	* Leopard Spaces compatibility added.
 	* Works with 10.5 only

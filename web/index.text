@@ -33,10 +33,9 @@ The Dock is badly designed from a user interface point of view. If you have a lo
 Download
 -------
 
-* [CornerClick-0.8.2.tar.bz2](/cornerclick/CornerClick-0.8.2.tar.bz2) *404k*
+* [CornerClick-0.8.2.tar.bz2](/cornerclick/get?v0.8.2 "CornerClick-0.8.2.tar.bz2") *404k*
 	* For Mac OS X 10.5
-	* This release adds compatibility with Leopard's Spaces feature, by allowing actions to work in every Space.
-	* (The logical progression is to add the ability to specify a different set of actions for each Space as well, much like multi-monitor compatibility.  I will consider this feature.)
+	* Fixes "version 0.0" bug in 0.8.1
 * [CornerClick-0.8.tar.bz2](/cornerclick/CornerClick-0.8.tar.bz2) *423k*
 	* For Mac OS X 10.3-10.4
 

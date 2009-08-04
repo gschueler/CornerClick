@@ -1,0 +1,29 @@
+Using Expos&eacute; with CornerClick
+---------
+
+Dave Vasilevsky sent me this useful piece of information:  You can have the Expos&eacute; feature of OS X 10.3 Panther be activated using CornerClick with an AppleScript.  Dave says that it requires that the option "Allow assistive devices" be turned in in the System Preferences &gt; Universal Access Preference Pane, however I find that it works even without it turned on.
+
+Also, you need to configure Expos&eacute; to be activated by a keystroke.  Configure it to use one of the F keys (if it isn't already). I have it configured as F11, F12, and F13 for All Windows, Application Windows, and Desktop, respectively (with no modifiers).
+
+Then you need to determine the "virtual key code".  Go to the Terminal and run this command:
+
+<code>defaults read com.apple.symbolichotkeys AppleSymbolicHotKeys</code>
+
+The output will look something like this:
+<style type="text/css">
+span.abc{ color: red; font-weight: bold; }
+span.def{ color: blue; font-weight: bold; }
+</style>
+<pre><code>
+<span class="def">32</span> = {enabled = 1; value = {parameters = (-1, <span class="abc">103</span>, 0); type = standard; }; }; 
+<span class="def">33</span> = {enabled = 1; value = {parameters = (-1, <span class="abc">111</span>, 0); type = standard; }; }; 
+...
+<span class="def">36</span> = {enabled = 1; value = {parameters = (-1, <span class="abc">105</span>, 0); type = standard; }; }; 
+</code></pre>
+The numbers on the left correspond in this way: All Windows (32), Application Windows (33), and Desktop (36).  Look for the second number in the list of "parameters" on the line appropriate for the Expos&eacute; function.  That second number is the "virtual key code" that you need.
+
+Create the following Apple Script:
+
+<code>tell application "System Events" to tell (first process whose frontmost is true) to key code <span class="abc">111</span></code>
+
+The key code "111" in that script should be replaced by the key code you determined above.  Save the script and configure CornerClick to run it as an action.  Now you can control Expos&eacute; from within CornerClick.

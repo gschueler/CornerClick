@@ -1,0 +1,18 @@
+iTunes script - Play Random Album
+----------
+
+This script starts playing a random album from your iTunes library.
+
+<pre>
+tell application "iTunes"
+	set a to first library playlist of first item of (sources whose kind is library)
+	set b to album of some file track of a
+	set c to file tracks of a whose album is b
+	set d to {}
+	repeat with i from 1 to count of c
+		copy location of item i of c to end of d
+	end repeat
+	open d
+end tell
+</pre>
+There doesn't seem to be a way to tell iTunes to play an arbitrary selection of tracks without creating a new playlist, so I tell iTunes to open the actual files, which does what you want although it seems to be kind of slow to transfer the location information from iTunes.

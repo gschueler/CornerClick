@@ -1,0 +1,21 @@
+<title>CornerClick Installation Instructions</title>
+<group>/cornerclick/menu.html</group>
+<template>/var/www/vhosts/greg.vario.us/cornerclick/template</template>
+
+
+To Install CornerClick
+=======================================
+
+1. [Download](/cornerclick/get?0.8.1) and expand the archive.
+2. Double-click the file CornerClick.prefPane which is in the CornerClick 0.8.1 folder
+
+System Preferences will then ask whether you want to install the preference pane for one user or for all users.
+
+Upgrading
+-------------
+
+After installing as above, CornerClick will automatically reactivate with the newest version if the version number has changed.  If only a minor change was made (such as a Localization added), then you should disable and reenable CornerClick:
+
+1. Go to the Settings tab in the CornerClick preference pane
+2. Uncheck  and then recheck the "CornerClick is enabled" checkbox.
+

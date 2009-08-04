@@ -1,0 +1,36 @@
+<title>Download</title>
+<group>/cornerclick/menu.html</group>
+<template>/var/www/vhosts/greg.vario.us/cornerclick/template</template>
+
+Downloading
+==========
+
+<div id="versionWarning" style="margin: 10px; color: #888; display: none;">
+Note: The link you followed requested an older version of CornerClick (<span id="oldvers"></span>).  The latest version is linked below.
+</div>
+<div>
+<a id="dllink" href="http://greg.vario.us/cornerclick/download/"><img src="/cornerclick/img/icon32.png"/> CornerClick-</a>
+</div>
+<div id="soon" style="display: none"> (Download will begin in 5 seconds) </div>
+<script type="text/javascript" src="/js/prototype.js"></script>
+<script language="javascript">
+var version= /*VERSION:*/"0.7.1";
+var urlPre = "http://greg.vario.us/cornerclick/";
+var urlName="CornerClick-";
+var urlSuf = ".tar.bz2";
+		
+var foundVers=null;
+if(/^\?v?(\d+\.\d+(\.\d+)?)$/.test(document.location.search)){
+	foundVers = RegExp.$1;
+}
+var geturl=urlPre+urlName+version+urlSuf;
+$('dllink').href=geturl;
+$('dllink').innerHTML+=version+urlSuf;
+if(foundVers!=null && version!=foundVers){
+	new Insertion.Bottom('oldvers',foundVers);
+	Element.show('versionWarning');
+}else{
+	Element.toggle('soon');
+	setTimeout(function(){Element.hide('soon');document.location=geturl;}, 5000);
+}
+</script>

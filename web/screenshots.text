@@ -1,0 +1,32 @@
+<title>Screenshots</title>
+<group>/cornerclick/menu.html</group>
+<template>/var/www/vhosts/greg.vario.us/cornerclick/template</template>
+
+Screenshots
+======
+
+* Right and Left click actions with the same modifiers:  
+<a href="/cornerclick/img/shots/double-bubble.png">
+<img class="img" alt="Two triggers" src="/cornerclick/img/shots/double-sm.png" title="Two triggers"/> 
+</a>
+* Scroll-wheel list of available actions (blue highlight color):  
+<a href="/cornerclick/img/shots/scrolled-blue.png">
+<img class="img" alt="Scroll list 1" src="/cornerclick/img/shots/scrolled-blue-sm.png" title="Scroll list 1"/></a> 
+* Scroll-wheel list of available actions (default highlight color):  
+<a href="/cornerclick/img/shots/scrolled-gray.png">
+<img class="img" alt="Scroll list 2" src="/cornerclick/img/shots/scrolled-gray-sm.png" title="Scroll list 2"/> 
+</a>
+* Combo of multiple actions with the same modifiers:  
+<a href="/cornerclick/img/shots/combo.png">
+<img class="img" alt="Action combos" src="/cornerclick/img/shots/combo-sm.png" title="Action combos"/> 
+</a>
+* The CornerClick 0.4 preference pane:  
+<a href="/cornerclick/img/shots/prefpane.png">
+<img class="img" alt="CornerClick 0.4 preference pane" src="/cornerclick/img/shots/prefpane-sm.png" title="CornerClick 0.4 preference pane"/> 
+</a>
+
+* Expos&eacute; actions 
+    
+    <a href="/cornerclick/img/shots/cc5-shot1.png"><img class="img" src="/cornerclick/img/shots/cc5-shot1-sm.png"  title="Expos&eacute; actions" alt="Expos&eacute; Actions"/></a>
+
+

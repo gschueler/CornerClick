@@ -1,0 +1,25 @@
+<title>Download</title>
+<group>/cornerclick/menu.html</group>
+<template>/var/www/vhosts/greg.vario.us/cornerclick/template</template>
+
+Downloading
+==========
+
+<script language="javascript">
+var doingOK=false;
+if(document.location.search.indexOf("path=")>=0){
+	var param = document.location.search;
+	var srch= param.indexOf("path=");
+	var text = param.substring(srch+5);
+	if(text.charAt(0)=="/"){
+		var geturl='http://greg.vario.us/cornerclick'+text;
+		document.write("Download will start in 5 seconds...");
+		document.write("<br><br>(<a href=\""+geturl+"\">Direct download</a>)");
+		//setTimeout((function(){document.location=geturl;}), 5000);
+		doingOK=true;
+	}
+}
+if(!doingOK){
+	document.write("No path was requested, or it was invalid..");
+}
+</script>

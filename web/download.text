@@ -1,0 +1,29 @@
+<title>Download Release 0.8.2</title>
+<group>/cornerclick/menu.html</group>
+<template>/var/www/vhosts/greg.vario.us/cornerclick/template</template>
+
+
+Download Release 0.8.2
+=====================
+
+[CornerClick 0.8.2](/cornerclick/get?v0.8.2 "CornerClick-0.8.2.tar.bz2") (tar.bz2, 404KB) <span class="downloadsdate">August 4, 2009</span> (English, French, Chinese, Spanish, German) (Universal Binary, *Mac OS X 10.5 only*)
+
+
+
+Installation
+------------
+
+1. Download and expand the archive.
+2. Double-click the file `CornerClick.prefPane` which is in the `CornerClick 0.8.2` folder
+
+### Previous Versions
+
+* For users of Tiger and Panther (Mac OS X 10.3-10.4):
+
+   [CornerClick 0.8](/cornerclick/CornerClick-0.8.tar.bz2 "CornerClick-0.8.tar.bz2") (tar.bz2, 429k) <span class="downloadsdate">July 18th, 2006</span> (English, Spanish, French, Chinese, German)
+
+* For users of Jaguar (Mac OS X 10.2):
+
+   While I don't plan to support 10.2, version 0.2 of CornerClick will still work.
+
+   [CornerClick 0.2](Corner%20Click%200.2.dmg "Corner Click 0.2.dmg") (dmg, 576KB) <span class="downloadsdate">November 24th, 2003</span> (English, Spanish, French, Japanese)

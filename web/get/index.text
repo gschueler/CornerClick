@@ -1,0 +1,36 @@
+<title>Download</title>
+<group>/cornerclick/menu.html</group>
+<template>/var/www/vhosts/greg.vario.us/cornerclick/template</template>
+
+Downloading
+==========
+
+<div id="versionWarning" style="margin: 10px; color: #888; display: none;">
+<p>
+Note: The link you followed requested an older version of CornerClick (<span id="oldvers"></span>).  The latest version is linked below.
+
+</p>
+
+</div>
+
+Get
+---
+
+<p id="dlbox">
+<a id="dllink" href="http://greg.vario.us/cornerclick/download/"><img src="/cornerclick/img/icon32.png"/> CornerClick-</a>
+</p>
+
+<p id="soon" style="display: none; color:blue;"> (Download will begin in 5 seconds) </p>
+
+
+Note: For previous versions, see <a href="/cornerclick/download.text#PreviousVersions">Previous Versions</a>.
+
+Instructions  
+---------
+* [Install](/cornerclick/doc/install.text)
+* [Uninstall](/cornerclick/doc/uninstall.text)
+
+
+<script type="text/javascript" src="/js/prototype.js"></script>
+<script type="text/javascript" src="/cornerclick/VERSION.js"></script>
+<script type="text/javascript" src="/cornerclick/get/get.js"></script>

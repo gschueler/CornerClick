@@ -446,7 +446,7 @@ static CornerClickSettings* _CCsharedSettings;
 
 + (CornerClickSettings *) sharedSettingsFromUserPreferences
 {
-    [CornerClickSettings sharedSettingsFromUserPreferencesWithClicker:nil];
+    return [CornerClickSettings sharedSettingsFromUserPreferencesWithClicker:nil];
 }
 + (CornerClickSettings *) sharedSettingsFromUserPreferencesWithClicker: (Clicker *) clicker
 {

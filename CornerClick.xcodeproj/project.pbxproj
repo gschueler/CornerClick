@@ -107,7 +107,7 @@
 		370FC31C07E1FDF000D12904 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = zh_TW; path = zh_TW.lproj/Readme.rtf; sourceTree = "<group>"; };
 		370FC31D07E1FDFE00D12904 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = zh_TW; path = zh_TW.lproj/ClickBoxPref.nib; sourceTree = "<group>"; };
 		370FC31E07E1FE0900D12904 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = zh_TW; path = zh_TW.lproj/Information.rtf; sourceTree = "<group>"; };
-		370FC32907E1FE3E00D12904 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = zh_TW; path = zh_TW.lproj/quickFiles.plist; sourceTree = "<group>"; };
+		370FC32907E1FE3E00D12904 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = zh_TW; path = zh_TW.lproj/quickFiles.plist; sourceTree = "<group>"; };
 		371229E205714D2900A46218 /* French */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = French; path = French.lproj/ClickBoxPref.nib; sourceTree = "<group>"; };
 		371229E305714E0A00A46218 /* French */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/Localizable.strings; sourceTree = "<group>"; };
 		371AAD9604DC3E6C000001CF /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = TestVis/English.lproj/TestVis.nib; sourceTree = "<group>"; };
@@ -145,16 +145,16 @@
 		37940C6B04DB0A4E000001CF /* 1.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = 1.tiff; sourceTree = "<group>"; };
 		37940C6C04DB0A4F000001CF /* 3.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = 3.tiff; sourceTree = "<group>"; };
 		3798ADF3064FFB9900E6DD8A /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = German; path = German.lproj/Localizable.strings; sourceTree = "<group>"; };
-		379D4CAF0699FD6B00D08BC2 /* Info-ClickBox__Upgraded_.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Info-ClickBox__Upgraded_.plist"; sourceTree = "<group>"; };
+		379D4CAF0699FD6B00D08BC2 /* Info-ClickBox__Upgraded_.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-ClickBox__Upgraded_.plist"; sourceTree = "<group>"; };
 		379EA69B0A636B2F0049F59C /* German */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = German; path = German.lproj/Information.rtf; sourceTree = "<group>"; };
-		379EA69E0A636B3E0049F59C /* German */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = German; path = German.lproj/quickFiles.plist; sourceTree = "<group>"; };
+		379EA69E0A636B3E0049F59C /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = German; path = German.lproj/quickFiles.plist; sourceTree = "<group>"; };
 		379EA6A10A636B4D0049F59C /* German */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = German; path = German.lproj/Readme.rtf; sourceTree = "<group>"; };
 		379EA6A40A636B540049F59C /* German */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = German; path = German.lproj/ClickBoxPref.nib; sourceTree = "<group>"; };
 		37ADFD34094BB56900DAAA98 /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Spanish; path = Spanish.lproj/ClickBoxPref.nib; sourceTree = "<group>"; };
 		37ADFD3D094BB59600DAAA98 /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Spanish; path = Spanish.lproj/Readme.rtf; sourceTree = "<group>"; };
 		37ADFD40094BB5A400DAAA98 /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Spanish; path = Spanish.lproj/Information.rtf; sourceTree = "<group>"; };
-		37B0125C0698BC3C00E7D0FF /* French */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = French; path = French.lproj/quickFiles.plist; sourceTree = "<group>"; };
-		37B2717B069172C900D7FD10 /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = English; path = English.lproj/quickFiles.plist; sourceTree = "<group>"; };
+		37B0125C0698BC3C00E7D0FF /* French */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = French; path = French.lproj/quickFiles.plist; sourceTree = "<group>"; };
+		37B2717B069172C900D7FD10 /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; name = English; path = English.lproj/quickFiles.plist; sourceTree = "<group>"; };
 		37B5E224070B4A68007A47E5 /* French */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = French; path = French.lproj/Readme.rtf; sourceTree = "<group>"; };
 		37B5E225070B4A71007A47E5 /* French */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = French; path = French.lproj/Information.rtf; sourceTree = "<group>"; };
 		37C3CB3204CDAD30000001CF /* ClickAction.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ClickAction.h; sourceTree = "<group>"; };
@@ -772,7 +772,6 @@
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				INFOPLIST_FILE = "Info-CornerClickBG__Upgraded_.plist";
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
@@ -853,7 +852,6 @@
 				INFOPLIST_FILE = "Info-ClickBox__Upgraded_.plist";
 				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
 				LIBRARY_SEARCH_PATHS = "";
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-bundle",
@@ -951,7 +949,6 @@
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				INFOPLIST_FILE = "Info-TestVis__Upgraded_.plist";
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";

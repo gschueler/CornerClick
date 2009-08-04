@@ -1,4 +1,4 @@
-VERS=0.8.1
+VERS=0.8.2
 CP=/Developer/Tools/CpMac
 DMGSRC=dmg-source
 EXPORT=export

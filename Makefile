@@ -5,9 +5,9 @@ EXPORT=export
 CCEXP=${EXPORT}/CornerClick-${VERS}
 
 dist: 
-	-rm -r "${EXPORT}"
+	-rm -rf "${EXPORT}"
 	-mkdir -p "${EXPORT}"
-	${CP} -r ${DMGSRC} "${CCEXP}"
+	svn export ${DMGSRC} "${CCEXP}"
 	-mkdir "${CCEXP}/Uninstall"
 	${CP} English.lproj/Uninstall.rtf "${CCEXP}/Uninstall/English.rtf"
 	${CP} English.lproj/Readme.rtf "${CCEXP}/Readme (E).rtf"

@@ -22,51 +22,11 @@ version 0.8.2:
 
   Fixed the  "An old version of CornerClick was active (version 0.0)" bug
 
-version 0.8.1:
-
-* Leopard Spaces Compatibility
-
-  CornerClick now works on any Space.
-
-version 0.8:
-
-* ScreenSaver
-
-  Screen saver activation is now an action.
-
-* Bug fix: top-right corner now usable with Tiger
-		
-  Fixed problem with top-right corner and Spotlight under Mac OS X 10.4.  Now all corners can be used again.
-
-version 0.7:
-
-* Dashboard
-
-  Dashboard can be activated now just like Expos&eacute;.
-
-* Fixed System Preferences crashing bug
-
-  This bug was <strike>introduced</strike> revealed with Mac OS X 10.4.  Sorry I didn't fix it until now!
-
-version  0.6:
-
-* Hover Trigger
-   
-  Actions can be triggered by pointing the mouse into the corner with the correct modifer keys held down (no click required). Also, an optional 2 second delay can be required before the action is triggered via the hover. You can combine a normal click trigger with a hover trigger with a delay, so that if you click a certain action is triggered, but if you merely hover for 2 seconds, a different action is performed.
-
-version 0.5:
-
-* Expos&eacute; Actions
-
- You can now assign Expos&eacute; actions to any corner of your screen, with any modifiers you like and any trigger.  Just make sure to configure the appropriate Expos&eacute; command to be activated via one of the F-keys, in the Expos&eacute; preference pane. 
-
-* Custom Text and Icon size
-
- The text size and icon size of the hover bubbles are now adjustable.
+See the [Version History](#VersionHistory)...
 
 ### What is it?
 
-CornerClick allows you to assign actions to each corner of your screen in Mac OS X 10.3 (Panther).  Your screen corners can act like four buttons which will never move. You will never miss when you try to click the corner of the screen.  
+CornerClick allows you to assign actions to each corner of your screen in Mac OS X 10.5 (Leopard).  Your screen corners can act like four buttons which will never move. You will never miss when you try to click the corner of the screen.  
 
 The Dock is badly designed from a user interface point of view.  If you have a lot of icons in your dock, either your icons are really tiny or you have magnification turned on.  Every time you want to launch something new, or just get back to Safari, you have to put on your Dock goggles and hunt for the right icon. The icon you want is never in the right place, or it tries to dodge your mouse when you have magnification turned on.
 
@@ -129,7 +89,12 @@ For example, add an Open File action that opens the Finder (/System/Library/Core
 
 ### How much does this cost?
 
-It's free.  [But I would happily accept any iTunes gift certificates you might happen to purchase for me. ](http://store.apple.com/1-800-MY-APPLE/WebObjects/AppleStore?productLearnMore=D2683LL/A)
+It's free.  
+
+Donations are accepted!
+
+* [Paypal](https://www.paypal.com/xclick/business=greg%40vario.us&item_name=Donation+for+CornerClick&no_shipping=1&return=http%3A//greg.vario.us/cornerclick/&cancel_return=http%3A//greg.vario.us/cornerclick/&cn=Optional+Comment&tax=0&currency_code=USD)
+* [iTunes](https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/buyGiftCertificateWizard?deliveryMethod=email) (send to &#103;r&#101;&#103;-cornerclick&#64;&#118;a&#114;&#105;o&#46;&#117;&#115;)
 
 ### Any other features planned?
 

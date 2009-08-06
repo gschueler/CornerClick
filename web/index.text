@@ -18,6 +18,12 @@ CornerClick
 
 <script language="javascript" src="http://tc.versiontracker.com/product/jsdvfd?id=42083&incRating=yes&incStars=yes&type=prod&rndz=95541"></script>
 
+<script type="text/javascript" src="http://osx.iusethis.com/app/include/cornerclick/2"></script>
+<noscript>
+<a href="http://osx.iusethis.com/app/cornerclick">Support CornerClick on iusethis</a>
+</noscript>
+
+
 </div>
 
 What is CornerClick?
@@ -29,7 +35,6 @@ The Dock is badly designed from a user interface point of view. If you have a lo
 
 [Read more ...](about.text)
 
-
 Download
 -------
 
@@ -39,10 +44,14 @@ Download
 * [CornerClick-0.8.tar.bz2](/cornerclick/CornerClick-0.8.tar.bz2) *423k*
 	* For Mac OS X 10.3-10.4
 
+News
+------
+
+* [CornerClick Blog](http://cornerclick.blogspot.com) - ([RSS Feed](http://feeds.feedburner.com/Cornerclick))
 
 donations 
 --------
-* <a href="http://store.apple.com/1-800-MY-APPLE/WebObjects/AppleStore?productLearnMore=D2683LL/A" title="Send iTunes Gift Certificate">iTunes</a><br>
+* <a href="https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/buyGiftCertificateWizard?deliveryMethod=email" title="Send iTunes Gift Certificate">iTunes</a> send to email: &#103;r&#101;&#103;-cornerclick&#64;&#118;a&#114;&#105;o&#46;&#117;&#115;
 * <a href="https://www.paypal.com/xclick/business=greg%40vario.us&item_name=Donation+for+CornerClick&no_shipping=1&return=http%3A//greg.vario.us/cornerclick/&cancel_return=http%3A//greg.vario.us/cornerclick/&cn=Optional+Comment&tax=0&currency_code=USD" title="Donate">paypal</a>
 
 help!

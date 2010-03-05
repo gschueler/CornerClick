@@ -142,7 +142,7 @@ extern double CornerClickVersionNumber;
     
     if(!plist)
     {
-        NSLog(error);
+        NSLog(@"%@",error);
         [error release];
         return [[[NSArray alloc] init] autorelease];
     }else if(! [plist isKindOfClass: [NSArray class]]){

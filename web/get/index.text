@@ -31,6 +31,6 @@ Instructions
 * [Uninstall](/cornerclick/doc/uninstall.text)
 
 
-<script type="text/javascript" src="/js/prototype.js"></script>
+<script type="text/javascript" src="/cornerclick/js/prototype.js"></script>
 <script type="text/javascript" src="/cornerclick/VERSION.js"></script>
 <script type="text/javascript" src="/cornerclick/get/get.js"></script>

@@ -39,7 +39,7 @@ publish:
 	scp "${EXPORT}/CornerClick-${VERS}.tar.bz2" snoop.mekka-tech.com:greg.vario.us/cornerclick/
 
 pubweb:
-	scp -r web/VERSION web/VERSION.js web/about.text web/index.text web/download.text snoop.mekka-tech.com:greg.vario.us/cornerclick/
+	scp -r web/VERSION web/VERSION.js web/about.text web/index.text web/download.text mekka-tech.com:www/greg.vario.us/cornerclick/
 
 publish2:
 	scp "build/CornerClick ${VERS}.dmg" mojo.vario.us:greg.vario.us/cornerclick/

@@ -28,7 +28,7 @@
 		   || [anEvent type]==		   NSOtherMouseDragged
 		   )
 	   ){
-		[[self delegate] sendEvent:anEvent];
+		[(Clicker*)[self delegate] sendEvent:anEvent];
 	}else{
 		[super sendEvent:anEvent];		
 	}

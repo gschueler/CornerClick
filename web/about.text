@@ -1,32 +1,26 @@
-<title>About CornerClick 0.8.2</title>
+<title>About CornerClick 0.9</title>
 <group>/cornerclick/menu.html</group>
 <template>/var/www/vhosts/greg.vario.us/cornerclick/template</template>
 
-About CornerClick 0.8.2
+About CornerClick 0.9
 ====================
-&copy; 2003-2009 Greg Schueler
+&copy; 2003-2010 Greg Schueler
 
    email:   <a href="mailto:greg-cornerclick@vario.us">greg-cornerclick@vario.us</a> 
 
-   website:   <http://greg.vario.us/cornerclick/>
-
-   download:   <http://greg.vario.us/cornerclick/CornerClick-0.8.2.tar.bz2>
-
-*Readme File - 8/4/2009**
-
 ## What's new?
 
-version 0.8.2:
+version 0.9, *4/4/2010*:
 
-* Bug fix: 
+* **Snow Leopard Support**: Fixed visual glitches, updated to 64-bit compatibility
+* Fixed a tiny bug with scrolling behavior
+* Added setting for duration of the delay for Hover actions
 
-  Fixed the  "An old version of CornerClick was active (version 0.0)" bug
-
-See the [Version History](#VersionHistory)...
+See the [Version History](about.text#VersionHistory)...
 
 ### What is it?
 
-CornerClick allows you to assign actions to each corner of your screen in Mac OS X 10.5 (Leopard).  Your screen corners can act like four buttons which will never move. You will never miss when you try to click the corner of the screen.  
+CornerClick allows you to assign actions to each corner of your screen in Mac OS X.  Your screen corners can act like four buttons which will never move. You will never miss when you try to click the corner of the screen.  
 
 The Dock is badly designed from a user interface point of view.  If you have a lot of icons in your dock, either your icons are really tiny or you have magnification turned on.  Every time you want to launch something new, or just get back to Safari, you have to put on your Dock goggles and hunt for the right icon. The icon you want is never in the right place, or it tries to dodge your mouse when you have magnification turned on.
 
@@ -42,7 +36,7 @@ CornerClick is a Preference Pane.  In the preference pane you can define multipl
 
 ### Installation:
 
-Using Panther (Mac OS X 10.3), double-click the CornerClick.prefPane file from the installation disk image.  Choose to install the preference pane.  If you are upgrading a previous version of CornerClick, you should choose yes when asked if you want to replace the old version.
+Double-click the CornerClick.prefPane file from the installation disk image.  Choose to install the preference pane.  If you are upgrading a previous version of CornerClick, you should choose yes when asked if you want to replace the old version.
 
 
 ### What actions can be performed?
@@ -94,7 +88,6 @@ It's free.
 Donations are accepted!
 
 * [Paypal](https://www.paypal.com/xclick/business=greg%40vario.us&item_name=Donation+for+CornerClick&no_shipping=1&return=http%3A//greg.vario.us/cornerclick/&cancel_return=http%3A//greg.vario.us/cornerclick/&cn=Optional+Comment&tax=0&currency_code=USD)
-* [iTunes](https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/buyGiftCertificateWizard?deliveryMethod=email) (send to &#103;r&#101;&#103;-cornerclick&#64;&#118;a&#114;&#105;o&#46;&#117;&#115;)
 
 ### Any other features planned?
 
@@ -104,11 +97,7 @@ Some ideas:
 
 *  Gestures which originate in a corner
 
-*  <strike>"Hover" trigger, i.e. activate when you merely point in the corner (like Expos&eacute;).</strike> (added in 0.6)
-
 *  Make per-application configurations (this would be useful if actions could be any menu command from the application, for example.  Don't know how to do that with Cocoa yet, though.)
-
-*  <strike>Actions for direct activation of Expos&eacute;</strike> (added in 0.5)
 
 *  Actions for direct sending of any key-combo (probably useful with per-application configs).
 
@@ -122,6 +111,12 @@ Probably not.  Probably your productivity will improve and you will become wealt
 
 
 ### Version History
+* 0.9 - release 4/5/2010
+    * Snow Leopard support, 64-bit compat
+    * Add hover action delay setting
+    * Fix slight bug with scrolling behavior
+	* Works with Mac OS X 10.6 only
+
 * 0.8.2 - release 8/4/2009
 	* Fixed the "version 0.0" bug
 

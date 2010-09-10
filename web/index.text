@@ -31,18 +31,32 @@ What is CornerClick?
 
 CornerClick allows you to assign actions to each corner of your screen in Mac OS X. Your screen corners can act like four buttons which will never move. You will never miss when you try to click the corner of the screen.
 
+* Right and Left click actions with the same modifiers:  
+
+<a href="screenshots.text">
+<img class="img"  src="/cornerclick/img/shots/left-right-actions.png" /> 
+</a>
+
 The Dock is badly designed from a user interface point of view. If you have a lot of icons in your dock, either your icons are really tiny or you have magnification turned on. Every time you want to launch something new, or just get back to Safari, you have to put on your Dock goggles and hunt for the right icon. The icon you want is never in the right place, or it tries to dodge your mouse when you have magnification turned on.
+
+Simply assign actions to your corners using the CornerClick PreferencePane, then you can easily click in the corners to invoke those actions.
+
+You can also use your mouse's scroll-wheel to select any of the actions you assigned to the corner.
 
 [Read more ...](about.text)
 
 Download
 -------
 
-* [CornerClick-0.8.2.tar.bz2](/cornerclick/get?v0.8.2 "CornerClick-0.8.2.tar.bz2") *404k*
+* [CornerClick 0.9](download.text)
+	* For Mac OS X 10.6 (universal, 32/64-bit)
+
+* [CornerClick 0.8.2](download.text#PreviousVersions)
 	* For Mac OS X 10.5
-	* Fixes "version 0.0" bug in 0.8.1
+<!--
 * [CornerClick-0.8.tar.bz2](/cornerclick/CornerClick-0.8.tar.bz2) *423k*
 	* For Mac OS X 10.3-10.4
+-->
 
 News
 ------
@@ -51,7 +65,6 @@ News
 
 donations 
 --------
-* <a href="https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/buyGiftCertificateWizard?deliveryMethod=email" title="Send iTunes Gift Certificate">iTunes</a> send to email: &#103;r&#101;&#103;-cornerclick&#64;&#118;a&#114;&#105;o&#46;&#117;&#115;
 * <a href="https://www.paypal.com/xclick/business=greg%40vario.us&item_name=Donation+for+CornerClick&no_shipping=1&return=http%3A//greg.vario.us/cornerclick/&cancel_return=http%3A//greg.vario.us/cornerclick/&cn=Optional+Comment&tax=0&currency_code=USD" title="Donate">paypal</a>
 
 help!
@@ -86,4 +99,3 @@ table.VTProdDispTbl td{
 }
 
 </style>
-

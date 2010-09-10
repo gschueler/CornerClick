@@ -57,7 +57,7 @@
     NSMutableDictionary *md;
     NSMutableArray *ma;
     //attempt to load the preferences if set from an older version of CornerClick
-    int i=CC_APP_VERSION;
+    NSInteger i=CC_APP_VERSION;
     for(i=(CC_APP_VERSION-1);i>0;i--){
         switch(i){
             case 1: //v0.1
@@ -69,7 +69,7 @@
                        forKey: @"screens"];
                 ma = [[[NSMutableArray alloc] initWithCapacity: 4] autorelease];
                 [[md objectForKey:@"screens"] setObject: ma
-                                                 forKey: [NSString stringWithFormat:@"%d",[[[[NSScreen mainScreen] deviceDescription] objectForKey:@"NSScreenNumber"] intValue]]];
+                                                 forKey: [NSString stringWithFormat:@"%ld",(long)[[[[NSScreen mainScreen] deviceDescription] objectForKey:@"NSScreenNumber"] integerValue]]];
                 [ma addObject:[loaded objectForKey:@"tl"]];
                 [ma addObject:[loaded objectForKey:@"tr"]];
                 [ma addObject:[loaded objectForKey:@"bl"]];
@@ -77,7 +77,7 @@
                 [md setObject:[loaded objectForKey:@"tooltip"] forKey:@"tooltip"];
                 [md setObject:[loaded objectForKey:@"tooltipDelayed"] forKey:@"tooltipDelayed"];
                 [md setObject:[loaded objectForKey:@"appEnabled"] forKey:@"appEnabled"];
-                [md setObject:[NSNumber numberWithInt:CC_APP_VERSION] forKey:@"appVersion"];
+                [md setObject:[NSNumber numberWithInteger:CC_APP_VERSION] forKey:@"appVersion"];
                 [md autorelease];
                 loaded=md;
                 [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:@"CornerClickPref"];
@@ -127,7 +127,7 @@
 + (NSMutableArray *) deepMutableCopyOfArray:(NSArray *) arr
 {
     //DEBUG(@"deepMC of Arr");
-    int i;
+    NSInteger i;
     id obj;
     NSMutableArray *md = [[NSMutableArray alloc] initWithCapacity:[arr count]];
     for(i=0;i<[arr count];i++){
@@ -163,7 +163,7 @@
                                      localBundle: bundle];
         
 }
-+(NSString *) labelForModifiers:(int)modifiers andTrigger:(int) trigger localBundle:(NSBundle *) bundle
++(NSString *) labelForModifiers:(NSInteger)modifiers andTrigger:(NSInteger) trigger localBundle:(NSBundle *) bundle
 {
     return [CornerClickSupport labelForModifiers:modifiers 
                                       andTrigger:trigger
@@ -171,7 +171,7 @@
                                      localBundle:bundle];
 }
 
-+(NSString *) labelForModifiers:(int)modifiers andTrigger:(int) trigger triggerDelay:(BOOL) trigDelay localBundle:(NSBundle *) bundle
++(NSString *) labelForModifiers:(NSInteger)modifiers andTrigger:(NSInteger) trigger triggerDelay:(BOOL) trigDelay localBundle:(NSBundle *) bundle
 {
 	NSString *theFile = @"";
 	if(modifiers & SHIFT_MASK){
@@ -214,7 +214,7 @@
 		clickName=@"Right-Click";
     }else if(trigger == TRIGGER_HOVER){
         if(trigDelay){
-            clickName=@"Hover 2 secs";
+            clickName=@"Delayed Hover";
         }else{
             clickName=@"Hover";            
         }
@@ -234,7 +234,7 @@
 {
 	return (NSNumber *)[[screen deviceDescription] objectForKey:@"NSScreenNumber"];
 }
-+ (int) modifiersForExposeAction: (int) action
++ (NSInteger) modifiersForExposeAction: (NSInteger) action
 {
     NSDictionary *def = [[NSUserDefaults standardUserDefaults] persistentDomainForName:@"com.apple.symbolichotkeys"];
     NSDictionary *keys = (NSDictionary *)[def objectForKey:@"AppleSymbolicHotKeys"];
@@ -245,7 +245,7 @@
         @"62" //dashboard action
     };
     if(action < 0 || action > 3 ){
-        NSLog(@"ERROR: not a valid expose action to look for: %d",action);
+        NSLog(@"ERROR: not a valid expose action to look for: %ld",(long)action);
         return -1;
     }
     NSDictionary *settings = (NSDictionary *)[keys objectForKey:special[action]];
@@ -272,14 +272,14 @@
         }
         
         NSNumber *key =  [arr objectAtIndex:2];
-        return [key intValue];
+        return [key integerValue];
     }else{
         
         return -1;
     }
     
 }
-+ (int) keyCodeForExposeAction: (int) action
++ (NSInteger) keyCodeForExposeAction: (NSInteger) action
 {
     NSDictionary *def = [[NSUserDefaults standardUserDefaults] persistentDomainForName:@"com.apple.symbolichotkeys"];
     NSDictionary *keys = (NSDictionary *)[def objectForKey:@"AppleSymbolicHotKeys"];
@@ -290,7 +290,7 @@
         @"62" //dashboard action
     };
     if(action < 0 || action > 3 ){
-        NSLog(@"ERROR: not a valid expose action to look for: %d",action);
+        NSLog(@"ERROR: not a valid expose action to look for: %ld",(long)action);
         return -1;
     }
     NSDictionary *settings = (NSDictionary *)[keys objectForKey:special[action]];
@@ -317,7 +317,7 @@
         }
         
         NSNumber *key =  [arr objectAtIndex:1];
-        return [key intValue];
+        return [key integerValue];
     }else{
         
         return -1;
@@ -325,10 +325,66 @@
 
 }
 
-+ (void) generateKeystrokeForKeyCode: (int) keycode withModifiers: (int) modifiers
++ (void) generateKeystrokeForKeyCodeNew:(NSInteger)keycode withModifiers:(NSInteger)modifiers
 {
-    CGEventErr err;
+    /*
+     This implementation doesn't seem to have the right effect: the exposé action occurs then
+     exits almost immediately.  If you hold down the mouse key when you click the corner the
+     expose action stays open--until you release the mosue key, so it seems like the mouse
+     event is interfering.   Perhaps the mouse event needs to be captured, or the 
+     keystroke events need to be sent *after* mouse-up, so that doesn't interfere.
+     */
+    //CGEventSourceRef source = CGEventSourceCreate(kCGEventSourceStateCombinedSessionState);
+    CGEventSourceRef source = CGEventSourceCreate(kCGEventSourceStatePrivate);
+    
+    CGEventRef keyDown = CGEventCreateKeyboardEvent(source, (CGKeyCode)keycode, YES);
+    //flags masks
+    NSInteger masks[] = {
+        NSShiftKeyMask,
+        NSCommandKeyMask,
+        NSControlKeyMask,
+        NSAlternateKeyMask,
+        NSFunctionKeyMask
+    };
+    //keycode equivalents
+    CGEventFlags codes[] = {
+        kCGEventFlagMaskShift, //shift
+        kCGEventFlagMaskCommand, //command
+        kCGEventFlagMaskControl, //control
+        kCGEventFlagMaskAlternate, //option
+        kCGEventFlagMaskSecondaryFn //function
+    };
+    uint64_t flags=0;
+    //if the modifiers are used, set flags 
     int i;
+    for(i=0; i< 5;i++){
+        if(modifiers & masks[i]){
+            //          NSLog(@"keydown for code: %d",codes[i]);
+            flags|=codes[i];
+            //            CGEventSetFlags(keyDown, codes[i]);
+        }
+    }
+    //    CGEventSetFlags(keyDown, kCGEventFlagMaskSecondaryFn);
+    CGEventSetFlags(keyDown, flags);
+    
+    CGEventRef keyUp = CGEventCreateKeyboardEvent(source, (CGKeyCode)keycode, NO);
+    //    kCGAnnotatedSessionEventTap
+    CGEventPost(kCGSessionEventTap, keyDown);
+    CGEventPost(kCGSessionEventTap, keyUp);
+    
+    CFRelease(keyDown);
+    CFRelease(keyUp);
+    CFRelease(source);
+}
++ (void) generateKeystrokeForKeyCode: (NSInteger) keycode withModifiers: (NSInteger) modifiers
+{
+    /*
+     This implementation causes compile warnings on 10.6, due to deprecated event code.
+     Tried using non-deprecated calls in generateKeystrokeForKeyCodeNew:withModifiers: 
+     but it doesn't seem to work correctly.
+     */
+    CGEventErr err;
+    NSInteger i;
     if(keycode < 0){
         DEBUG(@"generateKeystrokeForKeyCode < 0");
         NSBeep();
@@ -351,7 +407,7 @@
     }
     
     //flags masks
-    int masks[] = {
+    NSInteger masks[] = {
         NSShiftKeyMask,
         NSCommandKeyMask,
         NSControlKeyMask,
@@ -359,7 +415,7 @@
         NSFunctionKeyMask
     };
     //keycode equivalents
-    int codes[] = {
+    NSInteger codes[] = {
         0x38, //shift
         0x37, //command
         0x3b, //control
@@ -420,7 +476,7 @@
 + (NSNumber *)numberFromSomething:(id)obj
 {
     if([obj isKindOfClass: [NSString class]]){
-        return [NSNumber numberWithInt:[obj intValue]];
+        return [NSNumber numberWithInteger:[obj integerValue]];
     }else if([obj isKindOfClass: [NSNumber class]]){
         return obj;
     }else{
@@ -474,9 +530,10 @@ static CornerClickSettings* _CCsharedSettings;
 {
     return self;   
 }
-- (unsigned)retainCount
+- (NSUInteger)retainCount
 {
-    return UINT_MAX;  //denotes an object that cannot be released
+	return NSUIntegerMax;
+//    return UINT_MAX;  //denotes an object that cannot be released
 }
 - (void)release
 {
@@ -509,8 +566,8 @@ static CornerClickSettings* _CCsharedSettings;
 - (void) setUserPreferences: (NSDictionary *) prefs andClicker: (Clicker *) clicker
 {
     
-    int num=-1;
-    int i,j;
+    NSInteger num=-1;
+    NSInteger i,j;
     NSEnumerator *en;
     NSArray *corners;
     NSMutableArray *actions;
@@ -523,9 +580,9 @@ static CornerClickSettings* _CCsharedSettings;
             namedKeys = [[NSMutableDictionary alloc] init];
         }
         if(temp!=nil) {
-            num = [[temp objectForKey:@"appVersion"] intValue];
+            num = [[temp objectForKey:@"appVersion"] integerValue];
             if(num < CC_MIN_VERSION || num > CC_MAX_VERSION ){
-                NSLog(@"Old version of CornerClick preferences: %d",num);
+                NSLog(@"Old version of CornerClick preferences: %ld",(long)num);
                 NSLog(@"Dumping old preferences: %@",[prefs description]);
                 temp= nil;
             }
@@ -537,24 +594,29 @@ static CornerClickSettings* _CCsharedSettings;
             toolTipEnabled = [[CornerClickSupport numberFromSomething:[prefs objectForKey:@"tooltip"]] boolValue];
             toolTipDelayed = [[CornerClickSupport numberFromSomething:[prefs objectForKey:@"tooltipDelayed"]] boolValue];
 			if(nil != [prefs objectForKey:@"colorOption"]){
-				colorOption = [[CornerClickSupport numberFromSomething:[prefs objectForKey:@"colorOption"]] intValue];
+				colorOption = [[CornerClickSupport numberFromSomething:[prefs objectForKey:@"colorOption"]] integerValue];
 			}else{
 				colorOption=0;
 			}
             if(nil != [prefs objectForKey:@"textSize"]){
-                textSize = [[CornerClickSupport numberFromSomething:[prefs objectForKey:@"textSize"]] floatValue];   
+                textSize = [[CornerClickSupport numberFromSomething:[prefs objectForKey:@"textSize"]] doubleValue];   
             }else{
                 textSize=16.0;
             }
             if(nil != [prefs objectForKey:@"iconSize"]){
-                iconSize = [[CornerClickSupport numberFromSomething:[prefs objectForKey:@"iconSize"]] floatValue];
+                iconSize = [[CornerClickSupport numberFromSomething:[prefs objectForKey:@"iconSize"]] doubleValue];
             }else{
                 iconSize=32.0;   
             }
             if(nil != [prefs objectForKey:@"hoverDelayTime"]){
-                delayTime = [[CornerClickSupport numberFromSomething:[prefs objectForKey:@"hoverDelayTime"]] floatValue];
+                hoverDelayTime = [[CornerClickSupport numberFromSomething:[prefs objectForKey:@"hoverDelayTime"]] floatValue];
             }else{
-                delayTime=2;   
+                hoverDelayTime=2;   
+            }
+            if(nil != [prefs objectForKey:@"tooltipDelayTime"]){
+                tooltipDelayTime = [[CornerClickSupport numberFromSomething:[prefs objectForKey:@"tooltipDelayTime"]] floatValue];
+            }else{
+                tooltipDelayTime=1.0;   
             }
 
 			NSArray *colors = [prefs objectForKey:@"colors"];
@@ -600,7 +662,8 @@ static CornerClickSettings* _CCsharedSettings;
 			bubbleColorB = [[CornerClickSettings defaultBubbleColorB] retain];
             textSize=16.0;
             iconSize=32;
-            delayTime=2.0;
+            hoverDelayTime=2.0;
+            tooltipDelayTime=1.0;
         }
         
     }
@@ -630,12 +693,12 @@ static CornerClickSettings* _CCsharedSettings;
 	return [NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha: 0.4];
 }
 
-- (NSArray *) actionsForScreen: (NSNumber *)screenNum andCorner:(int) corner
+- (NSArray *) actionsForScreen: (NSNumber *)screenNum andCorner:(NSInteger) corner
 {
     return [self actionsForScreen:screenNum andCorner:corner andModifiers:-1];
 }
 
-- (NSArray *) actionsForScreen: (NSNumber *)screenNum andCorner:(int) corner andModifiers: (int) tmodifiers
+- (NSArray *) actionsForScreen: (NSNumber *)screenNum andCorner:(NSInteger) corner andModifiers: (NSInteger) tmodifiers
 {
     NSArray *actionList;
     NSArray *cornerList = [self screenArray:screenNum];
@@ -648,25 +711,25 @@ static CornerClickSettings* _CCsharedSettings;
         return nil;
     return [NSArray arrayWithArray:actionList];
 }
-- (ClickAction *) actionAtIndex: (int) index forScreen:(NSNumber *)screenNum andCorner:(int) corner
+- (ClickAction *) actionAtIndex: (NSInteger) index forScreen:(NSNumber *)screenNum andCorner:(NSInteger) corner
 {
     return [[[[self screenArray:screenNum] objectAtIndex: corner] objectForKey:@"actionList"] objectAtIndex:index];
     
 //    return [CornerClickSettings actionFromDictionary: [[[[self screenArray:screenNum] objectAtIndex: corner] objectForKey:@"actionList"] objectAtIndex:index] withCorner:corner];
 }
-- (void) addAction: (ClickAction *) action forScreen: (NSNumber *)screenNum andCorner:(int) corner
+- (void) addAction: (ClickAction *) action forScreen: (NSNumber *)screenNum andCorner:(NSInteger) corner
 {
     [[[[self screenArray:screenNum] objectAtIndex: corner] objectForKey:@"actionList"] addObject:action];
 //    [[[[self screenArray:screenNum] objectAtIndex: corner] objectForKey:@"actionList"] addObject:[CornerClickSettings dictionaryFromAction:action]];
 
 }
-- (void) removeActionAtIndex: (int) index forScreen: (NSNumber *)screenNum andCorner:(int) corner
+- (void) removeActionAtIndex: (NSInteger) index forScreen: (NSNumber *)screenNum andCorner:(NSInteger) corner
 {
     
     [[[[self screenArray:screenNum] objectAtIndex: corner] objectForKey:@"actionList"] removeObjectAtIndex:index];
 
 }
-- (void) replaceActionAtIndex: (int) index withAction: (ClickAction *) action forScreen: (NSNumber *)screenNum andCorner:(int)corner
+- (void) replaceActionAtIndex: (NSInteger) index withAction: (ClickAction *) action forScreen: (NSNumber *)screenNum andCorner:(NSInteger)corner
 {
     [[[[self screenArray:screenNum] objectAtIndex: corner] objectForKey:@"actionList"] replaceObjectAtIndex:index
                                                                                                  withObject:action];
@@ -674,17 +737,17 @@ static CornerClickSettings* _CCsharedSettings;
 
 }
 
-- (void) setCorner:(int) corner enabled:(BOOL)enabled forScreen:(NSNumber *)screenNum
+- (void) setCorner:(NSInteger) corner enabled:(BOOL)enabled forScreen:(NSNumber *)screenNum
 {
     [[[self screenArray:screenNum] objectAtIndex: corner]  setObject:[NSNumber numberWithBool:enabled] forKey:@"enabled"];
     
 }
-- (BOOL) cornerEnabled:(int) corner forScreen:(NSNumber *)screenNum
+- (BOOL) cornerEnabled:(NSInteger) corner forScreen:(NSNumber *)screenNum
 {
     return [[CornerClickSupport numberFromSomething:[[[self screenArray:screenNum] objectAtIndex: corner]  objectForKey:@"enabled"]] boolValue];
 }
 
-- (int) countActionsForScreen: (NSNumber *)screenNum andCorner:(int) corner
+- (NSInteger) countActionsForScreen: (NSNumber *)screenNum andCorner:(NSInteger) corner
 {
     return [[[[self screenArray:screenNum] objectAtIndex:corner] objectForKey:@"actionList"] count];
 }
@@ -749,43 +812,52 @@ static CornerClickSettings* _CCsharedSettings;
 {
 	return [[bubbleColorB retain] autorelease];
 }
-- (int) colorOption
+- (NSInteger) colorOption
 {
 	return colorOption;
 }
-- (void) setColorOption: (int) option
+- (void) setColorOption: (NSInteger) option
 {
 	colorOption=option;
 }
-- (void) setIconSize:(float)size
+- (void) setIconSize:(CGFloat)size
 {
     iconSize=size;
 }
-- (float) iconSize
+- (CGFloat) iconSize
 {
     return iconSize;
 }
-- (float) textSize
+- (CGFloat) textSize
 {
     return textSize;
 }
-- (void) setTextSize:(float)size
+- (void) setTextSize:(CGFloat)size
 {
     textSize=size;
 }
-- (float) delayTime
+- (CGFloat) hoverDelayTime
 {
-    return delayTime;
+    return hoverDelayTime;
 }
-- (void) setDelayTime:(float)delay
+- (void) setHoverDelayTime:(CGFloat)delay
 {
-    delayTime=delay;
+    hoverDelayTime=delay;
 }
+- (CGFloat) tooltipDelayTime
+{
+    return tooltipDelayTime;
+}
+- (void) setTooltipDelayTime:(CGFloat)delay
+{
+    tooltipDelayTime=delay;
+}
+
 
 - (NSMutableArray *) screenArray:(NSNumber *) screenNum
 {
     NSMutableDictionary *tdict;
-    NSMutableArray *scr= [theScreens objectForKey:[NSString stringWithFormat:@"%d",[screenNum intValue]]];
+    NSMutableArray *scr= [theScreens objectForKey:[NSString stringWithFormat:@"%ld",(long)[screenNum integerValue]]];
     if(scr==nil){
         scr = [NSMutableArray arrayWithCapacity:4];
         tdict = [NSMutableDictionary dictionaryWithCapacity:4];
@@ -795,7 +867,7 @@ static CornerClickSettings* _CCsharedSettings;
         [scr addObject:[CornerClickSupport deepMutableCopyOfObject:tdict]];
         [scr addObject:[CornerClickSupport deepMutableCopyOfObject:tdict]];
         [scr addObject:[CornerClickSupport deepMutableCopyOfObject:tdict]];
-        [theScreens setObject: scr forKey:[NSString stringWithFormat:@"%d",[screenNum intValue]]];
+        [theScreens setObject: scr forKey:[NSString stringWithFormat:@"%ld",(long)[screenNum integerValue]]];
         //TODO add more empty dictionaries for edges
     }
     return scr;
@@ -809,14 +881,14 @@ static CornerClickSettings* _CCsharedSettings;
         return nil;
     }
     md  = [[NSMutableDictionary alloc] initWithCapacity:6];
-    [md setObject:[NSNumber numberWithInt:[action type]] forKey:@"action"];
+    [md setObject:[NSNumber numberWithInteger:[action type]] forKey:@"action"];
     if([ClickAction stringNameForActionType:[action type]] !=nil)
         [md setObject:[action string] forKey:[ClickAction stringNameForActionType:[action type]]];
     if([ClickAction labelNameForActionType:[action type]] !=nil)
         if([action labelSetting]!=nil)
             [md setObject:[action labelSetting] forKey:[ClickAction labelNameForActionType:[action type]]];
-    [md setObject:[NSNumber numberWithInt:[action modifiers]] forKey:@"modifiers"];
-	[md setObject:[NSNumber numberWithInt:[action trigger]] forKey:@"trigger"];
+    [md setObject:[NSNumber numberWithInteger:[action modifiers]] forKey:@"modifiers"];
+	[md setObject:[NSNumber numberWithInteger:[action trigger]] forKey:@"trigger"];
     if([action trigger]==TRIGGER_HOVER){
         [md setObject:[NSNumber numberWithBool:[action hoverTriggerDelayed]] forKey:@"triggerDelayed"];
     }
@@ -825,23 +897,23 @@ static CornerClickSettings* _CCsharedSettings;
     return [md autorelease];
 }
 
-+ (ClickAction *) actionFromDictionary:(NSDictionary *) dict withCorner: (int) corner
++ (ClickAction *) actionFromDictionary:(NSDictionary *) dict withCorner: (NSInteger) corner
 {
 	return [CornerClickSettings actionFromDictionary: dict withCorner: corner andClicker: nil];
 }
-+ (ClickAction *) actionFromDictionary:(NSDictionary *) dict withCorner: (int) corner andClicker: (Clicker *) clicker
++ (ClickAction *) actionFromDictionary:(NSDictionary *) dict withCorner: (NSInteger) corner andClicker: (Clicker *) clicker
 {
-    int actionType,modifiers,trigger;
+    NSInteger actionType,modifiers,trigger;
     NSString *action,*label;
     ClickAction *click=nil;
     BOOL trigDelay=NO;
-    actionType =[[CornerClickSupport numberFromSomething:[dict objectForKey:@"action"]] intValue];
+    actionType =[[CornerClickSupport numberFromSomething:[dict objectForKey:@"action"]] integerValue];
     action = [dict objectForKey:[ClickAction stringNameForActionType:actionType]];
     label = [dict objectForKey:[ClickAction labelNameForActionType:actionType]];
-    modifiers = [[CornerClickSupport numberFromSomething:[dict objectForKey:@"modifiers"]] intValue];
+    modifiers = [[CornerClickSupport numberFromSomething:[dict objectForKey:@"modifiers"]] integerValue];
 	trigger =0;
 	if([dict objectForKey:@"trigger"]!=nil){
-		trigger = [[CornerClickSupport numberFromSomething:[dict objectForKey:@"trigger"]] intValue];
+		trigger = [[CornerClickSupport numberFromSomething:[dict objectForKey:@"trigger"]] integerValue];
 	}
     if(trigger == TRIGGER_HOVER){
         if([dict objectForKey:@"triggerDelayed"]!=nil){
@@ -865,45 +937,48 @@ static CornerClickSettings* _CCsharedSettings;
     }
     return click;
 }
-- (void) blahArray:(NSArray *)a level:(int) level
-{
-    int i;
-    id obj;
-    NSString *pad=[@"" stringByPaddingToLength: level withString: @" " startingAtIndex: 0];
-    DEBUG(@"%@<%@:%x>(retain:%d) [",pad,[a class],(unsigned)a,[a retainCount]);
-    for(i=0;i<[a count];i++){
-        obj = [a objectAtIndex:i];
-        NSLog(@"%@%d:",pad,i);
-        if([obj isKindOfClass:[NSDictionary class]]){
-            [self blahDict:obj level:(level+1)];
-        }else if([obj isKindOfClass:[NSArray class]]){
-            [self blahArray:obj level:(level+1)];
-        }else{
-            NSLog(@" %@<%@:%x>(retain:%d):%@",pad,[obj class],(unsigned)obj,[obj retainCount],obj);
-        }
-    }
-    NSLog(@"%@]",pad);
-}
+//
+//- (void) blahArray:(NSArray *)a level:(int) level
+//{
+//    int i;
+//    id obj;
+//    NSString *pad=[@"" stringByPaddingToLength: level withString: @" " startingAtIndex: 0];
+//    DEBUG(@"%@<%@:%x>(retain:%d) [",pad,[a class],(NSUInteger)a,[a retainCount]);
+//    for(i=0;i<[a count];i++){
+//        obj = [a objectAtIndex:i];
+//        NSLog(@"%@%d:",pad,i);
+//        if([obj isKindOfClass:[NSDictionary class]]){
+//            [self blahDict:obj level:(level+1)];
+//        }else if([obj isKindOfClass:[NSArray class]]){
+//            [self blahArray:obj level:(level+1)];
+//        }else{
+//            NSLog(@" %@<%@:%x>(retain:%d):%@",pad,[obj class],(NSUInteger)obj,[obj retainCount],obj);
+//        }
+//    }
+//    NSLog(@"%@]",pad);
+//}
+//
+//- (void) blahDict:(NSDictionary *)a level:(int) level
+//{
+//    NSEnumerator *en =[a keyEnumerator];
+//    id key,obj;
+//    NSString *pad=[@"" stringByPaddingToLength: level withString: @" " startingAtIndex: 0];
+//    NSLog(@"%@<%@:%x>(retain:%d) {",pad,[a class],(NSUInteger)a,[a retainCount]);
+//    while(key =[en nextObject]){
+//        obj = [a objectForKey:key];
+//        NSLog(@"%@%@<%@> = ",pad,key,[key class]);
+//        if([obj isKindOfClass:[NSDictionary class]]){
+//            [self blahDict:obj level:(level+1)];
+//        }else if([obj isKindOfClass:[NSArray class]]){
+//            [self blahArray:obj level:(level+1)];
+//        }else{
+//            NSLog(@" %@<%@:%x>(retain:%d):%@",pad,[obj class],(NSUInteger)obj,[obj retainCount],obj);
+//        }
+//    }
+//    NSLog(@"%@}",pad);
+//}
 
-- (void) blahDict:(NSDictionary *)a level:(int) level
-{
-    NSEnumerator *en =[a keyEnumerator];
-    id key,obj;
-    NSString *pad=[@"" stringByPaddingToLength: level withString: @" " startingAtIndex: 0];
-    NSLog(@"%@<%@:%x>(retain:%d) {",pad,[a class],(unsigned)a,[a retainCount]);
-    while(key =[en nextObject]){
-        obj = [a objectForKey:key];
-        NSLog(@"%@%@<%@> = ",pad,key,[key class]);
-        if([obj isKindOfClass:[NSDictionary class]]){
-            [self blahDict:obj level:(level+1)];
-        }else if([obj isKindOfClass:[NSArray class]]){
-            [self blahArray:obj level:(level+1)];
-        }else{
-            NSLog(@" %@<%@:%x>(retain:%d):%@",pad,[obj class],(unsigned)obj,[obj retainCount],obj);
-        }
-    }
-    NSLog(@"%@}",pad);
-}
+
 - (NSString *) description
 {
     return [[self asDictionary] description];
@@ -911,7 +986,7 @@ static CornerClickSettings* _CCsharedSettings;
 
 - (NSDictionary *) asDictionary
 {
-    int i,j;
+    NSInteger i,j;
     id key;
     NSDictionary *act;
     NSEnumerator *en;
@@ -945,13 +1020,15 @@ static CornerClickSettings* _CCsharedSettings;
     }
     
     [md setObject: sc forKey:@"screens"];
-    [md setObject: [NSNumber numberWithInt: CC_APP_MIN_VERSION] forKey:@"appVersion"];
-    [md setObject: [NSNumber numberWithInt: CC_APP_VERSION] forKey:@"appMajVersion"];
+    [md setObject: [NSNumber numberWithInteger:CC_APP_MIN_VERSION] forKey:@"appVersion"];
+    [md setObject: [NSNumber numberWithInteger:CC_APP_VERSION] forKey:@"appMajVersion"];
     [md setObject: [NSNumber numberWithBool: appEnabled] forKey:@"appEnabled"];
     [md setObject: [NSNumber numberWithBool: toolTipEnabled] forKey:@"tooltip"];
     [md setObject: [NSNumber numberWithBool: toolTipDelayed] forKey:@"tooltipDelayed"];
+    [md setObject: [NSNumber numberWithFloat: hoverDelayTime] forKey:@"hoverDelayTime"];
+    [md setObject: [NSNumber numberWithFloat: tooltipDelayTime] forKey:@"tooltipDelayTime"];
 	
-	[md setObject: [NSNumber numberWithInt: colorOption] forKey:@"colorOption"];
+	[md setObject: [NSNumber numberWithInteger:colorOption] forKey:@"colorOption"];
 	if(highlightColor != nil){
 		[md setObject: [NSArray arrayWithObjects: 
 			[NSArchiver archivedDataWithRootObject:highlightColor], 
@@ -959,8 +1036,8 @@ static CornerClickSettings* _CCsharedSettings;
 			//[NSArchiver archivedDataWithRootObject:bubbleColorB],
 			nil] forKey:@"colors"];
 	}
-    [md setObject: [NSNumber numberWithFloat:textSize] forKey:@"textSize"];
-    [md setObject: [NSNumber numberWithFloat:iconSize] forKey:@"iconSize"];
+    [md setObject: [NSNumber numberWithDouble:textSize] forKey:@"textSize"];
+    [md setObject: [NSNumber numberWithDouble:iconSize] forKey:@"iconSize"];
 	[sc release];
     
     return md;

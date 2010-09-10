@@ -15,7 +15,6 @@
 		372A7AD9054CABCD002E4C67 /* GrayView.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C3CB3A04CDAD30000001CF /* GrayView.h */; };
 		372A7ADA054CABCD002E4C67 /* common_prefix.h in Headers */ = {isa = PBXBuildFile; fileRef = 371E964D04E1C4C1000001CF /* common_prefix.h */; };
 		372A7ADB054CABCD002E4C67 /* CornerClickSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 371E965004E1CAA9000001CF /* CornerClickSupport.h */; };
-		372A7ADE054CABCD002E4C67 /* ClickBoxPref.nib in Resources */ = {isa = PBXBuildFile; fileRef = F506C042013D9D8C01CA16C8 /* ClickBoxPref.nib */; };
 		372A7AE0054CABCD002E4C67 /* Readme.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 375CF3E104FAF603000001CF /* Readme.rtf */; };
 		372A7AE1054CABCD002E4C67 /* Logo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3723153904CF806C000001CF /* Logo.tiff */; };
 		372A7AE2054CABCD002E4C67 /* 2.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 37940C6904DB0A4E000001CF /* 2.tiff */; };
@@ -55,16 +54,6 @@
 		372A7B15054CABDF002E4C67 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 		372A7B16054CABDF002E4C67 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089C167FFE841241C02AAC07 /* AppKit.framework */; };
 		372A7B17054CABDF002E4C67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089C1672FE841209C02AAC07 /* Foundation.framework */; };
-		372A7B21054CABEA002E4C67 /* TestVis_Prefix.h in Headers */ = {isa = PBXBuildFile; fileRef = 371AADA204DC3F45000001CF /* TestVis_Prefix.h */; };
-		372A7B22054CABEA002E4C67 /* GrayView.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C3CB3A04CDAD30000001CF /* GrayView.h */; };
-		372A7B23054CABEA002E4C67 /* VisControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 371AAD9804DC3E9E000001CF /* VisControl.h */; };
-		372A7B25054CABEA002E4C67 /* TestVis.nib in Resources */ = {isa = PBXBuildFile; fileRef = 371AAD9504DC3E6C000001CF /* TestVis.nib */; };
-		372A7B27054CABEA002E4C67 /* VisControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 371AAD9904DC3E9E000001CF /* VisControl.m */; };
-		372A7B28054CABEA002E4C67 /* GrayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3CB3B04CDAD30000001CF /* GrayView.m */; };
-		372A7B29054CABEA002E4C67 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 371AADA504DC426C000001CF /* main.m */; };
-		372A7B2B054CABEA002E4C67 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
-		372A7B2C054CABEA002E4C67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089C1672FE841209C02AAC07 /* Foundation.framework */; };
-		372A7B2D054CABEA002E4C67 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089C167FFE841241C02AAC07 /* AppKit.framework */; };
 		3744A75E06948DCC00D94D1E /* AddAction.png in Resources */ = {isa = PBXBuildFile; fileRef = 3744A75C06948DCC00D94D1E /* AddAction.png */; };
 		3744A75F06948DCC00D94D1E /* RemoveAction.png in Resources */ = {isa = PBXBuildFile; fileRef = 3744A75D06948DCC00D94D1E /* RemoveAction.png */; };
 		3744AB350694B29F00D94D1E /* Information.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 3744AB340694B29F00D94D1E /* Information.rtf */; };
@@ -84,6 +73,7 @@
 		378E4348064A3B4A00628539 /* ClickApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 378E4346064A3B4A00628539 /* ClickApp.h */; };
 		378E4349064A3B4A00628539 /* ClickApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 378E4347064A3B4A00628539 /* ClickApp.m */; };
 		37B2717C069172C900D7FD10 /* quickFiles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37B2717A069172C900D7FD10 /* quickFiles.plist */; };
+		37D5BD381147B1B4004EEE8F /* ClickBoxPref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37D5BD361147B1B4004EEE8F /* ClickBoxPref.xib */; };
 		37DE95B706524752006985D3 /* FileActionMenuItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 37DE95B506524752006985D3 /* FileActionMenuItem.h */; };
 		37DE95B806524752006985D3 /* FileActionMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DE95B606524752006985D3 /* FileActionMenuItem.m */; };
 /* End PBXBuildFile section */
@@ -105,10 +95,7 @@
 		32DBCFA20370C41700C91783 /* ClickBox_Prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickBox_Prefix.h; sourceTree = "<group>"; };
 		370FC31B07E1FDE000D12904 /* zh_TW */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = zh_TW; path = zh_TW.lproj/Localizable.strings; sourceTree = "<group>"; };
 		370FC31C07E1FDF000D12904 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = zh_TW; path = zh_TW.lproj/Readme.rtf; sourceTree = "<group>"; };
-		370FC31D07E1FDFE00D12904 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = zh_TW; path = zh_TW.lproj/ClickBoxPref.nib; sourceTree = "<group>"; };
 		370FC31E07E1FE0900D12904 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = zh_TW; path = zh_TW.lproj/Information.rtf; sourceTree = "<group>"; };
-		370FC32907E1FE3E00D12904 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = zh_TW; path = zh_TW.lproj/quickFiles.plist; sourceTree = "<group>"; };
-		371229E205714D2900A46218 /* French */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = French; path = French.lproj/ClickBoxPref.nib; sourceTree = "<group>"; };
 		371229E305714E0A00A46218 /* French */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/Localizable.strings; sourceTree = "<group>"; };
 		371AAD9604DC3E6C000001CF /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = TestVis/English.lproj/TestVis.nib; sourceTree = "<group>"; };
 		371AAD9804DC3E9E000001CF /* VisControl.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = VisControl.h; path = TestVis/VisControl.h; sourceTree = "<group>"; };
@@ -123,8 +110,6 @@
 		372688CF06FAF7F800E1F893 /* WindowVous.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = WindowVous.tif; sourceTree = "<group>"; };
 		372A7B1A054CABDF002E4C67 /* Info-CornerClickBG__Upgraded_.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = "Info-CornerClickBG__Upgraded_.plist"; sourceTree = "<group>"; };
 		372A7B1B054CABDF002E4C67 /* CornerClickBG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CornerClickBG.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		372A7B30054CABEA002E4C67 /* Info-TestVis__Upgraded_.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info-TestVis__Upgraded_.plist"; sourceTree = "<group>"; };
-		372A7B31054CABEA002E4C67 /* TestVis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestVis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3744A75C06948DCC00D94D1E /* AddAction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddAction.png; sourceTree = "<group>"; };
 		3744A75D06948DCC00D94D1E /* RemoveAction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RemoveAction.png; sourceTree = "<group>"; };
 		3744AA600694AED700D94D1E /* CornerClick.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CornerClick.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,13 +132,9 @@
 		3798ADF3064FFB9900E6DD8A /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = German; path = German.lproj/Localizable.strings; sourceTree = "<group>"; };
 		379D4CAF0699FD6B00D08BC2 /* Info-ClickBox__Upgraded_.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-ClickBox__Upgraded_.plist"; sourceTree = "<group>"; };
 		379EA69B0A636B2F0049F59C /* German */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = German; path = German.lproj/Information.rtf; sourceTree = "<group>"; };
-		379EA69E0A636B3E0049F59C /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = German; path = German.lproj/quickFiles.plist; sourceTree = "<group>"; };
 		379EA6A10A636B4D0049F59C /* German */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = German; path = German.lproj/Readme.rtf; sourceTree = "<group>"; };
-		379EA6A40A636B540049F59C /* German */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = German; path = German.lproj/ClickBoxPref.nib; sourceTree = "<group>"; };
-		37ADFD34094BB56900DAAA98 /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Spanish; path = Spanish.lproj/ClickBoxPref.nib; sourceTree = "<group>"; };
 		37ADFD3D094BB59600DAAA98 /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Spanish; path = Spanish.lproj/Readme.rtf; sourceTree = "<group>"; };
 		37ADFD40094BB5A400DAAA98 /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Spanish; path = Spanish.lproj/Information.rtf; sourceTree = "<group>"; };
-		37B0125C0698BC3C00E7D0FF /* French */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = French; path = French.lproj/quickFiles.plist; sourceTree = "<group>"; };
 		37B2717B069172C900D7FD10 /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; name = English; path = English.lproj/quickFiles.plist; sourceTree = "<group>"; };
 		37B5E224070B4A68007A47E5 /* French */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = French; path = French.lproj/Readme.rtf; sourceTree = "<group>"; };
 		37B5E225070B4A71007A47E5 /* French */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = French; path = French.lproj/Information.rtf; sourceTree = "<group>"; };
@@ -172,6 +153,11 @@
 		37C3CB5A04CDADFF000001CF /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = English; path = InfoPlist.strings; sourceTree = "<group>"; };
 		37C3CB5C04CDADFF000001CF /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = MainMenu.nib; sourceTree = "<group>"; };
 		37C3CBC704CE7BEA000001CF /* English */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = English; path = BookmarkPreferences.tiff; sourceTree = "<group>"; };
+		37D5BD371147B1B4004EEE8F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ClickBoxPref.xib; sourceTree = "<group>"; };
+		37D5BD431147B30B004EEE8F /* French */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = French; path = French.lproj/ClickBoxPref.xib; sourceTree = "<group>"; };
+		37D5BD441147B30F004EEE8F /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Spanish; path = Spanish.lproj/ClickBoxPref.xib; sourceTree = "<group>"; };
+		37D5BD451147B311004EEE8F /* German */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = German; path = German.lproj/ClickBoxPref.xib; sourceTree = "<group>"; };
+		37D5BD461147B315004EEE8F /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_TW; path = zh_TW.lproj/ClickBoxPref.xib; sourceTree = "<group>"; };
 		37DE9483065213BE006985D3 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Information.rtf; sourceTree = "<group>"; };
 		37DE95B506524752006985D3 /* FileActionMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = FileActionMenuItem.h; sourceTree = "<group>"; };
 		37DE95B606524752006985D3 /* FileActionMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = FileActionMenuItem.m; sourceTree = "<group>"; };
@@ -181,7 +167,6 @@
 		F506C03C013D9D7901CA16C8 /* ClickBoxPref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickBoxPref.h; sourceTree = "<group>"; };
 		F506C03D013D9D7901CA16C8 /* ClickBoxPref.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickBoxPref.m; sourceTree = "<group>"; };
 		F506C040013D9D8001CA16C8 /* ClickBoxPref.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = ClickBoxPref.tiff; sourceTree = "<group>"; };
-		F506C043013D9D8C01CA16C8 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/ClickBoxPref.nib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,16 +189,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		372A7B2A054CABEA002E4C67 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				372A7B2B054CABEA002E4C67 /* Cocoa.framework in Frameworks */,
-				372A7B2C054CABEA002E4C67 /* Foundation.framework in Frameworks */,
-				372A7B2D054CABEA002E4C67 /* AppKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -228,7 +203,6 @@
 				19C28FB8FE9D52D311CA2CBB /* Products */,
 				372A7B1A054CABDF002E4C67 /* Info-CornerClickBG__Upgraded_.plist */,
 				379D4CAF0699FD6B00D08BC2 /* Info-ClickBox__Upgraded_.plist */,
-				372A7B30054CABEA002E4C67 /* Info-TestVis__Upgraded_.plist */,
 			);
 			name = ClickBox;
 			sourceTree = "<group>";
@@ -245,11 +219,11 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				37D5BD361147B1B4004EEE8F /* ClickBoxPref.xib */,
 				3744AB340694B29F00D94D1E /* Information.rtf */,
 				37B2717A069172C900D7FD10 /* quickFiles.plist */,
 				375CF3ED04FB2300000001CF /* Localizable.strings */,
 				375CF3E104FAF603000001CF /* Readme.rtf */,
-				F506C042013D9D8C01CA16C8 /* ClickBoxPref.nib */,
 				37ED565C04ECD433000001CF /* CornerClick.icns */,
 				37ED565904ECC83A000001CF /* CornerClickIcon.tiff */,
 				37940C6904DB0A4E000001CF /* 2.tiff */,
@@ -302,7 +276,6 @@
 			isa = PBXGroup;
 			children = (
 				372A7B1B054CABDF002E4C67 /* CornerClickBG.app */,
-				372A7B31054CABEA002E4C67 /* TestVis.app */,
 				3744AA600694AED700D94D1E /* CornerClick.prefPane */,
 			);
 			name = Products;
@@ -414,16 +387,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		372A7B20054CABEA002E4C67 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				372A7B21054CABEA002E4C67 /* TestVis_Prefix.h in Headers */,
-				372A7B22054CABEA002E4C67 /* GrayView.h in Headers */,
-				372A7B23054CABEA002E4C67 /* VisControl.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -469,26 +432,6 @@
 			productReference = 372A7B1B054CABDF002E4C67 /* CornerClickBG.app */;
 			productType = "com.apple.product-type.application";
 		};
-		372A7B1F054CABEA002E4C67 /* TestVis (Upgraded) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 37B983B309428A4400C3AD30 /* Build configuration list for PBXNativeTarget "TestVis (Upgraded)" */;
-			buildPhases = (
-				372A7B20054CABEA002E4C67 /* Headers */,
-				372A7B24054CABEA002E4C67 /* Resources */,
-				372A7B26054CABEA002E4C67 /* Sources */,
-				372A7B2A054CABEA002E4C67 /* Frameworks */,
-				372A7B2E054CABEA002E4C67 /* Rez */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "TestVis (Upgraded)";
-			productInstallPath = "$(USER_APPS_DIR)";
-			productName = TestVis;
-			productReference = 372A7B31054CABEA002E4C67 /* TestVis.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -511,7 +454,6 @@
 			targets = (
 				372A7AD3054CABCD002E4C67 /* PrefPane */,
 				372A7AFB054CABDF002E4C67 /* CornerClickBG */,
-				372A7B1F054CABEA002E4C67 /* TestVis (Upgraded) */,
 			);
 		};
 /* End PBXProject section */
@@ -522,7 +464,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				375934070640D987003D651A /* CornerClickBG.app in Resources */,
-				372A7ADE054CABCD002E4C67 /* ClickBoxPref.nib in Resources */,
 				372A7AE0054CABCD002E4C67 /* Readme.rtf in Resources */,
 				372A7AE1054CABCD002E4C67 /* Logo.tiff in Resources */,
 				372A7AE2054CABCD002E4C67 /* 2.tiff in Resources */,
@@ -537,6 +478,7 @@
 				3744A75E06948DCC00D94D1E /* AddAction.png in Resources */,
 				3744A75F06948DCC00D94D1E /* RemoveAction.png in Resources */,
 				372688D006FAF7F800E1F893 /* WindowVous.tif in Resources */,
+				37D5BD381147B1B4004EEE8F /* ClickBoxPref.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,14 +496,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		372A7B24054CABEA002E4C67 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				372A7B25054CABEA002E4C67 /* TestVis.nib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXRezBuildPhase section */
@@ -573,13 +507,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		372A7B18054CABDF002E4C67 /* Rez */ = {
-			isa = PBXRezBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		372A7B2E054CABEA002E4C67 /* Rez */ = {
 			isa = PBXRezBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -637,16 +564,6 @@
 				376409010642571B003E7644 /* BubbleActionsList.m in Sources */,
 				3764090F0642573E003E7644 /* BubbleAction.m in Sources */,
 				378E4349064A3B4A00628539 /* ClickApp.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		372A7B26054CABEA002E4C67 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				372A7B27054CABEA002E4C67 /* VisControl.m in Sources */,
-				372A7B28054CABEA002E4C67 /* GrayView.m in Sources */,
-				372A7B29054CABEA002E4C67 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,9 +627,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				37B2717B069172C900D7FD10 /* English */,
-				37B0125C0698BC3C00E7D0FF /* French */,
-				370FC32907E1FE3E00D12904 /* zh_TW */,
-				379EA69E0A636B3E0049F59C /* German */,
 			);
 			name = quickFiles.plist;
 			sourceTree = "<group>";
@@ -741,16 +655,16 @@
 			name = BookmarkPreferences.tiff;
 			sourceTree = "<group>";
 		};
-		F506C042013D9D8C01CA16C8 /* ClickBoxPref.nib */ = {
+		37D5BD361147B1B4004EEE8F /* ClickBoxPref.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F506C043013D9D8C01CA16C8 /* English */,
-				371229E205714D2900A46218 /* French */,
-				370FC31D07E1FDFE00D12904 /* zh_TW */,
-				37ADFD34094BB56900DAAA98 /* Spanish */,
-				379EA6A40A636B540049F59C /* German */,
+				37D5BD371147B1B4004EEE8F /* English */,
+				37D5BD431147B30B004EEE8F /* French */,
+				37D5BD441147B30F004EEE8F /* Spanish */,
+				37D5BD451147B311004EEE8F /* German */,
+				37D5BD461147B315004EEE8F /* zh_TW */,
 			);
-			name = ClickBoxPref.nib;
+			name = ClickBoxPref.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -760,7 +674,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 0.8.2;
+				CURRENT_PROJECT_VERSION = 0.9;
 				DEPLOYMENT_LOCATION = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -787,8 +701,10 @@
 		37B983AD09428A4400C3AD30 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 0.8.2;
+				CURRENT_PROJECT_VERSION = 0.9;
 				DEPLOYMENT_LOCATION = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -813,7 +729,7 @@
 		37B983AE09428A4400C3AD30 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 0.8.2;
+				CURRENT_PROJECT_VERSION = 0.9;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = clickBG/CornerClickBG_Prefix.h;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
@@ -835,13 +751,14 @@
 			buildSettings = {
 				COPYING_PRESERVES_HFS_DATA = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 0.8.2;
+				CURRENT_PROJECT_VERSION = 0.9;
 				DEPLOYMENT_LOCATION = NO;
-				DYLIB_CURRENT_VERSION = 0.8.2;
+				DYLIB_CURRENT_VERSION = 0.9;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = supported;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -870,15 +787,18 @@
 		37B983B109428A4400C3AD30 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
 				COPYING_PRESERVES_HFS_DATA = YES;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 0.8.2;
+				CURRENT_PROJECT_VERSION = 0.9;
 				DEPLOYMENT_LOCATION = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
-				DYLIB_CURRENT_VERSION = 0.8.2;
+				DYLIB_CURRENT_VERSION = 0.9;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = supported;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ClickBox_Prefix.h;
@@ -907,10 +827,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPYING_PRESERVES_HFS_DATA = YES;
-				CURRENT_PROJECT_VERSION = 0.8.2;
+				CURRENT_PROJECT_VERSION = 0.9;
 				DEPLOYMENT_LOCATION = NO;
-				DYLIB_CURRENT_VERSION = 0.8.2;
+				DYLIB_CURRENT_VERSION = 0.9;
 				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_ENABLE_OBJC_GC = supported;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ClickBox_Prefix.h;
@@ -934,77 +855,10 @@
 			};
 			name = Default;
 		};
-		37B983B409428A4400C3AD30 /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 0.8.2;
-				DEPLOYMENT_LOCATION = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREFIX_HEADER = TestVis/TestVis_Prefix.h;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "Info-TestVis__Upgraded_.plist";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = TestVis;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wmost";
-				WRAPPER_EXTENSION = app;
-				ZERO_LINK = YES;
-			};
-			name = Development;
-		};
-		37B983B509428A4400C3AD30 /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 0.8.2;
-				DEPLOYMENT_LOCATION = NO;
-				DEPLOYMENT_POSTPROCESSING = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PREFIX_HEADER = TestVis/TestVis_Prefix.h;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "Info-TestVis__Upgraded_.plist";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = TestVis;
-				SECTORDER_FLAGS = "";
-				VERSIONING_SYSTEM = "apple-generic";
-				WARNING_CFLAGS = "-Wmost";
-				WRAPPER_EXTENSION = app;
-				ZERO_LINK = NO;
-			};
-			name = Deployment;
-		};
-		37B983B609428A4400C3AD30 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PREFIX_HEADER = TestVis/TestVis_Prefix.h;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "Info-TestVis__Upgraded_.plist";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = TestVis;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wmost";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Default;
-		};
 		37B983B809428A4400C3AD30 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_ENABLE_OBJC_GC = unsupported;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1014,11 +868,11 @@
 		37B983B909428A4400C3AD30 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
+				GCC_ENABLE_OBJC_GC = unsupported;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1027,6 +881,7 @@
 		37B983BA09428A4400C3AD30 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_ENABLE_OBJC_GC = unsupported;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1044,7 +899,7 @@
 				37B983AE09428A4400C3AD30 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		37B983AF09428A4400C3AD30 /* Build configuration list for PBXNativeTarget "PrefPane" */ = {
 			isa = XCConfigurationList;
@@ -1054,17 +909,7 @@
 				37B983B209428A4400C3AD30 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
-		};
-		37B983B309428A4400C3AD30 /* Build configuration list for PBXNativeTarget "TestVis (Upgraded)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				37B983B409428A4400C3AD30 /* Development */,
-				37B983B509428A4400C3AD30 /* Deployment */,
-				37B983B609428A4400C3AD30 /* Default */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		37B983B709428A4400C3AD30 /* Build configuration list for PBXProject "CornerClick" */ = {
 			isa = XCConfigurationList;
@@ -1074,7 +919,7 @@
 				37B983BA09428A4400C3AD30 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 /* End XCConfigurationList section */
 	};

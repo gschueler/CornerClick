@@ -16,9 +16,9 @@
 				   andClicker:clicker];
 }*/
 
--(id)initWithType: (int) type andModifiers: (int) modifiers andTrigger: (int) trigger isDelayed: (BOOL) hoverTriggerDelayed 
+-(id)initWithType: (NSInteger) type andModifiers: (NSInteger) modifiers andTrigger: (NSInteger) trigger isDelayed: (BOOL) hoverTriggerDelayedvar 
         andString: (NSString *)theString
-		forCorner: (int)corner withLabel: (NSString *)label andClicker:(Clicker *) clicker
+		forCorner: (NSInteger)corner withLabel: (NSString *)label andClicker:(Clicker *) clicker
 {
     if(self=[super init]){
         myIcon=nil;
@@ -29,7 +29,7 @@
         theModifiers=modifiers;
         myClicker=clicker;
 		theTrigger=trigger;
-        self->hoverTriggerDelayed=hoverTriggerDelayed;
+        self->hoverTriggerDelayed=hoverTriggerDelayedvar;
         if(theString != nil){
             //myString = [[NSString stringWithString:theString] retain];
             myString = [theString copy];
@@ -152,16 +152,16 @@
     [self setIconAndLabelUserProvided:label];
 }
 
--(int)type
+-(NSInteger)type
 {
     return theType;
 }
--(int)modifiers
+-(NSInteger)modifiers
 {
     return theModifiers;
 }
 
--(int)corner
+-(NSInteger)corner
 {
     return theCorner;
 }
@@ -177,12 +177,12 @@
 {
     return [[myIcon copy] autorelease];
 }
--(int) trigger
+-(NSInteger) trigger
 {
 	return theTrigger;
 }
 
--(void) setTrigger: (int) trigger
+-(void) setTrigger: (NSInteger) trigger
 {
 	theTrigger=trigger;
 }
@@ -207,15 +207,15 @@
     [myIcon release];
     myIcon=icon;
 }
--(void) setCorner: (int) corner
+-(void) setCorner: (NSInteger) corner
 {
     theCorner=corner;
 }
--(void) setType: (int) type
+-(void) setType: (NSInteger) type
 {
     theType=type;
 }
--(void) setModifiers: (int) modifiers
+-(void) setModifiers: (NSInteger) modifiers
 {
     theModifiers=modifiers;
 }
@@ -377,7 +377,7 @@
     NSAppleEventDescriptor *evt;
     NSDate *modified;
     if(myScript==nil){
-        scriptLastModified = [[[NSFileManager defaultManager] fileAttributesAtPath:myString traverseLink:YES] fileModificationDate];
+	    scriptLastModified = [[[NSFileManager defaultManager] attributesOfItemAtPath:myString error:nil] fileModificationDate];
         if(scriptLastModified==nil){
             NSLog(@"AppleScript Action: No such file:%@",myString);
             return;
@@ -386,8 +386,8 @@
         //NSLog(@"first modification:  %@",scriptLastModified);
         myScript = [[NSAppleScript alloc] initWithContentsOfURL:[NSURL fileURLWithPath:myString] error:&err];
     }else{
-        modified = [[[NSFileManager defaultManager] fileAttributesAtPath:myString traverseLink:YES] fileModificationDate];
-        //NSLog(@"check modification:  %@",modified);
+		modified = [[[NSFileManager defaultManager] attributesOfItemAtPath:myString error:nil] fileModificationDate];
+		//NSLog(@"check modification:  %@",modified);
         if(![modified isEqualToDate: scriptLastModified]){
             //NSLog(@"modification later");
             [scriptLastModified release];
@@ -485,13 +485,13 @@
 
 - (NSComparisonResult)triggerCompare:(ClickAction *)anAction
 {
-    int t = [anAction trigger];
+    NSInteger t = [anAction trigger];
     return (t == [self trigger] ? NSOrderedSame :
             ( t > [self trigger] ? NSOrderedAscending :
               NSOrderedDescending ));
 }
 
-+ (NSString *) stringNameForActionType: (int) type
++ (NSString *) stringNameForActionType: (NSInteger) type
 {
     switch(type){
         case 4:
@@ -502,7 +502,7 @@
     }
 }
 
-+ (NSString *) labelNameForActionType: (int) type
++ (NSString *) labelNameForActionType: (NSInteger) type
 {
     switch(type){
         case ACT_FILE: return @"fileLabel";
@@ -512,7 +512,7 @@
     }
 }
 
-+ (BOOL) validActionType: (int) type andString: (NSString *) action
++ (BOOL) validActionType: (NSInteger) type andString: (NSString *) action
 {
     switch(type){
         case ACT_FILE:

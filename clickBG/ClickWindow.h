@@ -4,8 +4,8 @@
 
 @interface ClickWindow : NSPanel
 {
-    int corner;
+    NSInteger corner;
 }
-- (int) corner;
-- (id)initWithContentRect:(NSRect)contentRect styleMask:(unsigned int)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag corner: (int) myCorner;
+- (NSInteger) corner;
+- (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag corner: (NSInteger) myCorner;
 @end

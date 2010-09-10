@@ -11,16 +11,16 @@
 
 @interface BubbleAction : NSObject {
 	NSArray *actions;
-	float spacingSize;
+	CGFloat spacingSize;
 	NSSize preferredSize;
 }
 
 + (void) initialize;
 + (NSImage *) triangleImage;
-- (id) initWithSpacing:(float) space;
-- (id) initWithSpacing:(float) space
+- (id) initWithSpacing:(CGFloat) space;
+- (id) initWithSpacing:(CGFloat) space
 					 andActions:(NSArray *) theActions;
-- (void) setSpacingSize: (float) size;
+- (void) setSpacingSize: (CGFloat) size;
 - (NSSize) preferredSize;
 - (void) calcPreferredSize;
 - (void) drawInRect: (NSRect) rect;

@@ -4,9 +4,9 @@
 @implementation ClickView
 
 
-- (id)initWithFrame:(NSRect)frameRect actions:(NSArray *)actions corner:(int) theCorner clicker:(Clicker *)clicker;
+- (id)initWithFrame:(NSRect)frameRect actions:(NSArray *)actions corner:(NSInteger) theCorner clicker:(Clicker *)clicker;
 {
-    int c;
+    NSInteger c;
     NSMutableArray *ma;
     if(self = [super initWithFrame:frameRect]){
         myClicker=clicker;
@@ -32,7 +32,7 @@
 - (void) setClickActions: (NSArray *) actions
 {
     NSMutableArray *ma;
-    int c;
+    NSInteger c;
 
     ma = [[NSMutableArray arrayWithCapacity:[actions count]] retain];
     for(c=0;c<[actions count];c++){
@@ -218,7 +218,7 @@
             to=&bl;
             break;
         default:
-            NSLog(@"unknown corner!: %d",corner);
+            NSLog(@"unknown corner!: %ld",(long)corner);
             path = [NSBezierPath bezierPathWithRect:rect];
             from=&tl;
             to=&bl;
@@ -252,12 +252,12 @@
 	[actionsGroups release];
     [super dealloc];
 }
-- (ClickAction *) clickActionForModifierFlags:(unsigned int) modifiers
+- (ClickAction *) clickActionForModifierFlags:(NSUInteger) modifiers
 {
-    int i;
+    NSInteger i;
     ClickAction *theAction;
-    int flags=0;
-    unsigned int evtFlags = modifiers;
+    NSInteger flags=0;
+    NSUInteger evtFlags = modifiers;
 	flags = [Clicker modsForEventFlags:evtFlags];
     for(i=0;i<[myActions count]; i++){
         theAction = (ClickAction *)[myActions objectAtIndex:i];
@@ -268,18 +268,18 @@
     }
     return nil;
 }
-- (NSArray *) clickActionsForModifierFlags:(unsigned int) modifiers
+- (NSArray *) clickActionsForModifierFlags:(NSUInteger) modifiers
 {
 	return [self clickActionsForModifierFlags:modifiers andTrigger:-1];
 }
 
-- (NSArray *) hoverActionsForModifierFlags:(unsigned int) modifiers
+- (NSArray *) hoverActionsForModifierFlags:(NSUInteger) modifiers
 {
-    int i;
+    NSInteger i;
     ClickAction *theAction;
 	NSMutableArray *thearr = [[NSMutableArray alloc] init];
-    int flags=0;
-    unsigned int evtFlags = modifiers;
+    NSInteger flags=0;
+    NSUInteger evtFlags = modifiers;
 	flags = [Clicker modsForEventFlags:evtFlags];
     for(i=0;i<[myActions count]; i++){
         theAction = (ClickAction *)[myActions objectAtIndex:i];
@@ -292,14 +292,14 @@
     }
     return [thearr autorelease];
 }
-- (NSArray *) clickActionsForModifierFlags:(unsigned int) modifiers
-								andTrigger:(int) trigger
+- (NSArray *) clickActionsForModifierFlags:(NSUInteger) modifiers
+								andTrigger:(NSInteger) trigger
 {
-    int i;
+    NSInteger i;
     ClickAction *theAction;
 	NSMutableArray *thearr = [[NSMutableArray alloc] init];
-    int flags=0;
-    unsigned int evtFlags = modifiers;
+    NSInteger flags=0;
+    NSUInteger evtFlags = modifiers;
 	flags = [Clicker modsForEventFlags:evtFlags];
     for(i=0;i<[myActions count]; i++){
         theAction = (ClickAction *)[myActions objectAtIndex:i];
@@ -313,9 +313,9 @@
     return [thearr autorelease];
 }
 
-- (NSArray *) actionsGroupsForModifiers:(int) mods
+- (NSArray *) actionsGroupsForModifiers:(NSInteger) mods
 {
-    int i;
+    NSInteger i;
     NSArray *ags = [self actionsGroups];
     NSMutableArray *ma = [[[NSMutableArray alloc] init] autorelease];
     //DEBUG(@"got %d actions groups",[ags count]);
@@ -331,14 +331,14 @@
 }
 - (NSArray *) actionsGroups
 {
-	int i;
+	NSInteger i;
 	if(nil!=actionsGroups)
 		return actionsGroups;
 	NSMutableDictionary *dict = [[[NSMutableDictionary alloc] init] autorelease];
     
 	for(i=0;i<[myActions count]; i++){
         ClickAction *theAction = (ClickAction *)[myActions objectAtIndex:i];
-		NSString *key = [NSString stringWithFormat:@"%d,%d",[theAction trigger],[theAction modifiers]];
+		NSString *key = [NSString stringWithFormat:@"%ld,%ld",(long)[theAction trigger],(long)[theAction modifiers]];
 		if([dict objectForKey:key]==nil){
 			NSMutableArray *marr = [[[NSMutableArray alloc] initWithObjects:theAction,nil] autorelease];
 			[dict setObject:marr forKey:key];

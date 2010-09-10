@@ -55,6 +55,8 @@
     IBOutlet NSPopUpButton *quickFilePopup;
     IBOutlet NSPopUpButton *quickScriptPopup;
     IBOutlet NSButton *hoverTriggerDelayedCheckbox;
+    IBOutlet NSTextField *hoverDelayLabel;
+    IBOutlet NSTextField *tooltipDelayLabel;
     
     IBOutlet NSView *exposeNoteView;
         
@@ -62,10 +64,10 @@
     IBOutlet NSObjectController *myObjectController;
     
     
-    int chosenCorner;
-    int chosenAction;
-    int chosenScreen;
-    int eerepeated;
+    NSInteger chosenCorner;
+    NSInteger chosenAction;
+    NSInteger chosenScreen;
+    NSInteger eerepeated;
     BOOL active;
     BOOL awaitingDisabledHelperNotification;
     BOOL reloadHelperOnHelperDeactivation;
@@ -84,7 +86,7 @@
     BOOL chooseButtonIsVisible;
 }
 - (void) showQuickScriptsPopup;
-- (void)doChooseCorner:(int) corner;
+- (void)doChooseCorner:(NSInteger) corner;
 - (IBAction)tableViewAction:(id)sender;
 - (IBAction)chooseNextScreen:(id)sender;
 - (IBAction)screenIDClicked:(id)sender;
@@ -138,15 +140,15 @@
 - (void) refreshWithCornerSettings;
 - (void) checkIfHelperAppRunning;
 - (void) notifyAppOfPreferences:(NSDictionary *) prefs;
-- (void) doChooseScreen: (int) which withPopupWindow: (BOOL) popup;
+- (void) doChooseScreen: (NSInteger) which withPopupWindow: (BOOL) popup;
 - (void) setSelectedActionPath: (NSString *) path;
 - (void) setSelectedActionPath: (NSString *) thefile resettingScriptLabel:(BOOL) doReset;
-- (void) setSubFrameForActionType: (int) type;
-- (void)toggleModifier: (int)modifier toState:(BOOL) used;
+- (void) setSubFrameForActionType: (NSInteger) type;
+- (void)toggleModifier: (NSInteger)modifier toState:(BOOL) used;
 - (NSAttributedString *)makeAttributedLink:(NSString *) link forString:(NSString *) string;
 - (void) addActionMenuItems: (NSArray *) list toMenu: (NSMenu *) menu;
 
-+ (NSString *)ordinalForNumber: (int) which;
++ (NSString *)ordinalForNumber: (NSInteger) which;
 
 //- (void) _storeList: (id) plist atPath:(NSString *)aPath;
 + (NSArray *) loadPlistArrayFromFile: (NSString *) path;

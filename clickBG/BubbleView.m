@@ -8,10 +8,10 @@
 
 #import "BubbleView.h"
 
-void CCShadeInterpolate( void *info, float const *inData, float *outData ) {
-	float *colors = (float *)info;
-	register float a = inData[0], a_coeff = 1.0f - a;
-	register int i = 0;
+void CCShadeInterpolate( void *info, CGFloat const *inData, CGFloat *outData ) {
+	CGFloat *colors = (CGFloat *)info;
+	register CGFloat a = inData[0], a_coeff = 1.0f - a;
+	register NSInteger i = 0;
     
 	for( i = 0; i < 4; i++ )
 		outData[i] = a_coeff * colors[i] + a * colors[i + 4];
@@ -44,8 +44,8 @@ static NSDictionary *normalTextAttrs;
 	andDrawingObject: (BubbleActionsList *)obj
             fadeFrom: (NSColor *)fromCol
 			  fadeTo: (NSColor *) toCol 
-		  cornerSize: (float) cornerSize
-         pointCorner: (int) pCorner
+		  cornerSize: (CGFloat) cornerSize
+         pointCorner: (NSInteger) pCorner
 
 {
     //[self setAlphaValue: 0.5];
@@ -105,8 +105,8 @@ static NSDictionary *normalTextAttrs;
 - (NSRect) modifiersRect
 {
     NSRect rect = [self frame];
-	float space = roundingSize - insetSize;
-	float intHeight = rect.size.height-(int)ceil(space) - (pointCorner==2||pointCorner==3 ? 0:tailLen) ;
+	CGFloat space = roundingSize - insetSize;
+	CGFloat intHeight = rect.size.height-(NSInteger)ceil(space) - (pointCorner==2||pointCorner==3 ? 0:tailLen) ;
 
     NSString *label = [CornerClickSupport labelForModifiers:[drawingObject selectedModifiers]
                                                  andTrigger:[drawingObject selectedTrigger]
@@ -122,15 +122,15 @@ static NSDictionary *normalTextAttrs;
 {
     NSRect rect = [self frame];
     NSSize tSize = NSMakeSize(0,0);
-	float space = roundingSize - insetSize;
+	CGFloat space = roundingSize - insetSize;
     if(drawingObject!=nil)
         tSize = [drawingObject preferredSize];
     return NSMakeRect(space, space + (pointCorner==2||pointCorner==3 ? tailLen : 0), rect.size.width-(space *2), tSize.height);
 }
 
-- (void) newSelectedMod: (int) ndx
+- (void) newSelectedMod: (NSInteger) ndx
 {
-    int old = [drawingObject selectedItem];
+    NSInteger old = [drawingObject selectedItem];
     NSRect inner = [self innerContentRect];
     NSRect oldR = [drawingObject drawingRectForAction:old isSelected:YES inRect: inner];
     NSRect newR = [drawingObject drawingRectForAction:ndx isSelected:YES inRect: inner];
@@ -179,8 +179,8 @@ static NSDictionary *normalTextAttrs;
     NSShadow *textShad = [[[NSShadow alloc] init] autorelease];
     [textShad setShadowOffset:NSMakeSize(3,-3)];
     [textShad setShadowBlurRadius:1];
-    float tsize = [[CornerClickSettings sharedSettings] textSize];
-    float mesize;
+    CGFloat tsize = [[CornerClickSettings sharedSettings] textSize];
+    CGFloat mesize;
     if(tsize < 12) mesize=tsize;
     else mesize = tsize - 4;
 	return [NSDictionary dictionaryWithObjects:
@@ -194,8 +194,8 @@ static NSDictionary *normalTextAttrs;
 }
 
 + (void) drawRoundedBezel: (NSRect) rect 
-                 rounding:(float) theRounding
-                    depth:(float) depth
+                 rounding:(CGFloat) theRounding
+                    depth:(CGFloat) depth
 {
     
     [BubbleView drawRoundedBezel: rect
@@ -206,8 +206,8 @@ static NSDictionary *normalTextAttrs;
                       shineColor:[NSColor whiteColor]];
 }
 + (void) drawRoundedBezel: (NSRect) rect 
-                  rounding:(float) theRounding
-                     depth:(float) depth
+                  rounding:(CGFloat) theRounding
+                     depth:(CGFloat) depth
                    bgColor:(NSColor *)bgcol 
                shadowColor:(NSColor *)shadow
                 shineColor:(NSColor *)shine
@@ -220,8 +220,8 @@ static NSDictionary *normalTextAttrs;
 }
 
 + (void) drawRoundedBezel2: (NSRect) rect 
-                 rounding:(float) theRounding
-                    depth:(float) depth
+                 rounding:(CGFloat) theRounding
+                    depth:(CGFloat) depth
                   bgColor:(NSColor *)bgcol 
               shadowColor:(NSColor *)shadow
                shineColor:(NSColor *)shine
@@ -292,30 +292,30 @@ static NSDictionary *normalTextAttrs;
     [tempImg compositeToPoint:rect.origin operation:NSCompositeSourceOver];
     
 }
-+ (void) addGlassBG:(NSRect) therect withColor: (NSColor *)thecolor withRounding: (float) rounding
++ (void) addGlassBG:(NSRect) therect withColor: (NSColor *)thecolor withRounding: (CGFloat) rounding
 {
     
     NSBezierPath *path = [NSBezierPath bezierPath];
     thecolor = [thecolor colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
-    float inset = 0;
+    CGFloat inset = 0;
     rounding = rounding - inset;
     NSRect inRect = NSInsetRect(therect,inset,inset);
-    float width = therect.size.width - 2. * inset;
-    float height = therect.size.height - 2. * inset;
-    float ox = inset;
-    float oy = inset;
+    CGFloat width = therect.size.width - 2. * inset;
+    CGFloat height = therect.size.height - 2. * inset;
+    CGFloat ox = inset;
+    CGFloat oy = inset;
     
-    float midx = width/2. + therect.origin.x + ox;
-    float upy = height/2. + therect.origin.y + oy;
-    float dy = MIN(20.,height/6.);
-    float t1 = atan2(width/2.,dy); // angle for one part of isoceles triangle.
-    float h1 = sqrt( dy*dy + (width * width / 4.)); //base of isoceles
-    float rad = (1./cos( t1))  * (h1/2.); //radius of arc
+    CGFloat midx = width/2. + therect.origin.x + ox;
+    CGFloat upy = height/2. + therect.origin.y + oy;
+    CGFloat dy = MIN(20.,height/6.);
+    CGFloat t1 = atan2(width/2.,dy); // angle for one part of isoceles triangle.
+    CGFloat h1 = sqrt( dy*dy + (width * width / 4.)); //base of isoceles
+    CGFloat rad = (1./cos( t1))  * (h1/2.); //radius of arc
     
     [path moveToPoint:NSMakePoint(NSMaxX(inRect),upy)];
     
-    float angrad = pi - 2. * t1;
-    float angdeg = 360. * (angrad / (2.*pi));
+    CGFloat angrad = pi - 2. * t1;
+    CGFloat angdeg = 360. * (angrad / (2.*pi));
     //NSLog(@"angle is: %f",angdeg);
     [path appendBezierPathWithArcWithCenter:NSMakePoint(midx, upy  + dy - rad )
                                      radius:rad
@@ -368,8 +368,8 @@ static NSDictionary *normalTextAttrs;
             
             
             if(rounding > 0. ){
-                float minset=0;
-                float tilt= (2*rounding) * (2 * rounding) / (inRect.size.width - 2* minset); 
+                CGFloat minset=0;
+                CGFloat tilt= (2*rounding) * (2 * rounding) / (inRect.size.width - 2* minset); 
                 tilt = tilt / 3.;
                 
                 NSRect ar = NSMakeRect(inRect.origin.x+minset, NSMinY(inRect) , inRect.size.width-2*minset, 2 * rounding);
@@ -390,17 +390,17 @@ static NSDictionary *normalTextAttrs;
                 [[NSGraphicsContext currentContext] restoreGraphicsState];
             }
 }
-+ (void) addGlassFG:(NSRect) therect withColor: (NSColor *)thecolor withRounding: (float) rounding
++ (void) addGlassFG:(NSRect) therect withColor: (NSColor *)thecolor withRounding: (CGFloat) rounding
 {
     
     NSBezierPath *path = [NSBezierPath bezierPath];
     thecolor = [thecolor colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
-    float inset = 0;
+    CGFloat inset = 0;
     rounding = rounding - inset;
     NSRect inRect = NSInsetRect(therect,inset,inset);
     if(rounding > 0.){
-        float minset=0;
-        float tilt= (2*rounding) * (2 * rounding) / (inRect.size.width - 2* minset); 
+        CGFloat minset=0;
+        CGFloat tilt= (2*rounding) * (2 * rounding) / (inRect.size.width - 2* minset); 
         tilt = tilt / 3.;
         
         NSRect ar = NSMakeRect(inRect.origin.x+minset, NSMaxY(inRect) - 2 * rounding - minset, inRect.size.width-2*minset, 2 * rounding);
@@ -425,13 +425,13 @@ static NSDictionary *normalTextAttrs;
     [BubbleView addGlass: therect withColor: [NSColor colorWithCalibratedRed:1. green:1. blue:1. alpha:0.2]
             withRounding:0];
 }
-+ (void) addGlass:(NSRect) therect withColor: (NSColor *)thecolor withRounding: (float) rounding
++ (void) addGlass:(NSRect) therect withColor: (NSColor *)thecolor withRounding: (CGFloat) rounding
 {
     [BubbleView addGlassBG: therect withColor: thecolor withRounding: rounding];
     [BubbleView addGlassFG: therect withColor: thecolor withRounding: rounding];
 }
 + (void) drawGradient:(NSRect) therect fromColor:(NSColor *) fromCol toColor:(NSColor *) tocol
-            direction: (int) dir
+            direction: (NSInteger) dir
 {
     BOOL up = (dir > 0 ? YES : NO );
     [BubbleView drawGradient: therect fromColor: fromCol toColor: tocol
@@ -454,7 +454,7 @@ static NSDictionary *normalTextAttrs;
 + (void) drawGradient:(NSRect) therect fromColor: (NSColor *) fromCol toColor:(NSColor *) tocol
             fromPoint:(NSPoint) sPoint toPoint: (NSPoint) ePoint extendBefore:(BOOL)ebefore extendAfter:(BOOL)eafter
 {
-    float colarr[8];
+    CGFloat colarr[8];
     
     
     [[NSGraphicsContext currentContext] saveGraphicsState];
@@ -470,13 +470,13 @@ static NSDictionary *normalTextAttrs;
     colarr[6] = [tocol blueComponent];
     colarr[7] = [tocol alphaComponent];
     
-	struct CGFunctionCallbacks callbacks = { 0, CCShadeInterpolate, NULL };
+	struct CGFunctionCallbacks callbacks = { 0, CCShadeInterpolate,(CGFunctionReleaseInfoCallback) NULL };
     
 	CGFunctionRef function = CGFunctionCreate( &colarr, 1, NULL, 4, NULL, &callbacks );
 	CGColorSpaceRef cspace = CGColorSpaceCreateDeviceRGB();
     
-	float srcX = sPoint.x, srcY = sPoint.y;
-	float dstX = ePoint.x, dstY = ePoint.y;
+	CGFloat srcX = sPoint.x, srcY = sPoint.y;
+	CGFloat dstX = ePoint.x, dstY = ePoint.y;
 	CGShadingRef shading = CGShadingCreateAxial( cspace, 
 												 CGPointMake( srcX, srcY ), 
 												 CGPointMake( dstX, dstY ), 
@@ -494,7 +494,7 @@ static NSDictionary *normalTextAttrs;
 }
 
 + (void) addShadow: (NSBezierPath *)path 
-             depth:(float) depth
+             depth:(CGFloat) depth
 {
     [BubbleView addShadow: path
                     depth: depth
@@ -504,7 +504,7 @@ static NSDictionary *normalTextAttrs;
 }
 
 + (void) addShadow: (NSBezierPath *)path 
-                    depth:(float) depth
+                    depth:(CGFloat) depth
                   bgColor:(NSColor *)bgcol 
               shadowColor:(NSColor *)shadow
                shineColor:(NSColor *)shine
@@ -596,19 +596,19 @@ static NSDictionary *normalTextAttrs;
                 [tempImg compositeToPoint:rect.origin operation:NSCompositeSourceOver];
 }
 
-+ (NSBezierPath *)roundedRect: (NSRect)rect rounding: (float) theRounding
++ (NSBezierPath *)roundedRect: (NSRect)rect rounding: (CGFloat) theRounding
 {
     return [BubbleView roundedRect: rect roundingTopLeft: theRounding roundingTopRight:theRounding
                 roundingBottomLeft:theRounding roundingBottomRight:theRounding];
 }
-+ (NSBezierPath *)roundedRect: (NSRect)rect roundingTopLeft: (float) roundTL roundingTopRight: (float) roundTR
-           roundingBottomLeft: (float)roundBL roundingBottomRight: (float) roundBR
++ (NSBezierPath *)roundedRect: (NSRect)rect roundingTopLeft: (CGFloat) roundTL roundingTopRight: (CGFloat) roundTR
+           roundingBottomLeft: (CGFloat)roundBL roundingBottomRight: (CGFloat) roundBR
 {
     NSBezierPath *fadePath;
-    float ox=rect.origin.x;
-    float oy=rect.origin.y;
-    float wide=ox+rect.size.width;
-    float high=oy+rect.size.height;
+    CGFloat ox=rect.origin.x;
+    CGFloat oy=rect.origin.y;
+    CGFloat wide=ox+rect.size.width;
+    CGFloat high=oy+rect.size.height;
 
     if(roundTL > (rect.size.width/2) || roundTL > (rect.size.height/2)){
         roundTL = rect.size.height/2;
@@ -654,7 +654,7 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundTR,high-roundTR)
 	return [fadePath autorelease];
 }
 
-- (void)drawRoundedRect: (NSRect)rect rounding: (float) theRounding alpha: (float) alpha color: (NSColor *) color
+- (void)drawRoundedRect: (NSRect)rect rounding: (CGFloat) theRounding alpha: (CGFloat) alpha color: (NSColor *) color
 {
     NSBezierPath *fadePath=[BubbleView roundedRect:rect rounding:theRounding];
     [[color colorWithAlphaComponent: alpha] set];
@@ -667,9 +667,9 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundTR,high-roundTR)
     NSImage *tempImg,*tempIn;
     tempIn = [[NSImage alloc] initWithSize: NSMakeSize(rect.size.width,roundingSize+2)];
     [tempIn lockFocus];
-    float ox=0;
-    float wide=rect.size.width;
-    float high=roundingSize+2;
+    CGFloat ox=0;
+    CGFloat wide=rect.size.width;
+    CGFloat high=roundingSize+2;
     
     fadePath = [[NSBezierPath bezierPath] retain];
     [fadePath moveToPoint: NSMakePoint(roundingSize,high)];
@@ -712,11 +712,11 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundTR,high-roundTR)
 - (void)drawFadeFrame: (NSRect)rect
 {
     NSBezierPath *fadePath;
-    float ox=rect.origin.x;
-    float oy=rect.origin.y;
-    float taily=oy;
-    float wide=ox+rect.size.width;
-    float high;
+    CGFloat ox=rect.origin.x;
+    CGFloat oy=rect.origin.y;
+    CGFloat taily=oy;
+    CGFloat wide=ox+rect.size.width;
+    CGFloat high;
     if(pointCorner==2 || pointCorner==3){
         oy+=tailLen;
         high = NSMaxY(rect);
@@ -867,8 +867,8 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 - (void) calcPreferredFrame:(BOOL) recalc
 {
     NSSize textSize;
-	float mwidth,mheight;
-    float space = roundingSize-insetSize;
+	CGFloat mwidth,mheight;
+    CGFloat space = roundingSize-insetSize;
 	mwidth=0;
 	mheight=0;
 	textSize = NSMakeSize(0,0);
@@ -877,8 +877,8 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
             [drawingObject calcPreferredSize:recalc];
 		textSize = [drawingObject preferredSize];
 		if([drawingObject selectedItem] >=0){
-			int mods = [drawingObject selectedModifiers];
-			int trig = [drawingObject selectedTrigger];
+			NSInteger mods = [drawingObject selectedModifiers];
+			NSInteger trig = [drawingObject selectedTrigger];
 			DEBUG(@"calc size for selected modifier: %d, and trigger: %d",mods,trig);
 			NSString *label = [CornerClickSupport labelForModifiers:mods
 														 andTrigger:trig
@@ -894,23 +894,23 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
     textSize.height+=(pointCorner>=0 ? tailLen : 0 );
 	
     prefFrame= NSMakeRect([self frame].origin.x,[self frame].origin.y,
-						  (int)ceil(((roundingSize - insetSize)*2) + textSize.width),
-						  (int)ceil(((roundingSize - insetSize)*2)+textSize.height));
+						  (NSInteger)ceil(((roundingSize - insetSize)*2) + textSize.width),
+						  (NSInteger)ceil(((roundingSize - insetSize)*2)+textSize.height));
 	
 }
 
 - (void) drawGradientX: (NSRect) therect fromColor:(NSColor *) fromCol toColor:(NSColor *) toCol
-            direction: (int) dir
+            direction: (NSInteger) dir
 {
-    int i=0;
+    NSInteger i=0;
     NSColor *tcol,*from,*to;
     from = [fromCol colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
     to = [toCol colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
     BOOL up = (dir > 0 ? YES : NO );
-    int change;
+    NSInteger change;
     //NSLog(@"dir is %d, dR %f, dG %f, dB %f, dA %f",dir,dR,dG,dB,dA);
 	
-	float fract;
+	CGFloat fract;
     for(i=0;i<therect.size.height;i++){
         change = (up?i : (therect.size.height-1)-i);
         fract = (up?i/therect.size.height: (therect.size.height - i)/therect.size.height);
@@ -947,8 +947,8 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 - (void)drawRect:(NSRect)therect
 {
        NSRect rect = [self frame];
-	float space = roundingSize - insetSize;
-	float intHeight = rect.size.height-(int)ceil(space) - (pointCorner==2||pointCorner==3 ? 0:tailLen) ;
+	CGFloat space = roundingSize - insetSize;
+	CGFloat intHeight = rect.size.height-(NSInteger)ceil(space) - (pointCorner==2||pointCorner==3 ? 0:tailLen) ;
     
     [self drawBG: therect];
     
@@ -1022,7 +1022,7 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 		fadeToColor = temp;
 	}
 }
-- (void) setPointCorner: (int) pCorner
+- (void) setPointCorner: (NSInteger) pCorner
 {
     pointCorner=pCorner;
 }
@@ -1036,17 +1036,17 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
     return drawHilite;
 }
 
-- (void) setInsetSize:(float) size
+- (void) setInsetSize:(CGFloat) size
 {
     insetSize=size;
     [self recalcSize];
 	[self setNeedsDisplay:YES];
 }
-- (float) insetSize
+- (CGFloat) insetSize
 {
     return insetSize;
 }
-- (float) roundingSize
+- (CGFloat) roundingSize
 {
     return roundingSize;
 }
@@ -1074,8 +1074,8 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 
 
 - (BubbleActionsList *) bubbleActionsList: (NSArray *)actions 
-                                forCorner: (int) corn
-                                 selected:(int) sel
+                                forCorner: (NSInteger) corn
+                                 selected:(NSInteger) sel
 						andHighlightColor:(NSColor *) theColor
 {
 	return [[[BubbleActionsList alloc] initWithSpacing: (roundingSize-insetSize)

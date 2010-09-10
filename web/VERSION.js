@@ -1,1 +1,1 @@
-var VERSION={version:"0.8.2", size:413444, note:' (For Mac OS X 10.5 only)'};
+var VERSION={version:"0.9", size:511793, note:' (For Mac OS X 10.6 only)'};

@@ -11,11 +11,11 @@
     NSImage *drawed;
     NSTrackingRectTag trackTag;
     BOOL selected;
-    int corner;
+    NSInteger corner;
 }
 
 
-- (id)initWithFrame:(NSRect)frameRect actions:(NSArray *)actions corner:(int) theCorner clicker:(Clicker *)clicker;
+- (id)initWithFrame:(NSRect)frameRect actions:(NSArray *)actions corner:(NSInteger) theCorner clicker:(Clicker *)clicker;
 
 - (void) drawBuf: (NSRect) rect;
 - (void) setSelected: (BOOL) selected;
@@ -23,14 +23,14 @@
 //- (void) setClickAction: (ClickAction *) action;
 - (NSArray *) clickActions;
 - (void) setClickActions: (NSArray *) actions;
-- (ClickAction *) clickActionForModifierFlags: (unsigned int)modifiers;
-- (NSArray *) clickActionsForModifierFlags:(unsigned int) modifiers;
-- (NSArray *) clickActionsForModifierFlags:(unsigned int) modifiers
-								andTrigger:(int) trigger;
+- (ClickAction *) clickActionForModifierFlags: (NSUInteger)modifiers;
+- (NSArray *) clickActionsForModifierFlags:(NSUInteger) modifiers;
+- (NSArray *) clickActionsForModifierFlags:(NSUInteger) modifiers
+								andTrigger:(NSInteger) trigger;
 
-- (NSArray *) hoverActionsForModifierFlags:(unsigned int) modifiers;
+- (NSArray *) hoverActionsForModifierFlags:(NSUInteger) modifiers;
 - (void) setTrackingRectTag:(NSTrackingRectTag) tag;
 - (NSTrackingRectTag) trackingRectTag;
 - (NSArray *) actionsGroups;
-- (NSArray *) actionsGroupsForModifiers:(int) mods;
+- (NSArray *) actionsGroupsForModifiers:(NSInteger) mods;
 @end

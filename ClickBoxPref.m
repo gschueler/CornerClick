@@ -28,7 +28,7 @@ extern double CornerClickVersionNumber;
 
 - (void) addActionMenuItems: (NSArray *) list toMenu: (NSMenu *) menu
 {
-    int i;
+    NSInteger i;
     
     BOOL x=YES;
     for(i=0;i<[list count];i++){
@@ -142,7 +142,7 @@ extern double CornerClickVersionNumber;
     
     if(!plist)
     {
-        NSLog(@"%@",error);
+        NSLog(@"Error: %@",error);
         [error release];
         return [[[NSArray alloc] init] autorelease];
     }else if(! [plist isKindOfClass: [NSArray class]]){
@@ -207,7 +207,7 @@ extern double CornerClickVersionNumber;
     BOOL isDir;
     NSMutableArray *marr = [[[NSMutableArray alloc] init] autorelease];
     NSArray *arrs = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-    int i;
+    NSInteger i;
     for(i=0;i<[arrs count];i++){
         NSString *tempDir = [[[[arrs objectAtIndex:i] stringByAppendingString:LOCALIZE([self bundle],@"/Scripts")] retain] autorelease];
         //NSLog(@"looking in dir for scripts: %@",tempDir);
@@ -299,6 +299,14 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
                             context:UI_VIEW_CHANGE_CTX];
     [[self appSettings] addObserver:self 
                          forKeyPath:@"toolTipDelayed"
+                            options:NSKeyValueObservingOptionNew
+                            context:UI_VIEW_CHANGE_CTX];
+    [[self appSettings] addObserver:self 
+                         forKeyPath:@"hoverDelayTime"
+                            options:NSKeyValueObservingOptionNew
+                            context:UI_VIEW_CHANGE_CTX];
+    [[self appSettings] addObserver:self 
+                         forKeyPath:@"tooltipDelayTime"
                             options:NSKeyValueObservingOptionNew
                             context:UI_VIEW_CHANGE_CTX];
     [[self appSettings] addObserver:self 
@@ -400,7 +408,7 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
         [[[NSAttributedString alloc] initWithString:string
                                          attributes:
             [NSDictionary dictionaryWithObjects:
-                [NSArray arrayWithObjects:[NSURL URLWithString:link],[NSColor blueColor],[NSNumber numberWithInt:1],nil]
+                [NSArray arrayWithObjects:[NSURL URLWithString:link],[NSColor blueColor],[NSNumber numberWithInteger:1],nil]
                                         forKeys:
                 [NSArray arrayWithObjects:NSLinkAttributeName,NSForegroundColorAttributeName,NSUnderlineStyleAttributeName,nil]
                 ]] autorelease];
@@ -409,7 +417,7 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
 
 - (void) checkScreens
 {
-    int i;
+    NSInteger i;
     NSArray *s;
 
     if(allScreens !=nil)
@@ -427,13 +435,13 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
     [screenIDButton removeAllItems];
     [screenIDButton addItemWithTitle:LOCALIZE([self bundle],@"Main Screen")];
     if([allScreens count]>1){
-        [screenCountTextField setStringValue:[NSString stringWithFormat:LOCALIZE([self bundle],@"%d screens"), [allScreens count]]];
+        [screenCountTextField setStringValue:[NSString stringWithFormat:LOCALIZE([self bundle],@"%ld screens"), (long)[allScreens count]]];
         [screenCountTextField setHidden:NO];
         [screenIDButton setEnabled:YES];
         [cycleScreensButton setEnabled:YES];
         for(i=1;i<[allScreens count]; i++){
             //NSLog(@"add title for screen %d",(i+1));
-            [screenIDButton addItemWithTitle:[NSString stringWithFormat:LOCALIZE([self bundle],@"Screen #%d"),(i+1)]];
+            [screenIDButton addItemWithTitle:[NSString stringWithFormat:LOCALIZE([self bundle],@"Screen #%ld"),(long)(i+1)]];
         }
         if(chosenScreen >= [allScreens count] || chosenScreen < 0){
             chosenScreen=0;
@@ -457,7 +465,7 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName: @"CornerClickPingAppNotification"
                                                                    object: nil
                                                                  userInfo: [NSDictionary dictionaryWithObjects:
-                                                                            [NSArray arrayWithObjects: [NSNumber numberWithDouble: CornerClickVersionNumber],[NSNumber numberWithInt: CC_APP_VERSION],[NSNumber numberWithInt: CC_APP_MIN_VERSION], [NSNumber numberWithInt: CC_PATCH_VERSION], nil]
+                                                                            [NSArray arrayWithObjects: [NSNumber numberWithDouble: CornerClickVersionNumber],[NSNumber numberWithInteger:CC_APP_VERSION],[NSNumber numberWithInteger:CC_APP_MIN_VERSION], [NSNumber numberWithInteger:CC_PATCH_VERSION], nil]
                                                                                                        forKeys:
                                                                             [NSArray arrayWithObjects: @"CornerClickAppVersionDouble", @"CornerClickAppVersion",@"CornerClickAppMinVersion", @"CornerClickPatchVersion",nil]]
                                                        deliverImmediately: YES];
@@ -468,7 +476,7 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
     NSMutableDictionary *prefs;
     NSDictionary *item;
     NSMutableArray *mprefs;
-    int i;
+    NSInteger i;
     prefs = [[[NSUserDefaults standardUserDefaults] persistentDomainForName:@"loginwindow"] mutableCopy];
     if(prefs!=nil){
         mprefs = [[prefs objectForKey:@"AutoLaunchedApplicationDictionary"] mutableCopy];
@@ -498,7 +506,7 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
         }
     }
 }
-- (void) alertSheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+- (void) alertSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
     switch(returnCode){
         case NSAlertDefaultReturn:
@@ -524,15 +532,15 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
     NSNumber *minnum = [[notice userInfo] objectForKey:@"CornerClickAppMinVersion"];
     NSNumber *patnum = [[notice userInfo] objectForKey:@"CornerClickPatchVersion"];
     NSNumber *numf = [[notice userInfo] objectForKey:@"CornerClickAppVersionDouble"];
-    int maj = [majnum intValue];
-    int min = (nil==minnum?0:[minnum intValue]);
-    int pat = (nil==patnum?0:[patnum intValue]);
-    int vers = maj*1000 + min*100 + pat;
+    NSInteger maj = [majnum integerValue];
+    NSInteger min = (nil==minnum?0:[minnum integerValue]);
+    NSInteger pat = (nil==patnum?0:[patnum integerValue]);
+    NSInteger vers = maj*1000 + min*100 + pat;
     
-    int cpat= (int) ( CC_PATCH_VERSION );
-    int cmin= (int) ( CC_APP_MIN_VERSION );
-    int cmaj =(int)(CC_APP_VERSION);
-    int cvers = cmaj *1000 + cmin*100 + cpat;
+    NSInteger cpat= (NSInteger) ( CC_PATCH_VERSION );
+    NSInteger cmin= (NSInteger) ( CC_APP_MIN_VERSION );
+    NSInteger cmaj =(NSInteger)(CC_APP_VERSION);
+    NSInteger cvers = cmaj *1000 + cmin*100 + cpat;
 
     active=YES;
     if(nil==numf || [numf doubleValue] != CornerClickVersionNumber || vers!=cvers ){
@@ -543,7 +551,7 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
                               LOCALIZE([self bundle],@"OK"),
                               LOCALIZE([self bundle],@"Open Readme File"),
                               nil, [NSApp mainWindow], self, @selector(alertSheetDidEnd:returnCode:contextInfo:), NULL, NULL,
-                              LOCALIZE([self bundle],@"An old version of CornerClick was active (version %d.%d.%d). It will be deactivated and version %d.%d.%d will be activated."),maj,min,pat,cmaj,cmin,cpat);
+                              LOCALIZE([self bundle],@"An old version of CornerClick was active (version %ld.%ld.%ld). It will be deactivated and version %ld.%ld.%ld will be activated."),(long)maj,(long)min,(long)pat,(long)cmaj,(long)cmin,(long)cpat);
                 
         }
 
@@ -703,7 +711,7 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
 
 - (void) refreshWithSettings:(ClickAction *)theAction
 {
-    int flags=0;    //NSLog(@"retain count of settings: %d",[settings retainCount]);
+    NSInteger flags=0;    //NSLog(@"retain count of settings: %d",[settings retainCount]);
     if(theAction!=nil){
         flags = [theAction modifiers];
         
@@ -836,7 +844,7 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
     }
 }
 
-- (void)openSheetDidEnd:(NSOpenPanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+- (void)openSheetDidEnd:(NSOpenPanel *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
     NSString *thefile;
     //NSLog(@"Sheet finished");
@@ -943,7 +951,7 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
        deliverImmediately:YES];
 }
 
-+ (NSString *)ordinalForNumber: (int) which
++ (NSString *)ordinalForNumber: (NSInteger) which
 {
     switch(which){
         case 1: return @"A";
@@ -961,7 +969,7 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
 {
 
     //NSLog(@"Choose action: %d",[sender indexOfSelectedItem]);
-    int oldval = [currentAction type];
+    NSInteger oldval = [currentAction type];
     if(oldval==[sender indexOfSelectedItem]){
         return;
     }
@@ -986,16 +994,16 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
 */
 }
 
-- (void) setSubFrameForActionType: (int) type
+- (void) setSubFrameForActionType: (NSInteger) type
 {
-    float diffh=0,diffy=0;
+    CGFloat diffh=0,diffy=0;
     NSArray *sub = [actionView subviews];
     NSRect oldr = [[NSApp mainWindow] frame];
     NSRect oldt = [myTabView frame];
     //NSLog(@"old window: %@, oldTabView : %@, old actionView : %@",NSStringFromRect(oldr),NSStringFromRect(oldt),NSStringFromRect([actionView frame]));
     diffh-=[actionView frame].size.height;
     diffy+=[actionView frame].size.height;
-    int i;
+    NSInteger i;
     for(i=0;i<[sub count];i++){
         [[sub objectAtIndex:i] retain];
         [[sub objectAtIndex:i] removeFromSuperview];
@@ -1045,7 +1053,7 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
     //[[actionView window] setFrame:oldr display:YES animate:YES];
     //NSLog(@"new window: %@, oldTabView : %@, old actionView : %@", NSStringFromRect(oldr),NSStringFromRect(oldt),NSStringFromRect([actionView frame]));
 }
-- (void)doChooseCorner:(int) corner
+- (void)doChooseCorner:(NSInteger) corner
 {
     //NSLog(@"Choose corner: %d",[sender indexOfSelectedItem]);
     chosenCorner=corner;
@@ -1145,7 +1153,7 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
 }
 
 
-- (void) doChooseScreen: (int) which withPopupWindow: (BOOL) popup
+- (void) doChooseScreen: (NSInteger) which withPopupWindow: (BOOL) popup
 {
     
     if(chosenScreen==0){
@@ -1267,7 +1275,7 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
         if(chosenScreen==0)
                 grayString=LOCALIZE([self bundle],@"Main Screen");
             else
-                grayString=[NSString stringWithFormat: LOCALIZE([self bundle],@"Screen #%d") , chosenScreen+1];
+                grayString=[NSString stringWithFormat: LOCALIZE([self bundle],@"Screen #%ld") , (long)(chosenScreen+1)];
             
 			if(eerepeated>4){
 				grayString=[NSString stringWithString:@"Main Screen Turn On!"];
@@ -1297,7 +1305,7 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
     //nothing to do yet
     //[self notifyAppOfPreferences: [appSettings asDictionary]];
     //[actionTable reloadData];
-	NSLog(@"settings trigger for item to %d ",[triggerChoicePopupButton indexOfSelectedItem]);
+	NSLog(@"settings trigger for item to %ld ",(long)[triggerChoicePopupButton indexOfSelectedItem]);
 	[currentAction setTrigger:[triggerChoicePopupButton indexOfSelectedItem]];
 	
     [self refreshWithSettings:currentAction];
@@ -1305,20 +1313,20 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
     [actionTable reloadData];
 }
 
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
     if(allScreens==nil || appSettings ==nil)
         return 0;
     //NSLog(@"allScreens: %@",allScreens);
     //NSLog(@"appSettings: %@",appSettings);
-    int count= [appSettings countActionsForScreen: [allScreens objectAtIndex:chosenScreen] andCorner:chosenCorner];
+    NSInteger count= [appSettings countActionsForScreen: [allScreens objectAtIndex:chosenScreen] andCorner:chosenCorner];
     //NSLog(@"%d rows in table",count);
     return count;
 }
 
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
-    int type,modifiers, trigger;
+    NSInteger type,modifiers, trigger;
     NSString *theFile;
     ClickAction *theAction;
     theAction = [appSettings actionAtIndex:rowIndex
@@ -1444,9 +1452,9 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
     }
 }
 
-- (void)toggleModifier: (int)modifier toState:(BOOL) used
+- (void)toggleModifier: (NSInteger)modifier toState:(BOOL) used
 {
-    int flags=0;
+    NSInteger flags=0;
     flags = [currentAction modifiers];
     if(used){
         flags = flags|modifier;
@@ -1494,7 +1502,7 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
 - (IBAction)highlightOptionChosen:(id)sender
 {
 	
-	int colorOption = [sender indexOfSelectedItem];
+	NSInteger colorOption = [sender indexOfSelectedItem];
 	if(colorOption == 2){		
 		[highlightColorWell setHidden:NO];
 		if([appSettings highlightColor] != nil)
@@ -1528,7 +1536,7 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
 
 - (IBAction)removeActionButtonClicked:(id)sender
 {
-    int sel=[actionTable selectedRow];
+    NSInteger sel=[actionTable selectedRow];
     //NSLog(@"selection changed to: %d",[actionTable selectedRow]);
     if(sel>=0){
 
@@ -1572,7 +1580,9 @@ static NSString *UI_VIEW_CHANGE_CTX=@"UI_VIEW_CHANGE_CTX";
     [appSettings addAction: newAct forScreen:[allScreens objectAtIndex:chosenScreen] andCorner:chosenCorner];
     [actionTable reloadData];
 
-    [actionTable selectRow:[appSettings countActionsForScreen:[allScreens objectAtIndex:chosenScreen] andCorner:chosenCorner]-1 byExtendingSelection:NO];
+	[actionTable selectRowIndexes:[NSIndexSet indexSetWithIndex:[appSettings countActionsForScreen:[allScreens objectAtIndex:chosenScreen] andCorner:chosenCorner]-1]
+								   byExtendingSelection:NO];
+
     [actionTable scrollRowToVisible:[actionTable selectedRow]];
     //[self refreshWithSettings:newAct];
   

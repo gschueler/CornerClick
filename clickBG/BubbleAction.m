@@ -15,13 +15,13 @@ static NSImage *triImage;
 
 @implementation BubbleAction
 
-- (id) initWithSpacing:(float) space
+- (id) initWithSpacing:(CGFloat) space
 
 {
     return [self initWithSpacing:space
 								   andActions:nil];
 }
-- (id) initWithSpacing:(float) space
+- (id) initWithSpacing:(CGFloat) space
 					 andActions:(NSArray *) theActions
 {
     if(self=[super init]){
@@ -61,7 +61,7 @@ static NSImage *triImage;
 	return [[actions retain] autorelease];
 }
 
-- (void) setSpacingSize: (float) size
+- (void) setSpacingSize: (CGFloat) size
 {
 	spacingSize=size;
 	[self calcPreferredSize];
@@ -72,14 +72,14 @@ static NSImage *triImage;
 }
 - (void) calcPreferredSize
 {
-	int i;
-	float x,y;
-	float mwidth,mheight;
+	NSInteger i;
+	CGFloat x,y;
+	CGFloat mwidth,mheight;
 	NSSize temp;
 	NSSize textSize=NSMakeSize(0,0);
 	mwidth=0;
 	mheight=0;
-	float iconSize = [[CornerClickSettings sharedSettings] iconSize];
+	CGFloat iconSize = [[CornerClickSettings sharedSettings] iconSize];
 	if(actions != nil){
 			
 		for(i=0;i<[actions count];i++){
@@ -115,10 +115,10 @@ static NSImage *triImage;
 
 - (void) drawInRect: (NSRect) rect
 {
-	float tF;
-	int i,ox;
-	float curHeight=rect.size.height;
-	float iconSize = [[CornerClickSettings sharedSettings] iconSize];
+	CGFloat tF;
+	NSInteger i,ox;
+	CGFloat curHeight=rect.size.height;
+	CGFloat iconSize = [[CornerClickSettings sharedSettings] iconSize];
 	for(i=0;i<[actions count];i++){
 		ClickAction *act = (ClickAction *)[actions objectAtIndex:i];
 		tF=0;
@@ -135,8 +135,8 @@ static NSImage *triImage;
 		if(i>0){
 			curHeight-=spacingSize;
 			ox=16;
-            int wide=10;
-            int high=10;
+            NSInteger wide=10;
+            NSInteger high=10;
             //draw a triangle or something
             [[BubbleAction triangleImage] compositeToPoint:NSMakePoint(rect.origin.x+ox/2-wide/2, rect.origin.y+curHeight+tF/2-high/2) 
                                                  operation: NSCompositeSourceOver];
@@ -151,8 +151,8 @@ static NSImage *triImage;
 
 + (void) initialize
 {
-    int wide=10;
-    int high=10;
+    NSInteger wide=10;
+    NSInteger high=10;
     
     if(triImage == nil){
         triImage = [[NSImage alloc] initWithSize:NSMakeSize(wide,high)];
@@ -176,11 +176,11 @@ static NSImage *triImage;
 - (void)drawAction:(NSString*)label withIcon:(NSImage*)icon atPoint:(NSPoint)inside
 {
     NSSize tSize;
-	float iconSize = [[CornerClickSettings sharedSettings] iconSize];
+	CGFloat iconSize = [[CornerClickSettings sharedSettings] iconSize];
 	
-	float xoff=0;
-	float yoff=0;
-    float iyoff=0;
+	CGFloat xoff=0;
+	CGFloat yoff=0;
+    CGFloat iyoff=0;
 	
 	if(label == nil){
 		tSize=NSMakeSize(0,0);

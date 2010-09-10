@@ -23,12 +23,12 @@
 	BubbleActionsList *drawingObject;
 	
 	NSArray *images;
-    float fadeAlpha;
-    float roundingSize;
-    float insetSize;
-    int pointCorner;
+    CGFloat fadeAlpha;
+    CGFloat roundingSize;
+    CGFloat insetSize;
+    NSInteger pointCorner;
     BOOL dirty;
-    int tailLen;
+    NSInteger tailLen;
     BOOL drawHilite;
 	BOOL showModifierTitle;
 	NSRect prefFrame;
@@ -41,12 +41,12 @@
 	andDrawingObject: (BubbleActionsList *)obj
             fadeFrom: (NSColor *)fromCol
 			  fadeTo: (NSColor *) toCol
-		  cornerSize: (float) cornerSize
-         pointCorner: (int) pCorner;
+		  cornerSize: (CGFloat) cornerSize
+         pointCorner: (NSInteger) pCorner;
 
 - (void) setFadeFromColor: (NSColor *)color;
 - (void) setFadeToColor: (NSColor *) color;
-- (void) setPointCorner: (int) pCorner;
+- (void) setPointCorner: (NSInteger) pCorner;
 - (void) setDrawingObject: (BubbleActionsList *) obj;
 - (BubbleActionsList *) drawingObject;
 - (void) drawFadeFrame: (NSRect)rect;
@@ -54,35 +54,35 @@
 - (void) setDrawFont:(NSFont *) font color:(NSColor *) color;
 - (void) setDrawHilite:(BOOL)draw;
 - (BOOL) drawHilite;
-- (float) roundingSize;
-- (void) setInsetSize:(float) size;
-- (float) insetSize;
+- (CGFloat) roundingSize;
+- (void) setInsetSize:(CGFloat) size;
+- (CGFloat) insetSize;
 - (void) recalcSize;
 - (NSRect) preferredFrame;
 - (void) calcPreferredFrame;
 - (void) calcPreferredFrame:(BOOL) recalc;
 - (BubbleActionsList *) bubbleActionsList: (NSArray *)actions 
-                                forCorner: (int) corn
-                                 selected: (int) sel
+                                forCorner: (NSInteger) corn
+                                 selected: (NSInteger) sel
 						andHighlightColor: (NSColor *) theColor;
 - (BubbleAction *) bubbleAction: (NSArray *)actions;
-- (void) newSelectedMod: (int) ndx;
+- (void) newSelectedMod: (NSInteger) ndx;
 
 + (void) addGlass:(NSRect) therect;
-+ (void) addGlass:(NSRect) therect withColor: (NSColor *)thecolor withRounding: (float) rounding;
-+ (void) addGlassBG:(NSRect) therect withColor: (NSColor *)thecolor withRounding: (float) rounding;
-+ (void) addGlassFG:(NSRect) therect withColor: (NSColor *)thecolor withRounding: (float) rounding;
++ (void) addGlass:(NSRect) therect withColor: (NSColor *)thecolor withRounding: (CGFloat) rounding;
++ (void) addGlassBG:(NSRect) therect withColor: (NSColor *)thecolor withRounding: (CGFloat) rounding;
++ (void) addGlassFG:(NSRect) therect withColor: (NSColor *)thecolor withRounding: (CGFloat) rounding;
 + (void) drawGradient: (NSRect) therect fromColor:(NSColor *) from toColor:(NSColor *) tocol
-            direction: (int) dir;
+            direction: (NSInteger) dir;
 
 + (void) drawGradient: (NSRect) therect fromColor:(NSColor *) fromCol toColor:(NSColor *) tocol  fromPoint: (NSPoint) sPoint toPoint: (NSPoint) ePoint;
 
 + (void) drawGradient:(NSRect) therect fromColor: (NSColor *) fromCol toColor:(NSColor *) tocol
             fromPoint:(NSPoint) sPoint toPoint: (NSPoint) ePoint extendBefore:(BOOL)ebefore extendAfter:(BOOL)eafter;
 
-+ (NSBezierPath *) roundedRect: (NSRect)rect rounding: (float) theRounding;
-+ (NSBezierPath *) roundedRect: (NSRect)rect roundingTopLeft: (float) roundTL roundingTopRight: (float) roundTR
-           roundingBottomLeft: (float)roundBL roundingBottomRight: (float) roundBR;
++ (NSBezierPath *) roundedRect: (NSRect)rect rounding: (CGFloat) theRounding;
++ (NSBezierPath *) roundedRect: (NSRect)rect roundingTopLeft: (CGFloat) roundTL roundingTopRight: (CGFloat) roundTR
+           roundingBottomLeft: (CGFloat)roundBL roundingBottomRight: (CGFloat) roundBR;
 + (NSDictionary *) normalTextAttrs;
 + (NSDictionary *) smallTextAttrs;
 
@@ -92,11 +92,11 @@
  * Draw a round rectangle with depth
  */
 + (void) drawRoundedBezel: (NSRect) rect 
-                 rounding:(float) theRounding
-                    depth:(float) depth;
+                 rounding:(CGFloat) theRounding
+                    depth:(CGFloat) depth;
 + (void) drawRoundedBezel: (NSRect) rect 
-                 rounding:(float) theRounding
-                    depth:(float) depth
+                 rounding:(CGFloat) theRounding
+                    depth:(CGFloat) depth
                   bgColor:(NSColor *)bgcol 
               shadowColor:(NSColor *)shadow
                shineColor:(NSColor *)shine;
@@ -105,10 +105,10 @@
     * add depth and shadow to any path
      */
 + (void) addShadow: (NSBezierPath *)path 
-             depth:(float) depth;
+             depth:(CGFloat) depth;
 
 + (void) addShadow: (NSBezierPath *)path 
-             depth:(float) depth
+             depth:(CGFloat) depth
            bgColor:(NSColor *)bgcol 
        shadowColor:(NSColor *)shadow
         shineColor:(NSColor *)shine;

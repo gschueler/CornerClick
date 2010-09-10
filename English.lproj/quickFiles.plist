@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
 	<string>/Applications/System Preferences.app</string>
@@ -39,6 +39,7 @@
 		<string>/System/Library/CoreServices/Finder.app</string>
 		<string>/Applications/Utilities/Activity Monitor.app</string>
 		<string>/Applications/Sherlock.app</string>
+		<string>/Applications/Time Machine.app</string>
 		<string>-</string>
 		<string>/Applications/Utilities/Terminal.app</string>
 		<string>/Applications/Utilities/Console.app</string>
@@ -51,22 +52,30 @@
 		<string>Internet</string>
 		<string>/Applications/Internet Connect.app</string>
 		<string>-</string>
-		<string>/Applications/iChat.app</string>
+		<string>/Applications/Google Chrome.app</string>
 		<string>/Applications/Mail.app</string>
 		<string>/Applications/Safari.app</string>
 		<string>/Applications/FireFox.app</string>
 		<string>/Applications/Camino.app</string>
 		<string>/Applications/Internet Explorer.app</string>
-		<string>/Applications/Fire.app</string>
+		<string>-</string>
+		<string>/Applications/Skype.app</string>
+		<string>/Applications/iChat.app</string>
 		<string>/Applications/Adium.app</string>
-		<string>/Applications/ecto.app</string>
+		<string>/Applications/Yahoo! Messenger.app</string>
 		<string>/Applications/Colloquy.app</string>
+		<string>-</string>
+		<string>/Applications/Tweetie.app</string>
+		<string>/Applications/Twitterrific.app</string>
 	</array>
 	<array>
 		<string>The OmniGroup</string>
 		<string>/Applications/OmniGraffle.app</string>
 		<string>/Applications/OmniGraffle Professional.app</string>
+		<string>/Applications/OmniGraffle Professional 4.app</string>
+		<string>/Applications/OmniGraffle Professional 5.app</string>
 		<string>/Applications/OmniOutliner.app</string>
+		<string>/Applications/OmniOutliner Professional.app</string>
 		<string>/Applications/OmniDictionary.app</string>
 		<string>/Applications/OmniObjectMeter.app</string>
 		<string>/Applications/OmniWeb.app</string>
@@ -89,11 +98,11 @@
 		<string>/Developer/Applications/Performance Tools/Quartz Debug.app</string>
 	</array>
 	<array>
-		<string>Misc</string>
+		<string>Other</string>
+		<string>/Applications/TextWrangler.app</string>
+		<string>/Applications/TextMate.app</string>
 		<string>/Applications/Quicksilver.app</string>
-		<string>/Applications/Konfabulator.app</string>
-		<string>/Applications/FireFix.app</string>
-		<string>/Applications/Utilities/Stuffit Expander.app</string>
+		<string>/Applications/iTerm.app</string>
 	</array>
 </array>
 </plist>

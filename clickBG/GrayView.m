@@ -39,8 +39,8 @@
     return self;
 }
 - (id) initWithFrame: (NSRect) frame andString: (NSString *)msg andImage: (NSImage *) img
-            fadeFrom: (NSColor *)fromCol fadeTo: (NSColor *) toCol cornerSize: (float) cornerSize
-         pointCorner: (int) pCorner
+            fadeFrom: (NSColor *)fromCol fadeTo: (NSColor *) toCol cornerSize: (CGFloat) cornerSize
+         pointCorner: (NSInteger) pCorner
 
 {
     //[self setAlphaValue: 0.5];
@@ -116,14 +116,14 @@
     [self recalcSize];
 }
 
-- (void)drawRoundedRect: (NSRect)rect rounding: (float) theRounding alpha: (float) alpha color: (NSColor *) color
+- (void)drawRoundedRect: (NSRect)rect rounding: (CGFloat) theRounding alpha: (CGFloat) alpha color: (NSColor *) color
 {
     NSBezierPath *fadePath;
-    float ox=rect.origin.x;
-    float oy=rect.origin.y;
-    float wide=ox+rect.size.width;
-    float high=oy+rect.size.height;
-    float rounding=theRounding;
+    CGFloat ox=rect.origin.x;
+    CGFloat oy=rect.origin.y;
+    CGFloat wide=ox+rect.size.width;
+    CGFloat high=oy+rect.size.height;
+    CGFloat rounding=theRounding;
     if(rounding > (rect.size.width/2) || rounding > (rect.size.height/2)){
         rounding = rect.size.height/2;
         if(rounding > rect.size.width/2)
@@ -172,9 +172,9 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-rounding,high-rounding)
     NSImage *tempImg,*tempIn;
     tempIn = [[NSImage alloc] initWithSize: NSMakeSize(rect.size.width,roundingSize+2)];
     [tempIn lockFocus];
-    float ox=0;
-    float wide=rect.size.width;
-    float high=roundingSize+2;
+    CGFloat ox=0;
+    CGFloat wide=rect.size.width;
+    CGFloat high=roundingSize+2;
     
     fadePath = [[NSBezierPath bezierPath] retain];
     [fadePath moveToPoint: NSMakePoint(roundingSize,high)];
@@ -218,11 +218,11 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-rounding,high-rounding)
 {
     NSBezierPath *fadePath;
     NSImage *tempImg;
-    float ox=rect.origin.x;
-    float oy=rect.origin.y;
-    float taily=oy;
-    float wide=ox+rect.size.width;
-    float high;
+    CGFloat ox=rect.origin.x;
+    CGFloat oy=rect.origin.y;
+    CGFloat taily=oy;
+    CGFloat wide=ox+rect.size.width;
+    CGFloat high;
     if(pointCorner==2 || pointCorner==3){
         oy+=tailLen;
         high = NSMaxY(rect);
@@ -405,9 +405,9 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 {
     NSSize textSize;
 	NSSize temp;
-	int i;
-	float x,y;
-	float mwidth,mheight;
+	NSInteger i;
+	CGFloat x,y;
+	CGFloat mwidth,mheight;
 	mwidth=0;
 	mheight=0;
 	if(actions != nil){
@@ -432,7 +432,7 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 			}
 			mheight+=y;
 			if(i>0)
-				mheight+=(int)ceil(roundingSize - insetSize);
+				mheight+=(NSInteger)ceil(roundingSize - insetSize);
 		}
 		textSize.width=mwidth;
 		textSize.height=mheight;
@@ -453,12 +453,12 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 		}
 	}
     textSize.height+=(pointCorner>=0 ? tailLen : 0 );
-    return NSMakeRect([self frame].origin.x,[self frame].origin.y,(int)ceil(((roundingSize - insetSize)*2) + textSize.width),(int)ceil(((roundingSize - insetSize)*2)+textSize.height));
+    return NSMakeRect([self frame].origin.x,[self frame].origin.y,(NSInteger)ceil(((roundingSize - insetSize)*2) + textSize.width),(NSInteger)ceil(((roundingSize - insetSize)*2)+textSize.height));
 
 }
 
 - (void) drawGradient2: (NSRect) therect fromColor:(NSColor *) fromCol toColor:(NSColor *) toCol
-            direction: (int) dir
+            direction: (NSInteger) dir
 {
     //CGContext *ctx;
 
@@ -467,18 +467,18 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 }
 
 - (void) drawGradient: (NSRect) therect fromColor:(NSColor *) fromCol toColor:(NSColor *) toCol
-            direction: (int) dir
+            direction: (NSInteger) dir
 {
-    int i=0;
+    NSInteger i=0;
     NSColor *tcol,*from,*to;
     from = [fromCol colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
     to = [toCol colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
-    float dR = ([from redComponent] - [to redComponent])/therect.size.height;
-    float dG = ([from greenComponent] - [to greenComponent])/therect.size.height;
-    float dB = ([from blueComponent] - [to blueComponent])/therect.size.height;
-    float dA = ([from alphaComponent] - [to alphaComponent])/therect.size.height;
+    CGFloat dR = ([from redComponent] - [to redComponent])/therect.size.height;
+    CGFloat dG = ([from greenComponent] - [to greenComponent])/therect.size.height;
+    CGFloat dB = ([from blueComponent] - [to blueComponent])/therect.size.height;
+    CGFloat dA = ([from alphaComponent] - [to alphaComponent])/therect.size.height;
     BOOL up = (dir > 0 ? YES : NO );
-    int change;
+    NSInteger change;
     //NSLog(@"dir is %d, dR %f, dG %f, dB %f, dA %f",dir,dR,dG,dB,dA);
 
 
@@ -506,8 +506,8 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
     NSSize tSize;
 	
 	
-	float xoff=0;
-	float yoff=0;
+	CGFloat xoff=0;
+	CGFloat yoff=0;
 	
 	if(label == nil){
 		tSize=NSMakeSize(0,0);
@@ -559,11 +559,11 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 {
     NSRect rect = [self frame];
 	NSPoint inside;
-	float intHeight = rect.size.height-(int)ceil((roundingSize-insetSize)) - (pointCorner==2||pointCorner==3 ? 0:tailLen) ;
-	float curHeight=intHeight;
+	CGFloat intHeight = rect.size.height-(NSInteger)ceil((roundingSize-insetSize)) - (pointCorner==2||pointCorner==3 ? 0:tailLen) ;
+	CGFloat curHeight=intHeight;
 	
-	float tF;
-	int i;
+	CGFloat tF;
+	NSInteger i;
 	
     if(dirty){
         [textArea setSize: NSMakeSize(rect.size.width,rect.size.height)];
@@ -635,8 +635,8 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
         //draw the bubble background for the content
         [self drawFadeFrame: NSMakeRect(0,0,rect.size.width,rect.size.height)];
 
-        float xoff=0;
-        float yoff=0;
+        CGFloat xoff=0;
+        CGFloat yoff=0;
         
         if(myString == nil){
             tSize=NSMakeSize(0,0);
@@ -723,7 +723,7 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 	[self setNeedsDisplay:YES];
 	dirty=YES;
 }
-- (void) setPointCorner: (int) pCorner
+- (void) setPointCorner: (NSInteger) pCorner
 {
     pointCorner=pCorner;
 }
@@ -746,14 +746,14 @@ appendBezierPathWithArcWithCenter:NSMakePoint(wide-roundingSize,high-roundingSiz
 	return showModifierTitle;
 }
 
-- (void) setInsetSize:(float) size
+- (void) setInsetSize:(CGFloat) size
 {
     insetSize=size;
     [self recalcSize];
     //[self display];
 	[self setNeedsDisplay:YES];
 }
-- (float) insetSize
+- (CGFloat) insetSize
 {
     return insetSize;
 }

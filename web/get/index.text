@@ -5,23 +5,12 @@
 Downloading
 ==========
 
-<div id="versionWarning" style="margin: 10px; color: #888; display: none;">
-<p>
-Note: The link you followed requested an older version of CornerClick (<span id="oldvers"></span>).  The latest version is linked below.
-
-</p>
-
-</div>
-
 Get
 ---
 
 <p id="dlbox">
 <a id="dllink" href="http://greg.vario.us/cornerclick/download/"><img src="/cornerclick/img/icon32.png"/> CornerClick-</a>
 </p>
-
-<p id="soon" style="display: none; color:blue;"> (Download will begin in 5 seconds) </p>
-
 
 Note: For previous versions, see <a href="/cornerclick/download.text#PreviousVersions">Previous Versions</a>.
 

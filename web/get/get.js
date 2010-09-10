@@ -17,10 +17,5 @@ new Insertion.Bottom('dlbox',kbs+" KB");
 if(null!=note){
 new Insertion.Bottom('dlbox',note);
 }
-if(foundVers!=null && vers!=foundVers){
-	new Insertion.Bottom('oldvers',foundVers);
-	Element.show('versionWarning');
-}else{
-	Element.toggle('soon');
-	setTimeout(function(){Element.hide('soon');document.location=geturl;}, 5000);
-}
+//Element.toggle('soon');
+//setTimeout(function(){Element.hide('soon');document.location=geturl;}, 100);

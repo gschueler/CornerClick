@@ -19,14 +19,14 @@
 
 @implementation BubbleActionsList
 
-- (id) initWithSpacing: (float) spacing
+- (id) initWithSpacing: (CGFloat) spacing
 			   andActions: (NSArray *) actions
-			 itemSelected: (int) theSelected
+			 itemSelected: (NSInteger) theSelected
 		andHighlightColor:(NSColor *) theColor
-                forCorner:(int) corner
+                forCorner:(NSInteger) corner
 {
 	if(DEBUG_ON)NSLog(@"init bubbleActionsList, actions class: %@",[actions class]);
-	int i;
+	NSInteger i;
     if(self=[super init]){
         theCorner=corner;
 		spacingSize=spacing;
@@ -61,7 +61,7 @@
 	return self;
 }
 
-- (int) corner
+- (NSInteger) corner
 {
     return theCorner;
 }
@@ -80,7 +80,7 @@
 	return detSize;
 }
 
-- (void) setSpacingSize: (float) size
+- (void) setSpacingSize: (CGFloat) size
 {
 	spacingSize=size;
 	[self setSpacings];
@@ -90,7 +90,7 @@
 
 - (void) setSpacings
 {
-	int i;
+	NSInteger i;
 	for(i=0;i<[bubbleActions count];i++){
 		[(BubbleAction *)[bubbleActions objectAtIndex:i] setSpacingSize: spacingSize];
 	}
@@ -111,7 +111,7 @@
 	}
 }
 
-- (int) selectedModifiers
+- (NSInteger) selectedModifiers
 {
 	if(selected < 0)
 		return -1;
@@ -125,7 +125,7 @@
 		return -1;
 	}
 }
-- (int) selectedTrigger
+- (NSInteger) selectedTrigger
 {
 	if(selected < 0)
 		return -1;
@@ -154,15 +154,15 @@
 		return NO;
 	}
 }
-- (int) selectedItem
+- (NSInteger) selectedItem
 {
 	return selected;
 }
 
-- (NSPoint) originForBubbleAction:(int) ndx
+- (NSPoint) originForBubbleAction:(NSInteger) ndx
 {
-	float sum=0;
-	int i;
+	CGFloat sum=0;
+	NSInteger i;
 	for(i=0;i<[bubbleActions count];i++){
 		NSSize s = [(BubbleAction *)[bubbleActions objectAtIndex:i] preferredSize];
 		sum+=s.height;
@@ -170,11 +170,11 @@
 	return NSMakePoint(0,detSize.height-sum);
 }
 
-- (NSRect) drawingRectForAction:(int)ndx isSelected:(BOOL)isSelected inRect:(NSRect) rect
+- (NSRect) drawingRectForAction:(NSInteger)ndx isSelected:(BOOL)isSelected inRect:(NSRect) rect
 {
-	int i,ox,oy;
-	float ht=spacingSize/2;
-	float cur = detSize.height;
+	NSInteger i,ox,oy;
+	CGFloat ht=spacingSize/2;
+	CGFloat cur = detSize.height;
     for(i=0; i< [bubbleActions count];i++){
         ox=0;
         oy=0;
@@ -201,7 +201,7 @@
 }
 - (void) calcPreferredSize:(BOOL) recalc
 {
-	int i;
+	NSInteger i;
 	NSSize sz = NSMakeSize(0,0);
     
     if(showAllModifiers && [bubbleActions count]>1){
@@ -239,7 +239,7 @@
 	detSize=sz;
 }
 
-- (void) updateSelected: (int) selectedMod
+- (void) updateSelected: (NSInteger) selectedMod
 {
     lastSelected=selected;
     selected=selectedMod;
@@ -247,10 +247,10 @@
 
 - (void) drawInRect:(NSRect) rect
 {
-	int i,ox,oy;
-	float ht=spacingSize/2;
-	float cur = rect.size.height;
-    float curx;
+	NSInteger i,ox,oy;
+	CGFloat ht=spacingSize/2;
+	CGFloat cur = rect.size.height;
+    CGFloat curx;
 	if(showAllModifiers && [bubbleActions count] > 1){
         cur = 0;
         curx = 0;
@@ -261,19 +261,19 @@
             BubbleAction *ba = (BubbleAction *)[sortedActs objectAtIndex:i];
             NSSize sz = [ba preferredSize];
             if(sz.height < rect.size.height){
-                oy = (int)ceil((rect.size.height/2) - (sz.height/2));
+                oy = (NSInteger)ceil((rect.size.height/2) - (sz.height/2));
             }
             if(i>0){
                 curx+=spacingSize;
                 NSBezierPath *path = [[[NSBezierPath alloc] init] autorelease];
-                float x,y,w,h, ps, mw;
+                CGFloat x,y,w,h, ps, mw;
                 w = ht;
                 x = curx + rect.origin.x;
                 y = rect.origin.y + cur - ht;
                 h = rect.size.height + spacingSize;
                 ps = ht;
                 mw=ht;
-                float sls=3;
+                CGFloat sls=3;
 
                 y=rect.origin.y - spacingSize + 1;
                 h=rect.size.height + 2*spacingSize - 2;
@@ -304,7 +304,7 @@
             [ba drawInRect:fr];
             NSArray *actions = [ba actions];
             if([actions count]>0){
-                int style=-1;
+                NSInteger style=-1;
                 if(style==0){
                     
                 
@@ -320,18 +320,18 @@
                     }
                     if(draw != nil){
                         NSSize isz = [draw size];
-                        float rat,newh,neww;
+                        CGFloat rat,newh,neww;
                         newh=10;
                         rat = isz.width/isz.height;
                         neww = rat * newh;
-                        float nx=rect.origin.x + curx + ox;
+                        CGFloat nx=rect.origin.x + curx + ox;
                         if([click trigger]==0){
                             nx+=5;
                         }else{
                             nx+=sz.width - neww - 5;
                         }
                         
-                        float ny=rect.origin.y + cur + rect.size.height + ht/2;
+                        CGFloat ny=rect.origin.y + cur + rect.size.height + ht/2;
                         [draw setScalesWhenResized:YES];
                         [draw setSize:NSMakeSize(neww, newh)];
                         [[NSGraphicsContext currentContext] setShouldAntialias:YES];
@@ -405,7 +405,7 @@
             curx+=sz.width;
         }
     }else{
-            
+
         for(i=0; i< [bubbleActions count];i++){
             ox=0;
             oy=0;
@@ -426,11 +426,10 @@
             }
             NSRect fr = NSMakeRect(rect.origin.x + ox,rect.origin.y+cur + oy,sz.width,sz.height);
             if(NSIntersectsRect(rect,fr)){
-                if(i==selected || lastSelected<0 || lastSelected>=0 && i==lastSelected){
+//                if(i==selected || lastSelected<0 || lastSelected>=0 && i==lastSelected){
                     [ba drawInRect:fr];
                     //DEBUG(@"bub actions list: AM DRAWING item %d",i);
-                    
-                }
+//				}
             }
             
             if(i==selected ){
@@ -440,14 +439,15 @@
             }
             
         }
+
     }
 }
 
 - (void) drawSelectedOverlayInFrame:(NSRect) rect isLast: (BOOL) last
 {
     
-    int round=10;
-    int line=3;
+    NSInteger round=10;
+    NSInteger line=3;
     NSBezierPath *nbp;
     if(last){
         nbp= [BubbleView roundedRect:rect
@@ -472,9 +472,9 @@
 
 - (void) drawSelectedInFrame:(NSRect) rect isLast: (BOOL) last
 {
-    int style=1;
-    int round=10;
-    int line=3;
+    NSInteger style=3;
+    NSInteger round=10;
+    NSInteger line=3;
 
     if(highlightColor == [NSColor blackColor]){
         line=1;
@@ -593,9 +593,43 @@
         [nbp setLineWidth: 1];
         //[nbp stroke];
         
-    }else{
+    }else if(style==3){
         
-        NSBezierPath *nbp = [BubbleView roundedRect:rect rounding:round];
+        NSBezierPath *nbp;
+        if(last){
+            nbp= [BubbleView roundedRect:rect
+                         roundingTopLeft:round - line
+                        roundingTopRight:round - line
+                      roundingBottomLeft:22 - line
+                     roundingBottomRight:22 - line
+                  ];
+        }else{
+            nbp= [BubbleView roundedRect:rect rounding:round];
+        }
+        
+        [[[NSColor whiteColor] colorWithAlphaComponent:0.6] set];
+        [nbp fill];
+        [[highlightColor colorWithAlphaComponent:0.7] set];
+        [nbp fill];
+        [[NSGraphicsContext currentContext] saveGraphicsState];
+        [nbp addClip];
+        [BubbleView addGlass:rect
+                   withColor:[NSColor whiteColor]
+                withRounding: round ];
+        [[NSGraphicsContext currentContext] restoreGraphicsState];
+    }else{
+        NSBezierPath *nbp;
+        if(last){
+            nbp= [BubbleView roundedRect:rect
+                         roundingTopLeft:round - line
+                        roundingTopRight:round - line 
+                      roundingBottomLeft:22  - line
+                     roundingBottomRight:22  - line
+                  ];
+        }else{
+            nbp = [BubbleView roundedRect:rect rounding:round];            
+        }
+
         [[ highlightColor colorWithAlphaComponent:0.4] set];
         
         NSBezierPath *nt = [BubbleView roundedRect:NSInsetRect(rect, -1.5,-1.5) rounding:round];

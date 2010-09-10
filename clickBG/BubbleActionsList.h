@@ -13,30 +13,30 @@
 @interface BubbleActionsList : NSObject 
 {
 	NSMutableArray *bubbleActions;
-	float spacingSize;
+	CGFloat spacingSize;
 	NSSize detSize;
 	NSColor *highlightColor;
-	int selected;
-	int lastSelected;
-	int steps;
-	int curStep;
-    int theCorner;
+	NSInteger selected;
+	NSInteger lastSelected;
+	NSInteger steps;
+	NSInteger curStep;
+    NSInteger theCorner;
     BOOL showAllModifiers;
 }
-- (id) initWithSpacing: (float) spacing
+- (id) initWithSpacing: (CGFloat) spacing
 			   andActions: (NSArray *) actions
-			 itemSelected: (int) theSelected
+			 itemSelected: (NSInteger) theSelected
 		andHighlightColor:(NSColor *) theColor
-                forCorner:(int) corner;
-- (int) selectedItem;
-- (int) selectedModifiers;
-- (int) selectedTrigger;
+                forCorner:(NSInteger) corner;
+- (NSInteger) selectedItem;
+- (NSInteger) selectedModifiers;
+- (NSInteger) selectedTrigger;
 - (BOOL) selectedHoverTriggerDelayed;
 - (ClickAction *) selectedClickAction;
-- (void) updateSelected: (int) selectedMod; 
-- (NSRect) drawingRectForAction: (int)act isSelected: (BOOL) isSelected inRect:(NSRect) rect;
+- (void) updateSelected: (NSInteger) selectedMod; 
+- (NSRect) drawingRectForAction: (NSInteger)act isSelected: (BOOL) isSelected inRect:(NSRect) rect;
 
-- (void) setSpacingSize: (float) size;
+- (void) setSpacingSize: (CGFloat) size;
 - (void) drawInRect:(NSRect) rect;
 
 - (void) calcPreferredSize;
@@ -45,7 +45,7 @@
 - (BOOL) showAllModifiers;
 - (void) setShowAllModifiers: (BOOL)show;
 
-- (int) corner;
+- (NSInteger) corner;
 
 
 @end

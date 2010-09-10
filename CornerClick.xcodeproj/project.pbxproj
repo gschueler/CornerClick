@@ -97,11 +97,6 @@
 		370FC31C07E1FDF000D12904 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = zh_TW; path = zh_TW.lproj/Readme.rtf; sourceTree = "<group>"; };
 		370FC31E07E1FE0900D12904 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = zh_TW; path = zh_TW.lproj/Information.rtf; sourceTree = "<group>"; };
 		371229E305714E0A00A46218 /* French */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/Localizable.strings; sourceTree = "<group>"; };
-		371AAD9604DC3E6C000001CF /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = TestVis/English.lproj/TestVis.nib; sourceTree = "<group>"; };
-		371AAD9804DC3E9E000001CF /* VisControl.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = VisControl.h; path = TestVis/VisControl.h; sourceTree = "<group>"; };
-		371AAD9904DC3E9E000001CF /* VisControl.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = VisControl.m; path = TestVis/VisControl.m; sourceTree = "<group>"; };
-		371AADA204DC3F45000001CF /* TestVis_Prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestVis_Prefix.h; path = TestVis/TestVis_Prefix.h; sourceTree = "<group>"; };
-		371AADA504DC426C000001CF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = TestVis/main.m; sourceTree = "<group>"; };
 		371E964D04E1C4C1000001CF /* common_prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common_prefix.h; sourceTree = SOURCE_ROOT; };
 		371E965004E1CAA9000001CF /* CornerClickSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CornerClickSupport.h; sourceTree = "<group>"; };
 		371E965104E1CAA9000001CF /* CornerClickSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CornerClickSupport.m; sourceTree = "<group>"; };
@@ -195,7 +190,6 @@
 		089C166AFE841209C02AAC07 /* ClickBox */ = {
 			isa = PBXGroup;
 			children = (
-				371AAD7F04DC3CA2000001CF /* testVis */,
 				08FB77AFFE84173DC02AAC07 /* Classes */,
 				32DBCFA10370C40200C91783 /* Other Sources */,
 				089C167CFE841241C02AAC07 /* Resources */,
@@ -289,26 +283,6 @@
 				32DBCFA20370C41700C91783 /* ClickBox_Prefix.h */,
 			);
 			name = "Other Sources";
-			sourceTree = "<group>";
-		};
-		371AAD7F04DC3CA2000001CF /* testVis */ = {
-			isa = PBXGroup;
-			children = (
-				371AADA204DC3F45000001CF /* TestVis_Prefix.h */,
-				371AAD9804DC3E9E000001CF /* VisControl.h */,
-				371AAD9904DC3E9E000001CF /* VisControl.m */,
-				371AAD9304DC3D3F000001CF /* Resources */,
-				371AADA504DC426C000001CF /* main.m */,
-			);
-			name = testVis;
-			sourceTree = "<group>";
-		};
-		371AAD9304DC3D3F000001CF /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				371AAD9504DC3E6C000001CF /* TestVis.nib */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		37C3CB3104CDAD30000001CF /* clickBG */ = {
@@ -578,14 +552,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		371AAD9504DC3E6C000001CF /* TestVis.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				371AAD9604DC3E6C000001CF /* English */,
-			);
-			name = TestVis.nib;
-			sourceTree = "<group>";
-		};
 		3744AB340694B29F00D94D1E /* Information.rtf */ = {
 			isa = PBXVariantGroup;
 			children = (

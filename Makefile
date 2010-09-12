@@ -39,16 +39,6 @@ dmg:
 publish:
 	scp "${EXPORT}/CornerClick-${VERS}.tar.bz2" mekka-tech.com:www/greg.vario.us/cornerclick/
 
-pubweb:
-	@- rm -rf web-export
-	svn export web web-export
-	scp -r web-export/VERSION web-export/VERSION.js web-export/about.text web-export/menu.html web-export/index.text web-export/download.text web-export/template web-export/get mekka-tech.com:www/greg.vario.us/cornerclick/
-
-pubtest:
-	@- rm -rf web-export
-	svn export web web-export
-	scp -r web-export/VERSION web-export/VERSION.js web-export/about.text web-export/menu.html web-export/index.text web-export/download.text web-export/template web-export/get mekka-tech.com:www/greg.vario.us/ccx/
-
 bundle:
 	./execwindow.sh "CornerClick ${VERS}"
 

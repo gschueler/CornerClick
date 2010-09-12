@@ -1,0 +1,5 @@
+This directory contains some perl scripts used for generating and manipulating .strings files to produce usable input for localization of nibs/xibs.  
+
+Most of the scripts are not part of the build script but are invoked manually to create usable .strings files.
+
+Only transstrings.pl is currently used by build process.

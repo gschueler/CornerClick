@@ -5,6 +5,7 @@
 usage: transstrings.pl a.strings b.strings out.strings [missing.strings]
 takes the origin strings list of a (A:X) and creates out(A:Z) using the any translated versions found in b (X:Z), and  including any untranslated strings from a. Optionally writes the missing translations into missing.strings
 
+used in ../Makefile to generated translation strings files to apply to English.xib into localized xibs.
 =cut
 
 

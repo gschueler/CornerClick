@@ -35,7 +35,7 @@ version 0.9, *4/4/2010*:
 * Fixed a tiny bug with scrolling behavior
 * Added setting for duration of the delay for Hover actions
 
-See the [Version History](about.text#VersionHistory)...
+See the Version History...
 
 ### Installation:
 

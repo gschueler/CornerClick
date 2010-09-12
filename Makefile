@@ -36,9 +36,6 @@ dmg:
 	${CP} -r build/Deployment/CornerClick.prefPane  ${DMGSRC}/CornerClick.prefPane
 	hdiutil create "build/CornerClick-rw.dmg" -srcdir ${DMGSRC} -ov -attach -format UDRW -volname "CornerClick ${VERS}"
 
-publish:
-	scp "${EXPORT}/CornerClick-${VERS}.tar.bz2" mekka-tech.com:www/greg.vario.us/cornerclick/
-
 bundle:
 	./execwindow.sh "CornerClick ${VERS}"
 

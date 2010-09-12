@@ -4,7 +4,7 @@ About CornerClick 0.9
  
 # NEWS
 
-CornerClick is now open source under the Apache 2 License.
+CornerClick is now open source under the [Apache 2 License](http://www.apache.org/licenses/LICENSE-2.0).
 
 ## What is it?
 

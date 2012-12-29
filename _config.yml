@@ -1,0 +1,6 @@
+safe: true
+#source: <your pages repo>
+#destination: _site
+#lsi: false
+#pygments: true
+permalink: /notes/:title.html

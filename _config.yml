@@ -3,4 +3,6 @@ safe: true
 #destination: _site
 #lsi: false
 #pygments: true
+url: https://gschueler.github.com
+baseurl: /CornerClick
 permalink: /notes/:title.html

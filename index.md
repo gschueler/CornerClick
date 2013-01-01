@@ -1,6 +1,7 @@
 ---
 layout: homepage
 title: CornerClick
+test: test
 ---
 
 CornerClick

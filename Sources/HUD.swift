@@ -20,6 +20,8 @@ final class HUDController {
     private lazy var panel: NSPanel = makePanel()
     private lazy var host = NSHostingView(rootView: HUDView(model: model))
     private var hideWork: DispatchWorkItem?
+    /// Incremented by show(); a fade-out only orders the panel out if nothing re-showed it meanwhile.
+    private var generation = 0
 
     var isVisible: Bool { panel.isVisible && panel.alphaValue > 0.01 }
 
@@ -40,6 +42,7 @@ final class HUDController {
     func show(groups: [ActionGroup], currentMods: Modifiers, selected: Int?, corner: Corner,
               screen: NSScreen, hotArea: CGFloat, size: HUDSize) {
         hideWork?.cancel()
+        generation += 1
         model.groups = groups
         model.currentMods = currentMods
         model.selected = selected
@@ -59,11 +62,17 @@ final class HUDController {
             : max(f.minY + hotArea + gap, v.minY + gap)
         panel.setFrame(NSRect(x: x, y: y, width: fit.width, height: fit.height), display: true)
 
-        if !panel.isVisible || panel.alphaValue < 1 {
-            if !panel.isVisible { panel.alphaValue = 0 }
+        if !panel.isVisible {
+            panel.alphaValue = 0
             panel.orderFrontRegardless()
             NSAnimationContext.runAnimationGroup { ctx in
                 ctx.duration = 0.12
+                panel.animator().alphaValue = 1
+            }
+        } else {
+            // Interrupt any fade-out in progress.
+            NSAnimationContext.runAnimationGroup { ctx in
+                ctx.duration = 0.05
                 panel.animator().alphaValue = 1
             }
         }
@@ -76,14 +85,15 @@ final class HUDController {
 
     func hide(after delay: TimeInterval = 0) {
         hideWork?.cancel()
+        let gen = generation
         let work = DispatchWorkItem { [weak self] in
-            guard let self, self.panel.isVisible else { return }
+            guard let self, self.panel.isVisible, self.generation == gen else { return }
             NSAnimationContext.runAnimationGroup({ ctx in
                 ctx.duration = 0.18
                 self.panel.animator().alphaValue = 0
             }, completionHandler: {
-                Task { @MainActor in
-                    if self.panel.alphaValue < 0.01 { self.panel.orderOut(nil) }
+                MainActor.assumeIsolated {
+                    if self.generation == gen { self.panel.orderOut(nil) }
                 }
             })
         }

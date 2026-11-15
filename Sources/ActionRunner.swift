@@ -28,7 +28,7 @@ enum ActionRunner {
 
         case .openURL:
             var s = a.target.trimmingCharacters(in: .whitespaces)
-            if !s.contains("://") && !s.hasPrefix("mailto:") { s = "https://" + s }
+            if URL(string: s)?.scheme == nil { s = "https://" + s }
             if let url = URL(string: s) { NSWorkspace.shared.open(url) }
 
         case .hideFrontApp:
@@ -69,7 +69,12 @@ enum ActionRunner {
             launch("/usr/bin/shortcuts", ["run", a.target])
 
         case .runAppleScript:
-            AppleScriptCache.run(path: (a.target as NSString).expandingTildeInPath)
+            // Out of process so a slow script (or its first-run permission prompt) never blocks corners.
+            let path = (a.target as NSString).expandingTildeInPath
+            guard FileManager.default.fileExists(atPath: path) else {
+                report("AppleScript not found", path); return
+            }
+            launch("/usr/bin/osascript", [path])
         }
     }
 
@@ -131,48 +136,5 @@ enum ActionRunner {
         NSLog("CornerClick: %@ — %@", title, detail)
         NSSound.beep()
         ErrorBanner.show(title: title, detail: detail)
-    }
-}
-
-// MARK: - AppleScript
-
-@MainActor
-enum AppleScriptCache {
-    private static var cache: [String: (NSAppleScript, Date)] = [:]
-
-    static func run(path: String) {
-        let url = URL(fileURLWithPath: path)
-        guard let mod = (try? FileManager.default.attributesOfItem(atPath: path))?[.modificationDate] as? Date else {
-            ActionRunner.report("AppleScript not found", path)
-            return
-        }
-        var script: NSAppleScript
-        if let (s, d) = cache[path], d == mod {
-            script = s
-        } else {
-            var err: NSDictionary?
-            guard let s = NSAppleScript(contentsOf: url, error: &err) else {
-                ActionRunner.report("Couldn’t load \(url.lastPathComponent)", describe(err))
-                return
-            }
-            if !s.isCompiled && !s.compileAndReturnError(&err) {
-                ActionRunner.report("Couldn’t compile \(url.lastPathComponent)", describe(err))
-                return
-            }
-            script = s
-            cache[path] = (s, mod)
-        }
-        var err: NSDictionary?
-        _ = script.executeAndReturnError(&err)
-        if let err {
-            ActionRunner.report("\(url.lastPathComponent) failed", describe(err))
-        }
-    }
-
-    private static func describe(_ e: NSDictionary?) -> String {
-        guard let e else { return "Unknown error" }
-        let msg = e[NSAppleScript.errorMessage] as? String ?? "Unknown error"
-        let num = e[NSAppleScript.errorNumber].map { " (\($0))" } ?? ""
-        return msg + num
     }
 }

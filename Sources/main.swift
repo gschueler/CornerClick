@@ -20,8 +20,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         if firstLaunch {
             if store.legacyPreferencesAvailable { store.importLegacyFromDefaults() }
             store.save()
-            // CornerClick is meant to always be running; register as a login item once.
-            try? SMAppService.mainApp.register()
+            // CornerClick is meant to always be running. Offer Open at Login on by default, but only
+            // for an installed copy (never a build folder); it can be turned off in General.
+            if Bundle.main.bundlePath.hasPrefix("/Applications/") {
+                try? SMAppService.mainApp.register()
+            }
         }
 
         CornerEngine.shared.start()
@@ -30,7 +33,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
             .sink { [weak self] show in self?.updateStatusItem(show) }
             .store(in: &cancellables)
         store.$settings.map(\.enabled).removeDuplicates()
-            .sink { [weak self] _ in self?.refreshStatusIcon() }
+            .sink { [weak self] on in self?.refreshStatusIcon(enabled: on) }
             .store(in: &cancellables)
 
         if SelfTest.outDir != nil {
@@ -66,15 +69,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         }
     }
 
-    private func refreshStatusIcon() {
+    private func refreshStatusIcon(enabled: Bool? = nil) {
         guard let button = statusItem?.button else { return }
-        button.image = StatusIcon.image(enabled: store.settings.enabled)
-        button.toolTip = store.settings.enabled ? "CornerClick" : "CornerClick (Off)"
+        let on = enabled ?? store.settings.enabled
+        button.image = StatusIcon.image(enabled: on)
+        button.toolTip = on ? "CornerClick" : "CornerClick (Off)"
     }
 
     func menuNeedsUpdate(_ menu: NSMenu) {
         menu.removeAllItems()
-        let toggle = NSMenuItem(title: "CornerClick", action: #selector(toggleEnabled(_:)), keyEquivalent: "")
+        let toggle = NSMenuItem(title: "Enable CornerClick", action: #selector(toggleEnabled(_:)), keyEquivalent: "")
         toggle.state = store.settings.enabled ? .on : .off
         toggle.target = self
         menu.addItem(toggle)
@@ -129,13 +133,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         add("About", "info.circle", AboutView())
 
         let window = NSWindow(contentViewController: tabs)
-        window.styleMask = [.titled, .closable, .miniaturizable]
+        window.styleMask = [.titled, .closable]
         window.toolbarStyle = .preference
         window.title = "Corners"
         window.isReleasedWhenClosed = false
         window.delegate = self
+        if !window.setFrameUsingName("CornerClickSettings") { window.center() }
         window.setFrameAutosaveName("CornerClickSettings")
-        window.center()
         settingsWindow = window
         tabController = tabs
     }

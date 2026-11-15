@@ -27,7 +27,7 @@ struct ActionGroup: Identifiable, Equatable {
             map[a.groupKey, default: []].append(a)
         }
         return order.map { ActionGroup(actions: map[$0]!) }
-            .sorted { ($0.trigger.rawValue, $0.modifiers.rawValue) < ($1.trigger.rawValue, $1.modifiers.rawValue) }
+            .sorted { ($0.trigger.rawValue, $0.modifiers.rawValue, $0.delayed ? 1 : 0) < ($1.trigger.rawValue, $1.modifiers.rawValue, $1.delayed ? 1 : 0) }
     }
 }
 
@@ -54,12 +54,17 @@ final class CornerEngine {
     var panelsForTesting: [CornerPanel] { panels.values.sorted { $0.corner.rawValue < $1.corner.rawValue } }
 
     func start() {
+        // dropFirst: the explicit rebuild() below covers launch. The value is passed through
+        // because @Published emits in willSet, before `settings` holds the new value.
         SettingsStore.shared.$settings
+            .dropFirst()
             .removeDuplicates()
             .debounce(for: .milliseconds(50), scheduler: RunLoop.main)
-            .sink { [weak self] _ in self?.rebuild() }
+            .sink { [weak self] s in self?.rebuild(with: s) }
             .store(in: &cancellables)
         NotificationCenter.default.publisher(for: NSApplication.didChangeScreenParametersNotification)
+            .merge(with: NSWorkspace.shared.notificationCenter.publisher(for: NSWorkspace.didWakeNotification),
+                   NSWorkspace.shared.notificationCenter.publisher(for: NSWorkspace.screensDidWakeNotification))
             .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
             .sink { [weak self] _ in self?.rebuild() }
             .store(in: &cancellables)
@@ -70,14 +75,15 @@ final class CornerEngine {
     }
 
     /// Re-creates or updates corner panels to match settings and connected displays.
-    func rebuild() {
+    func rebuild(with s: Settings? = nil) {
+        let settings = s ?? self.settings
         endHover()
         var wanted = Set<String>()
         if settings.enabled {
             for screen in NSScreen.screens {
                 let uuid = screen.displayUUID ?? "screen-\(screen.displayID ?? 0)"
                 let layout = settings.layout(forDisplay: uuid)
-                for corner in Corner.allCases {
+                for corner in Corner.allCases where Self.isOuterCorner(corner, of: screen) {
                     let cfg = layout[corner]
                     let groups = ActionGroup.groups(for: cfg.actions)
                     guard cfg.enabled, !groups.isEmpty else { continue }
@@ -94,47 +100,72 @@ final class CornerEngine {
                 }
             }
         }
-        log.debug("rebuild: \(wanted.count) corner panel(s)")
+        log.info("rebuild: \(wanted.count) corner panel(s)")
         for (key, panel) in panels where !wanted.contains(key) {
             panel.orderOut(nil)
             panels.removeValue(forKey: key)
         }
+        // If the pointer is already resting in a corner, no enter event will come; start hovering.
+        let mouse = NSEvent.mouseLocation
+        if let p = panels.values.first(where: { $0.frame.contains(mouse) }) { mouseEntered(p, runImmediate: false) }
+    }
+
+    /// A corner that touches another display is not a Fitts target: the pointer passes through it.
+    private static func isOuterCorner(_ c: Corner, of screen: NSScreen) -> Bool {
+        let f = screen.frame
+        let x = c.isLeft ? f.minX - 1 : f.maxX + 1
+        let y = c.isTop ? f.maxY + 1 : f.minY - 1
+        let px = c.isLeft ? f.minX : f.maxX - 1
+        let py = c.isTop ? f.maxY - 1 : f.minY
+        let beyond = [NSPoint(x: x, y: py), NSPoint(x: px, y: y), NSPoint(x: x, y: y)]
+        return !NSScreen.screens.contains { other in other !== screen && beyond.contains { other.frame.contains($0) } }
     }
 
     // MARK: Hover lifecycle
 
-    fileprivate func mouseEntered(_ panel: CornerPanel) {
-        log.debug("entered \(panel.corner.title, privacy: .public)")
+    /// Bumped on every enter/exit so timers from an earlier hover can never act on a newer one.
+    private var session = 0
+
+    fileprivate func mouseEntered(_ panel: CornerPanel, runImmediate: Bool = true) {
+        log.info("entered \(panel.corner.title, privacy: .public)")
         endHover()
         active = panel
         firedHover = false
         selectedIndex = nil
         currentMods = Modifiers(eventFlags: NSEvent.modifierFlags)
         panel.setHighlighted(true)
+        let token = session
+
+        // NSEvent.modifierFlags reads hardware state without needing Accessibility permission.
+        modPoll = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { [weak self] _ in
+            MainActor.assumeIsolated {
+                guard let self, self.session == token else { return }
+                self.pollModifiers()
+            }
+        }
 
         // Immediate hover actions fire right away; delayed ones after the hover delay.
-        if runHover(delayedOnly: false, includeDelayed: false) { return }
+        if runImmediate && runHover(delayedOnly: false, includeDelayed: false) { return }
         scheduleHoverTimer()
 
         if settings.showHUD {
             hudTimer = Timer.scheduledTimer(withTimeInterval: max(0.01, settings.hudDelay), repeats: false) { [weak self] _ in
-                Task { @MainActor in self?.showHUD() }
+                MainActor.assumeIsolated {
+                    guard let self, self.session == token else { return }
+                    self.showHUD()
+                }
             }
-        }
-
-        // NSEvent.modifierFlags reads hardware state without needing Accessibility permission.
-        modPoll = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { [weak self] _ in
-            Task { @MainActor in self?.pollModifiers() }
         }
     }
 
     fileprivate func mouseExited(_ panel: CornerPanel) {
-        log.debug("exited \(panel.corner.title, privacy: .public)")
+        log.info("exited \(panel.corner.title, privacy: .public)")
         guard panel === active else { return }
         endHover()
     }
 
     private func endHover() {
+        session += 1
         modPoll?.invalidate(); modPoll = nil
         hoverTimer?.invalidate(); hoverTimer = nil
         hudTimer?.invalidate(); hudTimer = nil
@@ -164,9 +195,10 @@ final class CornerEngine {
     private func scheduleHoverTimer(forceAll: Bool = false) {
         hoverTimer?.invalidate()
         guard let active, active.groups.contains(where: { $0.trigger == .hover && $0.modifiers == currentMods }) else { return }
+        let token = session
         hoverTimer = Timer.scheduledTimer(withTimeInterval: settings.hoverDelay, repeats: false) { [weak self] _ in
-            Task { @MainActor in
-                guard let self else { return }
+            MainActor.assumeIsolated {
+                guard let self, self.session == token else { return }
                 _ = self.runHover(delayedOnly: !forceAll, includeDelayed: true)
             }
         }
@@ -175,12 +207,17 @@ final class CornerEngine {
     /// Returns true if something ran.
     private func runHover(delayedOnly: Bool, includeDelayed: Bool) -> Bool {
         guard let active, !firedHover else { return false }
+        // Never fire while a mouse button is held: window drags, file drags, tiling gestures.
+        guard NSEvent.pressedMouseButtons == 0 else {
+            if !delayedOnly || includeDelayed { scheduleHoverTimer(forceAll: !delayedOnly) }
+            return false
+        }
         let matches = active.groups.filter { g in
             g.trigger == .hover && g.modifiers == currentMods &&
             (g.delayed ? includeDelayed : !delayedOnly)
         }
         guard !matches.isEmpty else { return false }
-        log.debug("hover fired \(matches.count) group(s)")
+        log.info("hover fired \(matches.count) group(s)")
         firedHover = true
         hud.flash(matches.map(\.id))
         for g in matches { ActionRunner.run(g.actions) }
@@ -198,11 +235,8 @@ final class CornerEngine {
         } else {
             group = panel.groups.first { $0.trigger == trigger && $0.modifiers == mods }
         }
-        log.debug("click \(trigger.title, privacy: .public) mods=\(mods.rawValue) → \(group?.actions.map(\.displayName).joined(separator: "+") ?? "none", privacy: .public)")
-        guard let group else {
-            NSSound.beep()
-            return
-        }
+        log.info("click \(trigger.title, privacy: .public) mods=\(mods.rawValue) → \(group?.actions.map(\.displayName).joined(separator: "+") ?? "none", privacy: .public)")
+        guard let group else { return }
         hud.flash([group.id])
         ActionRunner.run(group.actions)
         selectedIndex = nil
@@ -259,6 +293,8 @@ final class CornerPanel: NSPanel {
         collectionBehavior = [.canJoinAllSpaces, .stationary, .fullScreenAuxiliary, .ignoresCycle]
         isReleasedWhenClosed = false
         acceptsMouseMovedEvents = true
+        // Explicitly accept mouse events so the window server never clicks through transparent pixels.
+        ignoresMouseEvents = false
         indicator.corner = corner
         indicator.panel = self
         contentView = indicator
@@ -276,6 +312,8 @@ final class CornerPanel: NSPanel {
         setFrame(NSRect(x: x, y: y, width: s, height: s), display: false)
         indicator.showIdle = show
         indicator.needsDisplay = true
+        // AppKit does not reliably call updateTrackingAreas for a borderless panel moved with
+        // setFrame, so install the tracking area explicitly (verified on macOS 27).
         indicator.updateTracking()
         orderFrontRegardless()
     }
@@ -304,7 +342,7 @@ final class CornerIndicatorView: NSView {
     func updateTracking() {
         if let area { removeTrackingArea(area) }
         let a = NSTrackingArea(rect: bounds,
-                               options: [.mouseEnteredAndExited, .activeAlways, .inVisibleRect, .assumeInside],
+                               options: [.mouseEnteredAndExited, .activeAlways, .inVisibleRect],
                                owner: self, userInfo: nil)
         addTrackingArea(a)
         area = a
@@ -336,11 +374,9 @@ final class CornerIndicatorView: NSView {
         path.close()
         NSColor.controlAccentColor.withAlphaComponent(alpha).setFill()
         path.fill()
-        if !highlighted {
-            // Keep the whole square hittable.
-            NSColor.black.withAlphaComponent(0.012).setFill()
-            bounds.fill(using: .sourceOver)
-        }
+        // Belt and braces with ignoresMouseEvents = false: keep every pixel non-transparent.
+        NSColor.black.withAlphaComponent(0.012).setFill()
+        bounds.fill(using: .sourceOver)
     }
 
     override func mouseEntered(with event: NSEvent) { panel?.entered() }

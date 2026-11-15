@@ -253,7 +253,7 @@ struct Settings: Codable, Equatable {
     var showInMenuBar = true
 
     func layout(forDisplay uuid: String?) -> CornerLayout {
-        if perDisplay, let uuid { return layouts[uuid] ?? CornerLayout() }
+        if perDisplay, let uuid { return layouts[uuid] ?? layouts[Settings.allDisplaysKey] ?? CornerLayout() }
         return layouts[Settings.allDisplaysKey] ?? CornerLayout()
     }
 

@@ -18,7 +18,6 @@ struct CornersView: View {
     @State private var hotCorners = SystemHotCorners.read()
     @State private var screens = NSScreen.screens
 
-    private let refresh = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
 
     init() {
         // Start on the first corner that has actions.
@@ -56,8 +55,7 @@ struct CornersView: View {
             cornerSection
         }
         .padding(20)
-        .frame(width: 640)
-        .frame(minHeight: 620)
+        .frame(width: 640, height: 640, alignment: .top)
         .sheet(item: $editing) { req in
             ActionEditor(original: req.action, isNew: req.isNew, siblings: config.actions) { saved in
                 store.update(displayKey: displayKey, corner: corner) { cfg in
@@ -70,11 +68,15 @@ struct CornersView: View {
                 selection = [saved.id]
             }
         }
-        .onReceive(refresh) { _ in
+        .onReceive(NotificationCenter.default.publisher(for: NSApplication.didChangeScreenParametersNotification)) { _ in
+            screens = NSScreen.screens
+            if !screens.contains(where: { $0.displayUUID == displayUUID }) { displayUUID = NSScreen.main?.displayUUID }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: NSWindow.didBecomeKeyNotification)) { _ in
             hotCorners = SystemHotCorners.read()
-            if screens != NSScreen.screens { screens = NSScreen.screens }
         }
         .onChange(of: corner) { _, _ in selection = [] }
+        .onChange(of: displayKey) { _, _ in selection = [] }
     }
 
     @ViewBuilder private var displayBar: some View {
@@ -240,11 +242,13 @@ struct ActionRow: View {
             ActionIcon(action: action, size: 26)
             VStack(alignment: .leading, spacing: 1) {
                 Text(action.displayName).lineLimit(1)
-                Text(subtitle)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .lineLimit(1)
-                    .truncationMode(.middle)
+                if !subtitle.isEmpty && subtitle != action.displayName {
+                    Text(subtitle)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                        .truncationMode(.middle)
+                }
             }
             Spacer()
             if combo > 1 {
@@ -267,7 +271,7 @@ struct ActionRow: View {
         case .runShortcut:
             return "Shortcut"
         default:
-            return action.kind.title
+            return action.label.isEmpty ? "" : action.kind.title
         }
     }
 }
@@ -577,7 +581,13 @@ struct FileChooser: View {
         let start = path.isEmpty ? directory : ((path as NSString).deletingLastPathComponent)
         p.directoryURL = URL(fileURLWithPath: (start as NSString).expandingTildeInPath)
         p.prompt = "Choose"
-        if p.runModal() == .OK, let url = p.url { path = url.path }
+        if let sheetWindow = NSApp.keyWindow {
+            p.beginSheetModal(for: sheetWindow) { resp in
+                if resp == .OK, let url = p.url { path = url.path }
+            }
+        } else if p.runModal() == .OK, let url = p.url {
+            path = url.path
+        }
     }
 }
 

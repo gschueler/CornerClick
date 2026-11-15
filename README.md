@@ -77,7 +77,7 @@ Sources live in `Sources/`:
 | `main.swift` | App lifecycle, menu bar extra, Settings window |
 | `SelfTest.swift` | `CC_SELFTEST=<dir>` drives the UI headlessly and writes screenshots |
 
-Engine logs: `log stream --level debug --predicate 'subsystem == "io.github.cornerclick.CornerClick"'`
+Engine logs: `log stream --level info --predicate 'subsystem == "io.github.cornerclick.CornerClick"'`
 
 ## License
 

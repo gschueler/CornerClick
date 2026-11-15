@@ -234,15 +234,23 @@ struct GlassBackground: ViewModifier {
     var cornerRadius: CGFloat
 
     func body(content: Content) -> some View {
+        #if compiler(>=6.2) // Liquid Glass API ships with the macOS 26 SDK (Swift 6.2)
         if #available(macOS 26.0, *) {
             content.glassEffect(.regular, in: RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
         } else {
-            content
-                .background(.regularMaterial, in: RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
-                .overlay(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                    .strokeBorder(.white.opacity(0.15)))
-                .shadow(color: .black.opacity(0.25), radius: 8, y: 3)
+            fallback(content)
         }
+        #else
+        fallback(content)
+        #endif
+    }
+
+    private func fallback(_ content: Content) -> some View {
+        content
+            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
+            .overlay(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+                .strokeBorder(.white.opacity(0.15)))
+            .shadow(color: .black.opacity(0.25), radius: 8, y: 3)
     }
 }
 

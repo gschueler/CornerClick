@@ -698,6 +698,15 @@ struct GeneralView: View {
                             .monospacedDigit().foregroundStyle(.secondary).frame(width: 64, alignment: .trailing)
                     }
                 }
+                Picker(selection: $store.settings.cornerHighlight) {
+                    ForEach(CornerHighlight.allCases) { h in
+                        Text(h.title).tag(h).selectionDisabled(h == .glass && !CornerGlow.isSupported)
+                    }
+                } label: {
+                    Text("Hover Highlight")
+                    if !CornerGlow.isSupported { Text("Liquid Glass needs macOS 26 or later.") }
+                }
+                .pickerStyle(.segmented)
                 Toggle(isOn: $store.settings.showIndicators) {
                     Text("Show corner indicators")
                     Text("A small tint marks corners that have actions.")

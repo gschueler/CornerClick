@@ -236,6 +236,13 @@ enum HUDSize: Int, Codable, CaseIterable, Identifiable {
     var fontSize: CGFloat { [12, 13, 15][rawValue] }
 }
 
+/// How a corner shows that the pointer is in it.
+enum CornerHighlight: Int, Codable, CaseIterable, Identifiable {
+    case accent, glass
+    var id: Int { rawValue }
+    var title: String { ["Accent Color", "Liquid Glass"][rawValue] }
+}
+
 struct Settings: Codable, Equatable {
     static let allDisplaysKey = "all"
 
@@ -250,6 +257,7 @@ struct Settings: Codable, Equatable {
     var hoverDelay: Double = 1.5
     var showIndicators = true
     var hotAreaSize: Double = 8
+    var cornerHighlight: CornerHighlight = .accent
     var showInMenuBar = true
 
     func layout(forDisplay uuid: String?) -> CornerLayout {
@@ -271,6 +279,7 @@ struct Settings: Codable, Equatable {
         hoverDelay = (try? c.decode(Double.self, forKey: .hoverDelay)) ?? d.hoverDelay
         showIndicators = (try? c.decode(Bool.self, forKey: .showIndicators)) ?? d.showIndicators
         hotAreaSize = (try? c.decode(Double.self, forKey: .hotAreaSize)) ?? d.hotAreaSize
+        cornerHighlight = (try? c.decode(CornerHighlight.self, forKey: .cornerHighlight)) ?? d.cornerHighlight
         showInMenuBar = (try? c.decode(Bool.self, forKey: .showInMenuBar)) ?? d.showInMenuBar
     }
 }

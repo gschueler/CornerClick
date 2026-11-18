@@ -21,6 +21,7 @@ tested on macOS 27. The original 0.9 preference pane (2003–2010, by Greg Schue
 - **Combos**: actions with the same trigger and modifiers run together, top to bottom
 - **Action list HUD** (Liquid Glass on macOS 26+) shows what each corner does as you point at it.
   Scroll to pick an entry, then click to run it.
+- **Hover highlight** in your accent color, or as a Liquid Glass quarter-disc (macOS 26+)
 - **Multiple displays**: one shared set of corners, or separate corners for each display
 - **Actions**: Open app/file/folder, Open URL, Hide current app, Hide other apps, Mission Control,
   App Exposé, Show Desktop, Show Apps, Start screen saver, Put displays to sleep, Lock screen,
@@ -75,7 +76,7 @@ Sources live in `Sources/`:
 | `ActionRunner.swift` | Performs actions |
 | `SettingsView.swift` | SwiftUI Settings (Corners, General, About) |
 | `main.swift` | App lifecycle, menu bar extra, Settings window |
-| `SelfTest.swift` | `CC_SELFTEST=<dir>` drives the UI headlessly and writes screenshots |
+| `SelfTest.swift` | `CC_SELFTEST=<dir>` drives the UI headlessly and writes screenshots; `CC_SELFTEST_TABS=<file>` times Settings tab switches; `CC_SELFTEST_GLOW=<0-3>` shows the glass highlight |
 
 Engine logs: `log stream --level info --predicate 'subsystem == "io.github.cornerclick.CornerClick"'`
 

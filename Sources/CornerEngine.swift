@@ -38,6 +38,7 @@ final class CornerEngine {
     private var panels: [String: CornerPanel] = [:]   // "<displayUUID>-<corner>"
     private var cancellables = Set<AnyCancellable>()
     private let hud = HUDController()
+    private let glow = CornerGlow()
 
     // Hover state
     private var active: CornerPanel?
@@ -96,7 +97,8 @@ final class CornerEngine {
                     }()
                     panel.groups = groups
                     panel.screen_ = screen
-                    panel.place(size: CGFloat(settings.hotAreaSize), indicator: settings.showIndicators)
+                    panel.place(size: CGFloat(settings.hotAreaSize), indicator: settings.showIndicators,
+                                glass: settings.cornerHighlight == .glass)
                 }
             }
         }
@@ -134,6 +136,9 @@ final class CornerEngine {
         selectedIndex = nil
         currentMods = Modifiers(eventFlags: NSEvent.modifierFlags)
         panel.setHighlighted(true)
+        if settings.cornerHighlight == .glass, let screen = panel.screen_ {
+            glow.show(corner: panel.corner, screen: screen)
+        }
         let token = session
 
         // NSEvent.modifierFlags reads hardware state without needing Accessibility permission.
@@ -170,6 +175,7 @@ final class CornerEngine {
         hoverTimer?.invalidate(); hoverTimer = nil
         hudTimer?.invalidate(); hudTimer = nil
         active?.setHighlighted(false)
+        glow.hide()
         active = nil
         selectedIndex = nil
         hud.hide()
@@ -303,7 +309,7 @@ final class CornerPanel: NSPanel {
     override var canBecomeKey: Bool { false }
     override var canBecomeMain: Bool { false }
 
-    func place(size: CGFloat, indicator show: Bool) {
+    func place(size: CGFloat, indicator show: Bool, glass: Bool) {
         guard let screen = screen_ else { return }
         let f = screen.frame
         let s = max(2, size)
@@ -311,6 +317,7 @@ final class CornerPanel: NSPanel {
         let y = corner.isTop ? f.maxY - s : f.minY
         setFrame(NSRect(x: x, y: y, width: s, height: s), display: false)
         indicator.showIdle = show
+        indicator.glassHighlight = glass
         indicator.needsDisplay = true
         // AppKit does not reliably call updateTrackingAreas for a borderless panel moved with
         // setFrame, so install the tracking area explicitly (verified on macOS 27).
@@ -335,6 +342,8 @@ final class CornerIndicatorView: NSView {
     weak var panel: CornerPanel?
     var showIdle = true
     var highlighted = false
+    /// The Liquid Glass highlight (CornerGlow) replaces the accent fill while hovering.
+    var glassHighlight = false
     private var area: NSTrackingArea?
 
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool { true }
@@ -358,7 +367,8 @@ final class CornerIndicatorView: NSView {
         bounds.fill()
         // Window-server click-through ignores fully transparent pixels, so always keep a
         // near-invisible fill to guarantee the corner pixel is hit.
-        let alpha: CGFloat = highlighted ? 0.9 : (showIdle ? 0.28 : 0.012)
+        let lit = highlighted && !glassHighlight
+        let alpha: CGFloat = lit ? 0.9 : (showIdle ? 0.28 : 0.012)
         let r = bounds.width
         let center = NSPoint(x: corner.isLeft ? 0 : r, y: corner.isTop ? r : 0)
         let path = NSBezierPath()

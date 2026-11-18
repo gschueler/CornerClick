@@ -27,7 +27,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
             }
         }
 
-        CornerEngine.shared.start()
+        if SelfTest.tabsOutFile == nil && SelfTest.glowCorner == nil { CornerEngine.shared.start() }
 
         store.$settings.map(\.showInMenuBar).removeDuplicates()
             .sink { [weak self] show in self?.updateStatusItem(show) }
@@ -36,7 +36,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
             .sink { [weak self] on in self?.refreshStatusIcon(enabled: on) }
             .store(in: &cancellables)
 
-        if SelfTest.outDir != nil {
+        if SelfTest.glowCorner != nil {
+            SelfTest.showGlow()
+        } else if SelfTest.tabsOutFile != nil {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                SelfTest.timeTabSwitches { [weak self] in self?.showSettings(nil); return self?.settingsWindow }
+            }
+        } else if SelfTest.outDir != nil {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
                 SelfTest.run { [weak self] in self?.showSettings(nil); return self?.settingsWindow }
             }
@@ -116,7 +122,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     private func buildSettingsWindow() {
         let tabs = NSTabViewController()
         tabs.tabStyle = .toolbar
-        tabs.transitionOptions = [.crossfade, .allowUserInteraction]
+        // Swap content instantly; the window resize below is the only animation.
+        tabs.transitionOptions = [.allowUserInteraction]
         tabs.canPropagateSelectedChildViewControllerTitle = true
 
         func add<V: View>(_ title: String, _ symbol: String, _ view: V) {
@@ -132,7 +139,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         add("General", "gearshape", GeneralView())
         add("About", "info.circle", AboutView())
 
-        let window = NSWindow(contentViewController: tabs)
+        let window = SettingsWindow(contentViewController: tabs)
         window.styleMask = [.titled, .closable]
         window.toolbarStyle = .preference
         window.title = "Corners"
@@ -235,4 +242,12 @@ MainActor.assumeIsolated {
     app.delegate = delegate
     app.setActivationPolicy(.accessory)
     withExtendedLifetime(delegate) { app.run() }
+}
+
+/// The Settings window. AppKit's default resize animation scales with distance (0.2 s per 150 pt),
+/// which made switching between the tall Corners tab and the short About tab feel sluggish.
+final class SettingsWindow: NSWindow {
+    override func animationResizeTime(_ newFrame: NSRect) -> TimeInterval {
+        min(super.animationResizeTime(newFrame), 0.12)
+    }
 }

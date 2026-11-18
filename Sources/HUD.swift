@@ -254,6 +254,149 @@ struct GlassBackground: ViewModifier {
     }
 }
 
+// MARK: - Liquid Glass corner highlight
+
+@MainActor
+final class CornerGlowModel: ObservableObject {
+    @Published var corner: Corner = .topLeft
+    @Published var visible = false
+}
+
+/// A Liquid Glass quarter-disc that grows out of the corner while the pointer rests there.
+/// It ignores the mouse, so clicks still land on the corner's hot area.
+@MainActor
+final class CornerGlow {
+    static var isSupported: Bool {
+        #if compiler(>=6.2)
+        if #available(macOS 26.0, *) { return true }
+        #endif
+        return false
+    }
+
+    static let radius: CGFloat = 54
+    /// Room on the inner sides for the glass edge highlight.
+    static let padding: CGFloat = 12
+
+    private let model = CornerGlowModel()
+    private var generation = 0
+    private lazy var panel: NSPanel = {
+        let p = NSPanel(contentRect: .zero, styleMask: [.borderless, .nonactivatingPanel], backing: .buffered, defer: true)
+        p.isOpaque = false
+        p.backgroundColor = .clear
+        p.hasShadow = false
+        p.level = .popUpMenu
+        p.ignoresMouseEvents = true
+        p.collectionBehavior = [.canJoinAllSpaces, .stationary, .fullScreenAuxiliary, .ignoresCycle]
+        p.hidesOnDeactivate = false
+        p.isReleasedWhenClosed = false
+        p.contentView = NSHostingView(rootView: CornerGlowView(model: model))
+        return p
+    }()
+
+    func show(corner: Corner, screen: NSScreen) {
+        generation += 1
+        let side = Self.radius + Self.padding
+        let f = screen.frame
+        panel.setFrame(NSRect(x: corner.isLeft ? f.minX : f.maxX - side,
+                              y: corner.isTop ? f.maxY - side : f.minY,
+                              width: side, height: side), display: false)
+        if model.corner != corner || !panel.isVisible {
+            model.corner = corner
+            model.visible = false
+        }
+        panel.orderFrontRegardless()
+        DispatchQueue.main.async { [model] in
+            withAnimation(.spring(duration: 0.32, bounce: 0.3)) { model.visible = true }
+        }
+    }
+
+    func hide() {
+        guard panel.isVisible else { return }
+        let gen = generation
+        withAnimation(.easeIn(duration: 0.14)) { model.visible = false }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            guard let self, self.generation == gen else { return }
+            self.panel.orderOut(nil)
+        }
+    }
+}
+
+struct CornerGlowView: View {
+    @ObservedObject var model: CornerGlowModel
+
+    var body: some View {
+        let side = CornerGlow.radius + CornerGlow.padding
+        let shape = QuarterDisc(corner: model.corner)
+        Color.clear
+            .frame(width: CornerGlow.radius, height: CornerGlow.radius)
+            .modifier(CornerGlass(shape: shape))
+            .scaleEffect(model.visible ? 1 : 0.15, anchor: anchor)
+            .opacity(model.visible ? 1 : 0)
+            .frame(width: side, height: side, alignment: alignment)
+    }
+
+    private var anchor: UnitPoint {
+        switch model.corner {
+        case .topLeft: return .topLeading
+        case .topRight: return .topTrailing
+        case .bottomLeft: return .bottomLeading
+        case .bottomRight: return .bottomTrailing
+        }
+    }
+
+    private var alignment: Alignment {
+        switch model.corner {
+        case .topLeft: return .topLeading
+        case .topRight: return .topTrailing
+        case .bottomLeft: return .bottomLeading
+        case .bottomRight: return .bottomTrailing
+        }
+    }
+}
+
+/// A quarter circle centred on one corner of its rect.
+struct QuarterDisc: Shape {
+    var corner: Corner
+
+    func path(in rect: CGRect) -> Path {
+        let c = CGPoint(x: corner.isLeft ? rect.minX : rect.maxX, y: corner.isTop ? rect.minY : rect.maxY)
+        // SwiftUI angles run clockwise from +x with y pointing down.
+        let start: Double
+        switch corner {
+        case .topLeft: start = 0
+        case .topRight: start = 90
+        case .bottomRight: start = 180
+        case .bottomLeft: start = 270
+        }
+        var p = Path()
+        p.move(to: c)
+        p.addArc(center: c, radius: min(rect.width, rect.height), startAngle: .degrees(start),
+                 endAngle: .degrees(start + 90), clockwise: false)
+        p.closeSubpath()
+        return p
+    }
+}
+
+private struct CornerGlass<S: Shape>: ViewModifier {
+    var shape: S
+
+    func body(content: Content) -> some View {
+        #if compiler(>=6.2)
+        if #available(macOS 26.0, *) {
+            content.glassEffect(.regular.tint(.accentColor.opacity(0.18)), in: shape)
+        } else {
+            fallback(content)
+        }
+        #else
+        fallback(content)
+        #endif
+    }
+
+    private func fallback(_ content: Content) -> some View {
+        content.background(.regularMaterial, in: shape)
+    }
+}
+
 // MARK: - Error banner
 
 @MainActor

@@ -27,7 +27,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
             }
         }
 
-        if SelfTest.tabsOutFile == nil && SelfTest.glowCorner == nil { CornerEngine.shared.start() }
+        if SelfTest.tabsOutFile == nil && !SelfTest.hudProbe { CornerEngine.shared.start() }
 
         store.$settings.map(\.showInMenuBar).removeDuplicates()
             .sink { [weak self] show in self?.updateStatusItem(show) }
@@ -36,8 +36,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
             .sink { [weak self] on in self?.refreshStatusIcon(enabled: on) }
             .store(in: &cancellables)
 
-        if SelfTest.glowCorner != nil {
-            SelfTest.showGlow()
+        if SelfTest.hudProbe {
+            SelfTest.showHUD()
         } else if SelfTest.tabsOutFile != nil {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
                 SelfTest.timeTabSwitches { [weak self] in self?.showSettings(nil); return self?.settingsWindow }

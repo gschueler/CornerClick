@@ -80,20 +80,28 @@ enum SelfTest {
         }
     }
 
-    // MARK: Glass highlight
+    // MARK: Action list
 
-    /// `CC_SELFTEST_GLOW=<corner 0-3>`: shows only the Liquid Glass hover highlight for 4 s, for a
-    /// real screenshot (`screencapture`). Doesn't touch the corners.
-    static var glowCorner: Corner? {
-        ProcessInfo.processInfo.environment["CC_SELFTEST_GLOW"].flatMap { Int($0) }.flatMap { Corner(rawValue: $0) }
-    }
+    /// `CC_SELFTEST_HUD=1`: shows only the action list in the top-left corner for 5 s with sample
+    /// actions, for a real screenshot (`screencapture`). Doesn't touch the corners.
+    static var hudProbe: Bool { ProcessInfo.processInfo.environment["CC_SELFTEST_HUD"] != nil }
 
-    private static let glow = CornerGlow()
+    private static let hud = HUDController()
 
-    static func showGlow() {
-        guard let corner = glowCorner, let screen = NSScreen.main else { return }
-        glow.show(corner: corner, screen: screen)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) { NSApp.terminate(nil) }
+    static func showHUD() {
+        guard let screen = NSScreen.main else { return }
+        var hide = CornerAction(kind: .hideFrontApp)
+        hide.trigger = .click
+        var others = CornerAction(kind: .hideOtherApps)
+        others.trigger = .click
+        others.modifiers = [.option]
+        var mc = CornerAction(kind: .missionControl)
+        mc.trigger = .hover
+        mc.delayed = true
+        let groups = ActionGroup.groups(for: [hide, others, mc])
+        hud.show(groups: groups, currentMods: [], selected: nil, corner: .topLeft,
+                 screen: screen, hotArea: 8, size: .medium)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { NSApp.terminate(nil) }
     }
 
     // MARK: Tab switch timing

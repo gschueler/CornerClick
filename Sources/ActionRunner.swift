@@ -2,6 +2,7 @@
 // Performs corner actions using modern, permission-free APIs where possible.
 
 import AppKit
+import os
 
 @MainActor
 enum ActionRunner {
@@ -32,7 +33,15 @@ enum ActionRunner {
             if let url = URL(string: s) { NSWorkspace.shared.open(url) }
 
         case .hideFrontApp:
-            frontApp()?.hide()
+            // hide() returns false when the app refuses or cannot be hidden. That result used to
+            // be discarded, so a refusal looked identical to the action never running at all.
+            let frontmost = NSWorkspace.shared.frontmostApplication
+            guard let app = frontApp() else {
+                log.info("hide skipped: frontmost is \(frontmost?.bundleIdentifier ?? "nil", privacy: .public), which is CornerClick itself")
+                return
+            }
+            let hidden = app.hide()
+            log.info("hide \(app.bundleIdentifier ?? "nil", privacy: .public) pid=\(app.processIdentifier) policy=\(app.activationPolicy.rawValue) active=\(app.isActive) alreadyHidden=\(app.isHidden) → \(hidden)")
 
         case .hideOtherApps:
             let front = frontApp()

@@ -1,0 +1,42 @@
+name: Build
+
+on:
+  push:
+    branches: [master, main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Build universal app
+        run: ./build.sh --universal
+
+      - name: Verify bundle
+        run: |
+          codesign --verify --strict --verbose=2 build/CornerClick.app
+          lipo -info build/CornerClick.app/Contents/MacOS/CornerClick
+          plutil -lint build/CornerClick.app/Contents/Info.plist
+
+      - name: Package
+        run: |
+          cd build
+          ditto -c -k --keepParent CornerClick.app CornerClick.zip
+
+      - uses: actions/upload-artifact@v5
+        with:
+          name: CornerClick
+          path: build/CornerClick.zip
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/CornerClick.zip
+          generate_release_notes: true

@@ -33,15 +33,7 @@ enum ActionRunner {
             if let url = URL(string: s) { NSWorkspace.shared.open(url) }
 
         case .hideFrontApp:
-            // hide() returns false when the app refuses or cannot be hidden. That result used to
-            // be discarded, so a refusal looked identical to the action never running at all.
-            let frontmost = NSWorkspace.shared.frontmostApplication
-            guard let app = frontApp() else {
-                log.info("hide skipped: frontmost is \(frontmost?.bundleIdentifier ?? "nil", privacy: .public), which is CornerClick itself")
-                return
-            }
-            let hidden = app.hide()
-            log.info("hide \(app.bundleIdentifier ?? "nil", privacy: .public) pid=\(app.processIdentifier) policy=\(app.activationPolicy.rawValue) active=\(app.isActive) alreadyHidden=\(app.isHidden) → \(hidden)")
+            hideFrontApp()
 
         case .hideOtherApps:
             let front = frontApp()
@@ -84,6 +76,45 @@ enum ActionRunner {
                 report("AppleScript not found", path); return
             }
             launch("/usr/bin/osascript", [path])
+        }
+    }
+
+    /// Hides the frontmost app.
+    ///
+    /// `NSRunningApplication.hide()` is not dependable on recent macOS: it has been seen to
+    /// return false and leave the app on screen (reported for Chromium-based apps), and also to
+    /// return false having hidden the app anyway. So: try again on a freshly resolved handle for
+    /// the same process, then confirm against `isHidden` before claiming anything failed. The
+    /// old one-liner discarded the result entirely, which made a refusal look like a corner that
+    /// never fired.
+    private static func hideFrontApp() {
+        guard let app = frontApp() else {
+            let frontmost = NSWorkspace.shared.frontmostApplication
+            log.info("hide skipped: frontmost is \(frontmost?.bundleIdentifier ?? "nil", privacy: .public), which is CornerClick itself")
+            return
+        }
+        let id = app.bundleIdentifier ?? "nil"
+        let pid = app.processIdentifier
+        let name = app.localizedName ?? id
+
+        if app.hide() {
+            log.info("hide \(id, privacy: .public) → true")
+            return
+        }
+        if NSRunningApplication(processIdentifier: pid)?.hide() == true {
+            log.info("hide \(id, privacy: .public) → true on a fresh handle")
+            return
+        }
+
+        // Both calls said no. Check whether it hid regardless before bothering the user.
+        log.error("hide \(id, privacy: .public) refused; confirming against isHidden")
+        Task { @MainActor in
+            try? await Task.sleep(for: .milliseconds(400))
+            if NSRunningApplication(processIdentifier: pid)?.isHidden ?? true {
+                log.info("hide \(id, privacy: .public) took effect despite returning false")
+                return
+            }
+            report("Couldn’t hide \(name)", "macOS refused the request. Try ⌘H in the app itself.")
         }
     }
 

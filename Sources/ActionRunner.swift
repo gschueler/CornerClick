@@ -39,7 +39,9 @@ enum ActionRunner {
             let front = frontApp()
             for app in NSWorkspace.shared.runningApplications
             where app.activationPolicy == .regular && app != front && app != .current && !app.isHidden {
-                app.hide()
+                if !app.hide() {
+                    log.info("hide-others refused \(app.bundleIdentifier ?? "nil", privacy: .public)")
+                }
             }
 
         case .missionControl:
@@ -97,24 +99,23 @@ enum ActionRunner {
         let pid = app.processIdentifier
         let name = app.localizedName ?? id
 
-        if app.hide() {
-            log.info("hide \(id, privacy: .public) → true")
-            return
-        }
-        if NSRunningApplication(processIdentifier: pid)?.hide() == true {
-            log.info("hide \(id, privacy: .public) → true on a fresh handle")
-            return
-        }
+        // Ask twice, the second time on a freshly resolved handle in case the first is stale.
+        let sent = app.hide() || NSRunningApplication(processIdentifier: pid)?.hide() == true
+        log.info("hide \(id, privacy: .public) pid=\(pid) sent=\(sent)")
 
-        // Both calls said no. Check whether it hid regardless before bothering the user.
-        log.error("hide \(id, privacy: .public) refused; confirming against isHidden")
+        // Confirm on BOTH paths. hide() reports only that the request went out, and it is
+        // unreliable in both directions on recent macOS: an app that hides and then puts itself
+        // straight back would otherwise be logged as a success and never looked at again.
         Task { @MainActor in
-            try? await Task.sleep(for: .milliseconds(400))
-            if NSRunningApplication(processIdentifier: pid)?.isHidden ?? true {
-                log.info("hide \(id, privacy: .public) took effect despite returning false")
+            try? await Task.sleep(for: .milliseconds(600))
+            guard let live = NSRunningApplication(processIdentifier: pid), !live.isTerminated else { return }
+            if live.isHidden {
+                log.info("hide \(id, privacy: .public) confirmed hidden")
                 return
             }
-            report("Couldn’t hide \(name)", "macOS refused the request. Try ⌘H in the app itself.")
+            log.error("hide \(id, privacy: .public) did not take effect (sent=\(sent))")
+            report("Couldn’t hide \(name)",
+                   sent ? "\(name) came straight back." : "macOS refused the request. Try ⌘H in the app itself.")
         }
     }
 

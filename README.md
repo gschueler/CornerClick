@@ -93,6 +93,14 @@ Sources live in `Sources/`:
 
 Engine logs: `log stream --level info --predicate 'subsystem == "io.github.cornerclick.CornerClick"'`
 
+## Credits
+
+CornerClick 0.9, the original preference pane, was created by Greg Schueler between 2003 and 2010
+and is kept in [`legacy/`](legacy/).
+
+The 1.0 rewrite is by [@B-E-N-D-E-R](https://github.com/B-E-N-D-E-R) (Jens Nørgaard-Offersen),
+written with [Claude Code](https://claude.com/claude-code).
+
 ## License
 
 Apache License 2.0. Copyright 2003–2010 Greg Schueler. See [LICENSE](LICENSE).

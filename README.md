@@ -51,8 +51,22 @@ required.
 | `./build.sh --install` | Also installs to /Applications and launches |
 | `SIGN_IDENTITY="Developer ID Application: …" ./build.sh` | Signs with your identity and the hardened runtime |
 
-Local builds are ad-hoc signed. If you download a release that isn't notarized, right-click the app
-and choose **Open** the first time.
+### First launch
+
+Releases are ad-hoc signed, not notarized, so macOS quarantines the download and refuses to open
+it the first time. Control-clicking and choosing **Open** no longer works for this — Apple removed
+that route in macOS 15. Instead, either:
+
+- Try to open CornerClick, dismiss the warning, then go to **System Settings › Privacy & Security**,
+  scroll to **Security**, and click **Open Anyway** next to the message about CornerClick. Or
+- remove the quarantine flag yourself:
+
+```bash
+xattr -d com.apple.quarantine /Applications/CornerClick.app
+```
+
+Either is needed once. Builds you make yourself are never quarantined, so `./build.sh --install`
+sidesteps this entirely.
 
 ## Tips
 

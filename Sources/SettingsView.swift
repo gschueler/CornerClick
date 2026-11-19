@@ -7,6 +7,10 @@ import ServiceManagement
 import SwiftUI
 import UniformTypeIdentifiers
 
+/// Every Settings tab lays out at this width, so switching tabs only changes the window's
+/// height. Corners needs the most room, so it sets the width for all three.
+let settingsTabWidth: CGFloat = 640
+
 // MARK: - Corners tab
 
 struct CornersView: View {
@@ -55,7 +59,7 @@ struct CornersView: View {
             cornerSection
         }
         .padding(20)
-        .frame(width: 640, height: 640, alignment: .top)
+        .frame(width: settingsTabWidth, height: 640, alignment: .top)
         .sheet(item: $editing) { req in
             ActionEditor(original: req.action, isNew: req.isNew, siblings: config.actions) { saved in
                 store.update(displayKey: displayKey, corner: corner) { cfg in
@@ -733,7 +737,7 @@ struct GeneralView: View {
             }
         }
         .formStyle(.grouped)
-        .frame(width: 560)
+        .frame(width: settingsTabWidth)
         .fixedSize(horizontal: false, vertical: true)
         .onAppear {
             refreshLogin()
@@ -806,6 +810,6 @@ struct AboutView: View {
             .padding(.top, 4)
         }
         .padding(32)
-        .frame(width: 460)
+        .frame(width: settingsTabWidth)
     }
 }

@@ -39,8 +39,9 @@ enum ActionRunner {
             let front = frontApp()
             for app in NSWorkspace.shared.runningApplications
             where app.activationPolicy == .regular && app != front && app != .current && !app.isHidden {
+                // Recorded, not judged: a false here does not mean the app stayed visible.
                 if !app.hide() {
-                    log.info("hide-others refused \(app.bundleIdentifier ?? "nil", privacy: .public)")
+                    log.info("hide-others \(app.bundleIdentifier ?? "nil", privacy: .public) sent=false")
                 }
             }
 
@@ -114,8 +115,10 @@ enum ActionRunner {
                 return
             }
             log.error("hide \(id, privacy: .public) did not take effect (sent=\(sent))")
-            report("Couldn’t hide \(name)",
-                   sent ? "\(name) came straight back." : "macOS refused the request. Try ⌘H in the app itself.")
+            // Deliberately not branching this message on `sent`. On recent macOS that Bool
+            // comes back false for apps that hide perfectly well, so it cannot carry a reason —
+            // only the isHidden check above is worth anything, and it says the same either way.
+            report("Couldn’t hide \(name)", "\(name) didn’t respond to the hide request. Try ⌘H in the app itself.")
         }
     }
 

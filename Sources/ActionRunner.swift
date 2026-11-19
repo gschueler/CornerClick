@@ -84,12 +84,24 @@ enum ActionRunner {
 
     /// Hides the frontmost app.
     ///
-    /// `NSRunningApplication.hide()` is not dependable on recent macOS: it has been seen to
-    /// return false and leave the app on screen (reported for Chromium-based apps), and also to
-    /// return false having hidden the app anyway. So: try again on a freshly resolved handle for
-    /// the same process, then confirm against `isHidden` before claiming anything failed. The
-    /// old one-liner discarded the result entirely, which made a refusal look like a corner that
-    /// never fired.
+    /// `NSRunningApplication.hide()`'s result cannot be trusted, for two separate reasons found
+    /// while chasing a report that this action did nothing for Google Chrome.
+    ///
+    /// Apple documents the Bool as whether the request was successfully *sent*, not whether the
+    /// app hid — and on macOS 27 it comes back false even when the app hides perfectly well,
+    /// observed here with Chrome. Showing the user anything based on it would mean an error
+    /// banner on every successful hide.
+    ///
+    /// The actual failure in that report was LaunchServices parentage, not the app: Chrome had
+    /// been launched at login by a Chrome App shim and was registered as a child ASN of it.
+    /// While it sat in that slot no third-party caller could hide it — not this app, not a plain
+    /// osascript process, not `hideOtherApplications()` — though ⌘H and the Dock's own Hide
+    /// still worked, as neither goes through LaunchServices. Relaunching Chrome with ordinary
+    /// parentage fixed it with no code change. Nothing here is Chrome- or Chromium-specific.
+    ///
+    /// So: ask, then confirm against `isHidden`, and only speak up if the app really is still
+    /// on screen. The original one-liner discarded the result entirely, which is why this looked
+    /// like a corner that never fired rather than a hide that never happened.
     private static func hideFrontApp() {
         guard let app = frontApp() else {
             let frontmost = NSWorkspace.shared.frontmostApplication

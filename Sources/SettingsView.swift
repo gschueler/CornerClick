@@ -304,7 +304,10 @@ struct ScreenPreview: View {
         ZStack {
             RoundedRectangle(cornerRadius: 10, style: .continuous)
                 .fill(.black)
-            wallpaper
+            // Color.clear pins this layer to the proposed size, so the .fill wallpaper is cropped
+            // by the clip shape instead of growing the ZStack past the frame set on the preview.
+            Color.clear
+                .overlay { wallpaper }
                 .clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
                 .padding(5)
                 .overlay(alignment: .top) {

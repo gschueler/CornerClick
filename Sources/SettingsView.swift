@@ -299,6 +299,9 @@ struct ScreenPreview: View {
     @Binding var selected: Corner
     let hotCorners: [Corner: String]
 
+    @State private var desktopPicture: NSImage?
+    @State private var pictureLoaded = false
+
     private var aspect: CGFloat {
         guard let f = screen?.frame, f.height > 0 else { return 16 / 10 }
         return f.width / f.height
@@ -336,18 +339,42 @@ struct ScreenPreview: View {
             }
         }
         .aspectRatio(aspect, contentMode: .fit)
+        // Belt and braces: nothing in this stack may paint over the display bar above or the
+        // action list below, whatever a future child reports as its size. Must stay before
+        // .shadow, which draws outside the shape on purpose.
+        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
         .shadow(color: .black.opacity(0.2), radius: 6, y: 3)
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Screen corners")
+        .task(id: screen?.displayUUID) { await loadDesktopPicture() }
+        .onReceive(NotificationCenter.default.publisher(for: NSWindow.didBecomeKeyNotification)) { _ in
+            Task { await loadDesktopPicture() }
+        }
+    }
+
+    /// Reads the desktop picture once per display, off the main thread. This used to happen
+    /// inline in `wallpaper`, so a full-resolution image was re-read and re-decoded on every
+    /// body evaluation — including on every corner tap, inside the selection animation.
+    @MainActor private func loadDesktopPicture() async {
+        var picture: NSImage?
+        if let screen, let url = NSWorkspace.shared.desktopImageURL(for: screen) {
+            let data = await Task.detached(priority: .userInitiated) { try? Data(contentsOf: url) }.value
+            if let data, let img = NSImage(data: data), img.isValid { picture = img }
+        }
+        desktopPicture = picture
+        pictureLoaded = true
     }
 
     @ViewBuilder private var wallpaper: some View {
-        if let screen, let url = NSWorkspace.shared.desktopImageURL(for: screen),
-           let img = NSImage(contentsOf: url), img.isValid {
-            Image(nsImage: img).resizable().aspectRatio(contentMode: .fill)
-        } else {
+        if let desktopPicture {
+            Image(nsImage: desktopPicture).resizable().aspectRatio(contentMode: .fill)
+        } else if pictureLoaded {
             LinearGradient(colors: [Color(red: 0.16, green: 0.32, blue: 0.75), Color(red: 0.45, green: 0.22, blue: 0.7)],
                            startPoint: .topLeading, endPoint: .bottomTrailing)
+        } else {
+            // First read still in flight: let the black card show through rather than flashing
+            // the gradient, which means "this Mac has no desktop picture".
+            Color.clear
         }
     }
 }
@@ -809,6 +836,9 @@ struct AboutView: View {
             .font(.callout)
             .padding(.top, 4)
         }
+        // The tab is as wide as Corners needs, but the content keeps the measure it was laid
+        // out for (the old 460pt tab less its padding), so lines wrap instead of stretching.
+        .frame(maxWidth: 396)
         .padding(32)
         .frame(width: settingsTabWidth)
     }

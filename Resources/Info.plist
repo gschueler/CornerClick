@@ -33,7 +33,7 @@
 	<key>NSHighResolutionCapable</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>© 2003–2010 Greg Schueler, 2026 contributors. Apache License 2.0.</string>
+	<string>© 2003–2010 Greg Schueler, 2026 Jens Nørgaard-Offersen. Apache License 2.0.</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSSupportsAutomaticTermination</key>

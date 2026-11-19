@@ -1,5 +1,5 @@
 // CornerClick — Model.swift
-// Copyright 2003-2010 Greg Schueler, 2026 contributors. Apache License 2.0.
+// Copyright 2003-2010 Greg Schueler, 2026 Jens Nørgaard-Offersen. Apache License 2.0.
 
 import AppKit
 

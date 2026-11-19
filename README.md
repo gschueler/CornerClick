@@ -81,4 +81,4 @@ Engine logs: `log stream --level info --predicate 'subsystem == "io.github.corne
 
 ## License
 
-Apache License 2.0. Copyright 2003–2010 Greg Schueler, 2026 contributors. See [LICENSE](LICENSE).
+Apache License 2.0. Copyright 2003–2010 Greg Schueler, 2026 Jens Nørgaard-Offersen. See [LICENSE](LICENSE).

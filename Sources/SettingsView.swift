@@ -799,7 +799,7 @@ struct AboutView: View {
                 .multilineTextAlignment(.center)
                 .padding(.top, 4)
             Divider().padding(.vertical, 6).frame(width: 260)
-            Text("Created by Greg Schueler, 2003–2010.\nRebuilt for Apple silicon and modern macOS.")
+            Text("Originally created by Greg Schueler, 2003–2010.\nRebuilt in 2026 for Apple silicon by Jens Nørgaard-Offersen with Claude Code.")
                 .font(.callout).foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
             HStack(spacing: 16) {
